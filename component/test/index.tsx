@@ -89,19 +89,32 @@ const questions = [
     }
 ]
 
+
 const Test: React.FC = () => {
 
     const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
 
+    const initUserAnswers = new Array(questions.length).fill(null);
+    const [userAnswers, setUserAnswers] = React.useState<string[]>(initUserAnswers);
+
+    React.useEffect(() => {
+        console.log(userAnswers);
+    }, [userAnswers])
+
     const backButtonHandler = () => {
         if (currentQuestion > 0) {
-            setCurrentQuestion(prev => prev - 1)
+            setCurrentQuestion(prev => prev - 1);
+
         }
     }
 
     const nextButtonHandler = () => {
         if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(prev => prev + 1)
+            const tmp = [...userAnswers]
+            tmp[currentQuestion] = "qq";
+            setUserAnswers(tmp);
+            setCurrentQuestion(prev => prev + 1);
+
         }
     }
 
