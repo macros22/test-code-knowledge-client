@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import { Test } from '../component';
+import { Test } from '../components';
 
 const TestPage: React.FC = () => {
     return (

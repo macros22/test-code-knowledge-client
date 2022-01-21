@@ -1,4 +1,4 @@
-import Counter from '../component/counter';
+import Counter from '../components/counter';
 import styles from '../styles/Home.module.css'
 
 
