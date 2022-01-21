@@ -16,7 +16,7 @@ interface IProps {
     answers: string[];
 }
 
-const Answer: React.FC<IProps> = ({ answers }) => {
+const Answers: React.FC<IProps> = ({ answers }) => {
     const [checkedState, setCheckedState] = React.useState<boolean[]>(
         new Array(answers.length).fill(false)
     );
@@ -31,7 +31,7 @@ const Answer: React.FC<IProps> = ({ answers }) => {
     }, [answersFromStore])
 
     React.useEffect(() => {
-        console.log(checkedState)
+        console.log("checkedState:", checkedState)
     }, [checkedState])
 
     const handleOnChange = (position: number) => {
@@ -103,33 +103,33 @@ const questions = [
 
 const Test: React.FC = () => {
 
-
-
-    // const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
-
     const currentQuestion = useAppSelector(selectCurrentQuestion)
+    const initQuestionsStatus = new Array(questions.length).fill(false);
+    initQuestionsStatus[currentQuestion] = true;
+    const [questionsStatus, setQuestionsStatus] = React.useState<boolean[]>(initQuestionsStatus);
 
-    const initUserAnswers = new Array(questions.length).fill(null);
-    const [userAnswers, setUserAnswers] = React.useState<string[]>(initUserAnswers);
-
+    const answersFromStore = useAppSelector(selectAnswers);
 
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {
-        console.log(userAnswers);
-    }, [userAnswers])
+        console.log(questionsStatus);
+    }, [questionsStatus])
 
 
-
+    // Handlers.
     const backButtonHandler = () => {
-        dispatch(decrementCurrentQuestion())
+        if (currentQuestion > 0) {
+            dispatch(decrementCurrentQuestion())
+        }
     }
 
     const nextButtonHandler = () => {
-        if (currentQuestion < questions.length - 1) {
-            const tmp = [...userAnswers]
-            tmp[currentQuestion] = "qq";
-            setUserAnswers(tmp);
+        if ((currentQuestion < questions.length - 1)
+            && (answersFromStore[currentQuestion] !== "")) {
+            const tmp = [...questionsStatus]
+            tmp[currentQuestion + 1] = true;
+            setQuestionsStatus(tmp);
 
             dispatch(incrementCurrentQuestion())
         }
@@ -139,7 +139,6 @@ const Test: React.FC = () => {
         <div className={styles.wrapper}>
             <div className={styles.questionNumbers}>
                 {questions.map((_, index) => {
-
                     let spanStyle = '';
                     if (currentQuestion == index) {
                         spanStyle = styles.currentItem;
@@ -156,7 +155,7 @@ const Test: React.FC = () => {
                 <h3 className={styles.questionTitle}>{questions[currentQuestion].question}</h3>
                 <Code exampleCode={questions[currentQuestion].exampleCode} />
 
-                <Answer answers={questions[currentQuestion].answers} />
+                <Answers answers={questions[currentQuestion].answers} />
             </div>
             <div className={styles.buttons}>
                 <button onClick={backButtonHandler}>Назад</button>
