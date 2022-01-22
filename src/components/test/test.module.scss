@@ -18,6 +18,7 @@ $width: 60%;
 }
 
 .questionNumbers {
+  user-select: none;
   margin-top: 15px;
   display: flex;
   flex-direction: row;
@@ -25,6 +26,7 @@ $width: 60%;
   border-radius: 6px;
   border: 3px solid #eee;
   width: $width;
+  font-size: 1.4em;
 
   span {
     font-weight: 600;
@@ -34,8 +36,10 @@ $width: 60%;
 
 .currentItem {
   color: #fff;
-  border-radius: 30%;
+  border-radius: 20%;
   background-color: tomato;
+  width: 1.8rem;
+  text-align: center;
 }
 
 .nextItem {
@@ -60,6 +64,7 @@ $width: 60%;
 
 .checkField {
   display: flex;
+  user-select: none;
   width: 100%;
   /* background-color: #f6f8fa; */
   margin: 0.4rem 0;

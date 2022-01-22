@@ -1,6 +1,8 @@
 .Pre {
   width: 100%;
 
+  font-size: 1.4em;
+
   // text-align: left;
   margin: 1em 0;
 
@@ -10,8 +12,8 @@
   line-height: 1.5em;
 
   & .token-line {
-    line-height: 1.3em;
-    height: 1.3em;
+    line-height: 1.5em;
+    height: 1.5em;
   }
 }
 

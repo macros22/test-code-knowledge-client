@@ -3,6 +3,7 @@ import styles from './test.module.scss';
 import Code from '../code';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { answerQuestion, decrementCurrentQuestion, incrementCurrentQuestion, selectAnswers, selectCurrentQuestion } from './testSlice';
+import Checkbox from '../checkbox';
 
 
 const question = "Что будет выведено в консоль?"
@@ -35,6 +36,8 @@ const Answers: React.FC<IProps> = ({ answers }) => {
     }, [checkedState])
 
     const handleOnChange = (position: number) => {
+
+        console.log(position)
         const updatedCheckedState = checkedState.map((item, index) =>
             index === position ? !item : item
         );
@@ -48,14 +51,11 @@ const Answers: React.FC<IProps> = ({ answers }) => {
             {answers.map((answer, index) => {
                 return (
                     <li className={styles.answersList} key={index ** 2}>
-                        <label className={styles.checkField}>
-                            <input
-                                type="checkbox"
-                                name={answer}
-                                value={answer}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                            />{answer}</label>
+                        <Checkbox
+                            name={answer}
+                            value={answer}
+                            checked={checkedState[index]}
+                            onChange={() => handleOnChange(index)} />
                     </li>
                 );
             })}
@@ -152,7 +152,7 @@ const Test: React.FC = () => {
                 })}
             </div>
             <div className={styles.content}>
-                <h3 className={styles.questionTitle}>{questions[currentQuestion].question}</h3>
+                <h2 className={styles.questionTitle}>{questions[currentQuestion].question}</h2>
                 <Code exampleCode={questions[currentQuestion].exampleCode} />
 
                 <Answers answers={questions[currentQuestion].answers} />
@@ -161,6 +161,7 @@ const Test: React.FC = () => {
                 <button onClick={backButtonHandler}>Назад</button>
                 <button onClick={nextButtonHandler}>Дальше</button>
             </div>
+
         </div>
     )
 }
