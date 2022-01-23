@@ -76,4 +76,20 @@ $width: 60%;
 
 .answersList {
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.answerResultStatusCorrect {
+  background-color: rgb(9, 161, 128);
+  color: rgb(255, 255, 255);
+  padding: 0.2rem 0.5rem;
+  height: 60%;
+}
+
+.answerResultStatusInCorrect {
+  background-color: tomato;
+  color: rgb(255, 255, 255);
+  padding: 0.2rem 0.5rem;
+  height: 60%;
 }

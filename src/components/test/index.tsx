@@ -2,11 +2,10 @@ import React from "react";
 import styles from './test.module.scss';
 import Code from '../code';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { answerQuestion, decrementCurrentQuestion, incrementCurrentQuestion, selectAnswers, selectCurrentQuestion } from './testSlice';
+import { changeCheckedState, decrementCurrentQuestion, incrementCurrentQuestion, selectCheckedAnswers, selectCurrentQuestion, selectQuestions } from './testSlice';
 import Checkbox from '../checkbox';
+import { useRouter } from 'next/dist/client/router';
 
-
-const question = "Что будет выведено в консоль?"
 
 export const answers = [
     "[object]", "[null]", "[undefined]", "Error"
@@ -17,19 +16,13 @@ interface IProps {
     answers: string[];
 }
 
-const Answers: React.FC<IProps> = ({ answers }) => {
-    const [checkedState, setCheckedState] = React.useState<boolean[]>(
-        new Array(answers.length).fill(false)
-    );
-
-    const dispatch = useAppDispatch()
-    const answersFromStore = useAppSelector(selectAnswers);
+const AnswersList: React.FC<IProps> = ({ answers }) => {
 
     const currentQuestion = useAppSelector(selectCurrentQuestion)
 
-    React.useEffect(() => {
-        console.log("answersFromStore: ", answersFromStore);
-    }, [answersFromStore])
+    const checkedState = (useAppSelector(selectCheckedAnswers))[currentQuestion];
+
+    const dispatch = useAppDispatch()
 
     React.useEffect(() => {
         console.log("checkedState:", checkedState)
@@ -41,8 +34,10 @@ const Answers: React.FC<IProps> = ({ answers }) => {
         const updatedCheckedState = checkedState.map((item, index) =>
             index === position ? !item : item
         );
-        dispatch(answerQuestion({ answerNumber: currentQuestion, answer: answers[position] }))
-        setCheckedState(updatedCheckedState);
+
+        dispatch(changeCheckedState({ questionNumber: currentQuestion, answerNumber: position }))
+
+
     };
 
     return (
@@ -64,57 +59,31 @@ const Answers: React.FC<IProps> = ({ answers }) => {
     );
 }
 
-//////////////////////
-
-
-const exampleCode = `
-console.log(typeof null)
-`.trim();
-
-
-
-
-const questions = [
-    {
-        question: "Что будет выведено в консоль?",
-        exampleCode: `console.log(typeof null)`.trim(),
-        answers: ["[object]", "[null]", "[undefined]", "Error"],
-        answer: "[object]"
-    },
-    {
-        question: "Что будет выведено в консоль?",
-        exampleCode: `function func() {
-                            return 0;
-                      }
-
-                      console.log(typeof func)`,
-        answers: ["[object]", "[function]", "[undefined]", "Error"],
-        answer: "[function]"
-    },
-    {
-        question: "Что будет выведено в консоль?",
-        exampleCode: `console.log(typeof 1/0)
-                        `.trim(),
-        answers: ["Infinity", "NaN", "[number]", "Error"],
-        answer: "NaN"
-    }
-]
 
 
 const Test: React.FC = () => {
 
-    const currentQuestion = useAppSelector(selectCurrentQuestion)
+    const router = useRouter()
+
+    const questions = useAppSelector(selectQuestions);
+    const currentQuestion = useAppSelector(selectCurrentQuestion);
     const initQuestionsStatus = new Array(questions.length).fill(false);
     initQuestionsStatus[currentQuestion] = true;
     const [questionsStatus, setQuestionsStatus] = React.useState<boolean[]>(initQuestionsStatus);
 
-    const answersFromStore = useAppSelector(selectAnswers);
-
     const dispatch = useAppDispatch()
 
+    const [isActiveNextBtn, setIsActiveNextBtn] = React.useState<boolean>(false)
+
+    const checkedState = (useAppSelector(selectCheckedAnswers))[currentQuestion];
+
     React.useEffect(() => {
-        console.log(questionsStatus);
-    }, [questionsStatus])
+        (checkedState.indexOf(true) !== -1)
+            ? setIsActiveNextBtn(true)
+            : setIsActiveNextBtn(false)
+
+
+    }, [checkedState])
 
 
     // Handlers.
@@ -126,13 +95,19 @@ const Test: React.FC = () => {
 
     const nextButtonHandler = () => {
         if ((currentQuestion < questions.length - 1)
-            && (answersFromStore[currentQuestion] !== "")) {
+            && (checkedState.indexOf(true) !== -1)) {
             const tmp = [...questionsStatus]
             tmp[currentQuestion + 1] = true;
             setQuestionsStatus(tmp);
 
+            setIsActiveNextBtn(false)
+
             dispatch(incrementCurrentQuestion())
         }
+    }
+
+    const endTestHandler = () => {
+        router.push("testResult")
     }
 
     return (
@@ -155,11 +130,15 @@ const Test: React.FC = () => {
                 <h2 className={styles.questionTitle}>{questions[currentQuestion].question}</h2>
                 <Code exampleCode={questions[currentQuestion].exampleCode} />
 
-                <Answers answers={questions[currentQuestion].answers} />
+                <AnswersList answers={questions[currentQuestion].answersList} />
             </div>
             <div className={styles.buttons}>
-                <button onClick={backButtonHandler}>Назад</button>
-                <button onClick={nextButtonHandler}>Дальше</button>
+                {/* <button onClick={backButtonHandler}>Назад</button> */}
+                {currentQuestion < (questions.length - 1)
+                    ? <button disabled={!isActiveNextBtn} onClick={nextButtonHandler}>Дальше</button>
+                    : <button disabled={!isActiveNextBtn} onClick={endTestHandler}>Закончить тест</button>
+                }
+
             </div>
 
         </div>

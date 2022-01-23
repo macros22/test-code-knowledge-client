@@ -2,7 +2,7 @@
 // @link https://moderncss.dev/pure-css-custom-checkbox-style/
 
 :root {
-  --form-control-color: rgb(96, 52, 139);
+  --form-control-color: rgb(51, 211, 118);
   --form-control-disabled: #959495;
 }
 
@@ -16,6 +16,7 @@
   grid-template-columns: 1em auto;
   gap: 0.5em;
   cursor: pointer;
+  width: max-content;
 }
 
 .form-control + .form-control {
@@ -29,6 +30,7 @@
 
 span {
   user-select: none;
+  width: max-content;
 }
 
 input {

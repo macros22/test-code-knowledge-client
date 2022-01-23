@@ -5,10 +5,8 @@ import { Test } from '../components';
 
 const TestPage: React.FC = () => {
     return (
-
         <>
             <Test />
-
         </>
     )
 }
