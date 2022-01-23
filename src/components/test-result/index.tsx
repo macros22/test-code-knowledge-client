@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { Code } from '..';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Checkbox from '../checkbox';
-import styles from "../test/test.module.scss"
-import { selectCheckedAnswers, selectQuestions } from '../test/testSlice';
+import styles from "./test-result.module.scss"
+import { changeUserCorrectAnswers, selectCheckedAnswers, selectQuestions } from '../test/testSlice';
 
 interface IProps {
     answers: string[];
@@ -14,13 +14,29 @@ interface IProps {
 const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
 
 
-    const checkedState = (useAppSelector(selectCheckedAnswers))[currentQuestion];
+    const checkedAnswers = (useAppSelector(selectCheckedAnswers))[currentQuestion];
+    const correctAnswers = (useAppSelector(selectQuestions))[currentQuestion].correctAnswers;
+    const answersList = (useAppSelector(selectQuestions))[currentQuestion].answersList;
+
+    const dispatch = useAppDispatch()
+
+    const checkCorrectAnswer = (index: number, isChecked: boolean) => {
+        let result: boolean = false;
+        isChecked
+            ? result = correctAnswers.indexOf(answersList[index]) !== -1
+            : result = correctAnswers.indexOf(answersList[index]) === -1
 
 
-    React.useEffect(() => {
-        console.log("checkedState:", checkedState)
-    }, [checkedState])
+        if (!result) {
+            dispatch(changeUserCorrectAnswers({ questionNumber: currentQuestion, isCorrect: false }))
+        }
+        return result
+    }
 
+    console.log(currentQuestion, "\n")
+    console.log("checkedAnswers: ", checkedAnswers)
+    console.log("correctAnswers: ", correctAnswers)
+    console.log("answersList: ", answersList)
 
     return (
         <>
@@ -31,9 +47,14 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
                         <Checkbox
                             name={answer}
                             value={answer}
-                            checked={checkedState[index]}
+                            checked={checkedAnswers[index]}
                             onChange={() => { }} />
-                        <span className={styles.answerResultStatus}> Правильный ответ</span>
+                        {
+                            checkCorrectAnswer(index, checkedAnswers[index])
+                                ? <span className={styles.answerResultStatusCorrect}>Правильно</span>
+                                : <span className={styles.answerResultStatusInCorrect}>Не правильно</span>
+                        }
+
                     </li>
                 );
             })}
@@ -55,11 +76,13 @@ const TestResult: React.FC = () => {
                         return (
                             <React.Fragment key={index}>
                                 <h2 className={styles.questionTitle}>Вопрос № {index + 1}</h2>
+                                <hr className={styles.hrGray} />
                                 <h3 className={styles.questionTitle}>{questions[index].question}</h3>
                                 <Code exampleCode={questions[index].exampleCode} />
 
                                 <AnswersListResult answers={questions[index].answersList} currentQuestion={index} />
-                                <br />
+                                <hr className={styles.hrHorizontalGradient} />
+
                             </React.Fragment>)
 
 

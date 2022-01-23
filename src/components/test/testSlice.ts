@@ -7,13 +7,13 @@ export interface IQuestion {
     question: string;
     exampleCode: string;
     answersList: string[];
-    userAnswers: string[];
+    correctAnswers: string[];
 }
 export interface AnswersState {
     answersAmount: number,
     questionsAmount: number,
     currentQuestion: number,
-    correctAnswers: boolean[],
+    userAnswers: boolean[],
     checkedAnswers: boolean[][],
     questions: IQuestion[],
 }
@@ -24,7 +24,7 @@ const questions: IQuestion[] = [
         question: "Что будет выведено в консоль?",
         exampleCode: `console.log(typeof null)`.trim(),
         answersList: ["[object]", "[null]", "[undefined]", "Error"],
-        userAnswers: ["[object]"]
+        correctAnswers: ["[object]"]
     },
     {
         question: "Что будет выведено в консоль?",
@@ -34,14 +34,14 @@ const questions: IQuestion[] = [
 
                       console.log(typeof func)`,
         answersList: ["[object]", "[function]", "[undefined]", "Error"],
-        userAnswers: ["[function]"]
+        correctAnswers: ["[function]"]
     },
     {
         question: "Что будет выведено в консоль?",
         exampleCode: `console.log(typeof 1/0)
                         `.trim(),
         answersList: ["Infinity", "NaN", "[number]", "Error"],
-        userAnswers: ["NaN"],
+        correctAnswers: ["NaN"],
     }
 ]
 
@@ -53,7 +53,7 @@ const initialState: AnswersState = {
     questionsAmount,
     answersAmount,
     currentQuestion: 0,
-    correctAnswers: new Array(questionsAmount).fill(false),
+    userAnswers: new Array(questionsAmount).fill(true),
     checkedAnswers: new Array(questionsAmount).fill(new Array(answersAmount).fill(false)),
     questions
 }
@@ -61,6 +61,11 @@ const initialState: AnswersState = {
 interface ISetCheckedState {
     questionNumber: number;
     answerNumber: number;
+}
+
+interface IChangeUserAnswers {
+    questionNumber: number;
+    isCorrect: boolean;
 }
 
 
@@ -80,16 +85,20 @@ export const answersSlice = createSlice({
         },
         changeCheckedState: (state, action: PayloadAction<ISetCheckedState>) => {
             state.checkedAnswers[action.payload.questionNumber][action.payload.answerNumber] = !state.checkedAnswers[action.payload.questionNumber][action.payload.answerNumber]
+        },
+        changeUserCorrectAnswers: (state, action: PayloadAction<IChangeUserAnswers>) => {
+            state.userAnswers[action.payload.questionNumber] = action.payload.isCorrect;
         }
     },
 })
 
-export const { decrementCurrentQuestion, incrementCurrentQuestion, setCurrentQuestion, changeCheckedState } = answersSlice.actions
+export const { decrementCurrentQuestion, incrementCurrentQuestion, setCurrentQuestion, changeCheckedState, changeUserCorrectAnswers } = answersSlice.actions
 
 
 export const selectCurrentQuestion = (state: AppState) => state.answers.currentQuestion;
 
 export const selectCheckedAnswers = (state: AppState) => state.answers.checkedAnswers;
 export const selectQuestions = (state: AppState) => state.answers.questions;
+export const selectUserAnswersStatus = (state: AppState) => state.answers.userAnswers;
 
 export default answersSlice.reducer

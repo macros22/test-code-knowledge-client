@@ -20,41 +20,32 @@ const AnswersList: React.FC<IProps> = ({ answers }) => {
 
     const currentQuestion = useAppSelector(selectCurrentQuestion)
 
-    const checkedState = (useAppSelector(selectCheckedAnswers))[currentQuestion];
+    const checkedAnswers = (useAppSelector(selectCheckedAnswers))[currentQuestion];
 
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {
-        console.log("checkedState:", checkedState)
-    }, [checkedState])
+        console.log("checkedAnswers:", checkedAnswers)
+    }, [checkedAnswers])
 
     const handleOnChange = (position: number) => {
-
-        console.log(position)
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
-
         dispatch(changeCheckedState({ questionNumber: currentQuestion, answerNumber: position }))
-
-
     };
 
     return (
         <>
-            {/* <ol className={styles.answersList}> */}
             {answers.map((answer, index) => {
                 return (
                     <li className={styles.answersList} key={index ** 2}>
                         <Checkbox
                             name={answer}
                             value={answer}
-                            checked={checkedState[index]}
+                            checked={checkedAnswers[index]}
                             onChange={() => handleOnChange(index)} />
                     </li>
                 );
             })}
-            {/* </ol> */}
+
         </>
     );
 }
