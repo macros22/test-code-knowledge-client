@@ -4,7 +4,7 @@ import { Code } from '..';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Checkbox from '../checkbox';
 import styles from "./test-result.module.scss"
-import { changeUserCorrectAnswers, selectCheckedAnswers, selectQuestions } from '../test/testSlice';
+import { changeUserCorrectAnswers, selectCheckedAnswers, selectQuestions, selectUserAnswersStatus } from '../test/testSlice';
 
 interface IProps {
     answers: string[];
@@ -67,11 +67,17 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
 
 const TestResult: React.FC = () => {
     const questions = useAppSelector(selectQuestions);
+    const userAnswersStatus = useAppSelector(selectUserAnswersStatus);
+
+
 
     return (
         <>
             <div className={styles.wrapper}>
                 <div className={styles.content}>
+                    <h1>Правильных ответов: {userAnswersStatus.filter(answerStatus => answerStatus === true).length}
+                        из {userAnswersStatus.length}</h1>
+                    <hr className={styles.hrHorizontalGradient} />
                     {questions.map((_, index) => {
                         return (
                             <React.Fragment key={index}>

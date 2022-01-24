@@ -1,14 +1,46 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit'
+import {
+    persistStore, persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
 
 import counterReducer from '../components/counter/counterSlice'
 import answersReducer from '../components/test/testSlice'
 
+const rootReducer = combineReducers({
+    counter: counterReducer,
+    answers: answersReducer,
+});
+
+
+
+
+// react-persist configs
+const persistConfig = {
+    key: 'root',
+    storage,
+}
+
+// react-persist configs
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+
 export function makeStore() {
     return configureStore({
-        reducer: {
-            counter: counterReducer,
-            answers: answersReducer,
-        },
+        reducer: persistedReducer,
+        middleware: (getDefaultMiddleware) => // react-persist and redux-toolkit configs
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                },
+            }),
     })
 }
 
@@ -24,5 +56,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >
+
+// react-persist configs
+export const persistor = persistStore(store);
 
 export default store
