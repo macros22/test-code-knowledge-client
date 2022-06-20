@@ -13,7 +13,9 @@ import {
 import { Card } from "../card/Card";
 import { Button } from "../button/Button";
 import { useRouter } from "next/dist/client/router";
-
+import { Divider } from "../divider/Divider";
+import Tag from "../tag/Tag";
+import cn from "clsx";
 interface IProps {
   answers: string[];
   currentQuestion: number;
@@ -53,19 +55,21 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
         })
       );
     }
-    // return result
     switch (result) {
       case "error":
         return (
-          <span className={styles.answerResultStatusInCorrect}>Error</span>
+        
+        <Tag className={styles.tag} color="error">Error</Tag>
         );
       case "correct":
         return (
-          <span className={styles.answerResultStatusCorrect}>Correct</span>
+        
+          <Tag className={styles.tag} color="success">Correct</Tag>
         );
       case "missing":
         return (
-          <span className={styles.answerResultStatusMissing}>Missing correct</span>
+        
+          <Tag className={styles.tag} color="info">Missing correct</Tag>
         );
     }
   };
@@ -113,18 +117,23 @@ const TestResult: React.FC = () => {
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <h1>
-            Правильных ответов:{" "}
+          Correct answers:{" "}
             {
               userAnswersStatus.filter((answerStatus) => answerStatus === true)
                 .length
             }
-            из {userAnswersStatus.length}
+             {" "}из {userAnswersStatus.length}
           </h1>
-          {questions.map((_, index) => {
+          {questions.map((question, index) => {
             return (
-              <Card className={styles.card} key={index}>
-                <h2 className={styles.questionTitle}>Вопрос № {index + 1}</h2>
-                <hr className={styles.hrGray} />
+              <Card className={cn(styles.card, {
+                [styles.successCard]: userAnswersStatus[index],
+                [styles.errorCard]: !userAnswersStatus[index]
+              })}
+              
+               key={index+question.question}>
+                <h2 className={styles.questionTitle}>Question № {index + 1}</h2>
+                <Divider />
                 <h3 className={styles.questionTitle}>
                   {questions[index].question}
                 </h3>
@@ -134,7 +143,7 @@ const TestResult: React.FC = () => {
                   answers={questions[index].answersList}
                   currentQuestion={index}
                 />
-                <hr className={styles.hrHorizontalGradient} />
+            
               </Card>
             );
           })}

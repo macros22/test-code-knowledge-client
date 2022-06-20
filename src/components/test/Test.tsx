@@ -14,6 +14,7 @@ import {
 import Checkbox from "../checkbox";
 import { useRouter } from "next/dist/client/router";
 import { Button } from "../button/Button";
+import { Divider } from "../divider/Divider";
 
 export const answers = ["[object]", "[null]", "[undefined]", "Error"];
 
@@ -136,6 +137,7 @@ const Test: React.FC = () => {
             <h2 className={styles.questionTitle}>
               {questions[currentQuestion].question}
             </h2>
+            <Divider />
             <Code exampleCode={questions[currentQuestion].exampleCode} />
 
             <AnswersList answers={questions[currentQuestion].answersList} />

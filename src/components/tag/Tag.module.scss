@@ -9,24 +9,24 @@
 }
 
 .sm {
-	padding: 5px 10px;
+	padding: 8px 10px;
 
 	font-size: 12px;
 	line-height: 12px;
 }
 
 .md {
-	padding: 5px 10px;
+	padding: 10px 12px;
 
 	font-size: 14px;
 	line-height: 14px;
 }
 
 .lg {
-	padding: 14px 40px;
+	padding: 14px 10px;
 
-	font-size: 28px;
-	line-height: 32px;
+	font-size: 16px;
+	line-height: 18px;
 }
 
 .ghost {
@@ -38,15 +38,22 @@
 }
 
 .success {
-	color: var(--green-color);
+	color: var(--white-color);
 	background: var(--success-color);
 
 	font-weight: bold;
 }
 
 .danger {
-	color: var(--green-color);
+	color: var(--white-color);
 	background: var(--danger-color);
+
+	font-weight: bold;
+}
+
+.info {
+	background-color: var(--info-color);
+	color: rgb(148, 119, 52);
 
 	font-weight: bold;
 }

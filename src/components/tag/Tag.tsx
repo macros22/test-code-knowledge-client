@@ -1,9 +1,9 @@
 import { PProps } from "./Tag.props";
-import styles from "./Tag.module.css";
-import cn from "classnames";
+import styles from "./Tag.module.scss";
+import cn from "clsx";
 
 const Tag = ({
-  size = "sm",
+  size = "md",
   children,
   color = "ghost",
   href,
@@ -19,6 +19,8 @@ const Tag = ({
         [styles.lg]: size == "lg",
         [styles.ghost]: color == "ghost",
         [styles.success]: color == "success",
+        [styles.danger]: color == "error",
+        [styles.info]: color == "info",
         [styles.primary]: color == "primary",
         [styles.fullWidth]: fullWidth == true,
       })}
