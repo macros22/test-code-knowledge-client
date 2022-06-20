@@ -1,1 +1,1 @@
-# Next js Markdown Blog for Medium Tutorial
+# Javascript knowledge test app.

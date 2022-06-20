@@ -1,0 +1,5 @@
+.card {
+	border-radius: var(--border-radius);
+	border: var(--border);
+	background: var(--white-color);
+}

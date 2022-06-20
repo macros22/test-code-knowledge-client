@@ -3,8 +3,9 @@ import React from 'react';
 import { Code } from '..';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Checkbox from '../checkbox';
-import styles from "./test-result.module.scss"
+import styles from "./TestResult.module.scss"
 import { changeUserCorrectAnswers, selectCheckedAnswers, selectQuestions, selectUserAnswersStatus } from '../test/testSlice';
+import { Card } from '../Card/Card';
 
 interface IProps {
     answers: string[];
@@ -77,10 +78,9 @@ const TestResult: React.FC = () => {
                 <div className={styles.content}>
                     <h1>Правильных ответов: {userAnswersStatus.filter(answerStatus => answerStatus === true).length}
                         из {userAnswersStatus.length}</h1>
-                    <hr className={styles.hrHorizontalGradient} />
                     {questions.map((_, index) => {
                         return (
-                            <React.Fragment key={index}>
+                            <Card className={styles.card} key={index}>
                                 <h2 className={styles.questionTitle}>Вопрос № {index + 1}</h2>
                                 <hr className={styles.hrGray} />
                                 <h3 className={styles.questionTitle}>{questions[index].question}</h3>
@@ -89,7 +89,7 @@ const TestResult: React.FC = () => {
                                 <AnswersListResult answers={questions[index].answersList} currentQuestion={index} />
                                 <hr className={styles.hrHorizontalGradient} />
 
-                            </React.Fragment>)
+                            </Card>)
 
 
                     })}

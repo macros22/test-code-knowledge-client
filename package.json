@@ -1,5 +1,5 @@
 {
-  "name": "js-test-md",
+  "name": "test-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "@types/classnames": "^2.2.11",
     "next": "11.0.0",
     "prism-react-renderer": "^1.2.1",
     "react": "17.0.2",
