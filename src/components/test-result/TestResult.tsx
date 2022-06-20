@@ -28,21 +28,24 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
 
   const dispatch = useAppDispatch();
 
-  const getAnswerLabel = (index: number, isChecked: boolean) => {
-    // let result: boolean = false;
-    let result: "correct" | "error" | "empty" = "correct";
+  const getAnswerLabel = (index: number, isMarked: boolean) => {
+    // 'correct' - answer marked and it`s correct.
+    // 'error' - answer marked and it`s incorrect.
+    // 'empty' - answer unmarked and it`s correct.
+    // 'missing' - answer unmarked and it`s incorrect.
+    let result: "correct" | "error" | "empty" | "missing" = "error";
 
-    if (isChecked) {
+    if (isMarked) {
       correctAnswers.indexOf(answersList[index]) !== -1
         ? (result = "correct")
         : (result = "error");
     } else {
       correctAnswers.indexOf(answersList[index]) === -1
         ? (result = "empty")
-        : (result = "error");
+        : (result = "missing");
     }
 
-    if (result === "error" || result === "empty") {
+    if (result === "error" || result === "missing") {
       dispatch(
         changeUserCorrectAnswers({
           questionNumber: currentQuestion,
@@ -60,13 +63,17 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
         return (
           <span className={styles.answerResultStatusCorrect}>Correct</span>
         );
+      case "missing":
+        return (
+          <span className={styles.answerResultStatusMissing}>Missing correct</span>
+        );
     }
   };
 
-  // console.log(currentQuestion, "\n")
-  // console.log("checkedAnswers: ", checkedAnswers)
-  // console.log("correctAnswers: ", correctAnswers)
-  // console.log("answersList: ", answersList)
+  // console.log(currentQuestion, '\n')
+  // console.log('checkedAnswers: ', checkedAnswers)
+  // console.log('correctAnswers: ', correctAnswers)
+  // console.log('answersList: ', answersList)
 
   return (
     <>

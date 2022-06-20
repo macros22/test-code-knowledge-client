@@ -89,12 +89,21 @@ $width: 60%;
   background-color: var(--success-color);
   color: rgb(255, 255, 255);
   padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius);
   height: 60%;
 }
 
 .answerResultStatusInCorrect {
   background-color: var(--danger-color);
   color: rgb(255, 255, 255);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius);
+  height: 60%;
+}
+
+.answerResultStatusMissing {
+  background-color: var(--info-color);
+  color: rgb(148, 119, 52);
   padding: 0.2rem 0.5rem;
   border-radius: var(--border-radius);
   height: 60%;
