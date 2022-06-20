@@ -1,10 +1,11 @@
 import React from "react";
-import styles from './test.module.scss';
+import styles from './Test.module.scss';
 import Code from '../code';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { changeCheckedState, decrementCurrentQuestion, incrementCurrentQuestion, selectCheckedAnswers, selectCurrentQuestion, selectQuestions } from './testSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { changeCheckedState, decrementCurrentQuestion, incrementCurrentQuestion, selectCheckedAnswers, selectCurrentQuestion, selectQuestions } from './Test.slice';
 import Checkbox from '../checkbox';
 import { useRouter } from 'next/dist/client/router';
+import { Button } from "../button/Button";
 
 
 export const answers = [
@@ -126,8 +127,10 @@ const Test: React.FC = () => {
             <div className={styles.buttons}>
                 {/* <button onClick={backButtonHandler}>Назад</button> */}
                 {currentQuestion < (questions.length - 1)
-                    ? <button disabled={!isActiveNextBtn} onClick={nextButtonHandler}>Дальше</button>
-                    : <button disabled={!isActiveNextBtn} onClick={endTestHandler}>Закончить тест</button>
+                    // ? <Button appearance={isActiveNextBtn ? "primary" : "disabled"}  onClick={nextButtonHandler}>Next</Button>
+                    // : <Button appearance={isActiveNextBtn ? "primary" : "disabled"} onClick={endTestHandler}>Finish test</Button>
+                    ? <Button appearance={"primary"}  onClick={nextButtonHandler}>Next</Button>
+                    : <Button appearance={"primary"} onClick={endTestHandler}>Finish test</Button>
                 }
 
             </div>

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import type { AppState } from '../../app/store'
+import type { AppState } from '../../store/store'
 
 
 export interface IQuestion {
@@ -88,11 +88,12 @@ export const answersSlice = createSlice({
         },
         changeUserCorrectAnswers: (state, action: PayloadAction<IChangeUserAnswers>) => {
             state.userAnswers[action.payload.questionNumber] = action.payload.isCorrect;
-        }
+        },
+        resetState: () => initialState,
     },
 })
 
-export const { decrementCurrentQuestion, incrementCurrentQuestion, setCurrentQuestion, changeCheckedState, changeUserCorrectAnswers } = answersSlice.actions
+export const { decrementCurrentQuestion, incrementCurrentQuestion, setCurrentQuestion, changeCheckedState, changeUserCorrectAnswers, resetState } = answersSlice.actions
 
 
 export const selectCurrentQuestion = (state: AppState) => state.answers.currentQuestion;

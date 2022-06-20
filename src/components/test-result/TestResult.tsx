@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { Code } from '..';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import Checkbox from '../checkbox';
 import styles from "./TestResult.module.scss"
-import { changeUserCorrectAnswers, selectCheckedAnswers, selectQuestions, selectUserAnswersStatus } from '../test/testSlice';
-import { Card } from '../Card/Card';
+import { changeUserCorrectAnswers, resetState, selectCheckedAnswers, selectQuestions, selectUserAnswersStatus } from '../test/Test.slice';
+import { Card } from '../card/Card';
+import { Button } from '../button/Button';
+import { useRouter } from 'next/dist/client/router';
 
 interface IProps {
     answers: string[];
@@ -69,8 +71,17 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
 const TestResult: React.FC = () => {
     const questions = useAppSelector(selectQuestions);
     const userAnswersStatus = useAppSelector(selectUserAnswersStatus);
+    const dispatch = useAppDispatch()
 
+    const router = useRouter();
 
+    const newTestButtonHandler = () => {
+        dispatch(resetState());
+        setTimeout(() => {
+            router.push('/test');
+        },100)
+        
+    }
 
     return (
         <>
@@ -93,7 +104,7 @@ const TestResult: React.FC = () => {
 
 
                     })}
-
+                    <Button appearance='primary' onClick={newTestButtonHandler}>New test</Button> 
                 </div>
             </div>
         </>
