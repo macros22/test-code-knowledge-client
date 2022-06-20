@@ -99,7 +99,7 @@ const Test: React.FC = () => {
     }
 
     const endTestHandler = () => {
-        router.push("testResult")
+        router.push("/testResult")
     }
 
     return (
