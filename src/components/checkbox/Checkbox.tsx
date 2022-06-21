@@ -1,4 +1,3 @@
-import cn from "clsx";
 import styles from "./Checkbox.module.scss";
 import { ForwardedRef, forwardRef } from "react";
 import { CheckboxProps } from "./Checkbox.props";
