@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Test.module.scss";
-import Code from "../code";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   changeCheckedState,
@@ -15,6 +14,7 @@ import { Checkbox } from "../checkbox/Checkbox";
 import { useRouter } from "next/dist/client/router";
 import { Button } from "../button/Button";
 import { Divider } from "../divider/Divider";
+import { Code } from "components/code/Code";
 
 export const answers = ["[object]", "[null]", "[undefined]", "Error"];
 

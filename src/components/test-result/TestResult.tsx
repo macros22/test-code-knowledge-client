@@ -1,5 +1,4 @@
 import React from "react";
-import { Code } from "..";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {Checkbox} from "../checkbox/Checkbox";
 import styles from "./TestResult.module.scss";
@@ -16,6 +15,7 @@ import { useRouter } from "next/dist/client/router";
 import { Divider } from "../divider/Divider";
 import Tag from "../tag/Tag";
 import cn from "clsx";
+import { Code } from "components/code/Code";
 interface IProps {
   answers: string[];
   currentQuestion: number;

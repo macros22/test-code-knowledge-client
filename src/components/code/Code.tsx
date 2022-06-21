@@ -1,45 +1,51 @@
 import React from "react";
 // import { Pre, Line, LineNo, LineContent } from "./styles";
 
-import styles from "./code.module.scss";
+import styles from "./Code.module.scss";
+import cn from "clsx";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
-import theme from "prism-react-renderer/themes/vsDark";
+import theme from "prism-react-renderer/themes/oceanicNext";
 
 interface IProps {
   exampleCode: string;
 }
 
-const WithLineNumbers: React.FC<IProps> = ({ exampleCode }) => (
-  <Highlight {...defaultProps} theme={theme} code={exampleCode} language="jsx">
+const exampleCode2 = `
+import React, { useState } from "react";
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+          Click me
+        </button>
+    </div>
+  );
+}
+`.trim();
+
+export const Code: React.FC<IProps> = ({ exampleCode }) => (
+  <Highlight {...defaultProps} theme={theme} code={exampleCode2} language="jsx">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <div className={className + " " + styles.Pre} style={style}>
+      <pre className={cn(className, styles.pre)} style={style}>
         {tokens.map((line, i) => (
-          <div key={i} {...getLineProps({ line, key: i })} className={styles.line}>
+          <div {...getLineProps({ line, key: i })} className={styles.line}>
             <div className={styles.noLine}>{i + 1}</div>
             <div className={styles.lineContent}>
               {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
+                <span {...getTokenProps({ token, key })} />
               ))}
             </div>
           </div>
         ))}
-      </div>
+      </pre>
     )}
   </Highlight>
 );
-
-export default WithLineNumbers;
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, ReactNode, useState } from "react";
 // import Prism, { Token } from "prismjs";
