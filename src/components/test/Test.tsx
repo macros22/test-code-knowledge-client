@@ -11,7 +11,7 @@ import {
   selectCurrentQuestion,
   selectQuestions,
 } from "./Test.slice";
-import Checkbox from "../checkbox";
+import { Checkbox } from "../checkbox/Checkbox";
 import { useRouter } from "next/dist/client/router";
 import { Button } from "../button/Button";
 import { Divider } from "../divider/Divider";
@@ -82,10 +82,9 @@ const Test: React.FC = () => {
       : setIsActiveNextBtn(false);
   }, [checkedState]);
 
-
   React.useEffect(() => {
-    dispatch(getQuestionsAsync())
-  }, [])
+    dispatch(getQuestionsAsync());
+  }, []);
 
   // Handlers.
   const backButtonHandler = () => {

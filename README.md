@@ -14,6 +14,8 @@
 ## React checkbox:
 - https://www.freecodecamp.org/news/how-to-work-with-multiple-checkboxes-in-react/
 
+- https://moderncss.dev/pure-css-custom-checkbox-style/
+
 ----------------------------------------------------------
 
 - https://codesandbox.io/s/u6vhk?file=/src/index.js

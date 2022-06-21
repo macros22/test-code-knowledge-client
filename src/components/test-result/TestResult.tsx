@@ -1,7 +1,7 @@
 import React from "react";
 import { Code } from "..";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import Checkbox from "../checkbox";
+import {Checkbox} from "../checkbox/Checkbox";
 import styles from "./TestResult.module.scss";
 import {
   changeUserCorrectAnswers,
@@ -89,7 +89,7 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
               name={answer}
               value={answer}
               checked={checkedAnswers[index]}
-              onChange={() => {}}
+              disabled
             />
             {getAnswerLabel(index, checkedAnswers[index])}
           </li>
