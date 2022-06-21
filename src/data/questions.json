@@ -13,6 +13,20 @@
       "correctAnswers": [
         "[object]"
       ]
+    },
+    {
+      "id": 1,
+      "question": "Что будет выведено в консоль?",
+      "exampleCode": "console.log(typeof null)",
+      "answersList": [
+        "[object]",
+        "[null]",
+        "[undefined]",
+        "Error"
+      ],
+      "correctAnswers": [
+        "[object]"
+      ]
     }
   ]
 }

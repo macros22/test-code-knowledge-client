@@ -16,7 +16,7 @@ export interface AnswersState {
 }
 
 
-const questionsAmount = 3;
+const questionsAmount = 0;
 const answersAmount = 4;
 
 const initialState: AnswersState = {
@@ -82,6 +82,10 @@ export const answersSlice = createSlice({
                 // state.status = 'idle'
                 // state.value += action.payload
                 state.questions = action.payload;
+                const questionsAmount = action.payload.length
+                state.questionsAmount = answersAmount;
+                state.userAnswers = new Array(questionsAmount).fill(true),
+                state.checkedAnswers = new Array(questionsAmount).fill(new Array(answersAmount).fill(false))
             })
     },
 })

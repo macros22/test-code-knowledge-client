@@ -122,7 +122,7 @@ const TestResult: React.FC = () => {
               userAnswersStatus.filter((answerStatus) => answerStatus === true)
                 .length
             }
-             {" "}из {userAnswersStatus.length}
+             {" "}from {userAnswersStatus.length}
           </h1>
           {questions.map((question, index) => {
             return (

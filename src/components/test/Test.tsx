@@ -26,11 +26,11 @@ const AnswersList: React.FC<IProps> = ({ answers }) => {
   const currentQuestion = useAppSelector(selectCurrentQuestion);
 
   const checkedAnswers = useAppSelector(selectCheckedAnswers)[currentQuestion];
-
+  console.log("checkedAnswers:", checkedAnswers);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    console.log("checkedAnswers:", checkedAnswers);
+   // console.log("checkedAnswers:", checkedAnswers);
   }, [checkedAnswers]);
 
   const handleOnChange = (position: number) => {
