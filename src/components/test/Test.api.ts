@@ -1,8 +1,9 @@
-import { IQuestion } from "./Test.slice"
+import { Question } from "interfaces/questions.interface";
 
-export async function fetchQuestions(): Promise<{ questions: IQuestion[] }> {
-    const response = await fetch('/api/questions', {method:'GET'});
-    const result = await response.json()
 
+export async function fetchQuestions(): Promise<Question[] > {
+    const response = await fetch('http://localhost:3004/questions', {method:'GET'});
+    const result = await response.json();
+    
     return result
 }

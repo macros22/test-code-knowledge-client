@@ -1,22 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Question } from 'interfaces/questions.interface';
 
 import type { AppState } from '../../store/store'
 import { fetchQuestions } from './Test.api';
 
 
-export interface IQuestion {
-    question: string;
-    exampleCode: string;
-    answersList: string[];
-    correctAnswers: string[];
-}
+
 export interface AnswersState {
     answersAmount: number,
     questionsAmount: number,
     currentQuestion: number,
     userAnswers: boolean[],
     checkedAnswers: boolean[][],
-    questions: IQuestion[],
+    questions: Question[],
 }
 
 
@@ -47,7 +43,8 @@ export const getQuestionsAsync = createAsyncThunk(
     async () => {
         const response = await fetchQuestions();
         // The value we return becomes the `fulfilled` action payload
-        return response.questions;
+        console.log(response)
+        return response;
     }
 )
 

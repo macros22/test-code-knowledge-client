@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id": 0,
+      "question": "sdf sdf sЧто будет выведено в консоль?",
+      "exampleCode": "console.log(typeof null)",
+      "answersList": [
+        "[object]",
+        "[null]",
+        "[undefined]",
+        "Error"
+      ],
+      "correctAnswers": [
+        "[object]"
+      ]
+    }
+  ]
+}

@@ -21,3 +21,7 @@
 - https://codesandbox.io/s/u6vhk?file=/src/index.js
 
 -------------------------------------------
+
+
+## Authentication 
+- https://daily.dev/blog/authentication-in-nextjs

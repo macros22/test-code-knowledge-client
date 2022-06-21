@@ -82,9 +82,7 @@ const Test: React.FC = () => {
       : setIsActiveNextBtn(false);
   }, [checkedState]);
 
-  React.useEffect(() => {
-    dispatch(getQuestionsAsync());
-  }, []);
+ 
 
   // Handlers.
   const backButtonHandler = () => {
