@@ -5,42 +5,11 @@
       "question": "sdf sdf sЧто будет выведено в консоль?",
       "codeExample": "console.log(typeof null)",
       "answersList": [
-        "[object]",
-        "[null]",
-        "[undefined]",
-        "Error"
-      ],
-      "correctAnswers": [
-        "[object]"
+        { "answer": "[object]", "isCorrect": true },
+        { "answer": "[null]", "isCorrect": false },
+        { "answer": "[undefined]", "isCorrect": false },
+        { "answer": "Error", "isCorrect": false }
       ]
-    },
-    {
-      "id": 1,
-      "question": "Что будет выведено в консоль?",
-      "exampleCode": "console.log(typeof null) \n\t console.log(typeof null) \n\t console.log(typeof null)",
-      "answersList": [
-        "[object]",
-        "[null]",
-        "[undefined]",
-        "Error"
-      ],
-      "correctAnswers": [
-        "[object]"
-      ]
-    },
-    {
-      "question": "sdf sdf sЧто будет выведено в консоль?",
-      "codeExample": "console.log(typeof null);\n        console.log(typeof null);\n        console.log(typeof null);\n        console.log(typeof null);",
-      "answersList": [
-        "[object]",
-        "[null]",
-        "[undefined]",
-        "Error"
-      ],
-      "correctAnswers": [
-        "[object]"
-      ],
-      "id": 2
     }
   ]
 }

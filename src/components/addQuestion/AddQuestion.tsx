@@ -28,8 +28,7 @@ const exampleQuestion:Question = {
     return ExampleCode;
   }
   `,
-  answersList: ['first', 'second'],
-  correctAnswers: ['first'],
+  answersList: [{answer: 'first', isCorrect: true}, {answer: 'second', isCorrect: false}],
 } 
 
 

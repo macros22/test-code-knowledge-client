@@ -15,11 +15,12 @@ import { useRouter } from "next/dist/client/router";
 import { Button } from "../button/Button";
 import { Divider } from "../divider/Divider";
 import { Code } from "components/code/Code";
+import { Answer } from "interfaces/questions.interface";
 
 export const answers = ["[object]", "[null]", "[undefined]", "Error"];
 
 interface IProps {
-  answers: string[];
+  answers: Answer[];
 }
 
 const AnswersList: React.FC<IProps> = ({ answers }) => {
@@ -48,8 +49,8 @@ const AnswersList: React.FC<IProps> = ({ answers }) => {
         return (
           <li className={styles.answersList} key={index ** 2}>
             <Checkbox
-              name={answer}
-              value={answer}
+              name={answer.answer}
+              value={answer.answer}
               checked={checkedAnswers[index]}
               onChange={() => handleOnChange(index)}
             />

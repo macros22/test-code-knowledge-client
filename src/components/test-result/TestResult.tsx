@@ -16,15 +16,16 @@ import { Divider } from "../divider/Divider";
 import Tag from "../tag/Tag";
 import cn from "clsx";
 import { Code } from "components/code/Code";
+import { Answer } from "interfaces/questions.interface";
 interface IProps {
-  answers: string[];
+  answers: Answer[];
   currentQuestion: number;
 }
 
 const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
   const checkedAnswers = useAppSelector(selectCheckedAnswers)[currentQuestion];
-  const correctAnswers =
-    useAppSelector(selectQuestions)[currentQuestion].correctAnswers;
+  // const correctAnswers =
+  //   useAppSelector(selectQuestions)[currentQuestion].correctAnswers;
   const answersList =
     useAppSelector(selectQuestions)[currentQuestion].answersList;
 
@@ -38,11 +39,11 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
     let result: "correct" | "error" | "empty" | "missing" = "error";
 
     if (isMarked) {
-      correctAnswers.indexOf(answersList[index]) !== -1
+      answersList[index].isCorrect
         ? (result = "correct")
         : (result = "error");
     } else {
-      correctAnswers.indexOf(answersList[index]) === -1
+      !answersList[index].isCorrect
         ? (result = "empty")
         : (result = "missing");
     }
@@ -86,8 +87,8 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
         return (
           <li className={styles.answersList} key={index ** 2}>
             <Checkbox
-              name={answer}
-              value={answer}
+              name={answer.answer}
+              value={answer.answer}
               checked={checkedAnswers[index]}
               disabled
             />
