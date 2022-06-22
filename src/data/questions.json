@@ -3,7 +3,7 @@
     {
       "id": 0,
       "question": "sdf sdf sЧто будет выведено в консоль?",
-      "exampleCode": "console.log(typeof null)",
+      "codeExample": "console.log(typeof null)",
       "answersList": [
         "[object]",
         "[null]",
@@ -17,7 +17,7 @@
     {
       "id": 1,
       "question": "Что будет выведено в консоль?",
-      "exampleCode": "console.log(typeof null)",
+      "exampleCode": "console.log(typeof null) \n\t console.log(typeof null) \n\t console.log(typeof null)",
       "answersList": [
         "[object]",
         "[null]",
@@ -27,6 +27,20 @@
       "correctAnswers": [
         "[object]"
       ]
+    },
+    {
+      "question": "sdf sdf sЧто будет выведено в консоль?",
+      "codeExample": "console.log(typeof null);\n        console.log(typeof null);\n        console.log(typeof null);\n        console.log(typeof null);",
+      "answersList": [
+        "[object]",
+        "[null]",
+        "[undefined]",
+        "Error"
+      ],
+      "correctAnswers": [
+        "[object]"
+      ],
+      "id": 2
     }
   ]
 }

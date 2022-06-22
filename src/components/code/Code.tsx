@@ -8,7 +8,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/oceanicNext";
 
 interface IProps {
-  exampleCode: string;
+  codeExample: string;
 }
 
 const exampleCode2 = `
@@ -28,8 +28,8 @@ function Example() {
 }
 `.trim();
 
-export const Code: React.FC<IProps> = ({ exampleCode }) => (
-  <Highlight {...defaultProps} theme={theme} code={exampleCode2} language="jsx">
+export const Code: React.FC<IProps> = ({ codeExample }) => (
+  <Highlight {...defaultProps} theme={theme} code={codeExample} language="jsx">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre className={cn(className, styles.pre)} style={style}>
         {tokens.map((line, i) => (

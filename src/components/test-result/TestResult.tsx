@@ -137,7 +137,7 @@ const TestResult: React.FC = () => {
                 <h3 className={styles.questionTitle}>
                   {questions[index].question}
                 </h3>
-                <Code exampleCode={questions[index].exampleCode} />
+                <Code codeExample={questions[index].codeExample} />
 
                 <AnswersListResult
                   answers={questions[index].answersList}

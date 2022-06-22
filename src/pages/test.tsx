@@ -9,6 +9,11 @@ const TestPage: React.FC = () => {
     const questions = useAppSelector(selectQuestions);
     const dispatch = useAppDispatch();
     React.useEffect(() => {
+
+       
+
+
+
         dispatch(getQuestionsAsync());
       }, []);
     return (

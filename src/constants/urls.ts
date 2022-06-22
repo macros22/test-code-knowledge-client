@@ -1,0 +1,1 @@
+export const GET_QUESTION_URL = 'http://localhost:3004/questions';

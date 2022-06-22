@@ -1,7 +1,7 @@
 export interface Question {
     id: number;
     question: string;
-    exampleCode: string;
+    codeExample: string;
     answersList: string[];
     correctAnswers: string[];
 }

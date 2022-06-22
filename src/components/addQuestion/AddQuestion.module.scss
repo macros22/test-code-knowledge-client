@@ -1,0 +1,80 @@
+.editMedicalItem {
+	display: grid;
+	grid-template-areas:
+		"question question"
+		"codeExample codeExample"
+		"answersList answersList"
+		"saveBtn resetBtn";
+	grid-template-columns: 400px 210px;
+	grid-template-rows: 80px 230px 50px  60px;
+
+	/* grid-template-rows: 85px 85px 85px 60px; */
+	gap: 1rem;
+
+	// hr{
+	// 	margin: 20px 0 !important;
+	// }
+}
+
+.title {
+	margin: 0;
+
+	font-size: 34px;
+}
+
+.subTitle {
+	margin: 0;
+	margin-bottom: 0.5rem;
+
+	color: var(--text-secondary-color);
+
+	font-size: 14px;
+}
+
+.question {
+	grid-area: question;
+}
+
+.codeExample {
+	grid-area: codeExample;
+	
+}
+
+.textareaCodeExample{
+	height: 100%;
+}
+
+.answersList {
+	grid-area: answersList;
+}
+
+
+.buttons {
+	grid-area: buttons;
+}
+
+.button {
+	width: 60px;
+
+	margin-right: 1rem;
+	padding: 14px;
+
+	font-size: 28px;
+	line-height: 32px;
+}
+
+.lastButton {
+	margin-right: 0;
+}
+
+.saveBtn {
+	grid-area: saveBtn;
+}
+
+.resetBtn {
+	grid-area: resetBtn;
+}
+
+.divider{
+	margin: 15px 0;
+}

@@ -135,7 +135,7 @@ const Test: React.FC = () => {
               {questions[currentQuestion].question}
             </h2>
             <Divider />
-            <Code exampleCode={questions[currentQuestion].exampleCode} />
+            <Code codeExample={questions[currentQuestion].codeExample} />
 
             <AnswersList answers={questions[currentQuestion].answersList} />
           </div>
