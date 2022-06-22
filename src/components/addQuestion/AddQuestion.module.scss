@@ -1,15 +1,23 @@
 .editMedicalItem {
 	display: grid;
+	// grid-template-areas:
+	// 	"question question"
+	// 	"codeExample codeExample"
+	// 	"answersList answersList"
+	// 	"saveBtn resetBtn";
+	// grid-template-columns: 400px 210px;
+	// grid-template-rows: 80px 200px 150px 40px;
+
 	grid-template-areas:
-		"question question"
-		"codeExample codeExample"
-		"answersList answersList"
-		"saveBtn resetBtn";
-	grid-template-columns: 400px 210px;
-	grid-template-rows: 80px 200px 150px 40px;
+		"question question answersList"
+		"codeExample codeExample answersList"
+		"saveBtn resetBtn answersList";
+	grid-template-columns: 300px 100px 320px;
+	grid-template-rows: 80px 200px 50px;
+
 
 	/* grid-template-rows: 85px 85px 85px 60px; */
-	gap: 1rem;
+	gap: 1.5rem;
 
 	// hr{
 	// 	margin: 20px 0 !important;
@@ -42,7 +50,7 @@
 
 
 .textareaCodeExample{
-	height: 100%;
+	height: 80%;
 }
 
 .answersList {
@@ -57,7 +65,7 @@
 	display: flex;
 	margin: 0;
 	gap: 1rem;
-
+	align-items: flex-end;
 }
 
 .buttons {
@@ -87,5 +95,5 @@
 }
 
 .divider{
-	margin: 15px 0;
+	margin: 25px 0;
 }

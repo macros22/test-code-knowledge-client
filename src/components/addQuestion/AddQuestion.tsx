@@ -212,7 +212,7 @@ export const AddQuestion = ({
             errorMessage={questionError}
             onChange={(e) => setQuestion(e.target.value)}
           />
-          {/* <Divider className={styles.divider} /> */}
+          <Divider className={styles.divider} />
         </div>
 
         <div className={styles.codeExample}>
@@ -224,7 +224,7 @@ export const AddQuestion = ({
             onChange={(e) => setCodeExample(e.target.value)}
           />
 
-          {/* <Divider className={styles.divider} /> */}
+          <Divider className={styles.divider} />
         </div>
 
         <div className={styles.answersList}>
