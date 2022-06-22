@@ -247,6 +247,7 @@ export const AddQuestion = ({
                   }
                 />
                 <Checkbox
+                  name="Is correct?"
                   checked={answers[index].isChecked}
                   onChange={() =>
                     setAnswers((answers) => {

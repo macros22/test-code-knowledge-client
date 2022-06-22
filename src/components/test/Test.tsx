@@ -44,10 +44,10 @@ const AnswersList: React.FC<IProps> = ({ answers }) => {
   };
 
   return (
-    <>
+    <div className={styles.answersList}>
       {answers.map((answer, index) => {
         return (
-          <li className={styles.answersList} key={index ** 2}>
+          <li  key={answer.answer}>
             <Checkbox
               name={answer.answer}
               value={answer.answer}
@@ -57,7 +57,7 @@ const AnswersList: React.FC<IProps> = ({ answers }) => {
           </li>
         );
       })}
-    </>
+    </div>
   );
 };
 

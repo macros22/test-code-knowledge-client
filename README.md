@@ -25,3 +25,6 @@
 
 ## Authentication 
 - https://daily.dev/blog/authentication-in-nextjs
+
+## MDX and code highlight
+- https://github.com/bjcarlson42/personal-website-nextjs-chakra

@@ -92,10 +92,21 @@
 .answersList {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.answer{
+  display: flex;
+
+  // &:last-child{
+  //   margin-left: auto;
+  // }
 }
 
 .tag{
   height: 60%;
+  margin-left: auto;
+  // margin-left: .75rem;
 }
 

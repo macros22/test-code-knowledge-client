@@ -82,21 +82,23 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
 
   return (
     <>
-      {/* <ol className={styles.answersList}> */}
+      <div className={styles.answersList}>
       {answers.map((answer, index) => {
         return (
-          <li className={styles.answersList} key={index ** 2}>
+          <li className={styles.answer} key={answer.answer}>
             <Checkbox
               name={answer.answer}
               value={answer.answer}
               checked={checkedAnswers[index]}
               disabled
             />
+            <div className={styles.tag}>
             {getAnswerLabel(index, checkedAnswers[index])}
+            </div>
           </li>
         );
       })}
-      {/* </ol> */}
+      </div>
     </>
   );
 };
