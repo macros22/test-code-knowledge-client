@@ -5,10 +5,22 @@
       "question": "sdf sdf sЧто будет выведено в консоль?",
       "codeExample": "console.log(typeof null)",
       "answersList": [
-        { "answer": "[object]", "isCorrect": true },
-        { "answer": "[null]", "isCorrect": false },
-        { "answer": "[undefined]", "isCorrect": false },
-        { "answer": "Error", "isCorrect": false }
+        {
+          "answer": "[object]",
+          "isCorrect": true
+        },
+        {
+          "answer": "[null]",
+          "isCorrect": false
+        },
+        {
+          "answer": "[undefined]",
+          "isCorrect": false
+        },
+        {
+          "answer": "Error",
+          "isCorrect": false
+        }
       ]
     },
     {
@@ -16,10 +28,42 @@
       "question": "Что будет выведено в консоль?",
       "codeExample": "console.log(typeof null)",
       "answersList": [
-        { "answer": "[object]", "isCorrect": true },
-        { "answer": "[null]", "isCorrect": false },
-        { "answer": "Error", "isCorrect": false }
+        {
+          "answer": "[object]",
+          "isCorrect": true
+        },
+        {
+          "answer": "[null]",
+          "isCorrect": false
+        },
+        {
+          "answer": "Error",
+          "isCorrect": false
+        }
       ]
+    },
+    {
+      "question": "Example question",
+      "codeExample": "\n  const example = () => {\n    return ExampleCode;\n  }\n  ",
+      "answersList": [
+        {
+          "answer": "first",
+          "isCorrect": false
+        },
+        {
+          "answer": "second",
+          "isCorrect": false
+        },
+        {
+          "answer": "third",
+          "isCorrect": true
+        },
+        {
+          "answer": "fourth",
+          "isCorrect": false
+        }
+      ],
+      "id": 2
     }
   ]
 }

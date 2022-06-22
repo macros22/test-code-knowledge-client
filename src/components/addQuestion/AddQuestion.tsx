@@ -18,6 +18,7 @@ import { Textarea } from "components/textarea/Textarea";
 import { Button } from "components/button/Button";
 import { Answer, Question } from "interfaces/questions.interface";
 import { Checkbox } from "components/checkbox/Checkbox";
+import { postQuestion } from "components/test/Test.api";
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
 const exampleQuestion: Question = {
@@ -174,6 +175,15 @@ export const AddQuestion = ({
     //       break;
     //   }
     // }
+
+    postQuestion({
+      question,
+      codeExample,
+      answersList: answers.map(answer => ({
+        answer: answer.answer,
+        isCorrect: answer.isChecked,
+      }))
+    } as Question)
   };
 
   const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
