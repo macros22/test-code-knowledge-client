@@ -11,7 +11,7 @@ export const Checkbox = forwardRef(
       <>
         <label className={styles.formControl}>
           <input type="checkbox" ref={ref} {...props} />
-          <span>{name}</span>
+          {name && <span>{name}</span>}
         </label>
       </>
     );

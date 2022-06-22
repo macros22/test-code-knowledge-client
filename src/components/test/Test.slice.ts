@@ -1,27 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Question } from "interfaces/questions.interface";
 
-import type { AppState } from "../../store/store";
+import type { AppState } from "store/store";
 import { fetchQuestions } from "./Test.api";
 
 export interface AnswersState {
-  // answersAmount: number,
-  // questionsAmount: number,
   currentQuestion: number;
   userAnswers: boolean[];
   checkedAnswers: boolean[][];
   questions: Question[];
 }
 
-// const questionsAmount = 0;
-// const answersAmount = 0;
-
 const initialState: AnswersState = {
-  // questionsAmount,
-  // answersAmount,
   currentQuestion: 0,
-  // userAnswers: new Array(questionsAmount).fill(true),
-  // checkedAnswers: new Array(questionsAmount).fill(new Array(answersAmount).fill(false)),
   userAnswers: [],
   checkedAnswers: [],
   questions: [],

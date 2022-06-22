@@ -36,6 +36,11 @@ const exampleQuestion: Question = {
   ],
 };
 
+interface UserAnswer {
+  answer: string;
+  isChecked: boolean;
+}
+
 const schema = yup.object().shape({
   question: yup.string().required("Write question."),
   description: yup.string().required("Write medication description."),
@@ -57,9 +62,11 @@ export const AddQuestion = ({
   );
   const [codeExampleError, setCodeExampleError] = React.useState<string>("");
 
-  const [answers, setAnswers] = React.useState<Answer[]>(
-    exampleQuestion.answersList
-  );
+  const initialAnswers = exampleQuestion.answersList.map((answer) => ({
+    answer: answer.answer,
+    isChecked: false,
+  }));
+  const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
   // const [destinationCount, setDestinationCount] = React.useState<number>(
   //   item.destinationCount
   // );
@@ -191,6 +198,10 @@ export const AddQuestion = ({
     // }
   };
 
+  React.useEffect(() => {
+    console.log(answers);
+  }, [JSON.parse(JSON.stringify(answers))]);
+
   return (
     <>
       <form className={styles.editMedicalItem} onSubmit={handleSubmitForm}>
@@ -217,16 +228,37 @@ export const AddQuestion = ({
         </div>
 
         <div className={styles.answersList}>
-          {answers.map((answer) => {
+          {answers.map((answer, index) => {
             return (
               <div key={answer.answer} className={styles.answer}>
                 <Input
-                // value={destinationCount}
-                // name="Answers list"
-                // errorMessage={destinationCountError}
-                // onChange={(e) => setDestinationCount(+e.target.value)}
-                />{" "}
-                <Checkbox />
+                  value={answers[index].answer}
+                  name={`Answer # ${index + 1}`}
+                  // errorMessage={destinationCountError}
+                  onChange={(e) =>
+                    setAnswers((answers) => {
+                      // Deep copy.
+                      const updatedAnswers = JSON.parse(
+                        JSON.stringify(answers)
+                      );
+                      updatedAnswers[index].answer = e.target.value;
+                      return updatedAnswers;
+                    })
+                  }
+                />
+                <Checkbox
+                  checked={answers[index].isChecked}
+                  onChange={() =>
+                    setAnswers((answers) => {
+                      // Deep copy.
+                      const updatedAnswers = JSON.parse(
+                        JSON.stringify(answers)
+                      );
+                      updatedAnswers[index].isChecked = !updatedAnswers[index].isChecked;
+                      return updatedAnswers;
+                    })
+                  }
+                />
               </div>
             );
           })}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import {Checkbox} from "../checkbox/Checkbox";
 import styles from "./TestResult.module.scss";
 import {
