@@ -16,21 +16,25 @@ import { Input } from "components/input/Input";
 import { Divider } from "components/divider/Divider";
 import { Textarea } from "components/textarea/Textarea";
 import { Button } from "components/button/Button";
-import { Question } from "interfaces/questions.interface";
+import { Answer, Question } from "interfaces/questions.interface";
+import { Checkbox } from "components/checkbox/Checkbox";
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
-
-const exampleQuestion:Question = {
+const exampleQuestion: Question = {
   id: 9999,
-  question: 'Example question',
+  question: "Example question",
   codeExample: `
   const example = () => {
     return ExampleCode;
   }
   `,
-  answersList: [{answer: 'first', isCorrect: true}, {answer: 'second', isCorrect: false}],
-} 
-
+  answersList: [
+    { answer: "first", isCorrect: true },
+    { answer: "second", isCorrect: false },
+    { answer: "third", isCorrect: false },
+    { answer: "fourth", isCorrect: false },
+  ],
+};
 
 const schema = yup.object().shape({
   question: yup.string().required("Write question."),
@@ -38,22 +42,24 @@ const schema = yup.object().shape({
   destinationCount: yup.number().required().positive().integer(),
 });
 
-interface Answer {
-  answer: string;
-  correct:true;
-}
-
 export const AddQuestion = ({
   // item,
   // mode,
   setIsModalOpen,
 }: AddQuestionProps): JSX.Element => {
-  const [question, setQuestion] = React.useState<string>(exampleQuestion.question);
+  const [question, setQuestion] = React.useState<string>(
+    exampleQuestion.question
+  );
   const [questionError, setQuestionError] = React.useState<string>("");
 
-  const [codeExample, setCodeExample] = React.useState<string>(exampleQuestion.codeExample);
+  const [codeExample, setCodeExample] = React.useState<string>(
+    exampleQuestion.codeExample
+  );
   const [codeExampleError, setCodeExampleError] = React.useState<string>("");
 
+  const [answers, setAnswers] = React.useState<Answer[]>(
+    exampleQuestion.answersList
+  );
   // const [destinationCount, setDestinationCount] = React.useState<number>(
   //   item.destinationCount
   // );
@@ -149,7 +155,7 @@ export const AddQuestion = ({
 
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(codeExample)
+    console.log(codeExample);
     // if (await isValidForm()) {
     //   switch (mode) {
     //     case "add":
@@ -211,12 +217,19 @@ export const AddQuestion = ({
         </div>
 
         <div className={styles.answersList}>
-          <Input
-          // value={destinationCount}
-          // name="Answers list"
-          // errorMessage={destinationCountError}
-          // onChange={(e) => setDestinationCount(+e.target.value)}
-          />
+          {answers.map((answer) => {
+            return (
+              <div key={answer.answer} className={styles.answer}>
+                <Input
+                // value={destinationCount}
+                // name="Answers list"
+                // errorMessage={destinationCountError}
+                // onChange={(e) => setDestinationCount(+e.target.value)}
+                />{" "}
+                <Checkbox />
+              </div>
+            );
+          })}
 
           {/* <Divider className={styles.divider} /> */}
         </div>

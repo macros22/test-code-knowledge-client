@@ -10,6 +10,16 @@
         { "answer": "[undefined]", "isCorrect": false },
         { "answer": "Error", "isCorrect": false }
       ]
+    },
+    {
+      "id": 1,
+      "question": "Что будет выведено в консоль?",
+      "codeExample": "console.log(typeof null)",
+      "answersList": [
+        { "answer": "[object]", "isCorrect": true },
+        { "answer": "[null]", "isCorrect": false },
+        { "answer": "Error", "isCorrect": false }
+      ]
     }
   ]
 }
