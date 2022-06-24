@@ -1,16 +1,12 @@
 import React from "react";
-// import { Button } from "../Button/Button";
-// import { EditMedicationItemProps } from "./EditMedicationItem.props";
+
 import styles from "./QuestionCard.module.scss";
-// import { Divider } from "../Divider/Divider";
-// import axios from "axios";
+
 import cn from "clsx";
-// import WithLabel from "../WithLabel/WithLabel";
-// import Tag from "../Tag/Tag";
-// import { Input } from "../Input/Input";
+
 import * as yup from "yup";
 import { ValidationError } from "yup";
-// import { QuestionCardProps } from "./QuestionCard.props";
+
 import axios from "axios";
 import { Input } from "components/atoms/input/Input";
 import { Divider } from "components/atoms/divider/Divider";
@@ -22,7 +18,6 @@ import { patchQuestion, postQuestion } from "helpers/api-requests";
 import { QuestionCardProps } from "./QuestionCard.props";
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
-
 interface UserAnswer {
   answer: string;
   isChecked: boolean;
@@ -31,7 +26,12 @@ interface UserAnswer {
 const schema = yup.object().shape({
   question: yup.string().required("Write question."),
   codeExample: yup.string().required("Write code example."),
-  // destinationCount: yup.number().required().positive().integer(),
+  answers: yup.array().of(
+    yup.object().shape({
+      answer: yup.string().required("Write answer."),
+      isChecked: yup.boolean(),
+    })
+  ),
 });
 
 export const QuestionCard = ({
@@ -39,9 +39,7 @@ export const QuestionCard = ({
   mode,
   setIsModalOpen,
 }: QuestionCardProps): JSX.Element => {
-  const [question, setQuestion] = React.useState<string>(
-    questionItem.question
-  );
+  const [question, setQuestion] = React.useState<string>(questionItem.question);
   const [questionError, setQuestionError] = React.useState<string>("");
 
   const [codeExample, setCodeExample] = React.useState<string>(
@@ -54,17 +52,15 @@ export const QuestionCard = ({
     isChecked: false,
   }));
   const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
-  // const [destinationCount, setDestinationCount] = React.useState<number>(
-  //   item.destinationCount
-  // );
-  // const [destinationCountError, setDestinationCountError] =
-  //   React.useState<string>("");
-
-  // const [count, setCount] = React.useState<number>(item.count);
+  const [answersErrors, setAnswersErrors] = React.useState<string[]>(
+    new Array(questionItem.answersList.length).fill("")
+  );
 
   const resetErrors = () => {
     setQuestionError("");
     setCodeExampleError("");
+    // setAnswersErrors((array) => array.fill(""));
+    setAnswersErrors(new Array(questionItem.answersList.length).fill(""));
   };
 
   const isValidForm = async () => {
@@ -75,18 +71,28 @@ export const QuestionCard = ({
       await schema.validate({
         question,
         codeExample,
+        answers,
       });
     } catch (error) {
       if (error instanceof ValidationError) {
         isValid = false;
         console.log(error.path);
-        switch (error.path) {
-          case "question":
-            setQuestionError(error.errors[0]);
-            break;
-          case "codeExample":
-            setCodeExampleError(error.errors[0]);
-            break;
+        if (error.path == "question") {
+          setQuestionError(error.errors[0]);
+        } else if (error.path == "codeExample") {
+          setCodeExampleError(error.errors[0]);
+        } else if (error.path?.endsWith(".answer")) {
+          // ! TO DO: Refactore this block.
+          const errorIndex: number =
+            Number(error.path.match(/\d/g)?.join(""));
+
+          if (errorIndex >= 0) {
+            setAnswersErrors((array) => {
+              const updatedArray = [...array];
+              updatedArray[errorIndex] = (error as ValidationError).errors[0];
+              return updatedArray;
+            });
+          }
         }
       }
     }
@@ -144,7 +150,7 @@ export const QuestionCard = ({
 
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(codeExample);
+    // console.log(codeExample);
 
     const questionPayload = {
       question,
@@ -169,7 +175,6 @@ export const QuestionCard = ({
           break;
 
         case "edit":
-          
           try {
             await patchQuestion(questionPayload, questionItem.id.toString());
 
@@ -204,9 +209,9 @@ export const QuestionCard = ({
     // }
   };
 
-  React.useEffect(() => {
-    console.log(answers);
-  }, [JSON.parse(JSON.stringify(answers))]);
+  // React.useEffect(() => {
+  //   console.log(answers);
+  // }, [JSON.parse(JSON.stringify(answers))]);
 
   return (
     <>
@@ -236,12 +241,13 @@ export const QuestionCard = ({
         <div className={styles.answersList}>
           {answers.map((answer, index) => {
             return (
-              <div key={answer.answer} className={styles.answer}>
+              <div key={index} className={styles.answer}>
                 <Input
                   value={answers[index].answer}
-                  name={`Answer # ${index + 1}`}
-                  // errorMessage={destinationCountError}
-                  onChange={(e) =>
+                  name={`Answer № ${index + 1}`}
+                  errorMessage={answersErrors[index]}
+                  onChange={(e) => {
+                    e.preventDefault();
                     setAnswers((answers) => {
                       // Deep copy.
                       const updatedAnswers = JSON.parse(
@@ -249,8 +255,8 @@ export const QuestionCard = ({
                       );
                       updatedAnswers[index].answer = e.target.value;
                       return updatedAnswers;
-                    })
-                  }
+                    });
+                  }}
                 />
                 <Checkbox
                   name="Is correct?"

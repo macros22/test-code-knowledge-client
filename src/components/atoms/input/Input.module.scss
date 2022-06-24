@@ -18,11 +18,17 @@
 
 	font-size: 18px;
 	line-height: 24px;
+
+	&::placeholder {
+		color: var(--text-secondary-color);
+	}
+
+	&:focus {
+		outline: 2px solid var(--primary-color);
+	}
 }
 
-.input::placeholder {
-	color: var(--text-secondary-color);
-}
+
 
 .error {
 	border: 1px solid var(--danger-color);

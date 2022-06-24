@@ -18,6 +18,18 @@ const exampleQuestion: Question = {
       { answer: "second", isCorrect: false },
       { answer: "third", isCorrect: false },
       { answer: "fourth", isCorrect: false },
+      // { answer: "firsgt", isCorrect: true },
+      // { answer: "secdond", isCorrect: false },
+      // { answer: "thibdrd", isCorrect: false },
+      // { answer: "foudbfrth", isCorrect: false },
+      // { answer: "firdfbst", isCorrect: true },
+      // { answer: "secondbfd", isCorrect: false },
+      // { answer: "thibsvdfrd", isCorrect: false },
+      // { answer: "fousdvdfbrth", isCorrect: false },
+      // { answer: "firafgnscsbst", isCorrect: true },
+      // { answer: "secascond", isCorrect: false },
+      // { answer: "thdfbird", isCorrect: false },
+      // { answer: "founfrth", isCorrect: false },
     ],
   };
 
