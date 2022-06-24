@@ -12,7 +12,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 
 import counterReducer from '../components/counter/counterSlice'
-import answersReducer from '../components/test/Test.slice'
+import answersReducer from '../components/organisms/test/Test.slice'
 
 const rootReducer = combineReducers({
     counter: counterReducer,

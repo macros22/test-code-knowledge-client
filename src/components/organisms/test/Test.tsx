@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Test.module.scss";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {
   changeCheckedState,
   decrementCurrentQuestion,
@@ -10,29 +10,25 @@ import {
   selectCurrentQuestion,
   selectQuestions,
 } from "./Test.slice";
-import { Checkbox } from "../checkbox/Checkbox";
+import { Checkbox } from "../../atoms/checkbox/Checkbox";
 import { useRouter } from "next/dist/client/router";
-import { Button } from "../button/Button";
-import { Divider } from "../divider/Divider";
-import { Code } from "components/code/Code";
+import { Button } from "../../atoms/button/Button";
+import { Divider } from "../../atoms/divider/Divider";
+import { Code } from "components/molecules/code/Code";
 import { Answer } from "interfaces/questions.interface";
 
 export const answers = ["[object]", "[null]", "[undefined]", "Error"];
 
-interface IProps {
+interface AnswersListProps {
   answers: Answer[];
 }
 
-const AnswersList: React.FC<IProps> = ({ answers }) => {
+const AnswersList: React.FC<AnswersListProps> = ({ answers }) => {
   const currentQuestion = useAppSelector(selectCurrentQuestion);
 
   const checkedAnswers = useAppSelector(selectCheckedAnswers)[currentQuestion];
-  // console.log("checkedAnswers:", checkedAnswers);
   const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
-   // console.log("checkedAnswers:", checkedAnswers);
-  }, [checkedAnswers]);
 
   const handleOnChange = (position: number) => {
     dispatch(

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import {Checkbox} from "../checkbox/Checkbox";
+import {Checkbox} from "../../atoms/checkbox/Checkbox";
 import styles from "./TestResult.module.scss";
 import {
   changeUserCorrectAnswers,
@@ -9,13 +9,13 @@ import {
   selectQuestions,
   selectUserAnswersStatus,
 } from "../test/Test.slice";
-import { Card } from "../card/Card";
-import { Button } from "../button/Button";
+import { Card } from "../../atoms/card/Card";
+import { Button } from "../../atoms/button/Button";
 import { useRouter } from "next/dist/client/router";
-import { Divider } from "../divider/Divider";
-import Tag from "../tag/Tag";
+import { Divider } from "../../atoms/divider/Divider";
+import Tag from "../../atoms/tag/Tag";
 import cn from "clsx";
-import { Code } from "components/code/Code";
+import { Code } from "components/molecules/code/Code";
 import { Answer } from "interfaces/questions.interface";
 interface IProps {
   answers: Answer[];

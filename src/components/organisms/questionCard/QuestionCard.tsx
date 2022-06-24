@@ -1,7 +1,7 @@
 import React from "react";
 // import { Button } from "../Button/Button";
 // import { EditMedicationItemProps } from "./EditMedicationItem.props";
-import styles from "./AddQuestion.module.scss";
+import styles from "./QuestionCard.module.scss";
 // import { Divider } from "../Divider/Divider";
 // import axios from "axios";
 import cn from "clsx";
@@ -10,32 +10,18 @@ import cn from "clsx";
 // import { Input } from "../Input/Input";
 import * as yup from "yup";
 import { ValidationError } from "yup";
-import { AddQuestionProps } from "./AddQuestion.props";
+// import { QuestionCardProps } from "./QuestionCard.props";
 import axios from "axios";
-import { Input } from "components/input/Input";
-import { Divider } from "components/divider/Divider";
-import { Textarea } from "components/textarea/Textarea";
-import { Button } from "components/button/Button";
-import { Answer, Question } from "interfaces/questions.interface";
-import { Checkbox } from "components/checkbox/Checkbox";
-import { postQuestion } from "components/test/Test.api";
+import { Input } from "components/atoms/input/Input";
+import { Divider } from "components/atoms/divider/Divider";
+import { Textarea } from "components/atoms/textarea/Textarea";
+import { Button } from "components/atoms/button/Button";
+import { Question } from "interfaces/questions.interface";
+import { Checkbox } from "components/atoms/checkbox/Checkbox";
+import { patchQuestion, postQuestion } from "helpers/api-requests";
+import { QuestionCardProps } from "./QuestionCard.props";
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
-const exampleQuestion: Question = {
-  id: 9999,
-  question: "Example question",
-  codeExample: `
-  const example = () => {
-    return ExampleCode;
-  }
-  `,
-  answersList: [
-    { answer: "first", isCorrect: true },
-    { answer: "second", isCorrect: false },
-    { answer: "third", isCorrect: false },
-    { answer: "fourth", isCorrect: false },
-  ],
-};
 
 interface UserAnswer {
   answer: string;
@@ -44,26 +30,26 @@ interface UserAnswer {
 
 const schema = yup.object().shape({
   question: yup.string().required("Write question."),
-  description: yup.string().required("Write medication description."),
-  destinationCount: yup.number().required().positive().integer(),
+  codeExample: yup.string().required("Write code example."),
+  // destinationCount: yup.number().required().positive().integer(),
 });
 
-export const AddQuestion = ({
-  // item,
-  // mode,
+export const QuestionCard = ({
+  questionItem,
+  mode,
   setIsModalOpen,
-}: AddQuestionProps): JSX.Element => {
+}: QuestionCardProps): JSX.Element => {
   const [question, setQuestion] = React.useState<string>(
-    exampleQuestion.question
+    questionItem.question
   );
   const [questionError, setQuestionError] = React.useState<string>("");
 
   const [codeExample, setCodeExample] = React.useState<string>(
-    exampleQuestion.codeExample
+    questionItem.codeExample
   );
   const [codeExampleError, setCodeExampleError] = React.useState<string>("");
 
-  const initialAnswers = exampleQuestion.answersList.map((answer) => ({
+  const initialAnswers = questionItem.answersList.map((answer) => ({
     answer: answer.answer,
     isChecked: false,
   }));
@@ -79,39 +65,34 @@ export const AddQuestion = ({
   const resetErrors = () => {
     setQuestionError("");
     setCodeExampleError("");
-    // setDestinationCountError("");
   };
 
-  // const isValidForm = async () => {
-  //   resetErrors();
-  //   let isValid = true;
+  const isValidForm = async () => {
+    resetErrors();
+    let isValid = true;
 
-  //   try {
-  //     await schema.validate({
-  //       name,
-  //       description,
-  //       destinationCount,
-  //     });
-  //   } catch (error) {
-  //     if (error instanceof ValidationError) {
-  //       isValid = false;
-  //       console.log(error.path);
-  //       switch (error.path) {
-  //         case "name":
-  //           setNameError(error.errors[0]);
-  //           break;
-  //         case "description":
-  //           setDescriptionError(error.errors[0]);
-  //           break;
-  //         case "destinationCount":
-  //           setDestinationCountError(error.errors[0]);
-  //           break;
-  //       }
-  //     }
-  //   }
+    try {
+      await schema.validate({
+        question,
+        codeExample,
+      });
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        isValid = false;
+        console.log(error.path);
+        switch (error.path) {
+          case "question":
+            setQuestionError(error.errors[0]);
+            break;
+          case "codeExample":
+            setCodeExampleError(error.errors[0]);
+            break;
+        }
+      }
+    }
 
-  //   return isValid;
-  // };
+    return isValid;
+  };
 
   // const postItem = async () => {
   //   const payload = {
@@ -164,26 +145,41 @@ export const AddQuestion = ({
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log(codeExample);
-    // if (await isValidForm()) {
-    //   switch (mode) {
-    //     case "add":
-    //       postItem();
-    //       break;
 
-    //     case "edit":
-    //       patchItem();
-    //       break;
-    //   }
-    // }
-
-    postQuestion({
+    const questionPayload = {
       question,
       codeExample,
-      answersList: answers.map(answer => ({
+      answersList: answers.map((answer) => ({
         answer: answer.answer,
         isCorrect: answer.isChecked,
-      }))
-    } as Question)
+      })),
+    } as Omit<Question, "id">;
+
+    if (await isValidForm()) {
+      switch (mode) {
+        case "add":
+          try {
+            await postQuestion(questionPayload);
+
+            setIsModalOpen(false);
+          } catch (error) {
+            console.log(error);
+          }
+
+          break;
+
+        case "edit":
+          
+          try {
+            await patchQuestion(questionPayload, questionItem.id.toString());
+
+            setIsModalOpen(false);
+          } catch (error) {
+            console.log(error);
+          }
+          break;
+      }
+    }
   };
 
   const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -265,7 +261,8 @@ export const AddQuestion = ({
                       const updatedAnswers = JSON.parse(
                         JSON.stringify(answers)
                       );
-                      updatedAnswers[index].isChecked = !updatedAnswers[index].isChecked;
+                      updatedAnswers[index].isChecked =
+                        !updatedAnswers[index].isChecked;
                       return updatedAnswers;
                     })
                   }

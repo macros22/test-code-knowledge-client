@@ -1,0 +1,19 @@
+.title {
+	display: flex;
+
+	height: 80px;
+	padding: 0.85rem 0;
+}
+
+.title > h1 {
+	margin: 0;
+}
+
+.addItemButton {
+	margin-left: auto;
+}
+
+.item {
+	margin-bottom: 1.2rem;
+	padding: 1rem;
+}

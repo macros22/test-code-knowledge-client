@@ -1,4 +1,4 @@
-import { getQuestionsAsync, selectQuestions } from "components/test/Test.slice";
+import { getQuestionsAsync, selectQuestions } from "components/organisms/test/Test.slice";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 

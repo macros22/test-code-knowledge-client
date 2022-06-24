@@ -1,4 +1,4 @@
-import ButtonHover from '../components/button-hover';
+import ButtonHover from '../components/atoms/button-hover';
 
 
 

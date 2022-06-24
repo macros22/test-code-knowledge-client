@@ -1,4 +1,4 @@
-import { Button } from "components/button/Button";
+import { Button } from "components/atoms/button/Button";
 import * as React from "react";
 // import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
 import styles from "./Modal.module.scss";
