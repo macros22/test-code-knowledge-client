@@ -135,20 +135,12 @@ export const QuestionsList = (): JSX.Element => {
           <QuestionForm
             questionItem={questions[currentQuestionIndex]}
             mode="edit"
-            setIsModalOpen={setIsAddQuestionMode}
+            setIsModalOpen={setIsEditQuestionMode}
           />
         </Modal>
       )}
 
-      {/* {items && addItemMode && (
-        <Modal setModalOpen={setAddItemMode}>
-          <EditMedicationItem
-            setModalOpen={setAddItemMode}
-            mode="add"
-            item={defaultItem}
-          />
-        </Modal>
-      )} */}
+  
     </div>
   );
 };

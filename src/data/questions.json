@@ -2,12 +2,12 @@
   "questions": [
     {
       "id": 0,
-      "question": "sdf sdf sЧто будет выведено в консоль?",
+      "question": "Что будет выведено в консоль?",
       "codeExample": "console.log(typeof null)",
       "answersList": [
         {
           "answer": "[object]",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "answer": "[null]",
@@ -26,11 +26,11 @@
     {
       "id": 1,
       "question": "Что будет выведено в консоль?",
-      "codeExample": "console.log(typeof null)",
+      "codeExample": "console.log(typeof null);",
       "answersList": [
         {
           "answer": "[object]",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "answer": "[null]",
@@ -90,7 +90,7 @@
     },
     {
       "question": "Example question",
-      "codeExample": "\n    const example = () => {\n      return ExampleCode;\n    }\n    ",
+      "codeExample": "    const example = () => {\n      return ExampleCode;\n    }",
       "answersList": [
         {
           "answer": "first",

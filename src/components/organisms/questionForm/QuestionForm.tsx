@@ -100,57 +100,10 @@ export const QuestionForm = ({
     return isValid;
   };
 
-  // const postItem = async () => {
-  //   const payload = {
-  //     // name,
-  //     // description,
-  //     // destinationCount,
-  //     // count,
-  //   };
-
-  //   try {
-  //     const result = await axios.post(POST_ITEM_URL, payload, {
-  //       withCredentials: true,
-  //     });
-
-  //     setModalOpen(false);
-  //     setTimeout(async () => {
-  //       alert("Item successfuly addded");
-  //     }, 150);
-
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       // setError(error.message);
-  //     }
-  //   }
-  // };
-
-  // const patchItem = async () => {
-  //   const payload = {
-  //     name,
-  //     description,
-  //     destinationCount,
-  //     count,
-  //   };
-
-  //   try {
-  //     const result = await axios.patch(PATCH_ITEM_URL + item.id, payload, {
-  //       withCredentials: true,
-  //     });
-  //     console.log(result);
-
-  //     setModalOpen(false);
-  //     setTimeout(async () => {
-  //       alert("Item successfuly changed");
-  //     }, 150);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
 
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-    // console.log(codeExample);
+  
 
     const questionPayload = {
       question,
@@ -195,20 +148,7 @@ export const QuestionForm = ({
     // setDestinationCount(item.destinationCount);
   };
 
-  const handlePlusButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // if (count < item.destinationCount) {
-    //   setCount((count) => count + 1);
-    // }
-  };
-
-  const handleMinusButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // if (count > 0) {
-    //   setCount((count) => count - 1);
-    // }
-  };
-
+  
   // React.useEffect(() => {
   //   console.log(answers);
   // }, [JSON.parse(JSON.stringify(answers))]);
@@ -281,8 +221,7 @@ export const QuestionForm = ({
         </div>
 
         <Button className={styles.saveBtn} appearance="primary" type="submit">
-          {/* {mode == "add" ? "Add" : "Save"} */}
-          Add
+          {mode == "add" ? "Add question" : "Save changes"}
         </Button>
         <Button
           className={styles.resetBtn}
