@@ -5,6 +5,7 @@ import React from "react";
 import { Question } from "interfaces/questions.interface";
 
 import { QuestionsList } from "components/organisms/questionsList/QuestionsList";
+import { withLayout } from "layouts/MainLayout";
 
 
 
@@ -13,10 +14,10 @@ const QuestionsPage = () => {
 
 
     return (
-        <div style={{width: "50%", margin: "0 auto"}}>
+        <>
        <QuestionsList />
-        </div>
+        </>
     )
 }
 
-export default QuestionsPage;
+export default withLayout(QuestionsPage);
