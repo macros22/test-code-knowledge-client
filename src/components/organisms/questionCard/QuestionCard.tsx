@@ -8,6 +8,7 @@ import { QuestionCardProps } from "./QuestionCard.props";
 import { Code } from "components/molecules/code/Code";
 import { Button } from "components/atoms/button/Button";
 import { Divider } from "components/atoms/divider/Divider";
+import { deleteQuestion } from "helpers/api-requests";
 
 export const QuestionCard = ({
   question,
@@ -18,6 +19,11 @@ export const QuestionCard = ({
   // const debouncedCount = useDebounce<number>(count, 500);
 
   
+  const handleDeleteButton = async () => {
+    await deleteQuestion(question.id.toString());
+    await updateQuestions();
+  }
+
 
   // const patchquestion = async () => {
   //   const payload = {
@@ -54,7 +60,9 @@ export const QuestionCard = ({
         <Button appearance="ghost" onClick={() => handleEditButton()}>
           Change
         </Button>
-        
+        <Button appearance="ghost" onClick={() => handleDeleteButton()}>
+          Delete
+        </Button>
       </div>
       <div className={styles.questionCard}>
         <div className={styles.question}>

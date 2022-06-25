@@ -6,6 +6,7 @@ import {
   decrementCurrentQuestion,
   getQuestionsAsync,
   incrementCurrentQuestion,
+  resetState,
   selectCheckedAnswers,
   selectCurrentQuestion,
   selectQuestions,
@@ -29,7 +30,6 @@ const AnswersList: React.FC<AnswersListProps> = ({ answers }) => {
   const checkedAnswers = useAppSelector(selectCheckedAnswers)[currentQuestion];
   const dispatch = useAppDispatch();
 
-
   const handleOnChange = (position: number) => {
     dispatch(
       changeCheckedState({
@@ -43,7 +43,7 @@ const AnswersList: React.FC<AnswersListProps> = ({ answers }) => {
     <div className={styles.answersList}>
       {answers.map((answer, index) => {
         return (
-          <li  key={answer.answer}>
+          <li key={answer.answer}>
             <Checkbox
               name={answer.answer}
               value={answer.answer}
@@ -79,8 +79,6 @@ const Test: React.FC = () => {
       : setIsActiveNextBtn(false);
   }, [checkedState]);
 
- 
-
   // Handlers.
   const backButtonHandler = () => {
     if (currentQuestion > 0) {
@@ -106,6 +104,8 @@ const Test: React.FC = () => {
   const endTestHandler = () => {
     router.push("/testResult");
   };
+
+ 
 
   return (
     <>

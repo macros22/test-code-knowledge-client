@@ -24,26 +24,30 @@
       ]
     },
     {
-      "id": 1,
-      "question": "Что будет выведено в консоль?",
-      "codeExample": "console.log(typeof null);",
+      "question": "Example questionasd",
+      "codeExample": "  const example = () => {\n    return ExampleCode;\n  }  ",
       "answersList": [
         {
-          "answer": "[object]",
+          "answer": "first",
           "isCorrect": false
         },
         {
-          "answer": "[null]",
+          "answer": "second",
+          "isCorrect": true
+        },
+        {
+          "answer": "third",
           "isCorrect": false
         },
         {
-          "answer": "Error",
+          "answer": "fourth",
           "isCorrect": false
         }
-      ]
+      ],
+      "id": 1
     },
     {
-      "question": "Example question",
+      "question": "Example qdfg dfg uestion",
       "codeExample": "\n  const example = () => {\n    return ExampleCode;\n  }\n  ",
       "answersList": [
         {
@@ -56,7 +60,7 @@
         },
         {
           "answer": "third",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "answer": "fourth",
@@ -64,98 +68,6 @@
         }
       ],
       "id": 2
-    },
-    {
-      "question": "Example question",
-      "codeExample": "\n    const example = () => {\n      return Examplewedfdwwer wer qwe q eefCode;\n    }\n    ",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "second",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 3
-    },
-    {
-      "question": "Example question",
-      "codeExample": "    const example = () => {\n      return ExampleCode;\n    }",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "l",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 4
-    },
-    {
-      "question": "Example question",
-      "codeExample": "\n    const example = () => {\n      return ExampleCode;\n    }\n    ",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "h",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 5
-    },
-    {
-      "question": "Example question",
-      "codeExample": "\n    const example = () => {\n      return ExampleCode;\n    }\n    ",
-      "answersList": [
-        {
-          "answer": "uasdasd",
-          "isCorrect": false
-        },
-        {
-          "answer": "asdadasdasd",
-          "isCorrect": false
-        },
-        {
-          "answer": "thirdysf",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 6
     }
   ]
 }

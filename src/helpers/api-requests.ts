@@ -1,22 +1,27 @@
 import axios from "axios";
-import { GET_QUESTIONS_URL, PATCH_QUESTION_URL, POST_QUESTION_URL } from "constants/urls";
+import { QUESTIONS_URL } from "constants/urls";
 import { Question } from "interfaces/questions.interface";
 
-export const getQuestions = async (): Promise<Question[] | null > => {
+export const getQuestions = async (): Promise<Question[] | null> => {
+  const response = await axios.get(QUESTIONS_URL);
 
-    const response = await axios.get(GET_QUESTIONS_URL);
+  return response.data;
+};
 
-    return response.data;
-}
+export const postQuestion = async (question: Omit<Question, "id">) => {
+  const response = await axios.post(QUESTIONS_URL, question);
 
-export const  postQuestion = async (question: Omit<Question, "id">) => {
+  // console.log(response);
+  // return response.data;
+};
 
-    const response = await axios.post(POST_QUESTION_URL, question);
+export const patchQuestion = async (
+  questionPayload: Omit<Question, "id">,
+  id: string
+) => {
+  const response = await axios.patch(QUESTIONS_URL + "/" + id, questionPayload);
+};
 
-    // console.log(response);
-    // return response.data;
-}
-
-export const patchQuestion = async (questionPayload: Omit<Question, "id">, id:string) => {
-    const response = await axios.patch(PATCH_QUESTION_URL + id, questionPayload);
+export const deleteQuestion = async (id: string) => {
+  const response = await axios.delete(QUESTIONS_URL + "/" + id);
 };

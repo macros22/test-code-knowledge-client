@@ -1,3 +1,4 @@
+import { withLayout } from "layouts/MainLayout";
 import React from "react";
 
 import { TestResult } from "../components";
@@ -10,4 +11,4 @@ const TestResultPage: React.FC = () => {
   );
 };
 
-export default TestResultPage;
+export default withLayout(TestResultPage);

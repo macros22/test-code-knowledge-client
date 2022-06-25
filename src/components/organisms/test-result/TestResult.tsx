@@ -80,6 +80,12 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
   // console.log('correctAnswers: ', correctAnswers)
   // console.log('answersList: ', answersList)
 
+  React.useEffect(() => {
+    return () => {
+      dispatch(resetState());
+    };
+  }, []);
+
   return (
     <>
       <div className={styles.answersList}>

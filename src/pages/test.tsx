@@ -1,4 +1,5 @@
 import { getQuestionsAsync, selectQuestions } from "components/organisms/test/Test.slice";
+import { withLayout } from "layouts/MainLayout";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 
@@ -22,5 +23,5 @@ const TestPage: React.FC = () => {
 }
 
 
-export default TestPage;
+export default withLayout(TestPage);
 
