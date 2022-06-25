@@ -9,7 +9,7 @@ import {
     incrementIfOdd,
     selectCount,
 } from './counterSlice'
-import styles from './counter.module.css'
+import styles from './counter.module.scss'
 
 function Counter() {
     const dispatch = useAppDispatch()
@@ -19,7 +19,7 @@ function Counter() {
     const incrementValue = Number(incrementAmount) || 0
 
     return (
-        <div>
+        <div className={styles.box}>
             <div className={styles.row}>
                 <button
                     className={styles.button}
@@ -63,6 +63,7 @@ function Counter() {
                     Add If Odd
                 </button>
             </div>
+           
         </div>
     )
 }

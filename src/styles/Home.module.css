@@ -1,4 +1,5 @@
 .container{
+    background: #EEF2F7;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
