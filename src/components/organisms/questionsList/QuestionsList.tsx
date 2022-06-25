@@ -1,45 +1,76 @@
-import styles from "./MedicationList.module.css";
+import styles from "./QuestionsList.module.css";
 import axios from "axios";
-import { IMedicationItem } from "../../interfaces/medication.interface";
-import React from "react";
-import { Button } from "../Button/Button";
-import { Card } from "../Card/Card";
-import { MedicationItem } from "../MedicationItem/MedicationItem";
-import Modal from "../Modal/Modal";
-import { GET_ITEMS_URL } from "../../constants/url";
-import { EditMedicationItem } from "components";
 
-const defaultItem: IMedicationItem = {
-  id: 0,
-  name: "Example name",
-  description: "Example description",
-  destinationCount: 5,
-  count: 0,
+import React from "react";
+
+import { Question } from "interfaces/questions.interface";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getQuestionsAsync, selectQuestions } from "../test/Test.slice";
+import { Button } from "components/atoms/button/Button";
+import { Card } from "components/atoms/card/Card";
+import { QuestionCard } from "../questionCard/QuestionCard";
+import Modal from "components/atoms/modal/Modal";
+import { QuestionForm } from "../questionForm/QuestionForm";
+
+const exampleQuestion: Question = {
+  id: 9999,
+  question: "Example question",
+  codeExample: `
+  const example = () => {
+    return ExampleCode;
+  }
+  `,
+  answersList: [
+    { answer: "first", isCorrect: true },
+    { answer: "second", isCorrect: false },
+    { answer: "third", isCorrect: false },
+    { answer: "fourth", isCorrect: false },
+    // { answer: "firsgt", isCorrect: true },
+    // { answer: "secdond", isCorrect: false },
+    // { answer: "thibdrd", isCorrect: false },
+    // { answer: "foudbfrth", isCorrect: false },
+    // { answer: "firdfbst", isCorrect: true },
+    // { answer: "secondbfd", isCorrect: false },
+    // { answer: "thibsvdfrd", isCorrect: false },
+    // { answer: "fousdvdfbrth", isCorrect: false },
+    // { answer: "firafgnscsbst", isCorrect: true },
+    // { answer: "secascond", isCorrect: false },
+    // { answer: "thdfbird", isCorrect: false },
+    // { answer: "founfrth", isCorrect: false },
+  ],
 };
 
-export const MedicationList = (): JSX.Element => {
-  const [currentItemIndex, setCurrentItemIndex] = React.useState(0);
-  const [editItemMode, setEditItemMode] = React.useState(false);
-  const [addItemMode, setAddItemMode] = React.useState(false);
+export const QuestionsList = (): JSX.Element => {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
 
-  const [items, setItems] = React.useState<IMedicationItem[] | null>(null);
+  // const [questions, setQuestions] = React.useState<Question[] | null>(null);
+
+  const [isAddQuestionMode, setIsAddQuestionMode] = React.useState(false);
+  const [isEditQuestionMode, setIsEditQuestionMode] = React.useState(false);
+
+  const handleAddQuestionButton = () => {
+    setIsAddQuestionMode(true);
+  };
 
   const makeHandleEditButton = (index: number) => {
     return () => {
-      setCurrentItemIndex(index);
-      setEditItemMode(true);
-      getItems();
+      setCurrentQuestionIndex(index);
+      setIsEditQuestionMode(true);
+      getQuestions();
     };
   };
 
-  const handleAddItemButton = () => {
-    setAddItemMode(true);
-  };
+  const questions = useAppSelector(selectQuestions);
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    (async function () {
+      await getQuestions();
+    })();
+  }, []);
 
-  const getItems = async () => {
+  const getQuestions = async () => {
     try {
-      const res = await axios.get(GET_ITEMS_URL, { withCredentials: true });
-      setItems(res.data.items);
+      dispatch(getQuestionsAsync());
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
@@ -49,38 +80,38 @@ export const MedicationList = (): JSX.Element => {
 
   React.useEffect(() => {
     (async function () {
-      await getItems();
+      await getQuestions();
     })();
   }, []);
 
   React.useEffect(() => {
     (async function () {
-      await getItems();
+      await getQuestions();
     })();
-  }, [editItemMode, addItemMode]);
+  }, [isEditQuestionMode, isAddQuestionMode]);
 
   return (
     <div className="wrapper">
       <div className={styles.title}>
-        <h1>Your medication list</h1>
+        <h1>All questions</h1>
 
         <Button
           className={styles.addItemButton}
-          appearance="primary"
-          onClick={handleAddItemButton}
+          appearance="ghost"
+          onClick={handleAddQuestionButton}
         >
-          Add
+          Add question
         </Button>
       </div>
-      {items && items.length ? (
-        items.map((item, index) => {
+      {questions && questions.length ? (
+        questions.map((question, index) => {
           return (
-            <Card className={styles.item} key={item.id}>
-              <MedicationItem
-              updateItems={getItems}
+            <Card className={styles.question} key={question.id}>
+              <QuestionCard
+                updateQuestions={getQuestions}
                 handleEditButton={makeHandleEditButton(index)}
-                item={item}
-                key={item.id}
+                question={question}
+                key={question.id}
               />
             </Card>
           );
@@ -89,26 +120,35 @@ export const MedicationList = (): JSX.Element => {
         <Card className={styles.item}>Empty medication list</Card>
       )}
 
-      {items && editItemMode && (
-        <Modal setModalOpen={setEditItemMode}>
-          <EditMedicationItem
-            setModalOpen={setEditItemMode}
-            mode="edit"
-            item={items[currentItemIndex]}
+      {isAddQuestionMode && (
+        <Modal setIsModalOpen={setIsAddQuestionMode}>
+          <QuestionForm
+            questionItem={exampleQuestion}
+            mode="add"
+            setIsModalOpen={setIsAddQuestionMode}
           />
         </Modal>
       )}
 
-      {items && addItemMode && (
+      {questions && isEditQuestionMode && (
+        <Modal setIsModalOpen={setIsEditQuestionMode}>
+          <QuestionForm
+            questionItem={questions[currentQuestionIndex]}
+            mode="edit"
+            setIsModalOpen={setIsAddQuestionMode}
+          />
+        </Modal>
+      )}
+
+      {/* {items && addItemMode && (
         <Modal setModalOpen={setAddItemMode}>
           <EditMedicationItem
             setModalOpen={setAddItemMode}
-            
             mode="add"
             item={defaultItem}
           />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 };

@@ -3,295 +3,105 @@ import React from "react";
 import styles from "./QuestionCard.module.scss";
 
 import cn from "clsx";
-
-import * as yup from "yup";
-import { ValidationError } from "yup";
-
 import axios from "axios";
-import { Input } from "components/atoms/input/Input";
-import { Divider } from "components/atoms/divider/Divider";
-import { Textarea } from "components/atoms/textarea/Textarea";
-import { Button } from "components/atoms/button/Button";
-import { Question } from "interfaces/questions.interface";
-import { Checkbox } from "components/atoms/checkbox/Checkbox";
-import { patchQuestion, postQuestion } from "helpers/api-requests";
 import { QuestionCardProps } from "./QuestionCard.props";
-// import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
-
-interface UserAnswer {
-  answer: string;
-  isChecked: boolean;
-}
-
-const schema = yup.object().shape({
-  question: yup.string().required("Write question."),
-  codeExample: yup.string().required("Write code example."),
-  answers: yup.array().of(
-    yup.object().shape({
-      answer: yup.string().required("Write answer."),
-      isChecked: yup.boolean(),
-    })
-  ),
-});
+import { Code } from "components/molecules/code/Code";
+import { Button } from "components/atoms/button/Button";
+import { Divider } from "components/atoms/divider/Divider";
 
 export const QuestionCard = ({
-  questionItem,
-  mode,
-  setIsModalOpen,
+  question,
+  updateQuestions,
+  handleEditButton,
 }: QuestionCardProps): JSX.Element => {
-  const [question, setQuestion] = React.useState<string>(questionItem.question);
-  const [questionError, setQuestionError] = React.useState<string>("");
+  // const [count, setCount] = React.useState<number>(question.count);
+  // const debouncedCount = useDebounce<number>(count, 500);
 
-  const [codeExample, setCodeExample] = React.useState<string>(
-    questionItem.codeExample
-  );
-  const [codeExampleError, setCodeExampleError] = React.useState<string>("");
+  
 
-  const initialAnswers = questionItem.answersList.map((answer) => ({
-    answer: answer.answer,
-    isChecked: false,
-  }));
-  const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
-  const [answersErrors, setAnswersErrors] = React.useState<string[]>(
-    new Array(questionItem.answersList.length).fill("")
-  );
-
-  const resetErrors = () => {
-    setQuestionError("");
-    setCodeExampleError("");
-    // setAnswersErrors((array) => array.fill(""));
-    setAnswersErrors(new Array(questionItem.answersList.length).fill(""));
-  };
-
-  const isValidForm = async () => {
-    resetErrors();
-    let isValid = true;
-
-    try {
-      await schema.validate({
-        question,
-        codeExample,
-        answers,
-      });
-    } catch (error) {
-      if (error instanceof ValidationError) {
-        isValid = false;
-        console.log(error.path);
-        if (error.path == "question") {
-          setQuestionError(error.errors[0]);
-        } else if (error.path == "codeExample") {
-          setCodeExampleError(error.errors[0]);
-        } else if (error.path?.endsWith(".answer")) {
-          // ! TO DO: Refactore this block.
-          const errorIndex: number =
-            Number(error.path.match(/\d/g)?.join(""));
-
-          if (errorIndex >= 0) {
-            setAnswersErrors((array) => {
-              const updatedArray = [...array];
-              updatedArray[errorIndex] = (error as ValidationError).errors[0];
-              return updatedArray;
-            });
-          }
-        }
-      }
-    }
-
-    return isValid;
-  };
-
-  // const postItem = async () => {
+  // const patchquestion = async () => {
   //   const payload = {
-  //     // name,
-  //     // description,
-  //     // destinationCount,
-  //     // count,
-  //   };
-
-  //   try {
-  //     const result = await axios.post(POST_ITEM_URL, payload, {
-  //       withCredentials: true,
-  //     });
-
-  //     setModalOpen(false);
-  //     setTimeout(async () => {
-  //       alert("Item successfuly addded");
-  //     }, 150);
-
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       // setError(error.message);
-  //     }
-  //   }
-  // };
-
-  // const patchItem = async () => {
-  //   const payload = {
-  //     name,
-  //     description,
-  //     destinationCount,
+  //     ...question,
   //     count,
   //   };
 
   //   try {
-  //     const result = await axios.patch(PATCH_ITEM_URL + item.id, payload, {
+  //     const result = await axios.patch(PATCH_question_URL + question.id, payload, {
   //       withCredentials: true,
   //     });
+  //     updateQuestions();
   //     console.log(result);
-
-  //     setModalOpen(false);
-  //     setTimeout(async () => {
-  //       alert("Item successfuly changed");
-  //     }, 150);
   //   } catch (error) {
-  //     console.log(error)
+  //     console.log(error);
   //   }
   // };
 
-  const handleSubmitForm = async (event: React.FormEvent) => {
-    event.preventDefault();
-    // console.log(codeExample);
-
-    const questionPayload = {
-      question,
-      codeExample,
-      answersList: answers.map((answer) => ({
-        answer: answer.answer,
-        isCorrect: answer.isChecked,
-      })),
-    } as Omit<Question, "id">;
-
-    if (await isValidForm()) {
-      switch (mode) {
-        case "add":
-          try {
-            await postQuestion(questionPayload);
-
-            setIsModalOpen(false);
-          } catch (error) {
-            console.log(error);
-          }
-
-          break;
-
-        case "edit":
-          try {
-            await patchQuestion(questionPayload, questionItem.id.toString());
-
-            setIsModalOpen(false);
-          } catch (error) {
-            console.log(error);
-          }
-          break;
-      }
-    }
-  };
-
-  const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // setName(item.name);
-    // setDescription(item.description);
-    // setCount(item.count);
-    // setDestinationCount(item.destinationCount);
-  };
-
-  const handlePlusButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // if (count < item.destinationCount) {
-    //   setCount((count) => count + 1);
-    // }
-  };
-
-  const handleMinusButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // if (count > 0) {
-    //   setCount((count) => count - 1);
-    // }
-  };
+  // React.useEffect(() => {
+  //   setCount(question.count);
+  // }, [question.count]);
 
   // React.useEffect(() => {
-  //   console.log(answers);
-  // }, [JSON.parse(JSON.stringify(answers))]);
+  //   (async function () {
+  //     if (count !== question.count) {
+  //       patchItem();
+  //     }
+  //   })();
+  // }, [debouncedCount]);
 
   return (
-    <>
-      <form className={styles.editMedicalItem} onSubmit={handleSubmitForm}>
+    <div className={styles.wrapper}>
+      <div className={styles.changeQuestionButton}>
+        <Button appearance="ghost" onClick={() => handleEditButton()}>
+          Change
+        </Button>
+      </div>
+      <div className={styles.questionCard}>
         <div className={styles.question}>
-          <Input
-            value={question}
-            name="Question"
-            errorMessage={questionError}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-          <Divider className={styles.divider} />
+          <p className={styles.title}>{question.question}</p>
+          <p className={styles.subTitle}>Question</p>
+          <Divider className={styles.divider}/>
         </div>
 
         <div className={styles.codeExample}>
-          <Textarea
-            className={styles.textareaCodeExample}
-            value={codeExample}
-            name="Code example"
-            errorMessage={codeExampleError}
-            onChange={(e) => setCodeExample(e.target.value)}
-          />
-
-          <Divider className={styles.divider} />
+          <Code codeExample={question.codeExample} />
+    
         </div>
-
-        <div className={styles.answersList}>
-          {answers.map((answer, index) => {
-            return (
-              <div key={index} className={styles.answer}>
-                <Input
-                  value={answers[index].answer}
-                  name={`Answer № ${index + 1}`}
-                  errorMessage={answersErrors[index]}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setAnswers((answers) => {
-                      // Deep copy.
-                      const updatedAnswers = JSON.parse(
-                        JSON.stringify(answers)
-                      );
-                      updatedAnswers[index].answer = e.target.value;
-                      return updatedAnswers;
-                    });
-                  }}
-                />
-                <Checkbox
-                  name="Is correct?"
-                  checked={answers[index].isChecked}
-                  onChange={() =>
-                    setAnswers((answers) => {
-                      // Deep copy.
-                      const updatedAnswers = JSON.parse(
-                        JSON.stringify(answers)
-                      );
-                      updatedAnswers[index].isChecked =
-                        !updatedAnswers[index].isChecked;
-                      return updatedAnswers;
-                    })
-                  }
-                />
-              </div>
-            );
-          })}
-
-          {/* <Divider className={styles.divider} /> */}
+        {/* <div className={styles.destinationCount}>
+          <WithLabel labelText="Destination count">
+            <Tag color="primary" size="lg" fullWidth>
+              {item.destinationCount}
+            </Tag>
+          </WithLabel >
         </div>
+        <div className={styles.count}>
+          <WithLabel labelText="Count">
+            <Tag color="primary" size="lg" fullWidth>
+              {count}
+            </Tag>
+          </WithLabel>
+        </div>
+        <WithLabel className={styles.buttons} labelText="Change count">
+          <Button
+            appearance={
+              item.destinationCount !== count ? "primary" : "disabled"
+            }
+            className={styles.button}
+            onClick={handlePlusButton}
+          >
+            +
+          </Button>
 
-        <Button className={styles.saveBtn} appearance="primary" type="submit">
-          {/* {mode == "add" ? "Add" : "Save"} */}
-          Add
-        </Button>
-        <Button
-          className={styles.resetBtn}
-          appearance="ghost"
-          onClick={handleResetButton}
-        >
-          Reset
-        </Button>
-      </form>
-    </>
+          <Button
+             appearance={
+              count !== 0 ? "primary" : "disabled"
+            }
+            className={cn(styles.button, styles.lastButton)}
+            onClick={handleMinusButton}
+          >
+            -
+          </Button>
+        </WithLabel> */}
+      </div>
+    </div>
   );
 };

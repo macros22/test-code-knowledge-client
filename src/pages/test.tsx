@@ -10,10 +10,6 @@ const TestPage: React.FC = () => {
     const dispatch = useAppDispatch();
     React.useEffect(() => {
 
-       
-
-
-
         dispatch(getQuestionsAsync());
       }, []);
     return (

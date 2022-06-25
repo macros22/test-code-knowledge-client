@@ -67,7 +67,7 @@
     },
     {
       "question": "Example question",
-      "codeExample": "\n    const example = () => {\n      return ExampleCode;\n    }\n    ",
+      "codeExample": "\n    const example = () => {\n      return Examplewedfdwwer wer qwe q eefCode;\n    }\n    ",
       "answersList": [
         {
           "answer": "first",

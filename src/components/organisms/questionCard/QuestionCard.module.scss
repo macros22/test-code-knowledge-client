@@ -1,27 +1,26 @@
-.editMedicalItem {
+.questionCard {
 	display: grid;
-	// grid-template-areas:
-	// 	"question question"
-	// 	"codeExample codeExample"
-	// 	"answersList answersList"
-	// 	"saveBtn resetBtn";
-	// grid-template-columns: 400px 210px;
-	// grid-template-rows: 80px 200px 150px 40px;
-
 	grid-template-areas:
-		"question question answersList"
-		"codeExample codeExample answersList"
-		"saveBtn resetBtn answersList";
-	grid-template-columns: 300px 100px 320px;
-	grid-template-rows: 80px 200px 50px;
+		"question"
+		"codeExample";
+	grid-template-columns: 400px;
+	grid-template-rows: auto auto;
+	gap: 1rem;
+}
 
+.wrapper {
+	position: relative;
+}
 
-	/* grid-template-rows: 85px 85px 85px 60px; */
-	gap: 1.25rem;
+.changeQuestionButton {
+	position: absolute;
+	z-index: 12;
+	right: 0.1rem;
+	bottom: 0.1rem;
+}
 
-	// hr{
-	// 	margin: 20px 0 !important;
-	// }
+.question {
+	grid-area: question;
 }
 
 .title {
@@ -32,45 +31,37 @@
 
 .subTitle {
 	margin: 0;
-	margin-bottom: 0.5rem;
 
 	color: var(--text-secondary-color);
 
 	font-size: 14px;
 }
 
-.question {
-	grid-area: question;
-}
-
 .codeExample {
 	grid-area: codeExample;
-	
 }
 
+// .descriptionText {
+// 	margin: 0;
 
-.textareaCodeExample{
-	height: 80%;
-}
+// 	font-size: 22px;
+// }
 
-.answersList {
-	grid-area: answersList;
-	overflow: auto;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
+// .destinationCount {
+// 	grid-area: destinationCount;
+// }
 
-.answer{
-	display: flex;
-	margin: 0;
-	gap: 1rem;
-	align-items: flex-end;
-}
+// .count {
+// 	grid-area: count;
+// }
 
-.buttons {
-	grid-area: buttons;
-}
+// .buttons {
+// 	grid-area: buttons;
+// }
+
+// .buttons:last-child {
+// 	margin-right: 0;
+// }
 
 .button {
 	width: 60px;
@@ -82,18 +73,10 @@
 	line-height: 32px;
 }
 
-.lastButton {
-	margin-right: 0;
-}
+// .lastButton {
+// 	margin-right: 0;
+// }
 
-.saveBtn {
-	grid-area: saveBtn;
-}
-
-.resetBtn {
-	grid-area: resetBtn;
-}
-
-.divider{
-	margin: 25px 0;
+.divider {
+	margin: 10px 0;
 }
