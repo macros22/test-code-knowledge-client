@@ -1,49 +1,41 @@
 .label {
-	margin-bottom: 1.3rem;
-	
-	color: var(--text-secondary-color);
+  margin-bottom: 1.3rem;
+  color: var(--text-secondary-color);
 }
 
 .input {
-	width: 100%;
-	padding: 10px;
+  width: 100%;
+  padding: 10px;
+  color: var(--text-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  outline-color: var(--primary-color);
+  background: var(--background-color);
+  font-family: var(--font-family);
+  font-size: 18px;
+  line-height: 24px;
 
-	color: var(--text-color);
-	border:  var(--border);
-	border-radius: var(--border-radius);
-	outline-color: var(--primary-color);
-	background: var(--background-color);
+  &::placeholder {
+    color: var(--text-secondary-color);
+  }
 
-	font-family: var(--font-family);
-
-	font-size: 18px;
-	line-height: 24px;
-
-	&::placeholder {
-		color: var(--text-secondary-color);
-	}
-
-	&:focus {
-		outline: 2px solid var(--primary-color);
-	}
+  &:focus {
+    outline: 2px solid var(--primary-color);
+  }
 }
 
-
-
 .error {
-	border: 1px solid var(--danger-color);
+  border: 1px solid var(--danger-color);
 }
 
 .inputWrapper {
-	position: relative;
+  position: relative;
 }
 
 .errorMessage {
-	position: absolute;
-	bottom: -20px;
-	left: 0;
-
-	color: var(--danger-color);
-
-	font-size: 14px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  color: var(--danger-color);
+  font-size: 14px;
 }

@@ -22,7 +22,7 @@ export const QuestionCard = ({
   const handleDeleteButton = async () => {
     await deleteQuestion(question.id.toString());
     await updateQuestions();
-  }
+  };
 
 
   // const patchquestion = async () => {

@@ -19,8 +19,8 @@ const TestPage: React.FC = () => {
             <Test />
         }
         </>
-    )
-}
+    );
+};
 
 
 export default withLayout(TestPage);

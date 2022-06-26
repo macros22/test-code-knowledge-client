@@ -17,7 +17,7 @@ const QuestionsPage = () => {
         <>
        <QuestionsList />
         </>
-    )
-}
+    );
+};
 
 export default withLayout(QuestionsPage);

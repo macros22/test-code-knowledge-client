@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
 import {
     persistStore, persistReducer,
     FLUSH,
@@ -7,12 +7,12 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 
-import counterReducer from '../components/counter/counterSlice'
-import answersReducer from '../components/organisms/test/Test.slice'
+import counterReducer from '../components/counter/counterSlice';
+import answersReducer from '../components/organisms/test/Test.slice';
 
 const rootReducer = combineReducers({
     counter: counterReducer,
@@ -26,10 +26,10 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-}
+};
 
 // react-persist configs
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 
 export function makeStore() {
@@ -41,23 +41,23 @@ export function makeStore() {
                     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
                 },
             }),
-    })
+    });
 }
 
-const store = makeStore()
+const store = makeStore();
 
-export type AppState = ReturnType<typeof store.getState>
+export type AppState = ReturnType<typeof store.getState>;
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     AppState,
     unknown,
     Action<string>
->
+>;
 
 // react-persist configs
 export const persistor = persistStore(store);
 
-export default store
+export default store;

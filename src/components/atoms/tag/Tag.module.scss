@@ -1,64 +1,55 @@
 .tag {
-	display: inline-block;
-
-	box-sizing: border-box;
-
-	text-align: center;
-
-	border-radius: var(--border-radius);
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: var(--border-radius);
 }
 
 .sm {
-	padding: 8px 10px;
-
-	font-size: 12px;
-	line-height: 12px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 12px;
 }
 
 .md {
-	padding: 10px 12px;
-
-	font-size: 14px;
-	line-height: 14px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 14px;
 }
 
 .lg {
-	padding: 14px 10px;
-
-	font-size: 16px;
-	line-height: 18px;
+  padding: 14px 10px;
+  font-size: 16px;
+  line-height: 18px;
 }
 
 .ghost {
-	border: 1px solid var(--info-color);
+  border: 1px solid var(--info-color);
 }
 
 .fullWidth {
-	width: 100%;
+  width: 100%;
 }
 
 .success {
-	color: var(--white-color);
-	background: var(--success-color);
-
-	font-weight: bold;
+  color: var(--white-color);
+  background: var(--success-color);
+  font-weight: bold;
 }
 
 .danger {
-	color: var(--white-color);
-	background: var(--danger-color);
-
-	font-weight: bold;
+  color: var(--white-color);
+  background: var(--danger-color);
+  font-weight: bold;
 }
 
 .info {
-	background-color: var(--info-color);
-	color: rgb(148, 119, 52);
-
-	font-weight: bold;
+  background-color: var(--info-color);
+  color: rgb(148 119 52);
+  font-weight: bold;
 }
 
 .primary {
-	color: var(--white-color);
-	background: var(--primary-color);
+  color: var(--white-color);
+  background: var(--primary-color);
 }

@@ -77,7 +77,7 @@ export const answersSlice = createSlice({
        state.userAnswers = new Array(state.questions.length).fill(true);
         
        // Fil checked answers array.
-       let checkedAnswers = new Array(state.questions.length);
+       const checkedAnswers = new Array(state.questions.length);
        for(let i = 0; i < checkedAnswers.length; ++i) {
            const answersAmount = state.questions[i].answersList.length;
            checkedAnswers[i] =  new Array(answersAmount).fill(false);
@@ -104,7 +104,7 @@ export const answersSlice = createSlice({
         state.userAnswers = new Array(questions.length).fill(true);
         
         // Fil checked answers array.
-        let checkedAnswers = new Array(questions.length);
+        const checkedAnswers = new Array(questions.length);
         for(let i = 0; i < checkedAnswers.length; ++i) {
             const answersAmount = questions[i].answersList.length;
             checkedAnswers[i] =  new Array(answersAmount).fill(false);

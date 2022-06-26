@@ -25,7 +25,7 @@
     },
     {
       "question": "Example questionasd",
-      "codeExample": "  const example = () => {\n    return ExampleCode;\n  }  ",
+      "codeExample": "  const example = () => {\n    return ExampleCode;p\n  }  ",
       "answersList": [
         {
           "answer": "first",
@@ -33,7 +33,7 @@
         },
         {
           "answer": "second",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "answer": "third",
@@ -45,29 +45,6 @@
         }
       ],
       "id": 1
-    },
-    {
-      "question": "Example qdfg dfg uestion",
-      "codeExample": "\n  const example = () => {\n    return ExampleCode;\n  }\n  ",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "second",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 2
     }
   ]
 }

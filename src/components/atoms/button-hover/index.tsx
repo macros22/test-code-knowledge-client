@@ -1,4 +1,4 @@
-import styles from "./button-hover.module.scss"
+import styles from "./button-hover.module.scss";
 
 function ButtonHover() {
 
@@ -17,7 +17,7 @@ function ButtonHover() {
                 <div className={styles.button}>Border (Outer Shadow)</div>
             </div>
         </div>
-    )
+    );
 }
 
 export default ButtonHover;

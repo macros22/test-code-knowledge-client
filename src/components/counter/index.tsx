@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import {
     decrement,
     increment,
@@ -8,15 +8,15 @@ import {
     incrementAsync,
     incrementIfOdd,
     selectCount,
-} from './counterSlice'
-import styles from './counter.module.scss'
+} from './counterSlice';
+import styles from './counter.module.scss';
 
 function Counter() {
-    const dispatch = useAppDispatch()
-    const count = useAppSelector(selectCount)
-    const [incrementAmount, setIncrementAmount] = useState('2')
+    const dispatch = useAppDispatch();
+    const count = useAppSelector(selectCount);
+    const [incrementAmount, setIncrementAmount] = useState('2');
 
-    const incrementValue = Number(incrementAmount) || 0
+    const incrementValue = Number(incrementAmount) || 0;
 
     return (
         <div className={styles.box}>
@@ -65,7 +65,7 @@ function Counter() {
             </div>
            
         </div>
-    )
+    );
 }
 
-export default Counter
+export default Counter;

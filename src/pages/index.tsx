@@ -1,5 +1,5 @@
 import Counter from '../components/counter';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 
 
@@ -8,7 +8,7 @@ const Home = () => {
         <div className={styles.container}>
             <Counter />
         </div>
-    )
-}
+    );
+};
 
 export default Home;

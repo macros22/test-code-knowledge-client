@@ -83,7 +83,7 @@ export const QuestionForm = ({
           setCodeExampleError(error.errors[0]);
         } else if (error.path?.endsWith(".answer")) {
           // ! TO DO: Refactore this block.
-          const errorIndex: number =
+          const errorIndex =
             Number(error.path.match(/\d/g)?.join(""));
 
           if (errorIndex >= 0) {
