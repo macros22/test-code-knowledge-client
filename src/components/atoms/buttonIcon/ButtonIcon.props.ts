@@ -6,11 +6,15 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import up from './close.svg';
 import close from './close.svg';
 import menu from './menu.svg';
+import deleteIcon from './delete.svg';
+import change from './change.svg';
 
 export const icons = {
 	up,
 	close,
-	menu
+	menu,
+	change,
+	deleteIcon
 };
 
 export type IconName = keyof typeof icons;

@@ -13,15 +13,17 @@
   margin-left: auto;
 }
 
-.question {
-  padding: 1rem;
-}
 
 .container {
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
+
+.wrapper { 
+  // width: 90%;
+}
+
 
 .column {
   display: flex;

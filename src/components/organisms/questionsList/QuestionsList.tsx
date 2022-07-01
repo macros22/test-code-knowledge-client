@@ -80,7 +80,7 @@ export const QuestionsList = ({
   }, [isEditQuestionMode, isAddQuestionMode]);
 
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <div className={styles.title}>
         <h1>All questions</h1>
 
@@ -102,7 +102,7 @@ export const QuestionsList = ({
               {questions.map((question, index) => {
                 if (index % 2 === 0) {
                   return (
-                    <Card className={styles.question} key={question.id}>
+                    <Card key={question.id}>
                       <QuestionCard
                         withEdit={withEdit}
                         updateQuestions={getQuestions}
@@ -121,7 +121,7 @@ export const QuestionsList = ({
               {questions.map((question, index) => {
                 if (index % 2 !== 0) {
                   return (
-                    <Card className={styles.question} key={question.id}>
+                    <Card key={question.id}>
                       <QuestionCard
                         withEdit={withEdit}
                         updateQuestions={getQuestions}

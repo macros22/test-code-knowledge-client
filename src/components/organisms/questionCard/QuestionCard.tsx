@@ -9,6 +9,7 @@ import { Code } from "components/molecules/code/Code";
 import { Button } from "components/atoms/button/Button";
 import { Divider } from "components/atoms/divider/Divider";
 import { deleteQuestion } from "helpers/api-requests";
+import { ButtonIcon } from "components/atoms/buttonIcon/ButtonIcon";
 
 export const QuestionCard = ({
   question,
@@ -57,60 +58,29 @@ export const QuestionCard = ({
     <div className={styles.wrapper}>
       {withEdit && (
         <div className={styles.changeQuestionButton}>
-          <Button appearance="ghost" onClick={() => handleEditButton()}>
-            Change
-          </Button>
-          <Button appearance="ghost" onClick={() => handleDeleteButton()}>
-            Delete
-          </Button>
+          <ButtonIcon
+            icon="change"
+            appearance="white"
+            onClick={handleEditButton}
+          ></ButtonIcon>
+
+          <ButtonIcon
+            icon="deleteIcon"
+            appearance="white"
+            onClick={handleDeleteButton}
+          ></ButtonIcon>
         </div>
       )}
 
       <div className={styles.questionCard}>
         <div className={styles.question}>
           <p className={styles.title}>{question.question}</p>
-          <p className={styles.subTitle}>Question</p>
           <Divider className={styles.divider} />
         </div>
 
         <div className={styles.codeExample}>
           <Code codeExample={question.codeExample} />
         </div>
-        {/* <div className={styles.destinationCount}>
-          <WithLabel labelText="Destination count">
-            <Tag color="primary" size="lg" fullWidth>
-              {item.destinationCount}
-            </Tag>
-          </WithLabel >
-        </div>
-        <div className={styles.count}>
-          <WithLabel labelText="Count">
-            <Tag color="primary" size="lg" fullWidth>
-              {count}
-            </Tag>
-          </WithLabel>
-        </div>
-        <WithLabel className={styles.buttons} labelText="Change count">
-          <Button
-            appearance={
-              item.destinationCount !== count ? "primary" : "disabled"
-            }
-            className={styles.button}
-            onClick={handlePlusButton}
-          >
-            +
-          </Button>
-
-          <Button
-             appearance={
-              count !== 0 ? "primary" : "disabled"
-            }
-            className={cn(styles.button, styles.lastButton)}
-            onClick={handleMinusButton}
-          >
-            -
-          </Button>
-        </WithLabel> */}
       </div>
     </div>
   );

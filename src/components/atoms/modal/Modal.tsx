@@ -16,12 +16,6 @@ const Modal: React.FC<ModalProps> = ({ setIsModalOpen, children }) => {
             appearance="white"
             onClick={() => setIsModalOpen(false)}
           ></ButtonIcon>
-           {/* <Button
-            appearance="ghost"
-            onClick={() => setIsModalOpen(false)}
-          >Close</Button> */}
-
-
         </div>
 
         <div className={styles.modalBoxContent}>{children}</div>

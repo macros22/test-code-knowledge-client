@@ -2,11 +2,11 @@
   "questions": [
     {
       "question": "Example question",
-      "codeExample": "const example = () => {\n    return ExampleCode;\nasd\nasd\nasd\nasd\na\n}",
+      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
       "answersList": [
         {
           "answer": "first",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "answer": "second",
@@ -22,75 +22,6 @@
         }
       ],
       "id": 1
-    },
-    {
-      "question": "Example question",
-      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "second",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 2
-    },
-    {
-      "question": "Example question",
-      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "second",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 3
-    },
-    {
-      "question": "Example question",
-      "codeExample": "const example = () => {\n    return ExampleCode;\nasd\nas\nda\nsd\nasd\n}",
-      "answersList": [
-        {
-          "answer": "first",
-          "isCorrect": false
-        },
-        {
-          "answer": "second",
-          "isCorrect": false
-        },
-        {
-          "answer": "third",
-          "isCorrect": false
-        },
-        {
-          "answer": "fourth",
-          "isCorrect": false
-        }
-      ],
-      "id": 4
     }
   ]
 }
