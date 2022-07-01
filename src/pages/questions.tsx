@@ -6,6 +6,7 @@ import { Question } from "interfaces/questions.interface";
 
 import { QuestionsList } from "components/organisms/questionsList/QuestionsList";
 import { withLayout } from "layouts/MainLayout";
+import { Gallery } from "components/molecules/gallery/Gallery";
 
 
 
@@ -16,6 +17,7 @@ const QuestionsPage = () => {
     return (
         <>
        <QuestionsList />
+       <Gallery />
         </>
     );
 };
