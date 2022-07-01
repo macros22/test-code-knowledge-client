@@ -3,7 +3,7 @@
 	grid-template-areas:
 		"question"
 		"codeExample";
-	grid-template-columns: 400px;
+	grid-template-columns: auto;
 	grid-template-rows: auto auto;
 	gap: 1rem;
 
@@ -44,27 +44,6 @@
 	grid-area: codeExample;
 }
 
-// .descriptionText {
-// 	margin: 0;
-
-// 	font-size: 22px;
-// }
-
-// .destinationCount {
-// 	grid-area: destinationCount;
-// }
-
-// .count {
-// 	grid-area: count;
-// }
-
-// .buttons {
-// 	grid-area: buttons;
-// }
-
-// .buttons:last-child {
-// 	margin-right: 0;
-// }
 
 .button {
 	width: 60px;
@@ -76,9 +55,6 @@
 	line-height: 32px;
 }
 
-// .lastButton {
-// 	margin-right: 0;
-// }
 
 .divider {
 	margin: 10px 0;

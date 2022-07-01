@@ -1,31 +1,8 @@
 {
   "questions": [
     {
-      "id": 0,
-      "question": "Что будет выведено в консоль?",
-      "codeExample": "console.log(typeof null)",
-      "answersList": [
-        {
-          "answer": "[object]",
-          "isCorrect": false
-        },
-        {
-          "answer": "[null]",
-          "isCorrect": false
-        },
-        {
-          "answer": "[undefined]",
-          "isCorrect": false
-        },
-        {
-          "answer": "Error",
-          "isCorrect": false
-        }
-      ]
-    },
-    {
-      "question": "Example questionasd",
-      "codeExample": "  const example = () => {\n    return ExampleCode;p\n  }  ",
+      "question": "Example question",
+      "codeExample": "const example = () => {\n    return ExampleCode;\nasd\nasd\nasd\nasd\na\n}",
       "answersList": [
         {
           "answer": "first",
@@ -45,6 +22,75 @@
         }
       ],
       "id": 1
+    },
+    {
+      "question": "Example question",
+      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
+      "answersList": [
+        {
+          "answer": "first",
+          "isCorrect": false
+        },
+        {
+          "answer": "second",
+          "isCorrect": false
+        },
+        {
+          "answer": "third",
+          "isCorrect": false
+        },
+        {
+          "answer": "fourth",
+          "isCorrect": false
+        }
+      ],
+      "id": 2
+    },
+    {
+      "question": "Example question",
+      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
+      "answersList": [
+        {
+          "answer": "first",
+          "isCorrect": false
+        },
+        {
+          "answer": "second",
+          "isCorrect": false
+        },
+        {
+          "answer": "third",
+          "isCorrect": false
+        },
+        {
+          "answer": "fourth",
+          "isCorrect": false
+        }
+      ],
+      "id": 3
+    },
+    {
+      "question": "Example question",
+      "codeExample": "const example = () => {\n    return ExampleCode;\nasd\nas\nda\nsd\nasd\n}",
+      "answersList": [
+        {
+          "answer": "first",
+          "isCorrect": false
+        },
+        {
+          "answer": "second",
+          "isCorrect": false
+        },
+        {
+          "answer": "third",
+          "isCorrect": false
+        },
+        {
+          "answer": "fourth",
+          "isCorrect": false
+        }
+      ],
+      "id": 4
     }
   ]
 }

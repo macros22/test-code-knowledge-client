@@ -24,9 +24,9 @@
 	// }
 
 
-	& > *{
-		border-right: 3px solid black;
-	}
+	// & > *{
+	// 	border-right: 3px solid black;
+	// }
 }
 
 .title {
@@ -47,15 +47,15 @@
 .question {
 	grid-area: question;
 
-	&::after{
-	content: "'";
-	background-color: rgb(194, 54, 54);
-  height: 100%;
-  width: 1;
-  position: absolute;
-  right: 0;
-  transform: translateX(4px);
-}
+// 	&::after{
+// 	content: "'";
+// 	background-color: rgb(194, 54, 54);
+//   height: 100%;
+//   width: 1;
+//   position: absolute;
+//   right: 0;
+//   transform: translateX(4px);
+// }
 }
 
 .codeExample {

@@ -14,16 +14,15 @@ export const QuestionCard = ({
   question,
   updateQuestions,
   handleEditButton,
+  withEdit = false,
 }: QuestionCardProps): JSX.Element => {
   // const [count, setCount] = React.useState<number>(question.count);
   // const debouncedCount = useDebounce<number>(count, 500);
 
-  
   const handleDeleteButton = async () => {
     await deleteQuestion(question.id.toString());
     await updateQuestions();
   };
-
 
   // const patchquestion = async () => {
   //   const payload = {
@@ -56,24 +55,26 @@ export const QuestionCard = ({
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.changeQuestionButton}>
-        <Button appearance="ghost" onClick={() => handleEditButton()}>
-          Change
-        </Button>
-        <Button appearance="ghost" onClick={() => handleDeleteButton()}>
-          Delete
-        </Button>
-      </div>
+      {withEdit && (
+        <div className={styles.changeQuestionButton}>
+          <Button appearance="ghost" onClick={() => handleEditButton()}>
+            Change
+          </Button>
+          <Button appearance="ghost" onClick={() => handleDeleteButton()}>
+            Delete
+          </Button>
+        </div>
+      )}
+
       <div className={styles.questionCard}>
         <div className={styles.question}>
           <p className={styles.title}>{question.question}</p>
           <p className={styles.subTitle}>Question</p>
-          <Divider className={styles.divider}/>
+          <Divider className={styles.divider} />
         </div>
 
         <div className={styles.codeExample}>
           <Code codeExample={question.codeExample} />
-    
         </div>
         {/* <div className={styles.destinationCount}>
           <WithLabel labelText="Destination count">

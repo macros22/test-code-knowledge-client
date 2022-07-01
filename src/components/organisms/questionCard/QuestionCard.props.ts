@@ -5,4 +5,5 @@ export interface QuestionCardProps extends DetailedHTMLProps<HTMLAttributes<HTML
     question: Question;
     handleEditButton: () => void;
     updateQuestions: () => void;
+    withEdit?: boolean;
 }

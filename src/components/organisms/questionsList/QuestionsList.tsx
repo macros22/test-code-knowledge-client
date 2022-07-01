@@ -1,4 +1,4 @@
-import styles from "./QuestionsList.module.css";
+import styles from "./QuestionsList.module.scss";
 import axios from "axios";
 
 import React from "react";
@@ -11,36 +11,25 @@ import { Card } from "components/atoms/card/Card";
 import { QuestionCard } from "../questionCard/QuestionCard";
 import Modal from "components/atoms/modal/Modal";
 import { QuestionForm } from "../questionForm/QuestionForm";
+import { QuestionsListProps } from "./QuestionsList.props";
 
 const exampleQuestion: Question = {
   id: 9999,
   question: "Example question",
-  codeExample: `
-  const example = () => {
+  codeExample: `const example = () => {
     return ExampleCode;
-  }
-  `,
+}`,
   answersList: [
     { answer: "first", isCorrect: true },
     { answer: "second", isCorrect: false },
     { answer: "third", isCorrect: false },
     { answer: "fourth", isCorrect: false },
-    // { answer: "firsgt", isCorrect: true },
-    // { answer: "secdond", isCorrect: false },
-    // { answer: "thibdrd", isCorrect: false },
-    // { answer: "foudbfrth", isCorrect: false },
-    // { answer: "firdfbst", isCorrect: true },
-    // { answer: "secondbfd", isCorrect: false },
-    // { answer: "thibsvdfrd", isCorrect: false },
-    // { answer: "fousdvdfbrth", isCorrect: false },
-    // { answer: "firafgnscsbst", isCorrect: true },
-    // { answer: "secascond", isCorrect: false },
-    // { answer: "thdfbird", isCorrect: false },
-    // { answer: "founfrth", isCorrect: false },
   ],
 };
 
-export const QuestionsList = (): JSX.Element => {
+export const QuestionsList = ({
+  withEdit = false,
+}: QuestionsListProps): JSX.Element => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
 
   // const [questions, setQuestions] = React.useState<Question[] | null>(null);
@@ -95,32 +84,65 @@ export const QuestionsList = (): JSX.Element => {
       <div className={styles.title}>
         <h1>All questions</h1>
 
-        <Button
-          className={styles.addItemButton}
-          appearance="ghost"
-          onClick={handleAddQuestionButton}
-        >
-          Add question
-        </Button>
+        {withEdit && (
+          <Button
+            className={styles.addItemButton}
+            appearance="ghost"
+            onClick={handleAddQuestionButton}
+          >
+            Add question
+          </Button>
+        )}
       </div>
-      {questions && questions.length ? (
-        questions.map((question, index) => {
-          return (
-            <Card className={styles.question} key={question.id}>
-              <QuestionCard
-                updateQuestions={getQuestions}
-                handleEditButton={makeHandleEditButton(index)}
-                question={question}
-                key={question.id}
-              />
-            </Card>
-          );
-        })
-      ) : (
-        <Card className={styles.item}>Empty medication list</Card>
-      )}
+      <div className={styles.container}>
+        {questions && questions.length && (
+          <>
+            {/* Left Column */}
+            <div className={styles.column}>
+              {questions.map((question, index) => {
+                if (index % 2 === 0) {
+                  return (
+                    <Card className={styles.question} key={question.id}>
+                      <QuestionCard
+                        withEdit={withEdit}
+                        updateQuestions={getQuestions}
+                        handleEditButton={makeHandleEditButton(index)}
+                        question={question}
+                        key={question.id}
+                      />
+                    </Card>
+                  );
+                }
+              })}
+            </div>
 
-      {isAddQuestionMode && (
+            {/* Right Column */}
+            <div className={styles.column}>
+              {questions.map((question, index) => {
+                if (index % 2 !== 0) {
+                  return (
+                    <Card className={styles.question} key={question.id}>
+                      <QuestionCard
+                        withEdit={withEdit}
+                        updateQuestions={getQuestions}
+                        handleEditButton={makeHandleEditButton(index)}
+                        question={question}
+                        key={question.id}
+                      />
+                    </Card>
+                  );
+                }
+              })}
+            </div>
+          </>
+        )}
+
+        {!questions ||
+          (!questions.length && (
+            <Card className={styles.item}>Empty medication list</Card>
+          ))}
+      </div>
+      {withEdit && isAddQuestionMode && (
         <Modal setIsModalOpen={setIsAddQuestionMode}>
           <QuestionForm
             questionItem={exampleQuestion}
@@ -130,7 +152,7 @@ export const QuestionsList = (): JSX.Element => {
         </Modal>
       )}
 
-      {questions && isEditQuestionMode && (
+      {withEdit && questions && isEditQuestionMode && (
         <Modal setIsModalOpen={setIsEditQuestionMode}>
           <QuestionForm
             questionItem={questions[currentQuestionIndex]}
@@ -139,8 +161,6 @@ export const QuestionsList = (): JSX.Element => {
           />
         </Modal>
       )}
-
-  
     </div>
   );
 };
