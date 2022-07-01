@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import {Checkbox} from "../../atoms/checkbox/Checkbox";
+import { Checkbox } from "../../atoms/checkbox/Checkbox";
 import styles from "./TestResult.module.scss";
 import {
   changeUserCorrectAnswers,
@@ -39,13 +39,9 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
     let result: "correct" | "error" | "empty" | "missing" = "error";
 
     if (isMarked) {
-      answersList[index].isCorrect
-        ? (result = "correct")
-        : (result = "error");
+      answersList[index].isCorrect ? (result = "correct") : (result = "error");
     } else {
-      !answersList[index].isCorrect
-        ? (result = "empty")
-        : (result = "missing");
+      !answersList[index].isCorrect ? (result = "empty") : (result = "missing");
     }
 
     if (result === "error" || result === "missing") {
@@ -59,18 +55,21 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
     switch (result) {
       case "error":
         return (
-        
-        <Tag className={styles.tag} color="error">Error</Tag>
+          <Tag className={styles.tag} color="error">
+            Error
+          </Tag>
         );
       case "correct":
         return (
-        
-          <Tag className={styles.tag} color="success">Correct</Tag>
+          <Tag className={styles.tag} color="success">
+            Correct
+          </Tag>
         );
       case "missing":
         return (
-        
-          <Tag className={styles.tag} color="info">Missing correct</Tag>
+          <Tag className={styles.tag} color="info">
+            Missing correct
+          </Tag>
         );
     }
   };
@@ -89,21 +88,21 @@ const AnswersListResult: React.FC<IProps> = ({ answers, currentQuestion }) => {
   return (
     <>
       <div className={styles.answersList}>
-      {answers.map((answer, index) => {
-        return (
-          <li className={styles.answer} key={answer.answer}>
-            <Checkbox
-              name={answer.answer}
-              value={answer.answer}
-              checked={checkedAnswers[index]}
-              disabled
-            />
-            <div className={styles.tag}>
-            {getAnswerLabel(index, checkedAnswers[index])}
-            </div>
-          </li>
-        );
-      })}
+        {answers.map((answer, index) => {
+          return (
+            <li className={styles.answer} key={answer.answer}>
+              <Checkbox
+                name={answer.answer}
+                value={answer.answer}
+                checked={checkedAnswers[index]}
+                disabled
+              />
+              <div className={styles.tag}>
+                {getAnswerLabel(index, checkedAnswers[index])}
+              </div>
+            </li>
+          );
+        })}
       </div>
     </>
   );
@@ -126,21 +125,22 @@ const TestResult: React.FC = () => {
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <h1>
-          Correct answers:{" "}
+            Correct answers:{" "}
             {
               userAnswersStatus.filter((answerStatus) => answerStatus === true)
                 .length
-            }
-             {" "}from {userAnswersStatus.length}
+            }{" "}
+            from {userAnswersStatus.length}
           </h1>
           {questions.map((question, index) => {
             return (
-              <Card className={cn(styles.card, {
-                [styles.successCard]: userAnswersStatus[index],
-                [styles.errorCard]: !userAnswersStatus[index]
-              })}
-              
-               key={index+question.question}>
+              <Card
+                className={cn(styles.card, {
+                  [styles.successCard]: userAnswersStatus[index],
+                  [styles.errorCard]: !userAnswersStatus[index],
+                })}
+                key={index + question.question}
+              >
                 <h2 className={styles.questionTitle}>Question № {index + 1}</h2>
                 <Divider />
                 <h3 className={styles.questionTitle}>
@@ -152,7 +152,6 @@ const TestResult: React.FC = () => {
                   answers={questions[index].answersList}
                   currentQuestion={index}
                 />
-            
               </Card>
             );
           })}

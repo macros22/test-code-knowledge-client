@@ -1,11 +1,7 @@
-import ButtonHover from '../components/atoms/button-hover';
-
-
+import ButtonHover from "../components/atoms/button-hover";
 
 const Home = () => {
-    return (
-        <ButtonHover />
-    );
+  return <ButtonHover />;
 };
 
 export default Home;
