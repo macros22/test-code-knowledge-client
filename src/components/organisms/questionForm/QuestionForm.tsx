@@ -49,7 +49,7 @@ export const QuestionForm = ({
 
   const initialAnswers = questionItem.answersList.map((answer) => ({
     answer: answer.answer,
-    isChecked: false,
+    isChecked: answer.isCorrect,
   }));
   const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
   const [answersErrors, setAnswersErrors] = React.useState<string[]>(

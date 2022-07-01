@@ -8,13 +8,15 @@ import close from './close.svg';
 import menu from './menu.svg';
 import deleteIcon from './delete.svg';
 import change from './change.svg';
+import plus from './plus.svg';
 
 export const icons = {
 	up,
 	close,
 	menu,
 	change,
-	deleteIcon
+	deleteIcon,
+	plus
 };
 
 export type IconName = keyof typeof icons;

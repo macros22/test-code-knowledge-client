@@ -12,10 +12,11 @@ import { QuestionCard } from "../questionCard/QuestionCard";
 import Modal from "components/atoms/modal/Modal";
 import { QuestionForm } from "../questionForm/QuestionForm";
 import { QuestionsListProps } from "./QuestionsList.props";
+import { ButtonIcon } from "components/atoms/buttonIcon/ButtonIcon";
 
 const exampleQuestion: Question = {
   id: 9999,
-  question: "Example question",
+  question: "What will be output to the console?",
   codeExample: `const example = () => {
     return ExampleCode;
 }`,
@@ -85,13 +86,13 @@ export const QuestionsList = ({
         <h1>All questions</h1>
 
         {withEdit && (
-          <Button
-            className={styles.addItemButton}
-            appearance="ghost"
-            onClick={handleAddQuestionButton}
-          >
-            Add question
-          </Button>
+        
+           <ButtonIcon
+           className={styles.addItemButton}
+           icon="plus"
+           appearance="white"
+           onClick={handleAddQuestionButton}
+         >Add question</ButtonIcon>
         )}
       </div>
       <div className={styles.container}>

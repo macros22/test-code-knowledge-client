@@ -1,27 +1,257 @@
 {
   "questions": [
     {
-      "question": "Example question",
-      "codeExample": "const example = () => {\n    return ExampleCode;\n}",
+      "question": "What will be output to the console?",
+      "codeExample": "for(var i = 0; i < 10; ++i) {\n    setTimeout(() => {\n        console.log(i);\n    }, 0)\n}",
       "answersList": [
         {
-          "answer": "first",
+          "answer": "10 times number 10",
           "isCorrect": true
         },
         {
-          "answer": "second",
+          "answer": "Numbers 0 to 9",
           "isCorrect": false
         },
         {
-          "answer": "third",
+          "answer": "Numbers 0 to 10",
           "isCorrect": false
         },
         {
-          "answer": "fourth",
+          "answer": "10 times number 9",
           "isCorrect": false
         }
       ],
       "id": 1
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "for(let i = 0; i < 10; ++i) {\n    setTimeout(() => {\n        console.log(i);\n    }, 0)\n}",
+      "answersList": [
+        {
+          "answer": "10 times number 10",
+          "isCorrect": false
+        },
+        {
+          "answer": "Numbers 0 to 9",
+          "isCorrect": true
+        },
+        {
+          "answer": "Numbers 0 to 10",
+          "isCorrect": false
+        },
+        {
+          "answer": "10 times number 9",
+          "isCorrect": false
+        }
+      ],
+      "id": 2
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "let a = 5;\nlet b = 6;\nconsole.log(!a == !b)",
+      "answersList": [
+        {
+          "answer": "true",
+          "isCorrect": true
+        },
+        {
+          "answer": "false",
+          "isCorrect": false
+        },
+        {
+          "answer": "NaN",
+          "isCorrect": false
+        },
+        {
+          "answer": "Error",
+          "isCorrect": false
+        }
+      ],
+      "id": 3
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "console.log(null || 1 && 2 || 3);",
+      "answersList": [
+        {
+          "answer": "null",
+          "isCorrect": false
+        },
+        {
+          "answer": "1",
+          "isCorrect": false
+        },
+        {
+          "answer": "2",
+          "isCorrect": true
+        },
+        {
+          "answer": "3",
+          "isCorrect": false
+        }
+      ],
+      "id": 4
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "function double(x) {\n    return 2*x;\n}\n\nlet a = 5; \na = (a++, a = double(a), a +=3 );\nconsole.log(a);",
+      "answersList": [
+        {
+          "answer": "15",
+          "isCorrect": true
+        },
+        {
+          "answer": "8",
+          "isCorrect": false
+        },
+        {
+          "answer": "6",
+          "isCorrect": false
+        },
+        {
+          "answer": "13",
+          "isCorrect": false
+        }
+      ],
+      "id": 5
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "console.log(false == undefined);\nconsole.log(false == null);\nconsole.log(undefined == null);",
+      "answersList": [
+        {
+          "answer": "false, false, false",
+          "isCorrect": false
+        },
+        {
+          "answer": "false, false, true",
+          "isCorrect": true
+        },
+        {
+          "answer": "true, true, true",
+          "isCorrect": false
+        },
+        {
+          "answer": "true, true, false",
+          "isCorrect": false
+        }
+      ],
+      "id": 6
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "console.log(NaN == NaN);\nconsole.log(null == NaN);\nconsole.log(undefined == NaN);",
+      "answersList": [
+        {
+          "answer": "false, false, false",
+          "isCorrect": true
+        },
+        {
+          "answer": "true, false, false",
+          "isCorrect": false
+        },
+        {
+          "answer": "true, true, true",
+          "isCorrect": false
+        },
+        {
+          "answer": "false, true, true",
+          "isCorrect": false
+        }
+      ],
+      "id": 7
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "const person = {\n    name: \"John\",\n    age: 33,\n    getName() {\n        return this.name;\n    },\n    getAge: () => this.age\n}\n\nconsole.log(person.getName());\nconsole.log(person.getAge());",
+      "answersList": [
+        {
+          "answer": "\"John\", 33",
+          "isCorrect": false
+        },
+        {
+          "answer": "\"John\", undefined",
+          "isCorrect": true
+        },
+        {
+          "answer": "undefined, undefined",
+          "isCorrect": false
+        },
+        {
+          "answer": "undefined, 33",
+          "isCorrect": false
+        }
+      ],
+      "id": 8
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "const birds = ['kingfisher', 'stork', 'nightingale'];\nconst index = birds.indexOf('starling');\nconsole.log(index);",
+      "answersList": [
+        {
+          "answer": "null",
+          "isCorrect": false
+        },
+        {
+          "answer": "undefined",
+          "isCorrect": false
+        },
+        {
+          "answer": "-1",
+          "isCorrect": true
+        },
+        {
+          "answer": "NaN",
+          "isCorrect": false
+        }
+      ],
+      "id": 9
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "let b = '2px';\nb -= 2;\nconsole.log(b !== b);",
+      "answersList": [
+        {
+          "answer": "true",
+          "isCorrect": true
+        },
+        {
+          "answer": "false",
+          "isCorrect": false
+        },
+        {
+          "answer": "Error",
+          "isCorrect": false
+        },
+        {
+          "answer": "NaN",
+          "isCorrect": false
+        }
+      ],
+      "id": 10
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "let a = \"\" + 10 + 0;\nlet b = \"\" - 10 + 0;\nlet c = true + false;\n\nconsole.log(a);\nconsole.log(b);\nconsole.log(c);",
+      "answersList": [
+        {
+          "answer": "10, -10, 1",
+          "isCorrect": false
+        },
+        {
+          "answer": "100, -10, 1",
+          "isCorrect": true
+        },
+        {
+          "answer": "10, NaN, NaN",
+          "isCorrect": false
+        },
+        {
+          "answer": "100, NaN, NaN",
+          "isCorrect": false
+        }
+      ],
+      "id": 11
     }
   ]
 }
