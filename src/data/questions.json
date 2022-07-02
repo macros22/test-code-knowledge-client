@@ -252,6 +252,29 @@
         }
       ],
       "id": 11
+    },
+    {
+      "question": "What will be output to the console?",
+      "codeExample": "let a = Boolean('false');\nlet b = Boolean('true');\n\nconsole.log(a);\nconsole.log(b);",
+      "answersList": [
+        {
+          "answer": "false, true",
+          "isCorrect": false
+        },
+        {
+          "answer": "true, true",
+          "isCorrect": true
+        },
+        {
+          "answer": "Error, Error",
+          "isCorrect": false
+        },
+        {
+          "answer": "true, false",
+          "isCorrect": false
+        }
+      ],
+      "id": 12
     }
   ]
 }

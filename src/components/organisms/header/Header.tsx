@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
+import { HeaderProps } from "./Header.props";
 
-export const Header = () => {
+export const Header = (): HeaderProps => {
   return (
-    <>
       <header className={styles.header}>
         <div className={styles.container}>
           <div className={styles.headerBody}>
@@ -24,6 +24,5 @@ export const Header = () => {
           </div>
         </div>
       </header>
-    </>
   );
 };

@@ -2,7 +2,8 @@ import * as React from "react";
 import Head from "next/head";
 import styles from "./MainLayout.module.scss";
 import { MainLayoutProps } from "./MainLayout.props";
-import {Header} from "components/organisms/header/Header";
+import { Footer } from "components/organisms/footer/Footer";
+import { Header } from "components/organisms/header/Header";
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
@@ -13,15 +14,19 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   return (
     <>
       <Head>
-        <title>{title || "Wave optics"}</title>
-        <meta name="description" content={`Wave optics.` + description} />
+        <title>{title || "Test knowledge"}</title>
+        <meta name="description" content={`Test knowledge.` + description} />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content={keywords || "physics, wave, optics"} />
+        <meta
+          name="keywords"
+          content={keywords || "javascript, test, knowledge"}
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles.wrapper}>
-        <Header />
-        <main>{children}</main>
+        <Header className={styles.header} />
+        <main className={styles.body}>{children}</main>
+        <Footer className={styles.footer} />
       </div>
     </>
   );
@@ -34,7 +39,7 @@ export const withLayout = <T extends Record<string, unknown>>(
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
     const metaProps: MetaPropsType = {
-      title: `Wave optics | Lab ${
+      title: `Test knowledge  ${
         (props?.currentSimulationDimension as string)?.toLowerCase() || ""
       }`,
       description:
