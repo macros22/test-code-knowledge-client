@@ -122,7 +122,7 @@ const Test: React.FC = () => {
 
               return (
                 <span className={spanStyle} key={question.id}>
-                  {index}
+                  {index+1}
                 </span>
               );
             })}

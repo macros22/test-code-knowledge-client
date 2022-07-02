@@ -141,11 +141,11 @@ const TestResult: React.FC = () => {
                 })}
                 key={index + question.question}
               >
-                <h2 className={styles.questionTitle}>Question № {index + 1}</h2>
+                <h3 className={styles.questionTitle}>Question № {index + 1}</h3>
                 <Divider />
-                <h3 className={styles.questionTitle}>
+                <h4 className={styles.questionTitle}>
                   {questions[index].question}
-                </h3>
+                </h4>
                 <Code codeExample={questions[index].codeExample} />
 
                 <AnswersListResult

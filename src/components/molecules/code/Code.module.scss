@@ -4,7 +4,7 @@
   overflow: scroll;
 
 
-  font-size: 1.3em;
+  font-size: 1.3rem;
 
   margin: 0;
 
@@ -12,8 +12,11 @@
   padding: 1.25rem;
   border-radius: var(--border-radius);
   line-height: 1.8rem;
-  letter-spacing: .4px;
+  letter-spacing: 1px;
 
+
+  width: 100%;
+  overflow-x: auto;
   // & .token-line {
   //   line-height: 1.5em;
   //   height: 1.5em;
@@ -27,7 +30,7 @@
 .noLine {
   display: table-cell;
   text-align: right;
-  padding-right: 1em;
+  padding-right: 1rem;
   user-select: none;
   opacity: 0.5;
 }
