@@ -275,6 +275,29 @@
         }
       ],
       "id": 12
+    },
+    {
+      "question": "What value will the result variable take?",
+      "codeExample": "const sayHello = function funcName () {\n    return \"Hello!\"\n}\n\nconst result = typeof funcName;",
+      "answersList": [
+        {
+          "answer": "\"funcName\"",
+          "isCorrect": false
+        },
+        {
+          "answer": "\"string\"",
+          "isCorrect": false
+        },
+        {
+          "answer": "undefined",
+          "isCorrect": true
+        },
+        {
+          "answer": "\"function\"",
+          "isCorrect": false
+        }
+      ],
+      "id": 13
     }
   ]
 }

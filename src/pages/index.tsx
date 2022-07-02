@@ -1,14 +1,11 @@
-
-import styles from '../styles/Home.module.css';
-
-
+import { withLayout } from "layouts/MainLayout";
 
 const Home = () => {
     return (
-        <div className={styles.container}>
+        <div >
         
         </div>
     );
 };
 
-export default Home;
+export default withLayout(Home);
