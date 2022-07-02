@@ -1,0 +1,51 @@
+@import "variables";
+@import "colors";
+@import "typography";
+
+html,
+body {
+  padding: 0;
+  color: var(--text-color);
+  margin: 0;
+  height: 100%;
+ 
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+main {
+  width: var(--wrapper-width);
+  margin: 0 auto;
+}
+
+body {
+  h1 {
+    @include h1;
+  }
+
+  h2 {
+    @include h2;
+  }
+
+  h3 {
+    @include h3;
+  }
+
+  h4 {
+    @include h4;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+

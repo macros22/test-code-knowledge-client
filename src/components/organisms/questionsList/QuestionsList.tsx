@@ -83,7 +83,7 @@ export const QuestionsList = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <h1>All questions</h1>
+        <h2>All questions</h2>
 
         {withEdit && (
         

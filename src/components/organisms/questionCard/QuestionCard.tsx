@@ -74,7 +74,7 @@ export const QuestionCard = ({
 
       <div className={styles.questionCard}>
         <div className={styles.question}>
-          <p className={styles.title}>{question.question}</p>
+          <h3 >{question.question}</h3>
           <Divider className={styles.divider} />
         </div>
 

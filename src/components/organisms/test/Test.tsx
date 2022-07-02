@@ -112,7 +112,7 @@ const Test: React.FC = () => {
       {questions.length && (
         <div className={styles.wrapper}>
           <div className={styles.questionNumbers}>
-            {questions.map((_, index) => {
+            {questions.map((question, index) => {
               let spanStyle = "";
               if (currentQuestion == index) {
                 spanStyle = styles.currentItem;
@@ -121,16 +121,16 @@ const Test: React.FC = () => {
               }
 
               return (
-                <span className={spanStyle} key={index ** 2}>
+                <span className={spanStyle} key={question.id}>
                   {index}
                 </span>
               );
             })}
           </div>
           <div className={styles.content}>
-            <h2 className={styles.questionTitle}>
+            <h4 className={styles.questionTitle}>
               {questions[currentQuestion].question}
-            </h2>
+            </h4>
             <Divider />
             <Code codeExample={questions[currentQuestion].codeExample} />
 

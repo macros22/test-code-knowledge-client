@@ -1,8 +1,9 @@
 .formControl {
   // margin-bottom: 0.4rem;
   // margin: auto 0;
-  font-family: system-ui, sans-serif;
-  font-size: 1.5rem;
+  // font-family: system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1.35rem;
   line-height: 1.6rem;
   display: grid;
   grid-template-columns: 1.75rem auto;
@@ -24,7 +25,8 @@
     /* Not removed via appearance */
     margin: 0;
 
-    font: inherit;
+    // font: inherit;
+    
     color: currentColor;
     width: 2rem;
     height: 2rem;

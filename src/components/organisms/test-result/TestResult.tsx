@@ -124,14 +124,14 @@ const TestResult: React.FC = () => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <h1>
+          <h3>
             Correct answers:{" "}
             {
               userAnswersStatus.filter((answerStatus) => answerStatus === true)
                 .length
             }{" "}
             from {userAnswersStatus.length}
-          </h1>
+          </h3>
           {questions.map((question, index) => {
             return (
               <Card
