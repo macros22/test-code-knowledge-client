@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HeaderProps } from "./Header.props";
 import cn from "clsx";
 
-export const Header = (): JSX.Element => {
+export const Header = ({}: HeaderProps): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const toggleMobileMenu = () => {
