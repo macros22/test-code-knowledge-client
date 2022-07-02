@@ -33,7 +33,7 @@
 
 .questionNumbers {
   user-select: none;
-  margin-top: 15px;
+  // margin-top: 15px;
   display: flex;
   flex-direction: row;
   padding: 5px;
@@ -78,7 +78,7 @@
   user-select: none;
   width: 100%;
   margin: 0.4rem 0;
-  height: 20px;
+  height: 16px;
   border-radius: 0.4rem;
   align-items: baseline;
   cursor: pointer;

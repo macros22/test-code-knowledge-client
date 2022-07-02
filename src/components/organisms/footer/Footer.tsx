@@ -9,7 +9,6 @@ export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
 			<div>
 				Code knowledge test © 2021 - {format(new Date(), 'yyyy')} All rights reserved
 			</div>
-			<a href="#" target="_blank">Пользовательское соглашение</a>
 			<a href="#" target="_blank">Github</a>
 		</footer>
 	);
