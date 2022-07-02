@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HeaderProps } from "./Header.props";
 import cn from "clsx";
 
-export const Header = (): HeaderProps => {
+export const Header = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const toggleMobileMenu = () => {
@@ -12,6 +12,7 @@ export const Header = (): HeaderProps => {
   };
 
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.headerBody}>
@@ -49,5 +50,6 @@ export const Header = (): HeaderProps => {
         </div>
       </div>
     </header>
+    </>
   );
 };
