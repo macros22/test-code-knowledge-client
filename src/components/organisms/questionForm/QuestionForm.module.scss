@@ -15,19 +15,8 @@
 	grid-template-columns: 300px 100px 280px;
 	grid-template-rows: auto 310px 50px;
 
+	gap: 1rem;
 
-	/* grid-template-rows: 85px 85px 85px 60px; */
-	column-gap: 1rem;
-	row-gap: 1rem;
-
-	// hr{
-	// 	margin: 20px 0 !important;
-	// }
-
-
-	// & > *{
-	// 	border-right: 3px solid black;
-	// }
 }
 
 .title {
@@ -47,16 +36,6 @@
 
 .question {
 	grid-area: question;
-
-// 	&::after{
-// 	content: "'";
-// 	background-color: rgb(194, 54, 54);
-//   height: 100%;
-//   width: 1;
-//   position: absolute;
-//   right: 0;
-//   transform: translateX(4px);
-// }
 }
 
 .codeExample {
@@ -110,6 +89,3 @@
 	grid-area: resetButton;
 }
 
-.divider{
-	margin: 25px 0;
-}

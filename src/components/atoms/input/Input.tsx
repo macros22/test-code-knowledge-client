@@ -11,7 +11,7 @@ export const Input = forwardRef(
     return (
       <div className={cn(className, styles.inputWrapper)}>
         <label>
-          <span className={styles.label}>{name}</span>
+          {/* <span className={styles.label}>{name}</span> */}
           <input
             className={cn(styles.input, {
               [styles.error]: errorMessage,

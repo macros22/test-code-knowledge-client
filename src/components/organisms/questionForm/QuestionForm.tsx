@@ -16,6 +16,7 @@ import { Question } from "interfaces/questions.interface";
 import { Checkbox } from "components/atoms/checkbox/Checkbox";
 import { patchQuestion, postQuestion } from "helpers/api-requests";
 import { QuestionFormProps } from "./QuestionForm.props";
+import WithLabel from "components/atoms/with-label/WithLabel";
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
 interface UserAnswer {
@@ -153,25 +154,26 @@ export const QuestionForm = ({
     <>
       <form className={styles.editMedicalItem} onSubmit={handleSubmitForm}>
         <div className={styles.question}>
-          <Input
-            value={question}
-            name="Question"
-            errorMessage={questionError}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-          {/* <Divider className={styles.divider} /> */}
+          <WithLabel labelText="Question">
+            <Input
+              value={question}
+              name="Question"
+              errorMessage={questionError}
+              onChange={(e) => setQuestion(e.target.value)}
+            />
+          </WithLabel>
         </div>
 
         <div className={styles.codeExample}>
-          <Textarea
-            className={styles.textareaCodeExample}
-            value={codeExample}
-            name="Code example"
-            errorMessage={codeExampleError}
-            onChange={(e) => setCodeExample(e.target.value)}
-          />
-
-          {/* <Divider className={styles.divider} /> */}
+          <WithLabel labelText="Code example">
+            <Textarea
+              className={styles.textareaCodeExample}
+              value={codeExample}
+              name="Code example"
+              errorMessage={codeExampleError}
+              onChange={(e) => setCodeExample(e.target.value)}
+            />
+          </WithLabel>
         </div>
 
         <div className={styles.answersList}>
@@ -212,8 +214,6 @@ export const QuestionForm = ({
               </div>
             );
           })}
-
-          {/* <Divider className={styles.divider} /> */}
         </div>
 
         <Button
