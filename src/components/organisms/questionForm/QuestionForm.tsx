@@ -83,8 +83,7 @@ export const QuestionForm = ({
           setCodeExampleError(error.errors[0]);
         } else if (error.path?.endsWith(".answer")) {
           // ! TO DO: Refactore this block.
-          const errorIndex =
-            Number(error.path.match(/\d/g)?.join(""));
+          const errorIndex = Number(error.path.match(/\d/g)?.join(""));
 
           if (errorIndex >= 0) {
             setAnswersErrors((array) => {
@@ -100,10 +99,8 @@ export const QuestionForm = ({
     return isValid;
   };
 
-
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-  
 
     const questionPayload = {
       question,
@@ -148,7 +145,6 @@ export const QuestionForm = ({
     // setDestinationCount(item.destinationCount);
   };
 
-  
   // React.useEffect(() => {
   //   console.log(answers);
   // }, [JSON.parse(JSON.stringify(answers))]);
@@ -163,7 +159,7 @@ export const QuestionForm = ({
             errorMessage={questionError}
             onChange={(e) => setQuestion(e.target.value)}
           />
-          <Divider className={styles.divider} />
+          {/* <Divider className={styles.divider} /> */}
         </div>
 
         <div className={styles.codeExample}>
@@ -175,7 +171,7 @@ export const QuestionForm = ({
             onChange={(e) => setCodeExample(e.target.value)}
           />
 
-          <Divider className={styles.divider} />
+          {/* <Divider className={styles.divider} /> */}
         </div>
 
         <div className={styles.answersList}>
@@ -199,7 +195,7 @@ export const QuestionForm = ({
                   }}
                 />
                 <Checkbox
-                  name="Is correct?"
+                  name=""
                   checked={answers[index].isChecked}
                   onChange={() =>
                     setAnswers((answers) => {
@@ -220,15 +216,26 @@ export const QuestionForm = ({
           {/* <Divider className={styles.divider} /> */}
         </div>
 
-        <Button className={styles.saveBtn} appearance="primary" type="submit">
+        <Button
+          className={styles.saveButton}
+          appearance="primary"
+          type="submit"
+        >
           {mode == "add" ? "Add question" : "Save changes"}
         </Button>
         <Button
-          className={styles.resetBtn}
+          className={styles.resetButton}
           appearance="ghost"
           onClick={handleResetButton}
         >
           Reset
+        </Button>
+        <Button
+          className={styles.addAnswerButton}
+          appearance="primary"
+          onClick={handleResetButton}
+        >
+          Add answer
         </Button>
       </form>
     </>

@@ -6,7 +6,7 @@ import { ForwardedRef, forwardRef } from 'react';
 export const Textarea = forwardRef(({ errorMessage, name, className, ...props }: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
 	return (
 		<div className={cn(styles.textareaWrapper, className)}>
-			<span className={styles.label}>{name}</span>
+			{/* <span className={styles.label}>{name}</span> */}
 			<textarea className={cn(styles.textarea, {
 				[styles.error]: errorMessage
 			})} ref={ref} {...props} />

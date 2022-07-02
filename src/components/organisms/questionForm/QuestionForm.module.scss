@@ -4,20 +4,21 @@
 	// 	"question question"
 	// 	"codeExample codeExample"
 	// 	"answersList answersList"
-	// 	"saveBtn resetBtn";
+	// 	"savedButton resetdButton";
 	// grid-template-columns: 400px 210px;
 	// grid-template-rows: 80px 200px 150px 40px;
 
 	grid-template-areas:
-		"question question answersList"
+		"question question question"
 		"codeExample codeExample answersList"
-		"saveBtn resetBtn answersList";
-	grid-template-columns: 300px 100px 320px;
-	grid-template-rows: 80px 200px 50px;
+		"saveButton resetButton addAnswerButton";
+	grid-template-columns: 300px 100px 280px;
+	grid-template-rows: auto 310px 50px;
 
 
 	/* grid-template-rows: 85px 85px 85px 60px; */
-	gap: 1.25rem;
+	column-gap: 1rem;
+	row-gap: 1rem;
 
 	// hr{
 	// 	margin: 20px 0 !important;
@@ -97,16 +98,16 @@
 	line-height: 32px;
 }
 
-.lastButton {
-	margin-right: 0;
+.addAnswerButton {
+	grid-area: addAnswerButton;
 }
 
-.saveBtn {
-	grid-area: saveBtn;
+.saveButton {
+	grid-area: saveButton;
 }
 
-.resetBtn {
-	grid-area: resetBtn;
+.resetButton {
+	grid-area: resetButton;
 }
 
 .divider{

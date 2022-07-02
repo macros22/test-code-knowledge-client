@@ -32,11 +32,12 @@
 
 .textareaWrapper {
   position: relative;
+  height: 100%;
 }
 
 .errorMessage {
-  position: absolute;
-  bottom: -15px;
-  left: 0;
+  // position: absolute;
+  // bottom: -15px;
+  // left: 0;
   color: var(--danger-color);
 }

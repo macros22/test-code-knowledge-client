@@ -6,6 +6,7 @@ import cn from "clsx";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
 import theme from "prism-react-renderer/themes/oceanicNext";
+// import theme from "prism-react-renderer/themes/vsLight";
 
 interface IProps {
   codeExample: string;
