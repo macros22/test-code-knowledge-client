@@ -17,7 +17,7 @@ export const Header = ({}: HeaderProps): JSX.Element => {
       <div className={styles.container}>
         <div className={styles.headerBody}>
           <Link href="/">
-            <a className={styles.logo}>Test JavaScript knowledge</a>
+            <a className={styles.logo}>Code Knowledge Test</a>
           </Link>
 
           <div

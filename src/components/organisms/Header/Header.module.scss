@@ -36,11 +36,13 @@
 
 .link {
   display: inline;
-  margin-left: 0.5rem;
-  padding: 0.65rem;
+  // margin-left: 0.25rem;
+  padding: 0.5rem 0.75rem;
 
+  font-weight: 600;
+  letter-spacing: 1px;
   &:hover {
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(247, 247, 247);
     border-radius: var(--border-radius);
   }
 }
@@ -52,11 +54,13 @@
 
   text-decoration: none;
   // letter-spacing: var(--space-xxxxs);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 
-  color: var(--primary-color);
+  color: var(--text-color);
 
   // font-size: var(--text-lg);
+  font-size: 20px;
   font-weight: bold;
 
   &:hover {
@@ -64,6 +68,9 @@
   }
 }
 @media (max-width: 767px) {
+  .logo {
+    font-size: 28px;
+  }
   .headerBody {
     li {
       display: block;
@@ -71,6 +78,7 @@
       margin: 0.5rem 0 0;
 
       list-style-type: none;
+      font-size: 26px;
     }
   }
 
