@@ -59,9 +59,6 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
 
-  color: var(--text-color);
-
-  color: var(--text-color);
   // font-size: var(--text-lg);
   font-size: 16px;
   font-weight: bold;
@@ -71,9 +68,7 @@
   }
 }
 @media (max-width: $_md) {
-  .logo {
-   color: var(--primary-color)
-  }
+
   .headerBody {
     li {
       display: block;

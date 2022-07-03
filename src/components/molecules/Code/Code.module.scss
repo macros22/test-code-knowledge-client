@@ -1,10 +1,11 @@
 .pre {
   text-align: left;
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif !important;
+  
   overflow: scroll;
 
 
   font-size: 1.1rem;
+  font-weight: 500;
 
   margin: 0;
 
@@ -12,7 +13,7 @@
   padding: 1.25rem;
   border-radius: var(--border-radius);
   line-height: 1.8rem;
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
 
 
   // max-width: 500px;
@@ -27,6 +28,7 @@
 
 .line {
   display: table-row;
+
 }
 
 .noLine {
@@ -35,8 +37,10 @@
   padding-right: 1rem;
   user-select: none;
   opacity: 0.5;
+
 }
 
 .lineContent {
+  font-family: 'Source Code Pro', monospace !important;
   display: table-cell;
 }

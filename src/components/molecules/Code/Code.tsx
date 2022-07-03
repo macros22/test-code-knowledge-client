@@ -37,7 +37,7 @@ export const Code: React.FC<IProps> = ({ codeExample }) => (
             <div className={styles.noLine}>{i + 1}</div>
             <div className={styles.lineContent}>
               {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
+                <span  {...getTokenProps({ token, key })} className={styles.lineContent}/>
               ))}
             </div>
           </div>
