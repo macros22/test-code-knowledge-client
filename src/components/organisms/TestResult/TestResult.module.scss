@@ -7,8 +7,8 @@
 }
 
 .card {
-  margin-bottom: 2rem;
-  padding: 1.3rem;
+  margin-bottom: 1rem;
+  padding: 1.4rem;
 }
 
 .successCard {
@@ -28,37 +28,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: var(--wrapper-width);
 }
 
-.questionNumbers {
-  user-select: none;
-  // margin-top: 15px;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
-  border-radius: 6px;
-  border: 3px solid #eee;
-  width: var(--wrapper-width);
-  font-size: 1.4em;
-
-  span {
-    font-weight: 600;
-    padding: 0 0.3rem;
-  }
-}
-
-.currentItem {
-  color: #fff;
-  border-radius: 20%;
-  background-color: tomato;
-  width: 1.8rem;
-  text-align: center;
-}
-
-.nextItem {
-  color: rgb(167, 164, 164);
-}
 
 .questionTitle {
   margin: 0 0 15px 0;
@@ -69,7 +40,7 @@
   border-radius: 6px;
   background-color: #fff;
 
- 
+  max-width: 100%;
   /* box-shadow: 0 1px 6px 0 #0001, 0 1.2px 10px 0 #0001; */
 }
 

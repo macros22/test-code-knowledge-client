@@ -98,7 +98,7 @@ export const QuestionsList = ({
               {questions.map((question, index) => {
                 if (index % 2 === 0) {
                   return (
-                    <Card key={question.id}>
+                    <Card className={styles.questionCard} key={question.id}>
                       <QuestionCard
                         withEdit={withEdit}
                         updateQuestions={getQuestions}
