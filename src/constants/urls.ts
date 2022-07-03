@@ -1,1 +1,1 @@
-export const QUESTIONS_URL = 'http://localhost:3004/questions';
+export const QUESTIONS_URL = 'https://code-knowledge-test-server.herokuapp.com/questions';
