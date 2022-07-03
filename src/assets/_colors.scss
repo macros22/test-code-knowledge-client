@@ -1,20 +1,19 @@
 :root {
     --primary-color: rgb(9, 161, 128);
     --primary-dark-color: rgb(7, 134, 107);
-    // --secondary-color: #7a7e82;
+    --secondary-color: #7a7e82;
     --success-color: rgb(9, 161, 128);
     --danger-color: rgb(255, 99, 71);
     --info-color: rgb(248, 227, 132);
-    // --warning-color: #f2c231;
-    // --light-color: #f5f5f5;
-    // --dark-color: #4a4a4a;
+    --warning-color: #f2c231;
+  
     --gray-color: rgb(182 182 182);
     --gray-light-color: rgb(214 214 214);
     --white-color: #fff;
     --text-color: rgb(40, 44, 52);
     --text-secondary-color: rgb(121 121 121 / 78%);
-    --border-color: rgb(226, 226, 226);
-    // --substrate-color: #f5f5f5;
+    --border-color: rgb(230, 230, 230);
+
 
 
     --form-control-color: var(--success-color);
