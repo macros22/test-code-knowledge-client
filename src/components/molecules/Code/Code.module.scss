@@ -4,19 +4,21 @@
   overflow: scroll;
 
 
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 
   margin: 0;
 
-  overflow: none;
+  // overflow: none;
   padding: 1.25rem;
   border-radius: var(--border-radius);
   line-height: 1.8rem;
   letter-spacing: 1px;
 
 
-  width: 100%;
-  overflow-x: auto;
+  // max-width: 500px;
+  // display: block;
+  width: inherit;
+  overflow-x: auto !important;
   // & .token-line {
   //   line-height: 1.5em;
   //   height: 1.5em;

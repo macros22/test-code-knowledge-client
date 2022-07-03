@@ -3,9 +3,10 @@
   grid-template-areas:
     "question"
     "codeExample";
-  grid-template-columns: auto;
+  grid-template-columns:minmax(350px, 450px);
   grid-template-rows: auto auto;
   padding: 0.5rem;
+  // width: max-content;
 }
 
 .wrapper {

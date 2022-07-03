@@ -117,7 +117,7 @@ export const QuestionsList = ({
               {questions.map((question, index) => {
                 if (index % 2 !== 0) {
                   return (
-                    <Card key={question.id}>
+                    <Card  className={styles.questionCard} key={question.id} >
                       <QuestionCard
                         withEdit={withEdit}
                         updateQuestions={getQuestions}
@@ -135,7 +135,7 @@ export const QuestionsList = ({
 
         {!questions ||
           (!questions.length && (
-            <Card className={styles.item}>Empty medication list</Card>
+            <Card className={styles.questionCard}>Empty medication list</Card>
           ))}
       </div>
       {withEdit && isAddQuestionMode && (
