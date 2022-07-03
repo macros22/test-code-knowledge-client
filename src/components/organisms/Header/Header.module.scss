@@ -60,7 +60,7 @@
   color: var(--text-color);
 
   // font-size: var(--text-lg);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
 
   &:hover {
@@ -69,16 +69,16 @@
 }
 @media (max-width: 767px) {
   .logo {
-    font-size: 28px;
+   color: var(--primary-color)
   }
   .headerBody {
     li {
       display: block;
 
-      margin: 0.5rem 0 0;
+      margin: 0.5rem auto;
 
       list-style-type: none;
-      font-size: 26px;
+      font-size: 20px;
     }
   }
 

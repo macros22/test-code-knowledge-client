@@ -8,7 +8,6 @@ body {
   color: var(--text-color);
   margin: 0;
   height: 100%;
- 
 }
 
 a {
@@ -23,6 +22,8 @@ a {
 
 main {
   margin: 0 auto;
+  max-width: 100vw;
+
 }
 
 body {
