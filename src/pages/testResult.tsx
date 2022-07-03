@@ -1,14 +1,13 @@
-import { withLayout } from "layouts/MainLayout";
-import React from "react";
-
-import { TestResult } from "components";
+import React from 'react';
+import { withLayout } from 'layouts/MainLayout';
+import { TestResult } from 'components';
 
 const TestResultPage: React.FC = () => {
-  return (
-    <>
-      <TestResult />
-    </>
-  );
+	return (
+		<>
+			<TestResult />
+		</>
+	);
 };
 
 export default withLayout(TestResultPage);

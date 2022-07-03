@@ -11,7 +11,7 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 
-import answersReducer from '../components/organisms/test/Test.slice';
+import answersReducer from 'store/reducers/Test.slice';
 
 const rootReducer = combineReducers({
     answers: answersReducer,

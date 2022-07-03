@@ -1,12 +1,8 @@
-import {
-  getQuestionsAsync,
-  selectQuestions,
-} from "components/organisms/test/Test.slice";
-import { withLayout } from "layouts/MainLayout";
 import React from "react";
+import { withLayout } from "layouts/MainLayout";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-
 import { Test } from "components";
+import { getQuestionsAsync, selectQuestions } from "store/reducers/Test.slice";
 
 const TestPage: React.FC = () => {
   const questions = useAppSelector(selectQuestions);

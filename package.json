@@ -7,7 +7,7 @@
     "export": "next export",
     "debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"npx json-server --port 3004 --watch src/data/questions.json\" \"next start\"",
     "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:js:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "lint:css": "stylelint **/*.{scss,css}",

@@ -1,6 +1,6 @@
 import React from "react";
-import { QuestionsList } from "components/organisms/questionsList/QuestionsList";
 import { withLayout } from "layouts/MainLayout";
+import { QuestionsList } from "components";
 
 const QuestionsPage = () => {
   return (

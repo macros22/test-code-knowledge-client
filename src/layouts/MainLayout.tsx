@@ -2,8 +2,7 @@ import * as React from "react";
 import Head from "next/head";
 import styles from "./MainLayout.module.scss";
 import { MainLayoutProps } from "./MainLayout.props";
-import { Footer } from "components/organisms/footer/Footer";
-import { Header } from "components/organisms/header/Header";
+import { Footer, Header } from "components";
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
@@ -45,7 +44,6 @@ export const withLayout = <T extends Record<string, unknown>>(
       description:
         (props?.currentSimulationDimension as string)?.toLowerCase() || "",
     };
-    // console.log(props?.currentLabName as string);
 
     return (
       <MainLayout {...metaProps}>
