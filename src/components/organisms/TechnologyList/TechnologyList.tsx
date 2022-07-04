@@ -25,7 +25,7 @@ export const TechnologyList = (): JSX.Element => {
 			{technologyList.map((technology) => {
 				return (
 					<div className={styles.card}>
-							<h4>Questions: 45</h4>
+							<h4>Questions: 42</h4>
 						<Image
 							className={styles.img}
 							layout="responsive"

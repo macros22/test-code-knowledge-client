@@ -122,7 +122,7 @@ export const Test = (): JSX.Element => {
             <h4 className={styles.questionTitle}>
               {questions[currentQuestion].question}
             </h4>
-            <Divider />
+            <Divider className={styles.divider}/>
             <Code codeExample={questions[currentQuestion].codeExample} />
 
             <AnswersList answers={questions[currentQuestion].answersList} />
