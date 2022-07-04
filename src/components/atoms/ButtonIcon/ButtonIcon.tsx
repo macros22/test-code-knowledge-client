@@ -13,7 +13,7 @@ export const ButtonIcon = ({ appearance, icon, className, ...props }: ButtonIcon
 			})}
 			{...props}
 		>
-			<IconComp />
+			<IconComp style={{width:"65%"}}/>
 		</button>
 	);
 };

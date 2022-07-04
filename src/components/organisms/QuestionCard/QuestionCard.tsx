@@ -58,7 +58,7 @@ export const QuestionCard = ({
       {withEdit && (
         <div className={styles.changeQuestionButton}>
           <ButtonIcon
-            icon="change"
+            icon="edit"
             appearance="white"
             onClick={handleEditButton}
           ></ButtonIcon>

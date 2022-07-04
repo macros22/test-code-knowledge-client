@@ -1,10 +1,12 @@
 .button {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  padding: 3px;
   cursor: pointer;
-  border: none;
+  border: var(--border);
+  background-color: var(--white-color);
   border-radius: calc(2 * var(--border-radius));
-  box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+  // box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 }
 
 .primary {

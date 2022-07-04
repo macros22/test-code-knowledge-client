@@ -1,0 +1,33 @@
+@import 'assets/screen-sizes';
+
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+  flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.card {
+	padding: 1rem;
+	border: var(--border);
+  border-radius: var(--border-radius);
+
+  min-width: 220px;
+	min-height: 220px;
+
+	max-width: 95vw;
+	max-height: 95vw;
+}
+
+.img{
+  border-radius: var(--border-radius);
+}
+
+
+
+@media (max-width: $_md) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
