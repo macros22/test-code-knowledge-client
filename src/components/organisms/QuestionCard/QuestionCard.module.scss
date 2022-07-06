@@ -5,9 +5,10 @@
   grid-template-areas:
     "question"
     "codeExample"
-    "buttons";
+    "buttons"
+    "answer";
   grid-template-columns:minmax(250px, 450px);
-  grid-template-rows: auto auto 40px;
+  grid-template-rows: auto auto 40px auto;
   padding: 0.5rem;
 
 }
@@ -27,14 +28,45 @@
 
 .buttons {
   grid-area: buttons;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.answer {
+  grid-area: answer;
+
+  height: auto;
+
+  &InVisible{
+    visibility: hidden;
+    height: 0;
+  }
+
+}
+
+.answerStatusText {
+  width: 100%;
+  margin-left: 0.5rem;
 }
 
 .iconButton {
-  // vertical-align: bottom;
-  // height: 100%;
-  // width:auto;
-  // color: var(--primary-color);
   @include iconWithBorder;
+}
+
+.editButtons {
+  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.arrowIcon {
+  height: 100%;
+  width: auto;
 }
 
 
