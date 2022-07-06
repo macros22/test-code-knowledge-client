@@ -2,8 +2,9 @@ import styles from "./QuestionsList.module.scss";
 import React from "react";
 import { Question } from "interfaces/questions.interface";
 import { QuestionsListProps } from "./QuestionsList.props";
-import { ButtonIcon, Card, Modal, QuestionCard, QuestionForm } from "components";
+import {  Card, Modal, QuestionCard, QuestionForm } from "components";
 
+import { HiPlus } from 'react-icons/hi';
 
 const exampleQuestion: Question = {
   id: 9999,
@@ -36,24 +37,9 @@ export const QuestionsList = ({
     return () => {
       setCurrentQuestionIndex(index);
       setIsEditQuestionMode(true);
-      // getQuestions();
+    
     };
   };
-
-  // const dispatch = useAppDispatch();
- 
-
-  const getQuestions = async () => {
-    try {
-      // dispatch(getQuestionsAsync());
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      }
-    }
-  };
-
- 
 
   return (
   
@@ -63,12 +49,12 @@ export const QuestionsList = ({
 
         {withEdit && (
         
-           <ButtonIcon
-           className={styles.addItemButton}
-           icon="plus"
-           appearance="white"
+           <HiPlus
+           className={styles.addQuestionButton}
+    
            onClick={handleAddQuestionButton}
-         >Add question</ButtonIcon>
+         />
+     
         )}
       </div>
       <div className={styles.container}>
@@ -82,7 +68,7 @@ export const QuestionsList = ({
                     <Card className={styles.questionCard} key={question.id}>
                       <QuestionCard
                         withEdit={withEdit}
-                        updateQuestions={getQuestions}
+                       
                         handleEditButton={makeHandleEditButton(index)}
                         question={question}
                         key={question.id}
@@ -101,7 +87,6 @@ export const QuestionsList = ({
                     <Card  className={styles.questionCard} key={question.id} >
                       <QuestionCard
                         withEdit={withEdit}
-                        updateQuestions={getQuestions}
                         handleEditButton={makeHandleEditButton(index)}
                         question={question}
                         key={question.id}

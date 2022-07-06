@@ -1,22 +1,11 @@
 import React from "react";
-
 import styles from "./QuestionForm.module.scss";
-
-import cn from "clsx";
-
 import * as yup from "yup";
 import { ValidationError } from "yup";
-
-import axios from "axios";
-
 import { Question } from "interfaces/questions.interface";
-
-import { patchQuestion, postQuestion } from "helpers/api-requests";
 import { QuestionFormProps } from "./QuestionForm.props";
 import { Button, Checkbox, Input, Textarea, WithLabel } from "components";
 import { useAddQuestionMutation, useEditQuestionMutation } from "store/questions.api";
-
-// import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
 interface UserAnswer {
   answer: string;

@@ -1,24 +1,21 @@
+@import'assets/mixins.scss';
+
 .questionCard {
   display: grid;
   grid-template-areas:
     "question"
-    "codeExample";
+    "codeExample"
+    "buttons";
   grid-template-columns:minmax(250px, 450px);
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto 40px;
   padding: 0.5rem;
-  // width: max-content;
+
 }
 
 .wrapper {
   position: relative;
 }
 
-.changeQuestionButton {
-  position: absolute;
-  z-index: 12;
-  right: 0.1rem;
-  bottom: 0.1rem;
-}
 
 .question {
   grid-area: question;
@@ -28,15 +25,18 @@
   grid-area: codeExample;
 }
 
-.button {
-  width: 80px;
-
-  margin-right: 1rem;
-  padding: 14px;
-
-  font-size: 28px;
-  line-height: 32px;
+.buttons {
+  grid-area: buttons;
 }
+
+.iconButton {
+  // vertical-align: bottom;
+  // height: 100%;
+  // width:auto;
+  // color: var(--primary-color);
+  @include iconWithBorder;
+}
+
 
 .divider {
   margin: 1.1rem -1.3rem !important;

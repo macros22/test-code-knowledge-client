@@ -1,0 +1,9 @@
+@mixin iconWithBorder {
+  height: 100%;
+  width:auto;
+  color: var(--primary-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 0.2rem;
+  vertical-align: bottom;
+}
