@@ -1,61 +1,16 @@
-import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
-import {
-    persistStore, persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { configureStore } from '@reduxjs/toolkit';
+import { questionsApi } from './questions.api';
 
 
-import answersReducer from 'store/reducers/Test.slice';
-
-const rootReducer = combineReducers({
-    answers: answersReducer,
+export const store = configureStore({
+    reducer: {
+        [questionsApi.reducerPath]: questionsApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(questionsApi.middleware)
 });
 
+// optional, but required for refetchOnFocus/refetchOnReconnect behaviors
+// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
+// setupListeners(store.dispatch)
 
-
-
-// react-persist configs
-const persistConfig = {
-    key: 'root',
-    storage,
-};
-
-// react-persist configs
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-
-export function makeStore() {
-    return configureStore({
-        reducer: persistedReducer,
-        middleware: (getDefaultMiddleware) => // react-persist and redux-toolkit configs
-            getDefaultMiddleware({
-                serializableCheck: {
-                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-                },
-            }),
-    });
-}
-
-const store = makeStore();
-
-export type AppState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    AppState,
-    unknown,
-    Action<string>
->;
-
-// react-persist configs
-export const persistor = persistStore(store);
-
-export default store;
+export type TypeRootState = ReturnType<typeof store.getState>

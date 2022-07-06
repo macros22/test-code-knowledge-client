@@ -14,6 +14,7 @@ import { Question } from "interfaces/questions.interface";
 import { patchQuestion, postQuestion } from "helpers/api-requests";
 import { QuestionFormProps } from "./QuestionForm.props";
 import { Button, Checkbox, Input, Textarea, WithLabel } from "components";
+import { useAddQuestionMutation, useEditQuestionMutation } from "store/questions.api";
 
 // import { PATCH_ITEM_URL, POST_ITEM_URL } from "../../constants/url";
 
@@ -98,6 +99,9 @@ export const QuestionForm = ({
     return isValid;
   };
 
+  const [addQuestion, {isError: isErrorAdd}] = useAddQuestionMutation();
+  const [editQuestion, {isError: isErrorEdit}] = useEditQuestionMutation();
+
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -114,7 +118,7 @@ export const QuestionForm = ({
       switch (mode) {
         case "add":
           try {
-            await postQuestion(questionPayload);
+            await addQuestion(questionPayload);
 
             setIsModalOpen(false);
           } catch (error) {
@@ -125,7 +129,8 @@ export const QuestionForm = ({
 
         case "edit":
           try {
-            await patchQuestion(questionPayload, questionItem.id.toString());
+  
+            await editQuestion({id:questionItem.id, body:questionPayload});
 
             setIsModalOpen(false);
           } catch (error) {

@@ -1,5 +1,5 @@
 {
-  "name": "med-app",
+  "name": "test-code-knodledge-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -28,7 +28,6 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.6",
-    "redux-persist": "^6.0.0",
     "sass": "^1.32.6",
     "yup": "^0.32.11"
   },

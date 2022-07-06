@@ -27,7 +27,7 @@
     "images.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/pages/auth.tsx"  ],
+, "src/pages/auth.tsx", "src/pages/_app.tsx", "src/pages/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

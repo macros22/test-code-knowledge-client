@@ -1,149 +1,174 @@
-import React from "react";
-import { useRouter } from "next/dist/client/router";
-import styles from "./Test.module.scss";
+import React from 'react';
+import { useRouter } from 'next/dist/client/router';
+import styles from './Test.module.scss';
 
+import { Answer, Question } from 'interfaces/questions.interface';
 
+import { Button, Checkbox, Code, Divider } from 'components';
+import { useGetQuestionsQuery } from 'store/questions.api';
+import { useSessionStorage } from 'hooks';
+import {
+	checkedAnswersName,
+	currentQuestionIndexName,
+} from 'constants/names.storage';
 
-import { Answer } from "interfaces/questions.interface";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { changeCheckedState, decrementCurrentQuestion, incrementCurrentQuestion, selectCheckedAnswers, selectCurrentQuestion, selectQuestions } from "store/reducers/Test.slice";
-import { Button, Checkbox, Code, Divider } from "components";
-
-export const answers = ["[object]", "[null]", "[undefined]", "Error"];
+export const answers = ['[object]', '[null]', '[undefined]', 'Error'];
 
 interface AnswersListProps {
-  answers: Answer[];
+	answers: Answer[];
+	setCheckedAnswers: React.Dispatch<React.SetStateAction<boolean[][]>>;
+	currentQuestion: number;
+	checkedAnswers: boolean[][];
 }
 
-const AnswersList = ({ answers }: AnswersListProps): JSX.Element => {
-  const currentQuestion = useAppSelector(selectCurrentQuestion);
+const AnswersList = ({
+	setCheckedAnswers,
+	checkedAnswers,
+	answers,
+	currentQuestion,
+}: AnswersListProps): JSX.Element => {
+	const handleOnChange = (answerIndex: number) => {
+		setCheckedAnswers((checkedAnswers) => {
+			const newCheckedAnswers = JSON.parse(JSON.stringify(checkedAnswers));
+			newCheckedAnswers[currentQuestion][answerIndex] =
+				!newCheckedAnswers[currentQuestion][answerIndex];
+			return newCheckedAnswers;
+		});
+	};
 
-  const checkedAnswers = useAppSelector(selectCheckedAnswers)[currentQuestion];
-  const dispatch = useAppDispatch();
-
-  const handleOnChange = (position: number) => {
-    dispatch(
-      changeCheckedState({
-        questionNumber: currentQuestion,
-        answerNumber: position,
-      })
-    );
-  };
-
-  return (
-    <div className={styles.answersList}>
-      {answers.map((answer, index) => {
-        return (
-          <li key={answer.answer}>
-            <Checkbox
-              name={answer.answer}
-              value={answer.answer}
-              checked={checkedAnswers[index]}
-              onChange={() => handleOnChange(index)}
-            />
-          </li>
-        );
-      })}
-    </div>
-  );
+	return (
+		<div className={styles.answersList}>
+			{answers.map((answer, index) => {
+				return (
+					<li key={answer.answer}>
+						<Checkbox
+							name={answer.answer}
+							value={answer.answer}
+							checked={checkedAnswers[currentQuestion][index]}
+							onChange={() => handleOnChange(index)}
+						/>
+					</li>
+				);
+			})}
+		</div>
+	);
 };
 
-export const Test = (): JSX.Element => {
-  const router = useRouter();
+interface TestProps {
+	questionsAmount: number;
+	questions: Question[];
+}
 
-  const questions = useAppSelector(selectQuestions);
-  const currentQuestion = useAppSelector(selectCurrentQuestion);
-  const initQuestionsStatus = new Array(questions.length).fill(false);
-  initQuestionsStatus[currentQuestion] = true;
-  const [questionsStatus, setQuestionsStatus] =
-    React.useState<boolean[]>(initQuestionsStatus);
+export const Test = ({
+	questionsAmount,
+	questions,
+}: TestProps): JSX.Element => {
+	const router = useRouter();
 
-  const dispatch = useAppDispatch();
+	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
+		currentQuestionIndexName,
+		0
+	);
+	const [checkedAnswers, setCheckedAnswers] = useSessionStorage<boolean[][]>(
+		checkedAnswersName,
+		[]
+	);
 
-  const [isActiveNextBtn, setIsActiveNextBtn] = React.useState<boolean>(false);
+	const initialQuestionsStatus = new Array(questionsAmount).fill(false);
+	initialQuestionsStatus[currentQuestion] = true;
+	const [questionsStatus, setQuestionsStatus] = React.useState<boolean[]>(
+		initialQuestionsStatus
+	);
 
-  const checkedState = useAppSelector(selectCheckedAnswers)[currentQuestion];
+	React.useEffect(() => {
+		// Fill checked answers array.
+		if (!checkedAnswers.length) {
+			const checkedAnswersInitial = new Array(questionsAmount);
+			for (let i = 0; i < questionsAmount; ++i) {
+				const answersAmount = questions[i].answersList.length;
+				checkedAnswersInitial[i] = new Array(answersAmount).fill(false);
+			}
 
-  React.useEffect(() => {
-    checkedState.indexOf(true) !== -1
-      ? setIsActiveNextBtn(true)
-      : setIsActiveNextBtn(false);
-  }, [checkedState]);
+			setCheckedAnswers(checkedAnswersInitial);
+		}
 
-  // Handlers.
-  const backButtonHandler = () => {
-    if (currentQuestion > 0) {
-      dispatch(decrementCurrentQuestion());
-    }
-  };
+		return () => setCurrentQuestion(0);
+	}, []);
 
-  const nextButtonHandler = () => {
-    if (
-      currentQuestion < questions.length - 1 &&
-      checkedState.indexOf(true) !== -1
-    ) {
-      const tmp = [...questionsStatus];
-      tmp[currentQuestion + 1] = true;
-      setQuestionsStatus(tmp);
+	React.useEffect(() => {
+		window.onpopstate = () => {
+			router.push('/');
+		};
+	}, []);
 
-      setIsActiveNextBtn(false);
+	// Handlers.
 
-      dispatch(incrementCurrentQuestion());
-    }
-  };
+	const nextButtonHandler = () => {
+		if (
+			currentQuestion < questions.length - 1 &&
+			checkedAnswers[currentQuestion].indexOf(true) !== -1
+		) {
+			const tmp = [...questionsStatus];
+			tmp[currentQuestion + 1] = true;
+			setQuestionsStatus(tmp);
 
-  const endTestHandler = () => {
-    router.push("/testResult");
-  };
+			setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+		}
+	};
 
- 
+	const endTestHandler = () => {
+		router.push('/testResult');
+	};
 
-  return (
-    <>
-      {questions.length && (
-        <div className={styles.wrapper}>
-          <div className={styles.questionNumbers}>
-            {questions.map((question, index) => {
-              let spanStyle = "";
-              if (currentQuestion == index) {
-                spanStyle = styles.currentItem;
-              } else if (currentQuestion < index) {
-                spanStyle = styles.nextItem;
-              }
+	return (
+		<>
+			{questions.length && (
+				<div className={styles.wrapper}>
+					<div className={styles.questionNumbers}>
+						{questions.map((question, index) => {
+							let spanStyle = '';
+							if (currentQuestion == index) {
+								spanStyle = styles.currentItem;
+							} else if (currentQuestion < index) {
+								spanStyle = styles.nextItem;
+							}
 
-              return (
-                <span className={spanStyle} key={question.id}>
-                  {index+1}
-                </span>
-              );
-            })}
-          </div>
-          <div className={styles.content}>
-            <h4 className={styles.questionTitle}>
-              {questions[currentQuestion].question}
-            </h4>
-            <Divider className={styles.divider}/>
-            <Code codeExample={questions[currentQuestion].codeExample} />
+							return (
+								<span className={spanStyle} key={question.id}>
+									{index + 1}
+								</span>
+							);
+						})}
+					</div>
+					<div className={styles.content}>
+						<h4 className={styles.questionTitle}>
+							{questions[currentQuestion].question}
+						</h4>
+						<Divider className={styles.divider} />
+						<Code codeExample={questions[currentQuestion].codeExample} />
 
-            <AnswersList answers={questions[currentQuestion].answersList} />
-          </div>
-          <div className={styles.buttons}>
-            {/* <button onClick={backButtonHandler}>Назад</button> */}
-            {currentQuestion < questions.length - 1 ? (
-              // ? <Button appearance={isActiveNextBtn ? "primary" : "disabled"}  onClick={nextButtonHandler}>Next</Button>
-              // : <Button appearance={isActiveNextBtn ? "primary" : "disabled"} onClick={endTestHandler}>Finish test</Button>
-              <Button appearance={"primary"} onClick={nextButtonHandler}>
-                Next
-              </Button>
-            ) : (
-              <Button appearance={"primary"} onClick={endTestHandler}>
-                Finish test
-              </Button>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
+						{checkedAnswers.length && (
+							<AnswersList
+								checkedAnswers={checkedAnswers}
+								currentQuestion={currentQuestion}
+								setCheckedAnswers={setCheckedAnswers}
+								answers={questions[currentQuestion].answersList}
+							/>
+						)}
+					</div>
+					<div className={styles.buttons}>
+						{currentQuestion < questions.length - 1 ? (
+							<Button appearance={'primary'} onClick={nextButtonHandler}>
+								Next
+							</Button>
+						) : (
+							<Button appearance={'primary'} onClick={endTestHandler}>
+								Finish test
+							</Button>
+						)}
+					</div>
+				</div>
+			)}
+		</>
+	);
 };
-
