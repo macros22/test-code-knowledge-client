@@ -5,12 +5,11 @@
 	display: flex;
 	flex-direction: row;
   flex-wrap: wrap;
-	gap: 1rem;
+	gap: 1.5rem;
 }
 
 .card {
-	padding: 1rem;
-	border: var(--border);
+	
   border-radius: var(--border-radius);
 
   min-width: 220px;
@@ -18,10 +17,39 @@
 
 	max-width: 95vw;
 	max-height: 95vw;
+
+	&Title{
+		margin-bottom: 0.3rem;
+	}
+
+	&Container{
+		padding: 1rem;
+		border-bottom: var(--border);
+		border-left: var(--border);
+		border-right: var(--border);
+		border-radius: var(--border-radius);
+	}
+
+	&Tag{
+		// height: 100% !important;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		margin-left: .75rem;
+	}
+
+	&Button{
+		display: block;
+		width: 100%;
+		margin-top: .75rem;
+	}
 }
 
+
+
+
 .img{
-  border-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
 }
 
 
