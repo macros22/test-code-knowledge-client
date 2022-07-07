@@ -3,7 +3,6 @@ import { Question } from 'interfaces/questions.interface';
 
 const baseUrl = 'https://code-knowledge-test-server.herokuapp.com/';
 
-
 type patchType = Omit<Question, 'id'>;
 
 export const questionsApi = createApi({
@@ -22,6 +21,10 @@ export const questionsApi = createApi({
 					  ]
 					: [{ type: 'Questions', id: 'LIST' }],
 		}),
+		getQuestionsListsSize: build.query({
+			query: () => `api/questions/sizes`,
+			providesTags: ['Questions'],
+		}),
 		addQuestion: build.mutation({
 			query: (body: Omit<Question, 'id'>) => ({
 				url: 'javascriptQuestions',
@@ -31,7 +34,7 @@ export const questionsApi = createApi({
 			invalidatesTags: [{ type: 'Questions', id: 'LIST' }],
 		}),
 		editQuestion: build.mutation({
-			query: ({id, body}) => ({
+			query: ({ id, body }) => ({
 				url: `javascriptQuestions/${id}`,
 				method: 'PATCH',
 				body,
@@ -50,7 +53,8 @@ export const questionsApi = createApi({
 
 export const {
 	useGetQuestionsQuery,
+	useGetQuestionsListsSizeQuery,
 	useAddQuestionMutation,
 	useDeleteQuestionMutation,
-    useEditQuestionMutation,
+	useEditQuestionMutation,
 } = questionsApi;
