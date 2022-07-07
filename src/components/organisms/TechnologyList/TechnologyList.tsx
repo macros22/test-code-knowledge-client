@@ -31,7 +31,7 @@ export const TechnologyList = ({
 						/>
 						<div className={styles.cardContainer}>
 							<Button appearance="ghost">Show questions</Button>
-							<Tag size="lg" className={styles.cardTag} color="primary">
+							<Tag size="lg" className={styles.cardTag} color="error">
 								{questionsListsSizes[technology.name.toLocaleLowerCase()]}
 							</Tag>
 							<Button
