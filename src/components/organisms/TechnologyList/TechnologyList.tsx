@@ -20,22 +20,25 @@ const technologyList = [
 	},
 ];
 
-
-export const TechnologyList = ({questionsListsSizes}: TechnologyListProps): JSX.Element => {
-	console.log(questionsListsSizes)
+export const TechnologyList = ({
+	questionsListsSizes,
+}: TechnologyListProps): JSX.Element => {
+	console.log(questionsListsSizes);
 	return (
 		<div className={styles.wrapper}>
 			{technologyList.map((technology) => {
 				return (
 					<div className={styles.card}>
-							<h4>Questions: {questionsListsSizes[technology.name.toLocaleLowerCase()]}</h4>
+						<h4>
+							Questions:{' '}
+							{questionsListsSizes[technology.name.toLocaleLowerCase()]}
+						</h4>
 						<Image
 							className={styles.img}
 							layout="responsive"
 							src={technology.src}
 							alt={technology.name}
 						/>
-					
 					</div>
 				);
 			})}

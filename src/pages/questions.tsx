@@ -5,6 +5,9 @@ import { useGetQuestionsQuery} from 'store/questions.api';
 
 const QuestionsPage = () => {
 	const { data: questions = [], isLoading } = useGetQuestionsQuery('');
+
+	if (isLoading) return <h1>Loading...</h1>;
+
 	return (
 		<>
 			<QuestionsList questions={questions} />

@@ -6,7 +6,6 @@ import { Code, Divider } from 'components';
 import { useDeleteQuestionMutation } from 'store/questions.api';
 import { HiPencil, HiChevronDown } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
-import { answers } from '../Test/Test';
 import { Answer } from 'interfaces/questions.interface';
 
 export const QuestionCard = ({

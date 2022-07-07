@@ -8,6 +8,8 @@ const TestResultPage: React.FC = () => {
 	const { data: questions = [], isLoading } =
 		useGetQuestionsQuery(questionsAmount);
 
+	if (isLoading) return <h1>Loading...</h1>;
+
 	return (
 		<>
 			{questions && questions.length && (
