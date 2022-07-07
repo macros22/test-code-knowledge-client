@@ -9,6 +9,8 @@ export * from "./atoms/Tag/Tag";
 export * from "./atoms/Textarea/Textarea";
 export * from "./atoms/WithLabel/WithLabel";
 export * from "./molecules/Code/Code";
+export * from "./molecules/Select/Select/Select";
+export * from "./molecules/Select/Option/Option";
 export * from "./organisms/TestResult/TestResult";
 export * from "./organisms/Footer/Footer";
 export * from "./organisms/Header/Header";

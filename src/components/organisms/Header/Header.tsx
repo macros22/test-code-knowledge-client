@@ -3,6 +3,8 @@ import Link from "next/link";
 import cn from "clsx";
 import { HeaderProps } from "./Header.props";
 import styles from "./Header.module.scss";
+import { Select, Option } from "components";
+import { technologyList } from "constants/technologies";
 
 export const Header = ({}: HeaderProps): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -36,14 +38,26 @@ export const Header = ({}: HeaderProps): JSX.Element => {
           >
             <ul>
               <li>
-                <Link href="/questions">
-                  <a className={styles.link}>All Questions</a>
-                </Link>
+              <Select placeholder={"Questions"}>
+                {technologyList.map((technology) => {
+                  return (
+                    <Option path={`/questions`} key={technology.name} value={technology.name.toLowerCase()}>
+                      {technology.name}
+                    </Option>
+                  );
+                })}
+              </Select>
               </li>
               <li>
-                <Link href="/test">
-                  <a className={styles.link}>Test</a>
-                </Link>
+              <Select placeholder={"Test"}>
+                {technologyList.map((technology) => {
+                  return (
+                    <Option path={`/test`} key={technology.name} value={technology.name.toLowerCase()}>
+                      {technology.name}
+                    </Option>
+                  );
+                })}
+              </Select>
               </li>
             </ul>
           </nav>

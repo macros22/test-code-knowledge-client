@@ -1,30 +1,22 @@
 import Image from 'next/image';
-import JavaScriptLogo from 'assets/pictures/js-logo.png';
-import TypeScriptLogo from 'assets/pictures/ts-logo.png';
-import NodeJsLogo from 'assets/pictures/node-js-logo.png';
 import styles from './TechnologyList.module.scss';
 import { TechnologyListProps } from './TechnologyList.props';
 import { Button } from 'components/atoms/Button/Button';
 import Tag from 'components/atoms/Tag/Tag';
+import { useRouter } from 'next/router';
+import { technologyList } from 'constants/technologies';
 
-const technologyList = [
-	{
-		name: 'JavaScript',
-		src: JavaScriptLogo,
-	},
-	{
-		name: 'TypeScript',
-		src: TypeScriptLogo,
-	},
-	{
-		name: 'NodeJs',
-		src: NodeJsLogo,
-	},
-];
+
 
 export const TechnologyList = ({
 	questionsListsSizes,
 }: TechnologyListProps): JSX.Element => {
+	const router = useRouter();
+
+	const passTestButtonHandler = (technology) => () => {
+		router.push(`/test/${technology}`);
+	};
+
 	return (
 		<div className={styles.wrapper}>
 			{technologyList.map((technology) => {
@@ -42,7 +34,11 @@ export const TechnologyList = ({
 							<Tag size="lg" className={styles.cardTag} color="primary">
 								{questionsListsSizes[technology.name.toLocaleLowerCase()]}
 							</Tag>
-							<Button className={styles.cardButton} appearance="primary">
+							<Button
+								onClick={passTestButtonHandler(technology.name.toLowerCase())}
+								className={styles.cardButton}
+								appearance="primary"
+							>
 								Pass the test
 							</Button>
 						</div>

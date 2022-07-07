@@ -1,46 +1,45 @@
-@import'assets/mixins.scss';
+@import 'assets/mixins.scss';
 
 .title {
-  display: flex;
-  height: 70px;
-  padding: 0.85rem 0;
-  vertical-align: baseline;
+	display: flex;
+	height: 70px;
+	padding: 0.85rem 0;
+	vertical-align: baseline;
 }
 
 .title > h1 {
-  margin: 0;
+	margin: 0;
 }
 
 .addQuestionButton {
-  margin-left: auto;
-  @include iconWithBorder;
+	margin-left: auto;
+	@include iconWithBorder;
 }
-
 
 .container {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+	display: flex;
+	flex-direction: row;
+	gap: 1.5rem;
 }
 
-.wrapper { 
-width: 100%;
+.wrapper {
+	width: 100%;
+	overflow: hidden;
 }
 
 .questionCard {
-  width: max-content;
+	width: max-content;
 }
 
-
 .column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: 100%;
 }
 
 @media (max-width: 1048px) {
-  .container {
-    flex-direction: column;
-  }
+	.container {
+		flex-direction: column;
+	}
 }

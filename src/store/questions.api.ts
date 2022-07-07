@@ -11,8 +11,8 @@ export const questionsApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
 		getQuestions: build.query({
-			query: (limit = '') =>
-				`javascriptQuestions?${limit && `_limit=${limit}`}`,
+			query: ({technology = 'javascript', limit = ''}) =>
+				`${technology}Questions?${limit && `_limit=${limit}`}`,
 			providesTags: (result) =>
 				result
 					? [
