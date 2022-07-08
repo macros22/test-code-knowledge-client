@@ -10,6 +10,10 @@ export const TechnologyList = ({
 }: TechnologyListProps): JSX.Element => {
 	const router = useRouter();
 
+	const showQuestionsButtonHandler = (technology: string) => () => {
+		router.push(`/questions/${technology}`);
+	};
+
 	const passTestButtonHandler = (technology: string) => () => {
 		const technologyQuestionsAmount = questionsListsSizes[technology];
 		const defaultQuestionsForTestSize = 5;
@@ -29,7 +33,6 @@ export const TechnologyList = ({
 						<h3 className={styles.cardTitle}>{technology.name}</h3>
 						<Image
 							className={styles.img}
-							// layout="responsive"
 							src={technology.src}
 							alt={technology.name}
 							width={280}
@@ -37,7 +40,14 @@ export const TechnologyList = ({
 						/>
 						<div className={styles.cardContainer}>
 							<div className={styles.cardQuestionsInfo}>
-								<Button appearance="ghost">Show questions</Button>
+								<Button
+									onClick={showQuestionsButtonHandler(
+										technology.name.toLowerCase()
+									)}
+									appearance="ghost"
+								>
+									Show questions
+								</Button>
 								<Tag size="lg" className={styles.cardTag} color="error">
 									{questionsListsSizes[technology.name.toLowerCase()]}
 								</Tag>
