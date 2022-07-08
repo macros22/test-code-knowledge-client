@@ -1,30 +1,59 @@
 import React from 'react';
-// import { withLayout } from "layouts/MainLayout";
-// import { useAppDispatch, useAppSelector } from "store/hooks";
 import { Test } from 'components';
 import { useGetQuestionsQuery } from 'store/questions.api';
 import { withLayout } from 'layouts/MainLayout';
-import { useRouter } from 'next/router';
+import { GetServerSideProps} from 'next';
+import { useSessionStorage } from 'hooks';
+import { questionsInStorageName } from 'constants/names.storage';
 
-const TestPage: React.FC = () => {
-	const router = useRouter();
-	const { technology } = router.query;
+interface TestPageProps extends Record<string, unknown> {
+	technology: string;
+	questionsAmount: number;
+}
 
-	const questionsAmount = 1;
+const TestPage = ({
+	technology,
+	questionsAmount,
+}: TestPageProps): JSX.Element => {
 	const { data: questions = [], isLoading } = useGetQuestionsQuery({
 		technology,
 		limit: questionsAmount,
 	});
 
+	// Save questions in storage to get them in TestResult page.
+	const [_, setQuestionsInStorage] = useSessionStorage(
+		questionsInStorageName,
+		[]
+	);
+
+	React.useEffect(()=> {
+		setQuestionsInStorage(questions)
+	}, [questions.length])
+
+
 	if (isLoading) return <h1>Loading...</h1>;
 
 	return (
 		<>
-			{questions && questions.length && (
-				<Test questions={questions} questionsAmount={questionsAmount} />
+			{questions && questions.length && technology &&(
+				<Test questions={questions} technology={technology} />
 			)}
 		</>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
+	context
+) => {
+	const questionsAmount: number = Number(context.query.questionsAmount) || 1;
+
+	let technology: string | string[] = context.query.technology || 'javascript';
+
+	if (Array.isArray(technology)) {
+		technology = technology[0];
+	}
+
+	return { props: { questionsAmount, technology } };
 };
 
 export default withLayout(TestPage);

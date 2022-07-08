@@ -1,11 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
-
 import { Answer, Question } from 'interfaces/questions.interface';
-
 import { Button, Checkbox, Code, Divider } from 'components';
-import { useGetQuestionsQuery } from 'store/questions.api';
 import { useSessionStorage } from 'hooks';
 import {
 	checkedAnswersName,
@@ -55,14 +52,11 @@ const AnswersList = ({
 };
 
 interface TestProps {
-	questionsAmount: number;
+	technology: string;
 	questions: Question[];
 }
 
-export const Test = ({
-	questionsAmount,
-	questions,
-}: TestProps): JSX.Element => {
+export const Test = ({ technology, questions }: TestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -74,7 +68,7 @@ export const Test = ({
 		[]
 	);
 
-	const initialQuestionsStatus = new Array(questionsAmount).fill(false);
+	const initialQuestionsStatus = new Array(questions.length).fill(false);
 	initialQuestionsStatus[currentQuestion] = true;
 	const [questionsStatus, setQuestionsStatus] = React.useState<boolean[]>(
 		initialQuestionsStatus
@@ -82,22 +76,27 @@ export const Test = ({
 
 	React.useEffect(() => {
 		// Fill checked answers array.
-		if (!checkedAnswers.length) {
-			const checkedAnswersInitial = new Array(questionsAmount);
-			for (let i = 0; i < questionsAmount; ++i) {
-				const answersAmount = questions[i].answersList.length;
-				checkedAnswersInitial[i] = new Array(answersAmount).fill(false);
-			}
 
-			setCheckedAnswers(checkedAnswersInitial);
+		const checkedAnswersInitial = new Array(questions.length);
+		for (let i = 0; i < questions.length; ++i) {
+			const answersAmount = questions[i].answersList.length;
+			checkedAnswersInitial[i] = new Array(answersAmount).fill(false);
 		}
 
-		return () => setCurrentQuestion(0);
+		setCheckedAnswers(checkedAnswersInitial);
 	}, []);
+
+	React.useEffect(() => {
+		console.log(questions.length);
+	}, [questions.length]);
 
 	React.useEffect(() => {
 		window.onpopstate = () => {
 			router.push('/');
+		};
+
+		return () => {
+			setCurrentQuestion(0);
 		};
 	}, []);
 
@@ -117,7 +116,7 @@ export const Test = ({
 	};
 
 	const endTestHandler = () => {
-		router.push('/testResult');
+		router.push(`/testResult/${technology}`);
 	};
 
 	return (

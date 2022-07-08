@@ -5,8 +5,7 @@ import cn from 'clsx';
 import styles from './TestResult.module.scss';
 import { Answer, Question } from 'interfaces/questions.interface';
 
-import Tag from 'components/atoms/Tag/Tag';
-import { Button, Card, Checkbox, Code, Divider } from 'components';
+import { Button, Card, Checkbox, Code, Divider, Tag } from 'components';
 import { useLocalStorage, useSessionStorage } from 'hooks';
 import {
 	checkedAnswersName,
@@ -93,19 +92,19 @@ const AnswersListResult: React.FC<IProps> = ({
 };
 
 interface TestResultProps {
-	questionsAmount: number;
+	technology: string;
 	questions: Question[];
 }
 
 export const TestResult = ({
-	questionsAmount,
 	questions,
+	technology
 }: TestResultProps): JSX.Element => {
+	
+	
 	// Before checking all user answers are true.
-	// const userAnswersStatus = new Array(questionsAmount).fill(true);
-
 	const [userAnswersStatus, setUserAnswersStatus] = React.useState<boolean[]>(
-		new Array(questionsAmount).fill(true)
+		new Array(questions.length).fill(true)
 	);
 	const changeUserAnswerStatus = (questionIndex: number) => {
 		setUserAnswersStatus((userAnswersStatus) => {
@@ -122,7 +121,7 @@ export const TestResult = ({
 	);
 
 	React.useEffect(() => {
-		for (let i = 0; i < questionsAmount; ++i) {
+		for (let i = 0; i < questions.length; ++i) {
 			const questionAnswersStatus = questions[i].answersList.map(
 				(answer) => answer.isCorrect
 			);
@@ -146,7 +145,7 @@ export const TestResult = ({
 	const router = useRouter();
 
 	const newTestButtonHandler = () => {
-		router.push('/test');
+		router.push(`/test/${technology}?questionsAmount=${questions.length}`);
 	};
 
 	return (

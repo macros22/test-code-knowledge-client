@@ -1,20 +1,21 @@
 import Image from 'next/image';
 import styles from './TechnologyList.module.scss';
 import { TechnologyListProps } from './TechnologyList.props';
-import { Button } from 'components/atoms/Button/Button';
-import Tag from 'components/atoms/Tag/Tag';
 import { useRouter } from 'next/router';
 import { technologyList } from 'constants/technologies';
-
-
+import { Button, Tag } from 'components';
 
 export const TechnologyList = ({
 	questionsListsSizes,
 }: TechnologyListProps): JSX.Element => {
 	const router = useRouter();
 
-	const passTestButtonHandler = (technology) => () => {
-		router.push(`/test/${technology}`);
+	const passTestButtonHandler = (technology:string) => () => {
+		const technologyQuestionsAmount = questionsListsSizes[technology];
+		const defaultQuestionsForTestSize = 5;
+
+		const sizeInQuery = technologyQuestionsAmount < defaultQuestionsForTestSize ? technologyQuestionsAmount : defaultQuestionsForTestSize;
+		router.push(`/test/${technology}?questionsAmount=${sizeInQuery}`);
 	};
 
 	return (
@@ -35,7 +36,7 @@ export const TechnologyList = ({
 						<div className={styles.cardQuestionsInfo}>
 							<Button appearance="ghost">Show questions</Button>
 							<Tag size="lg" className={styles.cardTag} color="error">
-								{questionsListsSizes[technology.name.toLocaleLowerCase()]}
+								{questionsListsSizes[technology.name.toLowerCase()]}
 							</Tag>
 							</div>
 							<Button

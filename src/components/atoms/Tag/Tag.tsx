@@ -2,7 +2,7 @@ import { TagProps } from "./Tag.props";
 import styles from "./Tag.module.scss";
 import cn from "clsx";
 
-const Tag = ({
+export const Tag = ({
   size = "md",
   children,
   color = "ghost",
@@ -30,5 +30,3 @@ const Tag = ({
     </div>
   );
 };
-
-export default Tag;
