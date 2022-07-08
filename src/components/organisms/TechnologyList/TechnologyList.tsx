@@ -10,11 +10,14 @@ export const TechnologyList = ({
 }: TechnologyListProps): JSX.Element => {
 	const router = useRouter();
 
-	const passTestButtonHandler = (technology:string) => () => {
+	const passTestButtonHandler = (technology: string) => () => {
 		const technologyQuestionsAmount = questionsListsSizes[technology];
 		const defaultQuestionsForTestSize = 5;
 
-		const sizeInQuery = technologyQuestionsAmount < defaultQuestionsForTestSize ? technologyQuestionsAmount : defaultQuestionsForTestSize;
+		const sizeInQuery =
+			technologyQuestionsAmount < defaultQuestionsForTestSize
+				? technologyQuestionsAmount
+				: defaultQuestionsForTestSize;
 		router.push(`/test/${technology}?questionsAmount=${sizeInQuery}`);
 	};
 
@@ -33,11 +36,11 @@ export const TechnologyList = ({
 							height={280}
 						/>
 						<div className={styles.cardContainer}>
-						<div className={styles.cardQuestionsInfo}>
-							<Button appearance="ghost">Show questions</Button>
-							<Tag size="lg" className={styles.cardTag} color="error">
-								{questionsListsSizes[technology.name.toLowerCase()]}
-							</Tag>
+							<div className={styles.cardQuestionsInfo}>
+								<Button appearance="ghost">Show questions</Button>
+								<Tag size="lg" className={styles.cardTag} color="error">
+									{questionsListsSizes[technology.name.toLowerCase()]}
+								</Tag>
 							</div>
 							<Button
 								onClick={passTestButtonHandler(technology.name.toLowerCase())}

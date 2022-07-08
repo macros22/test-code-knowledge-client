@@ -1,11 +1,10 @@
 import React from 'react';
 import { withLayout } from 'layouts/MainLayout';
 import { QuestionsList } from 'components';
-import { useGetQuestionsQuery} from 'store/questions.api';
+import { useGetQuestionsQuery } from 'store/questions.api';
 import { useRouter } from 'next/router';
 
 const QuestionsPage = () => {
-
 	const router = useRouter();
 	const { technology } = router.query;
 

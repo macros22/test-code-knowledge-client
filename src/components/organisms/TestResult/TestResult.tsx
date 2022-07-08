@@ -62,12 +62,6 @@ const AnswersListResult: React.FC<IProps> = ({
 		}
 	};
 
-	React.useEffect(() => {
-		return () => {
-			// dispatch(resetState());
-		};
-	}, []);
-
 	return (
 		<>
 			<div className={styles.answersList}>
@@ -98,10 +92,8 @@ interface TestResultProps {
 
 export const TestResult = ({
 	questions,
-	technology
+	technology,
 }: TestResultProps): JSX.Element => {
-	
-	
 	// Before checking all user answers are true.
 	const [userAnswersStatus, setUserAnswersStatus] = React.useState<boolean[]>(
 		new Array(questions.length).fill(true)
