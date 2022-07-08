@@ -25,15 +25,19 @@ export const TechnologyList = ({
 						<h3 className={styles.cardTitle}>{technology.name}</h3>
 						<Image
 							className={styles.img}
-							layout="responsive"
+							// layout="responsive"
 							src={technology.src}
 							alt={technology.name}
+							width={280}
+							height={280}
 						/>
 						<div className={styles.cardContainer}>
+						<div className={styles.cardQuestionsInfo}>
 							<Button appearance="ghost">Show questions</Button>
 							<Tag size="lg" className={styles.cardTag} color="error">
 								{questionsListsSizes[technology.name.toLocaleLowerCase()]}
 							</Tag>
+							</div>
 							<Button
 								onClick={passTestButtonHandler(technology.name.toLowerCase())}
 								className={styles.cardButton}
