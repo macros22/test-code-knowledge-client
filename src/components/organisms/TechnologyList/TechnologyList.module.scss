@@ -1,34 +1,30 @@
 @import 'assets/screen-sizes';
 
-
 .wrapper {
 	display: flex;
 	flex-direction: row;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 	gap: 1.5rem;
 	overflow: hidden;
 	justify-content: center;
-	// text-align: center;
 }
 
 .card {
-	
-  border-radius: var(--border-radius);
-
-  // min-width: 180px;
-	// min-height: 180px;
-
-	// max-width: 90vw;
-	// max-height: 90vw;
+	border-radius: var(--border-radius);
 	width: 280px;
 
-	&Title{
+	&:hover {
+		-webkit-box-shadow: 0px 25px 62px -33px rgba(34, 60, 80, 0.2);
+		-moz-box-shadow: 0px 25px 62px -33px rgba(34, 60, 80, 0.2);
+		box-shadow: 0px 25px 62px -33px rgba(34, 60, 80, 0.2);
+	}
+	
+
+	&Title {
 		margin-bottom: 0.3rem;
-		// display: inline-block;
 	}
 
-	&Container{
-		
+	&Container {
 		padding: 1rem;
 		border-bottom: var(--border);
 		border-left: var(--border);
@@ -42,33 +38,27 @@
 		flex-direction: row;
 	}
 
-	&Tag{
-		// display: inline-block;
+	&Tag {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
-		margin-left: .75rem;
+		margin-left: 0.75rem;
 	}
 
-	&Button{
+	&Button {
 		display: block;
 		width: 100%;
-		margin-top: .75rem;
+		margin-top: 0.75rem;
 	}
 }
 
-
-
-
-.img{
-  border-top-left-radius: var(--border-radius);
+.img {
+	border-top-left-radius: var(--border-radius);
 	border-top-right-radius: var(--border-radius);
 }
 
-
-
 @media (max-width: $_md) {
-  .wrapper {
-    // flex-direction: column;
+	.wrapper {
+		// flex-direction: column;
 		justify-content: center;
-  }
+	}
 }
