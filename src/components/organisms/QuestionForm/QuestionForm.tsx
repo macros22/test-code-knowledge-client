@@ -9,6 +9,8 @@ import {
 	useAddQuestionMutation,
 	useEditQuestionMutation,
 } from 'store/questions.api';
+import { categoryName } from 'constants/names.storage';
+import { useSessionStorage } from 'hooks';
 
 interface UserAnswer {
 	answer: string;
@@ -33,6 +35,7 @@ export const QuestionForm = ({
 }: QuestionFormProps): JSX.Element => {
 	const [question, setQuestion] = React.useState<string>(questionItem.question);
 	const [questionError, setQuestionError] = React.useState<string>('');
+	const [category, _] = useSessionStorage(categoryName, 'javascript');
 
 	const [codeExample, setCodeExample] = React.useState<string>(
 		questionItem.codeExample
@@ -98,6 +101,7 @@ export const QuestionForm = ({
 
 		const questionPayload = {
 			question,
+			category,
 			codeExample,
 			answers: answers.map((answer) => ({
 				answer: answer.answer,

@@ -5,6 +5,7 @@ export interface Answer {
 
 export interface Question {
     id: string;
+    category: string;
     question: string;
     codeExample: string;
     answers: Answer[];

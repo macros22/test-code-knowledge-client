@@ -7,7 +7,8 @@ import { Card, Modal, QuestionCard, QuestionForm } from 'components';
 import { HiPlus } from 'react-icons/hi';
 
 const exampleQuestion: Question = {
-	id: '9sd asdasda dasd999',
+	id: '9sdasdasdadasd999',
+	category: 'category',
 	question: 'What will be output to the console?',
 	codeExample: `const example = () => {
     return ExampleCode;

@@ -52,11 +52,10 @@ const AnswersList = ({
 };
 
 interface TestProps {
-	category: string;
 	questions: Question[];
 }
 
-export const Test = ({ category, questions }: TestProps): JSX.Element => {
+export const Test = ({ questions }: TestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -87,10 +86,6 @@ export const Test = ({ category, questions }: TestProps): JSX.Element => {
 	}, []);
 
 	React.useEffect(() => {
-		console.log(questions.length);
-	}, [questions.length]);
-
-	React.useEffect(() => {
 		window.onpopstate = () => {
 			router.push('/');
 		};
@@ -101,7 +96,6 @@ export const Test = ({ category, questions }: TestProps): JSX.Element => {
 	}, []);
 
 	// Handlers.
-
 	const nextButtonHandler = () => {
 		if (
 			currentQuestion < questions.length - 1 &&
@@ -116,7 +110,10 @@ export const Test = ({ category, questions }: TestProps): JSX.Element => {
 	};
 
 	const endTestHandler = () => {
-		router.push(`/testResult/${category}`);
+		if (checkedAnswers[currentQuestion].indexOf(true) !== -1) {
+			// router.push(`/testResult/${category}`);
+			router.push(`/testResult`);
+		}
 	};
 
 	return (

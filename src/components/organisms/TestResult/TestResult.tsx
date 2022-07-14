@@ -8,6 +8,7 @@ import { Answer, Question } from 'interfaces/questions.interface';
 import { Button, Card, Checkbox, Code, Divider, Tag } from 'components';
 import { useLocalStorage, useSessionStorage } from 'hooks';
 import {
+	categoryName,
 	checkedAnswersName,
 	currentQuestionIndexName,
 } from 'constants/names.storage';
@@ -86,14 +87,14 @@ const AnswersListResult: React.FC<IProps> = ({
 };
 
 interface TestResultProps {
-	category: string;
+	
 	questions: Question[];
 }
 
 export const TestResult = ({
 	questions,
-	category,
 }: TestResultProps): JSX.Element => {
+
 	// Before checking all user answers are true.
 	const [userAnswersStatus, setUserAnswersStatus] = React.useState<boolean[]>(
 		new Array(questions.length).fill(true)
@@ -135,9 +136,12 @@ export const TestResult = ({
 	}, []);
 
 	const router = useRouter();
-
+	const [category, _] = useSessionStorage(categoryName, '');
+	
 	const newTestButtonHandler = () => {
-		router.push(`/test/${category}?questionsAmount=${questions.length}`);
+		if(category) {
+			router.push(`/test/${category}?questionsAmount=${questions.length}`);
+		}
 	};
 
 	return (

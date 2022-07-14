@@ -29,7 +29,7 @@ export const questionsApi = createApi({
 		}),
 		addQuestion: build.mutation({
 			query: (body: Omit<Question, 'id'>) => ({
-				url: '',
+				url: 'create',
 				method: 'POST',
 				body,
 			}),

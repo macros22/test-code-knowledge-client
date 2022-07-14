@@ -4,12 +4,24 @@ import { useGetQuestionsQuery } from 'store/questions.api';
 import { withLayout } from 'layouts/MainLayout';
 import { GetServerSideProps } from 'next';
 import { useSessionStorage } from 'hooks';
-import { questionsInStorageName } from 'constants/names.storage';
+import { categoryName, questionsInStorageName } from 'constants/names.storage';
+import { getQueryParametr } from 'helpers/get-param-from-query';
 
 interface TestPageProps extends Record<string, unknown> {
 	category: string;
 	questionsAmount: number;
 }
+
+export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
+	context
+) => {
+	const questionsAmount =
+		Number(getQueryParametr(context, 'questionsAmount')) || 1;
+
+	const category = getQueryParametr(context, 'category') || 'javascript';
+	return { props: { category, questionsAmount } };
+};
+
 
 const TestPage = ({
 	category,
@@ -20,11 +32,21 @@ const TestPage = ({
 		limit: questionsAmount,
 	});
 
+	const [_, setCategoryInStorage] = useSessionStorage(
+		categoryName,
+		category
+	);
+
+	React.useEffect(() => {
+		setCategoryInStorage(category);
+	}, [category])
+
 	// Save questions in storage to get them in TestResult page.
-	const [_, setQuestionsInStorage] = useSessionStorage(
+	const [__, setQuestionsInStorage] = useSessionStorage(
 		questionsInStorageName,
 		[]
 	);
+
 
 	React.useEffect(() => {
 		setQuestionsInStorage(questions);
@@ -34,25 +56,11 @@ const TestPage = ({
 
 	return (
 		<>
-			{questions && questions.length && category && (
-				<Test questions={questions} category={category} />
+			{questions && questions.length && (
+				<Test questions={questions}/>
 			)}
 		</>
 	);
-};
-
-export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
-	context
-) => {
-	const questionsAmount: number = Number(context.query.questionsAmount) || 1;
-
-	let category: string | string[] = context.query.category || 'javascript';
-
-	if (Array.isArray(category)) {
-		category = category[0];
-	}
-
-	return { props: { questionsAmount, category } };
 };
 
 export default withLayout(TestPage);
