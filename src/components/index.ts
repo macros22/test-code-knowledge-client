@@ -19,4 +19,4 @@ export * from "./organisms/QuestionForm/QuestionForm";
 export * from "./organisms/QuestionsList/QuestionsList";
 export * from "./organisms/Test/Test";
 export * from "./organisms/TestResult/TestResult";
-export * from "./organisms/TechnologyList/TechnologyList";
+export * from "./organisms/Categories/Categories";

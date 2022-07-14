@@ -1,40 +1,40 @@
 import Image from 'next/image';
-import styles from './TechnologyList.module.scss';
-import { TechnologyListProps } from './TechnologyList.props';
+import styles from './Categories.module.scss';
+import { CategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
-import { technologyList } from 'constants/technologies';
+import { categories } from 'constants/categories';
 import { Button, Tag } from 'components';
 
-export const TechnologyList = ({
+export const Categories = ({
 	questionsListsSizes,
-}: TechnologyListProps): JSX.Element => {
+}: CategoriesProps): JSX.Element => {
 	const router = useRouter();
 
-	const showQuestionsButtonHandler = (technology: string) => () => {
-		router.push(`/questions/${technology}`);
+	const showQuestionsButtonHandler = (category: string) => () => {
+		router.push(`/questions/${category}`);
 	};
 
-	const passTestButtonHandler = (technology: string) => () => {
-		const technologyQuestionsAmount = questionsListsSizes[technology];
+	const passTestButtonHandler = (category: string) => () => {
+		const categoryQuestionsAmount = questionsListsSizes[category];
 		const defaultQuestionsForTestSize = 5;
 
 		const sizeInQuery =
-			technologyQuestionsAmount < defaultQuestionsForTestSize
-				? technologyQuestionsAmount
+			categoryQuestionsAmount < defaultQuestionsForTestSize
+				? categoryQuestionsAmount
 				: defaultQuestionsForTestSize;
-		router.push(`/test/${technology}?questionsAmount=${sizeInQuery}`);
+		router.push(`/test/${category}?questionsAmount=${sizeInQuery}`);
 	};
 
 	return (
 		<div className={styles.wrapper}>
-			{technologyList.map((technology) => {
+			{categories.map((category) => {
 				return (
 					<div className={styles.card}>
-						<h3 className={styles.cardTitle}>{technology.name}</h3>
+						<h3 className={styles.cardTitle}>{category.name}</h3>
 						<Image
 							className={styles.img}
-							src={technology.src}
-							alt={technology.name}
+							src={category.src}
+							alt={category.name}
 							width={280}
 							height={280}
 						/>
@@ -42,18 +42,18 @@ export const TechnologyList = ({
 							<div className={styles.cardQuestionsInfo}>
 								<Button
 									onClick={showQuestionsButtonHandler(
-										technology.name.toLowerCase()
+										category.name.toLowerCase()
 									)}
 									appearance="ghost"
 								>
 									Show questions
 								</Button>
 								<Tag size="lg" className={styles.cardTag} color="error">
-									{questionsListsSizes[technology.name.toLowerCase()]}
+									{questionsListsSizes[category.name.toLowerCase()]}
 								</Tag>
 							</div>
 							<Button
-								onClick={passTestButtonHandler(technology.name.toLowerCase())}
+								onClick={passTestButtonHandler(category.name.toLowerCase())}
 								className={styles.cardButton}
 								appearance="primary"
 							>

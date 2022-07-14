@@ -28,7 +28,7 @@ export const QuestionCard = ({
 
 	React.useEffect(() => {
 		setCorrectAnswers(
-			question.answersList.filter((answer) => answer.isCorrect)
+			question.answers.filter((answer) => answer.isCorrect)
 		);
 	}, []);
 

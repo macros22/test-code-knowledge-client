@@ -86,13 +86,13 @@ const AnswersListResult: React.FC<IProps> = ({
 };
 
 interface TestResultProps {
-	technology: string;
+	category: string;
 	questions: Question[];
 }
 
 export const TestResult = ({
 	questions,
-	technology,
+	category,
 }: TestResultProps): JSX.Element => {
 	// Before checking all user answers are true.
 	const [userAnswersStatus, setUserAnswersStatus] = React.useState<boolean[]>(
@@ -114,7 +114,7 @@ export const TestResult = ({
 
 	React.useEffect(() => {
 		for (let i = 0; i < questions.length; ++i) {
-			const questionAnswersStatus = questions[i].answersList.map(
+			const questionAnswersStatus = questions[i].answers.map(
 				(answer) => answer.isCorrect
 			);
 			if (
@@ -137,7 +137,7 @@ export const TestResult = ({
 	const router = useRouter();
 
 	const newTestButtonHandler = () => {
-		router.push(`/test/${technology}?questionsAmount=${questions.length}`);
+		router.push(`/test/${category}?questionsAmount=${questions.length}`);
 	};
 
 	return (
@@ -172,7 +172,7 @@ export const TestResult = ({
 									<Code codeExample={questions[index].codeExample} />
 
 									<AnswersListResult
-										answers={questions[index].answersList}
+										answers={questions[index].answers}
 										currentQuestion={index}
 										checkedAnswers={checkedAnswers}
 									/>

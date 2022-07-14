@@ -4,7 +4,7 @@ import cn from 'clsx';
 import { HeaderProps } from './Header.props';
 import styles from './Header.module.scss';
 import { Select, Option } from 'components';
-import { technologyList } from 'constants/technologies';
+import { categories } from 'constants/categories';
 
 export const Header = ({}: HeaderProps): JSX.Element => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -39,7 +39,7 @@ export const Header = ({}: HeaderProps): JSX.Element => {
 							<ul>
 								<li>
 									<Select placeholder={'Questions'}>
-										{technologyList.map((technology) => {
+										{categories.map((technology) => {
 											return (
 												<Option
 													path={`/questions`}
@@ -54,7 +54,7 @@ export const Header = ({}: HeaderProps): JSX.Element => {
 								</li>
 								<li>
 									<Select placeholder={'Test'}>
-										{technologyList.map((technology) => {
+										{categories.map((technology) => {
 											return (
 												<Option
 													path={`/test`}

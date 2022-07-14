@@ -1,4 +1,4 @@
-import { TechnologyList } from 'components';
+import { Categories } from 'components';
 import { withLayout } from 'layouts/MainLayout';
 import { useGetQuestionsListsSizeQuery } from 'store/questions.api';
 
@@ -9,7 +9,7 @@ const Home = () => {
 
 	return (
 		<>
-			<TechnologyList questionsListsSizes={data.questionsListsSizes} />
+			<Categories questionsListsSizes={data} />
 		</>
 	);
 };

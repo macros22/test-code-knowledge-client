@@ -39,19 +39,19 @@ export const QuestionForm = ({
 	);
 	const [codeExampleError, setCodeExampleError] = React.useState<string>('');
 
-	const initialAnswers = questionItem.answersList.map((answer) => ({
+	const initialAnswers = questionItem.answers.map((answer) => ({
 		answer: answer.answer,
 		isChecked: answer.isCorrect,
 	}));
 	const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
 	const [answersErrors, setAnswersErrors] = React.useState<string[]>(
-		new Array(questionItem.answersList.length).fill('')
+		new Array(questionItem.answers.length).fill('')
 	);
 
 	const resetErrors = () => {
 		setQuestionError('');
 		setCodeExampleError('');
-		setAnswersErrors(new Array(questionItem.answersList.length).fill(''));
+		setAnswersErrors(new Array(questionItem.answers.length).fill(''));
 	};
 
 	const isValidForm = async () => {
@@ -99,7 +99,7 @@ export const QuestionForm = ({
 		const questionPayload = {
 			question,
 			codeExample,
-			answersList: answers.map((answer) => ({
+			answers: answers.map((answer) => ({
 				answer: answer.answer,
 				isCorrect: answer.isChecked,
 			})),

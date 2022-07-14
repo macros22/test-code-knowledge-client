@@ -7,12 +7,12 @@ import { Card, Modal, QuestionCard, QuestionForm } from 'components';
 import { HiPlus } from 'react-icons/hi';
 
 const exampleQuestion: Question = {
-	id: 9999,
+	id: '9sd asdasda dasd999',
 	question: 'What will be output to the console?',
 	codeExample: `const example = () => {
     return ExampleCode;
 }`,
-	answersList: [
+	answers: [
 		{ answer: 'first', isCorrect: true },
 		{ answer: 'second', isCorrect: false },
 		{ answer: 'third', isCorrect: false },

@@ -6,15 +6,17 @@ import { useRouter } from 'next/router';
 
 const QuestionsPage = () => {
 	const router = useRouter();
-	const { technology } = router.query;
+	const { category } = router.query;
 
 	const { data: questions = [], isLoading } = useGetQuestionsQuery({
-		technology,
-		limit: '',
+		category,
+		limit: 1,
 	});
+
 
 	if (isLoading) return <h1>Loading...</h1>;
 
+	
 	return (
 		<>
 			<QuestionsList questions={questions} />

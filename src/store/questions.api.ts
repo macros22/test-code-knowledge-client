@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Question } from 'interfaces/questions.interface';
 
-const baseUrl = 'https://code-knowledge-test-server.herokuapp.com/';
+const baseUrl = 'https://code-knowledge-prod-nodejs-express-ts-gsiguz.mo2.mogenius.io/api/questions/';
+// const baseUrl = 'http://localhost:3010/api/questions';
 
 type patchType = Omit<Question, 'id'>;
 
@@ -11,8 +12,9 @@ export const questionsApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
 		getQuestions: build.query({
-			query: ({technology = 'javascript', limit = ''}) =>
-				`${technology}Questions?${limit && `_limit=${limit}`}`,
+			query: ({category = 'javascript', limit = 0, skip = 0}) =>
+				// `${category}${limit && `?limit=${limit}`}${skip && `?skip=${skip}`}`,
+				`${category}`,
 			providesTags: (result) =>
 				result
 					? [
@@ -22,12 +24,12 @@ export const questionsApi = createApi({
 					: [{ type: 'Questions', id: 'LIST' }],
 		}),
 		getQuestionsListsSize: build.query({
-			query: () => `api/questions/sizes`,
+			query: () => ``,
 			providesTags: ['Questions'],
 		}),
 		addQuestion: build.mutation({
 			query: (body: Omit<Question, 'id'>) => ({
-				url: 'javascriptQuestions',
+				url: '',
 				method: 'POST',
 				body,
 			}),
@@ -35,15 +37,15 @@ export const questionsApi = createApi({
 		}),
 		editQuestion: build.mutation({
 			query: ({ id, body }) => ({
-				url: `javascriptQuestions/${id}`,
+				url: `${id}`,
 				method: 'PATCH',
 				body,
 			}),
 			invalidatesTags: [{ type: 'Questions', id: 'LIST' }],
 		}),
 		deleteQuestion: build.mutation({
-			query: (id: number) => ({
-				url: `javascriptQuestions/${id}`,
+			query: (id: string) => ({
+				url: `${id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: [{ type: 'Questions', id: 'LIST' }],

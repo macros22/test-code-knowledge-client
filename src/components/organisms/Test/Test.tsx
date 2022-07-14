@@ -52,11 +52,11 @@ const AnswersList = ({
 };
 
 interface TestProps {
-	technology: string;
+	category: string;
 	questions: Question[];
 }
 
-export const Test = ({ technology, questions }: TestProps): JSX.Element => {
+export const Test = ({ category, questions }: TestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -79,7 +79,7 @@ export const Test = ({ technology, questions }: TestProps): JSX.Element => {
 
 		const checkedAnswersInitial = new Array(questions.length);
 		for (let i = 0; i < questions.length; ++i) {
-			const answersAmount = questions[i].answersList.length;
+			const answersAmount = questions[i].answers.length;
 			checkedAnswersInitial[i] = new Array(answersAmount).fill(false);
 		}
 
@@ -116,7 +116,7 @@ export const Test = ({ technology, questions }: TestProps): JSX.Element => {
 	};
 
 	const endTestHandler = () => {
-		router.push(`/testResult/${technology}`);
+		router.push(`/testResult/${category}`);
 	};
 
 	return (
@@ -151,7 +151,7 @@ export const Test = ({ technology, questions }: TestProps): JSX.Element => {
 								checkedAnswers={checkedAnswers}
 								currentQuestion={currentQuestion}
 								setCheckedAnswers={setCheckedAnswers}
-								answers={questions[currentQuestion].answersList}
+								answers={questions[currentQuestion].answers}
 							/>
 						)}
 					</div>

@@ -4,8 +4,8 @@ export interface Answer {
 }
 
 export interface Question {
-    id: number;
+    id: string;
     question: string;
     codeExample: string;
-    answersList: Answer[];
+    answers: Answer[];
 }

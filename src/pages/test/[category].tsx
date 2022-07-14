@@ -2,21 +2,21 @@ import React from 'react';
 import { Test } from 'components';
 import { useGetQuestionsQuery } from 'store/questions.api';
 import { withLayout } from 'layouts/MainLayout';
-import { GetServerSideProps} from 'next';
+import { GetServerSideProps } from 'next';
 import { useSessionStorage } from 'hooks';
 import { questionsInStorageName } from 'constants/names.storage';
 
 interface TestPageProps extends Record<string, unknown> {
-	technology: string;
+	category: string;
 	questionsAmount: number;
 }
 
 const TestPage = ({
-	technology,
+	category,
 	questionsAmount,
 }: TestPageProps): JSX.Element => {
 	const { data: questions = [], isLoading } = useGetQuestionsQuery({
-		technology,
+		category,
 		limit: questionsAmount,
 	});
 
@@ -26,17 +26,16 @@ const TestPage = ({
 		[]
 	);
 
-	React.useEffect(()=> {
-		setQuestionsInStorage(questions)
-	}, [questions.length])
-
+	React.useEffect(() => {
+		setQuestionsInStorage(questions);
+	}, [questions.length]);
 
 	if (isLoading) return <h1>Loading...</h1>;
 
 	return (
 		<>
-			{questions && questions.length && technology &&(
-				<Test questions={questions} technology={technology} />
+			{questions && questions.length && category && (
+				<Test questions={questions} category={category} />
 			)}
 		</>
 	);
@@ -47,13 +46,13 @@ export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
 ) => {
 	const questionsAmount: number = Number(context.query.questionsAmount) || 1;
 
-	let technology: string | string[] = context.query.technology || 'javascript';
+	let category: string | string[] = context.query.category || 'javascript';
 
-	if (Array.isArray(technology)) {
-		technology = technology[0];
+	if (Array.isArray(category)) {
+		category = category[0];
 	}
 
-	return { props: { questionsAmount, technology } };
+	return { props: { questionsAmount, category } };
 };
 
 export default withLayout(TestPage);
