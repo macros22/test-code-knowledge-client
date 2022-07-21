@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 
 import {store} from 'store/store';
 import 'assets/globals.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
 

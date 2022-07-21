@@ -1,5 +1,5 @@
 import { Categories } from 'components';
-import { withLayout } from 'layouts/MainLayout';
+import { withLayout } from 'layouts';
 import { useGetQuestionsListsSizeQuery } from 'store/questions.api';
 
 const Home = () => {

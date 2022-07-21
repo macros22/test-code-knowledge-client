@@ -13,7 +13,6 @@ export * from "./molecules/Select/Select/Select";
 export * from "./molecules/Select/Option/Option";
 export * from "./organisms/TestResult/TestResult";
 export * from "./organisms/Footer/Footer";
-export * from "./organisms/Header/Header";
 export * from "./organisms/QuestionCard/QuestionCard";
 export * from "./organisms/QuestionForm/QuestionForm";
 export * from "./organisms/QuestionsList/QuestionsList";

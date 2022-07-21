@@ -2,7 +2,9 @@ import * as React from "react";
 import Head from "next/head";
 import styles from "./MainLayout.module.scss";
 import { MainLayoutProps } from "./MainLayout.props";
-import { Footer, Header } from "components";
+import { Footer } from "components";
+import { Header } from "layouts";
+
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
@@ -23,7 +25,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles.wrapper}>
-        <Header className={styles.header} />
+        <Header />
         <main className={styles.body}>{children}</main>
         <Footer className={styles.footer} />
       </div>

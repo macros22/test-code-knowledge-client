@@ -13,13 +13,14 @@ body {
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+	color: var(--text-color) !important;
+	text-decoration: none !important;
 }
 
 * {
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif !important;
+	
 }
 
 main {

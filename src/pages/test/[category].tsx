@@ -1,7 +1,7 @@
 import React from 'react';
 import { Test } from 'components';
 import { useGetQuestionsQuery } from 'store/questions.api';
-import { withLayout } from 'layouts/MainLayout';
+import { withLayout } from 'layouts';
 import { GetServerSideProps } from 'next';
 import { useSessionStorage } from 'hooks';
 import { categoryName, questionsInStorageName } from 'constants/names.storage';

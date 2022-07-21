@@ -1,5 +1,5 @@
 import React from 'react';
-import { withLayout } from 'layouts/MainLayout';
+import { withLayout } from 'layouts';
 import { QuestionsList } from 'components';
 import { useGetQuestionsQuery } from 'store/questions.api';
 import { GetServerSideProps } from 'next';
@@ -38,7 +38,7 @@ const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
 
 	return (
 		<>
-			<QuestionsList questions={questions} />
+			<QuestionsList withEdit={true} questions={questions} />
 		</>
 	);
 };

@@ -30,7 +30,7 @@ export const Categories = ({
 			{categories.map((category) => {
 				return (
 					<div className={styles.card}>
-						<h3 className={styles.cardTitle}>{category.name}</h3>
+						<h4 className={styles.cardTitle}>{category.name}</h4>
 						<Image
 							className={styles.img}
 							src={category.src}
