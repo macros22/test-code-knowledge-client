@@ -2,8 +2,7 @@ import * as React from "react";
 import Head from "next/head";
 import styles from "./MainLayout.module.scss";
 import { MainLayoutProps } from "./MainLayout.props";
-import { Footer } from "components";
-import { Header } from "layouts";
+import { Header, Footer } from "layouts";
 
 
 const MainLayout: React.FC<MainLayoutProps> = ({

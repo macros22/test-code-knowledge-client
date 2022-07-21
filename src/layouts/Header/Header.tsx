@@ -16,7 +16,7 @@ export const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           <Nav >
 
-            <NavDropdown title="Question" id="basic-nav-dropdown" >
+            <NavDropdown title="Questions" id="basic-nav-dropdown" >
               {categories.map((category) => {
                 return (
                   <NavDropdown.Item key={category.name}>
