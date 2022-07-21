@@ -3,7 +3,9 @@ import styles from './Categories.module.scss';
 import { CategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
 import { categories } from 'constants/categories';
-import { Button, Tag } from 'components';
+import { Card, Button, Stack, Badge, Col, Container, Row } from 'react-bootstrap';
+
+// import { Button, Card, Tag } from 'components';
 
 export const Categories = ({
 	questionsListsSizes,
@@ -29,38 +31,38 @@ export const Categories = ({
 		<div className={styles.wrapper}>
 			{categories.map((category) => {
 				return (
-					<div className={styles.card}>
-						<h4 className={styles.cardTitle}>{category.name}</h4>
-						<Image
-							className={styles.img}
-							src={category.src}
-							alt={category.name}
-							width={280}
-							height={280}
-						/>
-						<div className={styles.cardContainer}>
-							<div className={styles.cardQuestionsInfo}>
-								<Button
-									onClick={showQuestionsButtonHandler(
+					<Card style={{ width: '16rem' }} className="text-center">
+						<Card.Header>{category.name}</Card.Header>
+
+						<Card.Body>
+							<Stack gap={3}>
+								<Image
+									src={category.src}
+									alt={category.name}
+								// width={240}
+								// height={200}
+								/>
+
+								<Card style={{ padding: '0.75rem' }}>
+									<Card.Title onClick={showQuestionsButtonHandler(
 										category.name.toLowerCase()
-									)}
-									appearance="ghost"
+									)}>
+										<h4>
+											{'Questions: '} <Badge bg="danger"> {questionsListsSizes[category.name.toLowerCase()]}</Badge>
+										</h4>
+									</Card.Title>
+								</Card>
+
+								<Button
+									onClick={passTestButtonHandler(category.name.toLowerCase())}
+								// className={styles.cardButton}
+								// appearance="primary"
 								>
-									Show questions
+									Pass the test
 								</Button>
-								<Tag size="lg" className={styles.cardTag} color="error">
-									{questionsListsSizes[category.name.toLowerCase()]}
-								</Tag>
-							</div>
-							<Button
-								onClick={passTestButtonHandler(category.name.toLowerCase())}
-								className={styles.cardButton}
-								appearance="primary"
-							>
-								Pass the test
-							</Button>
-						</div>
-					</div>
+							</Stack>
+						</Card.Body>
+					</Card>
 				);
 			})}
 		</div>
