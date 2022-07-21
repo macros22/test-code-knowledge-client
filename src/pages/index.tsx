@@ -1,7 +1,6 @@
 import { Categories } from 'components';
 import { withLayout } from 'layouts';
 import { useGetQuestionsListsSizeQuery } from 'store/questions.api';
-
 const Home = () => {
 	const { data, isLoading } = useGetQuestionsListsSizeQuery('');
 
