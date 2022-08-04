@@ -32,7 +32,7 @@ export const Categories = ({
 			{categories.map((category) => {
 				return (
 					<Card style={{ width: '16rem' }} className="text-center">
-						<Card.Header>{category.name}</Card.Header>
+						<Card.Header style={{ fontWeight: 600 }}>{category.name}</Card.Header>
 
 						<Card.Body>
 							<Stack gap={3}>
@@ -43,15 +43,15 @@ export const Categories = ({
 								// height={200}
 								/>
 
-								<Card style={{ padding: '0.75rem' }}>
-									<Card.Title onClick={showQuestionsButtonHandler(
-										category.name.toLowerCase()
-									)}>
-										<h4>
-											{'Questions: '} <Badge bg="danger"> {questionsListsSizes[category.name.toLowerCase()]}</Badge>
-										</h4>
-									</Card.Title>
-								</Card>
+
+
+								<Button variant="danger" onClick={showQuestionsButtonHandler(
+									category.name.toLowerCase()
+								)}>
+									{/* Questions <Badge bg="light">{questionsListsSizes[category.name.toLowerCase()]}</Badge> */}
+									Questions {questionsListsSizes[category.name.toLowerCase()]}
+
+								</Button>
 
 								<Button
 									onClick={passTestButtonHandler(category.name.toLowerCase())}

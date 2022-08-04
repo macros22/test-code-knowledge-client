@@ -141,7 +141,10 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 							{questions[currentQuestion].question}
 						</h4>
 						<Divider className={styles.divider} />
-						<Code codeExample={questions[currentQuestion].codeExample} />
+						{
+							questions[currentQuestion].codeExample &&
+							<Code codeExample={questions[currentQuestion].codeExample} />
+						}
 
 						{checkedAnswers.length && (
 							<AnswersList

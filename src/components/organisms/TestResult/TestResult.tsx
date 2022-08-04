@@ -87,7 +87,7 @@ const AnswersListResult: React.FC<IProps> = ({
 };
 
 interface TestResultProps {
-	
+
 	questions: Question[];
 }
 
@@ -137,9 +137,9 @@ export const TestResult = ({
 
 	const router = useRouter();
 	const [category, _] = useSessionStorage(categoryName, '');
-	
+
 	const newTestButtonHandler = () => {
-		if(category) {
+		if (category) {
 			router.push(`/test/${category}?questionsAmount=${questions.length}`);
 		}
 	};
@@ -173,7 +173,9 @@ export const TestResult = ({
 									<h4 className={styles.questionTitle}>
 										{questions[index].question}
 									</h4>
-									<Code codeExample={questions[index].codeExample} />
+									{questions[index].codeExample &&
+										<Code codeExample={questions[index].codeExample} />
+									}
 
 									<AnswersListResult
 										answers={questions[index].answers}

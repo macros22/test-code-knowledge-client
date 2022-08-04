@@ -40,10 +40,12 @@ export const QuestionCard = ({
 					<Divider className={styles.divider} />
 				</div>
 
+				{question.codeExample &&
 				<div className={styles.codeExample}>
 					<Code codeExample={question.codeExample} />
 					<Divider className={styles.divider} />
 				</div>
+				}
 
 				<div className={styles.buttons}>
 					<HiChevronDown
