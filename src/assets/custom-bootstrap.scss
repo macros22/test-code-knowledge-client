@@ -5,7 +5,6 @@
 
 $theme: "litera" !default;
 
-
 // Color system
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
@@ -26,7 +25,7 @@ $pink: #e83e8c !default;
 $red: tomato !default;
 $orange: #fd7e14 !default;
 $yellow: #f0ad4e !default;
-$green: rgb(9, 161, 128) !default;
+$green: #09a180 !default;
 $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
@@ -39,107 +38,75 @@ $danger: $red  !default;
 $light: $gray-100  !default;
 $dark: $gray-800  !default;
 
-$min-contrast-ratio: 1.85 !default;
+$min-contrast-ratio: 2.5 !default;
 
 // Body
-
 $body-color: $gray-800  !default;
 
 // Fonts
-
 // stylelint-disable value-keyword-case
 $font-family-sans-serif: Montserrat, Poppins, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif !default;
 // stylelint-enable
 
 $font-size-base: 1.1rem !default;
-$headings-font-weight: 700 !default;
+$headings-font-weight: 600 !default;
 
 // Tables
-
 $table-border-color: rgba(0, 0, 0, .1) !default;
-
 $table-bg-scale: 0 !default;
 
-// Buttons
 
+// Buttons
 $input-btn-padding-y: .5rem !default;
 $input-btn-padding-x: 1.1rem !default;
 $btn-font-family: $font-family-sans-serif  !default;
 $btn-font-size: 1.075rem !default;
 $btn-font-size-sm: .688rem !default;
-
 $btn-border-radius: 0.3em !default;
 $btn-border-radius-lg: 0.3em !default;
 $btn-border-radius-sm: 0.3em !default;
-
 $btn-font-weight: 600 !default;
 
 // Forms
-
 $input-border-color: rgba(0, 0, 0, .1) !default;
 $input-group-addon-bg: $gray-200  !default !default;
 
 // Navbar
-
 $navbar-dark-color: rgba($white, .6) !default;
 $navbar-dark-hover-color: $white  !default;
 $navbar-light-hover-color: $body-color  !default;
 $navbar-light-active-color: $body-color  !default;
+$nav-link-font-weight: 600 !important;
 
 // Tooltips
-
 $tooltip-font-size: 11px !default;
 
-// Badges
-
-$badge-font-weight: 600 !default;
-$badge-padding-y: .4em !default;
-$badge-padding-x: .8em !default;
-
 // Alerts
-
 $alert-border-width: 0 !default;
 
-
-h1>.badge,
-h2>.badge,
-h3>.badge,
-h4>.badge,
-h5>.badge {
-  vertical-align: middle;
-  // margin-top: 0.15em;
-}
-
-
-// scss-docs-start border-variables
+// Borders.
 $border-width: 1.9px !default;
-$border-widths: (
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px) !default;
-
 $border-style: solid !default;
 $border-color: $gray-100  !default;
 $border-color-translucent: rgba($black, .175) !default;
 
+// Hr
 $hr-opacity: 1 !default;
 
+// Accordeons
 
+$accordion-border-width: $border-width  !default;
 
-$nav-link-font-weight: 600 !important;
 
 // Badges
-
-// scss-docs-start badge-variables
 $badge-font-size: .95em !default;
-$badge-font-weight: $font-weight-bold  !default;
 $badge-color: $primary  !default;
 $badge-padding-y: .45em !default;
 $badge-padding-x: .85em !default;
-// $badge-border-radius:               $border-radius !default;
-// scss-docs-end badge-variables
+
+//Dropdowns
+$dropdown-link-hover-bg: $gray-100  !default;
+
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

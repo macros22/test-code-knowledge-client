@@ -31,38 +31,33 @@ export const Categories = ({
 		<div className={styles.wrapper}>
 			{categories.map((category) => {
 				return (
-					<Card style={{ width: '16rem' }} className="text-center">
-						<Card.Header style={{ fontWeight: 600 }}>{category.name}</Card.Header>
+					<>
+						<div className={styles.card}>
+							<h4 className={styles.cardTitle}>{category.name}</h4>
+							<Image
+								className={styles.img}
+								src={category.src}
+								alt={category.name}
+								width={280}
+								height={280}
+							/>
+							<div className={styles.cardContainer}>
+								<Stack gap={3}>
+									<Button variant="danger" onClick={showQuestionsButtonHandler(
+										category.name.toLowerCase()
+									)}>
+										Questions: {questionsListsSizes[category.name.toLowerCase()]}
+									</Button>
 
-						<Card.Body>
-							<Stack gap={3}>
-								<Image
-									src={category.src}
-									alt={category.name}
-								// width={240}
-								// height={200}
-								/>
-
-
-
-								<Button variant="danger" onClick={showQuestionsButtonHandler(
-									category.name.toLowerCase()
-								)}>
-									{/* Questions <Badge bg="light">{questionsListsSizes[category.name.toLowerCase()]}</Badge> */}
-									Questions {questionsListsSizes[category.name.toLowerCase()]}
-
-								</Button>
-
-								<Button
-									onClick={passTestButtonHandler(category.name.toLowerCase())}
-								// className={styles.cardButton}
-								// appearance="primary"
-								>
-									Pass the test
-								</Button>
-							</Stack>
-						</Card.Body>
-					</Card>
+									<Button
+										onClick={passTestButtonHandler(category.name.toLowerCase())}
+									>
+										Pass the test
+									</Button>
+								</Stack>
+							</div>
+						</div>
+					</>
 				);
 			})}
 		</div>

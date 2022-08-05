@@ -8,6 +8,7 @@ import {
 	checkedAnswersName,
 	currentQuestionIndexName,
 } from 'constants/names.storage';
+import { Form } from 'react-bootstrap';
 
 export const answers = ['[object]', '[null]', '[undefined]', 'Error'];
 
@@ -38,12 +39,25 @@ const AnswersList = ({
 			{answers.map((answer, index) => {
 				return (
 					<li key={answer.answer}>
-						<Checkbox
-							name={answer.answer}
-							value={answer.answer}
-							checked={checkedAnswers[currentQuestion][index]}
-							onChange={() => handleOnChange(index)}
-						/>
+						<>
+							{/* <Checkbox
+								name={answer.answer}
+								value={answer.answer}
+								checked={checkedAnswers[currentQuestion][index]}
+								onChange={() => handleOnChange(index)}
+							/>	 */}
+							<Form.Check
+								style={{ fontSize: '24px' }}
+								type={'checkbox'}
+								id={answer.answer}
+								label={answer.answer}
+								value={answer.answer}
+								checked={checkedAnswers[currentQuestion][index]}
+								onChange={() => handleOnChange(index)}
+
+
+							/>
+						</>
 					</li>
 				);
 			})}

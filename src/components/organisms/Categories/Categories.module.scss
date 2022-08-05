@@ -19,13 +19,14 @@
 		-moz-box-shadow: 0px 25px 62px -33px rgba(34, 60, 80, 0.2);
 		box-shadow: 0px 25px 62px -33px rgba(34, 60, 80, 0.2);
 	}
-	
+
 
 	&Title {
 		margin-bottom: 0.3rem;
 	}
 
 	&Container {
+		margin-top: -0.5rem;
 		padding: 1rem;
 		border-bottom: var(--border);
 		border-left: var(--border);
@@ -34,32 +35,19 @@
 		border-bottom-right-radius: var(--border-radius);
 	}
 
-	&QuestionsInfo {
-		display: flex;
-		flex-direction: row;
-	}
 
-	&Tag {
-		padding-left: 1.5rem;
-		padding-right: 1.5rem;
-		margin-left: 0.75rem;
-	}
 
-	&Button {
-		display: block;
-		width: 100%;
-		margin-top: 0.75rem;
-	}
 }
 
 .img {
 	border-top-left-radius: var(--border-radius);
 	border-top-right-radius: var(--border-radius);
+	
+	height: 100%;
 }
 
 @media (max-width: $_md) {
 	.wrapper {
-		// flex-direction: column;
 		justify-content: center;
 	}
 }

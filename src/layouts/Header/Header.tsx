@@ -10,7 +10,7 @@ export const Header = () => {
       <Container fluid>
         <Navbar.Brand >
           <Link href="/">
-            <a className={styles.logo}>Code Knowledge Test</a>
+            <a className={styles.logo}>{`{ Code Knowledge Test }`}</a>
           </Link></Navbar.Brand>
         <Navbar.Toggle className={styles.burgerMenu}  />
         <Navbar.Collapse className="justify-content-end">
@@ -41,7 +41,7 @@ export const Header = () => {
               })}
               
             </NavDropdown>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="#pricing">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
