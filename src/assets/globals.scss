@@ -22,12 +22,13 @@ a {
 }
 
 input,
+textarea,
 button,
 .btn {
 
-	:focus,
-	:hover,
-	:focus {
+	&:focus,
+	&:hover,
+	&:focus {
 		outline: 0px !important;
 		-webkit-appearance: none;
 		box-shadow: none !important;
@@ -40,6 +41,8 @@ main {
 }
 
 body {
+
+
 	// 	h1 {
 	// 		@include h1;
 	// 	}
@@ -64,6 +67,12 @@ body {
 	// 		@include h6;
 	// 	}
 
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
 	p {
 		margin: 0;
 	}

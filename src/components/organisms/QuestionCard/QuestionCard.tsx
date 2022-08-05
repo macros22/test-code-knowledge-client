@@ -4,10 +4,11 @@ import styles from './QuestionCard.module.scss';
 import { QuestionCardProps } from './QuestionCard.props';
 import { Code, Divider } from 'components';
 import { useDeleteQuestionMutation } from 'store/questions.api';
-import { HiPencil, HiChevronDown } from 'react-icons/hi';
-import { MdDelete } from 'react-icons/md';
+
+import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
+
 import { Answer } from 'interfaces/questions.interface';
-import Accordion from 'react-bootstrap/Accordion';
+
 
 export const QuestionCard = ({
 	question,
@@ -49,22 +50,38 @@ export const QuestionCard = ({
 				}
 
 				<div className={styles.buttons}>
-					<HiChevronDown
-						className={styles.arrowIcon}
-						onClick={toggleAnswerVisibility}
-					/>
-					<h5 className={styles.answerStatusText}>
-						{' '}
-						{isAnswerVisible ? 'Hide answer' : 'Show answer'}{' '}
-					</h5>
+					{isAnswerVisible
+						?
+						<>
+							<BsChevronUp
+								className={styles.chevronIcon}
+								onClick={toggleAnswerVisibility}
+							/>
+							<h5 className={styles.answerStatusText}>
+								{' '}
+								Hide answer
+							</h5>
+						</>
+						:
+						<>
+							<BsChevronDown
+								className={styles.chevronIcon}
+								onClick={toggleAnswerVisibility}
+							/>
+							<h5 className={styles.answerStatusText}>
+								{' '}
+								Show answer{' '}
+							</h5>
+						</>
+					}
 
 					{withEdit && (
 						<div className={styles.editButtons}>
-							<HiPencil
+							<BsPencilFill
 								className={styles.iconButton}
 								onClick={handleEditButton}
 							/>
-							<MdDelete
+							<BsFillTrashFill
 								className={styles.iconButton}
 								onClick={handleDeleteButton}
 							/>

@@ -19,7 +19,7 @@ export const Header = () => {
             <NavDropdown title="Questions" className={styles.navbarLinks} >
               {categories.map((category) => {
                 return (
-                  <NavDropdown.Item key={category.name}>
+                  <NavDropdown.Item key={category.name} className={styles.navbarDropdownItem}>
                     <Link href={`/questions/${category.name.toLowerCase()}`}>
                       <a>{category.name}</a>
                     </Link>
@@ -32,7 +32,7 @@ export const Header = () => {
             <NavDropdown title="Test" className={styles.navbarLinks}>
               {categories.map((category) => {
                 return (
-                  <NavDropdown.Item key={category.name}>
+                  <NavDropdown.Item key={category.name} className={styles.navbarDropdownItem}>
                     <Link href={`/test/${category.name.toLowerCase()}`}>
                       <a>{category.name}</a>
                     </Link>
@@ -41,7 +41,8 @@ export const Header = () => {
               })}
 
             </NavDropdown>
-            <Nav.Link href="#pricing" className={styles.navbarLinks}>Login</Nav.Link>
+            <Nav.Link href="#pricing" className={styles.navbarLinks}>Link</Nav.Link>
+            <Nav.Link href="#pricing" className={styles.navbarLinks}>Link</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

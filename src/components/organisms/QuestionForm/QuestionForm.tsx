@@ -4,13 +4,14 @@ import * as yup from 'yup';
 import { ValidationError } from 'yup';
 import { Question } from 'interfaces/questions.interface';
 import { QuestionFormProps } from './QuestionForm.props';
-import { Button, Checkbox, Input, Textarea, WithLabel } from 'components';
+// import { Button, Checkbox, Input, Textarea, WithLabel } from 'components';
 import {
 	useAddQuestionMutation,
 	useEditQuestionMutation,
 } from 'store/questions.api';
 import { categoryName } from 'constants/names.storage';
 import { useSessionStorage } from 'hooks';
+import { Button, Form } from 'react-bootstrap';
 
 interface UserAnswer {
 	answer: string;
@@ -145,7 +146,7 @@ export const QuestionForm = ({
 
 	return (
 		<>
-			<form className={styles.editMedicalItem} onSubmit={handleSubmitForm}>
+			{/* <form className={styles.editMedicalItem} onSubmit={handleSubmitForm}>
 				<div className={styles.question}>
 					<WithLabel labelText="Question">
 						<Input
@@ -230,7 +231,27 @@ export const QuestionForm = ({
 				>
 					Add answer
 				</Button>
-			</form>
+			</form> */}
+			<Form>
+				<Form.Group className="mb-3" controlId="formBasicEmail">
+					<Form.Label>Email address</Form.Label>
+					<Form.Control type="email" placeholder="Enter email" />
+					<Form.Text className="text-muted">
+						We'll never share your email with anyone else.
+					</Form.Text>
+				</Form.Group>
+
+				<Form.Group className="mb-3" controlId="formBasicPassword">
+					<Form.Label>Password</Form.Label>
+					<Form.Control type="password" placeholder="Password" />
+				</Form.Group>
+				<Form.Group className="mb-3" controlId="formBasicCheckbox">
+					<Form.Check type="checkbox" label="Check me out" />
+				</Form.Group>
+				<Button variant="primary" type="submit">
+					Submit
+				</Button>
+			</Form>
 		</>
 	);
 };

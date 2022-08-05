@@ -1,9 +1,15 @@
 @mixin iconWithBorder {
   height: 100%;
   width:auto;
-  color: var(--primary-color);
+  color: var(--text-secondary-color);
   border: var(--border);
   border-radius: var(--border-radius);
-  padding: 0.2rem;
+  padding: 0.44rem;
   vertical-align: bottom;
+
+  &:hover{
+    color: var(--text-color);
+  }
+
+
 }

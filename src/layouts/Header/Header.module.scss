@@ -19,9 +19,21 @@
 	}
 }
 
+.navbarDropdownItem{
+	a {
+		// font-weight: 600 !important;	
+		&:active{
+			color: white !important;
+		}
+		
+	}
+}
+
 .navbarLinks {
 	a {
 		font-weight: 600 !important;
+
+		
 	}
 
 	color: gray !important;
