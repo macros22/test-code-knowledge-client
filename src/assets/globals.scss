@@ -77,3 +77,48 @@ body {
 		margin: 0;
 	}
 }
+
+
+
+.hrdivider {
+	display: block;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+
+	&>span {
+		position: relative;
+		display: inline-block;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: 9999px;
+			height: 1px;
+			background: rgb(191, 191, 191);
+		}
+	}
+
+
+	&>span:before {
+		right: 100%;
+		margin-right: 15px;
+	}
+
+	&>span:after {
+		left: 100%;
+		margin-left: 15px;
+	}
+}
+
+span.input-group-text {
+	background-color: white !important;
+	font-weight: 600;
+}
+
+.form-check-input {
+	border-width: 2px !important;
+	border-color: var(--border-color);
+}

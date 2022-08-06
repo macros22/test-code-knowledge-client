@@ -38,7 +38,7 @@ const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
 
 	return (
 		<>
-			<QuestionsList withEdit={false} questions={questions} />
+			<QuestionsList withEdit={true} questions={questions} />
 		</>
 	);
 };

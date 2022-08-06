@@ -2,9 +2,10 @@ import styles from './QuestionsList.module.scss';
 import React from 'react';
 import { Question } from 'interfaces/questions.interface';
 import { QuestionsListProps } from './QuestionsList.props';
-import { Card, Modal, QuestionCard, QuestionForm } from 'components';
+import { Card, QuestionCard, QuestionForm } from 'components';
 
 import { HiPlus } from 'react-icons/hi';
+import { Modal } from 'react-bootstrap';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
@@ -100,22 +101,28 @@ export const QuestionsList = ({
 					))}
 			</div>
 			{withEdit && isAddQuestionMode && (
-				<Modal setIsModalOpen={setIsAddQuestionMode}>
-					<QuestionForm
-						questionItem={exampleQuestion}
-						mode="add"
-						setIsModalOpen={setIsAddQuestionMode}
-					/>
+				// <Modal setIsModalOpen={setIsAddQuestionMode}>
+				<Modal size='lg' show={isAddQuestionMode} onHide={() => setIsAddQuestionMode(false)}>
+					<Modal.Body>
+						<QuestionForm
+							questionItem={exampleQuestion}
+							mode="add"
+							setIsModalOpen={setIsAddQuestionMode}
+						/>
+					</Modal.Body>
 				</Modal>
 			)}
 
 			{withEdit && questions && isEditQuestionMode && (
-				<Modal setIsModalOpen={setIsEditQuestionMode}>
-					<QuestionForm
-						questionItem={questions[currentQuestionIndex]}
-						mode="edit"
-						setIsModalOpen={setIsEditQuestionMode}
-					/>
+				// <Modal setIsModalOpen={setIsEditQuestionMode}>
+				<Modal size='lg' show={isEditQuestionMode} onHide={() => setIsEditQuestionMode(false)}>
+					<Modal.Body>
+						<QuestionForm
+							questionItem={questions[currentQuestionIndex]}
+							mode="edit"
+							setIsModalOpen={setIsEditQuestionMode}
+						/>
+					</Modal.Body>
 				</Modal>
 			)}
 		</div>

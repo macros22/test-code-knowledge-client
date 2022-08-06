@@ -20,9 +20,8 @@
 }
 
 .title {
-	margin: 0;
-
-	font-size: 34px;
+	margin-bottom: 0.45rem;
+	font-size: 18px;
 }
 
 .subTitle {
@@ -89,3 +88,6 @@
 	grid-area: resetButton;
 }
 
+.form{
+	font-weight: 600;
+}

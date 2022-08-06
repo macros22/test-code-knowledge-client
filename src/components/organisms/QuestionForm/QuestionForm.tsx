@@ -11,7 +11,7 @@ import {
 } from 'store/questions.api';
 import { categoryName } from 'constants/names.storage';
 import { useSessionStorage } from 'hooks';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 
 interface UserAnswer {
 	answer: string;
@@ -41,6 +41,7 @@ export const QuestionForm = ({
 	const [codeExample, setCodeExample] = React.useState<string>(
 		questionItem.codeExample
 	);
+	const [isCodeExampleChecked, setIsCodeExampleChecked] = React.useState<boolean>(false);
 	const [codeExampleError, setCodeExampleError] = React.useState<string>('');
 
 	const initialAnswers = questionItem.answers.map((answer) => ({
@@ -51,6 +52,33 @@ export const QuestionForm = ({
 	const [answersErrors, setAnswersErrors] = React.useState<string[]>(
 		new Array(questionItem.answers.length).fill('')
 	);
+
+	const handleAddAnswerButton = () => {
+		const newAnswer: UserAnswer = {
+			answer: '',
+			isChecked: false,
+		}
+
+		setAnswers(answers => {
+			// Deep copy.
+			const newAnswers: UserAnswer[] = JSON.parse(
+				JSON.stringify(answers)
+			);
+			newAnswers.push(newAnswer);
+
+			return newAnswers;
+		})
+	}
+
+	const handleDeleteAnswerButton = (index: number) => {
+		setAnswers(answers => {
+			// Deep copy.
+			const newAnswers: UserAnswer[] = JSON.parse(
+				JSON.stringify(answers)
+			);
+			return newAnswers.filter((_, i) => i !== index);
+		})
+	}
 
 	const resetErrors = () => {
 		setQuestionError('');
@@ -232,24 +260,83 @@ export const QuestionForm = ({
 					Add answer
 				</Button>
 			</form> */}
-			<Form>
+			<Form className={styles.form}>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
-					<Form.Label>Email address</Form.Label>
-					<Form.Control type="email" placeholder="Enter email" />
-					<Form.Text className="text-muted">
-						We'll never share your email with anyone else.
+					{/* <Form.Label>Question</Form.Label> */}
+					<div className={"hrdivider" + " " + styles.title}>
+						<span>Question</span>
+					</div>
+					<Form.Control placeholder="Enter question" value={question}
+						name="Question"
+						onChange={(e) => setQuestion(e.target.value)} />
+					<Form.Text className="text=error">
+						{questionError}
 					</Form.Text>
 				</Form.Group>
+				<Form.Group className="mb-2" controlId="formBasicPassword">
+					{/* <Form.Label>Code example</Form.Label> */}
+					{/* <div className="hrdivider">
+						<hr />
+						<span>Code example</span>
+					</div> */}
+					<div className={"hrdivider" + " " + styles.title}>
+						<span>Code example</span>
+					</div>
+					<Form.Control disabled={!isCodeExampleChecked} as="textarea" placeholder="Code" value={codeExample} onChange={(e) => setCodeExample(e.target.value)} className="mb-2" />
+					<Form.Check type="checkbox" label="Show code example?" checked={isCodeExampleChecked} onClick={() => setIsCodeExampleChecked(checked => !checked)} />
+				</Form.Group>
+				{/* <div className="hrdivider">
+					<hr />
+					<span>Answers</span>
+				</div> */}
+				<div className={"hrdivider" + " " + styles.title}>
+					<span>Answers</span>
+				</div>
+				{answers.map((answer, index) => {
+					return (
+						<InputGroup key={index} className="mb-3">
+							<InputGroup.Text>{index + 1}</InputGroup.Text>
+							<InputGroup.Checkbox aria-label="Checkbox for following text input" checked={answers[index].isChecked} onChange={() =>
+								setAnswers((answers) => {
+									// Deep copy.
+									const updatedAnswers = JSON.parse(
+										JSON.stringify(answers)
+									);
+									updatedAnswers[index].isChecked =
+										!updatedAnswers[index].isChecked;
+									return updatedAnswers;
+								})
+							} />
+							<Form.Control aria-label="Text input with checkbox" value={answers[index].answer} onChange={(e) => {
+								e.preventDefault();
+								setAnswers((answers) => {
+									// Deep copy.
+									const updatedAnswers = JSON.parse(
+										JSON.stringify(answers)
+									);
+									updatedAnswers[index].answer = e.target.value;
+									return updatedAnswers;
+								});
+							}} />
+							<Button variant="danger" onClick={handleDeleteAnswerButton.bind(null, index)}>
+								Delete
+							</Button>
+						</InputGroup>
 
-				<Form.Group className="mb-3" controlId="formBasicPassword">
-					<Form.Label>Password</Form.Label>
-					<Form.Control type="password" placeholder="Password" />
-				</Form.Group>
-				<Form.Group className="mb-3" controlId="formBasicCheckbox">
-					<Form.Check type="checkbox" label="Check me out" />
-				</Form.Group>
+					);
+				})}
+
 				<Button variant="primary" type="submit">
 					Submit
+				</Button>
+				<Button variant="info" className="m-3" onClick={handleAddAnswerButton}>
+					Add answer
+				</Button>
+				<Button variant="danger" >
+					Reset
+				</Button>
+				<Button variant="info" className="m-3" >
+					Close
 				</Button>
 			</Form>
 		</>
