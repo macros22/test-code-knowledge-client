@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './QuestionForm.module.scss';
 import * as yup from 'yup';
 import { ValidationError } from 'yup';
-import { Question } from 'interfaces/questions.interface';
+import { Category, Question } from 'interfaces/questions.interface';
 import { QuestionFormProps } from './QuestionForm.props';
 // import { Button, Checkbox, Input, Textarea, WithLabel } from 'components';
 import {
@@ -13,6 +13,8 @@ import { categoryName } from 'constants/names.storage';
 import { useSessionStorage } from 'hooks';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 
+
+import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
 interface UserAnswer {
 	answer: string;
 	isChecked: boolean;
@@ -21,6 +23,7 @@ interface UserAnswer {
 const schema = yup.object().shape({
 	question: yup.string().required('Write question.'),
 	codeExample: yup.string().required('Write code example.'),
+	category: yup.mixed<Category>().oneOf(Object.values(Category)),
 	answers: yup.array().of(
 		yup.object().shape({
 			answer: yup.string().required('Write answer.'),
@@ -36,7 +39,9 @@ export const QuestionForm = ({
 }: QuestionFormProps): JSX.Element => {
 	const [question, setQuestion] = React.useState<string>(questionItem.question);
 	const [questionError, setQuestionError] = React.useState<string>('');
-	const [category, _] = useSessionStorage(categoryName, 'javascript');
+	// const [category, _] = useSessionStorage(categoryName, 'javascript');
+
+	const [category, setCategory] = React.useState<Category>(Category.JavaScript);
 
 	const [codeExample, setCodeExample] = React.useState<string>(
 		questionItem.codeExample
@@ -52,6 +57,11 @@ export const QuestionForm = ({
 	const [answersErrors, setAnswersErrors] = React.useState<string[]>(
 		new Array(questionItem.answers.length).fill('')
 	);
+
+	const handleSelectCategory = (e) => {
+		setCategory(e.target.value as Category);
+	}
+
 
 	const handleAddAnswerButton = () => {
 		const newAnswer: UserAnswer = {
@@ -139,12 +149,13 @@ export const QuestionForm = ({
 		} as Omit<Question, 'id'>;
 
 		if (await isValidForm()) {
+			console.log(questionPayload);
 			switch (mode) {
 				case 'add':
 					try {
-						await addQuestion(questionPayload);
+						// await addQuestion(questionPayload);
 
-						setIsModalOpen(false);
+						// setIsModalOpen(false);
 					} catch (error) {
 						console.log(error);
 					}
@@ -153,9 +164,9 @@ export const QuestionForm = ({
 
 				case 'edit':
 					try {
-						await editQuestion({ id: questionItem.id, body: questionPayload });
+						// await editQuestion({ id: questionItem.id, body: questionPayload });
 
-						setIsModalOpen(false);
+						// setIsModalOpen(false);
 					} catch (error) {
 						console.log(error);
 					}
@@ -261,6 +272,18 @@ export const QuestionForm = ({
 				</Button>
 			</form> */}
 			<Form className={styles.form}>
+				<div className={"hrdivider" + " " + styles.title}>
+					<span>Category</span>
+				</div>
+
+				<Form.Select className="mb-3" aria-label="Default select example" value={category} onChange={handleSelectCategory}>
+					{Object.values(Category).map(category => {
+						return (
+							<option value={category} key={category}>{category}</option>
+						);
+					})}
+
+				</Form.Select>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					{/* <Form.Label>Question</Form.Label> */}
 					<div className={"hrdivider" + " " + styles.title}>
@@ -269,7 +292,7 @@ export const QuestionForm = ({
 					<Form.Control placeholder="Enter question" value={question}
 						name="Question"
 						onChange={(e) => setQuestion(e.target.value)} />
-					<Form.Text className="text=error">
+					<Form.Text className="text-error">
 						{questionError}
 					</Form.Text>
 				</Form.Group>
@@ -280,9 +303,10 @@ export const QuestionForm = ({
 						<span>Code example</span>
 					</div> */}
 					<div className={"hrdivider" + " " + styles.title}>
-						<span>Code example</span>
+						<span><BsFillTerminalFill /> Code example</span>
+
 					</div>
-					<Form.Control disabled={!isCodeExampleChecked} as="textarea" placeholder="Code" value={codeExample} onChange={(e) => setCodeExample(e.target.value)} className="mb-2" />
+					<Form.Control disabled={!isCodeExampleChecked} as="textarea" placeholder="Code" value={codeExample} onChange={(e) => setCodeExample(e.target.value)} className={styles.textareaCodeExample} />
 					<Form.Check type="checkbox" label="Show code example?" checked={isCodeExampleChecked} onClick={() => setIsCodeExampleChecked(checked => !checked)} />
 				</Form.Group>
 				{/* <div className="hrdivider">
@@ -296,17 +320,7 @@ export const QuestionForm = ({
 					return (
 						<InputGroup key={index} className="mb-3">
 							<InputGroup.Text>{index + 1}</InputGroup.Text>
-							<InputGroup.Checkbox aria-label="Checkbox for following text input" checked={answers[index].isChecked} onChange={() =>
-								setAnswers((answers) => {
-									// Deep copy.
-									const updatedAnswers = JSON.parse(
-										JSON.stringify(answers)
-									);
-									updatedAnswers[index].isChecked =
-										!updatedAnswers[index].isChecked;
-									return updatedAnswers;
-								})
-							} />
+
 							<Form.Control aria-label="Text input with checkbox" value={answers[index].answer} onChange={(e) => {
 								e.preventDefault();
 								setAnswers((answers) => {
@@ -318,19 +332,31 @@ export const QuestionForm = ({
 									return updatedAnswers;
 								});
 							}} />
+							<InputGroup.Checkbox aria-label="Checkbox for following text input" checked={answers[index].isChecked} onChange={() =>
+								setAnswers((answers) => {
+									// Deep copy.
+									const updatedAnswers = JSON.parse(
+										JSON.stringify(answers)
+									);
+									updatedAnswers[index].isChecked =
+										!updatedAnswers[index].isChecked;
+									return updatedAnswers;
+								})
+							} />
 							<Button variant="danger" onClick={handleDeleteAnswerButton.bind(null, index)}>
-								Delete
+								<BsTrash2Fill />{` Delete`}
 							</Button>
 						</InputGroup>
 
 					);
 				})}
 
-				<Button variant="primary" type="submit">
-					Submit
+				<Button variant="primary" type="submit" onClick={handleSubmitForm}>
+					Save
 				</Button>
 				<Button variant="info" className="m-3" onClick={handleAddAnswerButton}>
-					Add answer
+					<BsPlusLg />
+					{`  Add answer`}
 				</Button>
 				<Button variant="danger" >
 					Reset

@@ -5,8 +5,14 @@ export interface Answer {
 
 export interface Question {
     id: string;
-    category: string;
+    category: Category;
     question: string;
     codeExample: string;
     answers: Answer[];
+}
+
+export enum Category {
+    JavaScript = 'JavaScript',
+    TypeScript = 'TypeScript',
+    NodeJs = 'Node.js',
 }

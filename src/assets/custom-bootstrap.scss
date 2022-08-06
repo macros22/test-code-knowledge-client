@@ -41,7 +41,7 @@ $dark: $gray-800  !default;
 $min-contrast-ratio: 2.5 !default;
 
 // Body
-$body-color: $gray-600  !default;
+$body-color: $gray-800  !default;
 
 // Fonts
 // stylelint-disable value-keyword-case
@@ -86,7 +86,7 @@ $tooltip-font-size: 11px !default;
 $alert-border-width: 0 !default;
 
 // Borders.
-$border-width: 1.9px !default;
+$border-width: 1.52px !default;
 $border-style: solid !default;
 $border-color: $gray-100  !default;
 $border-color-translucent: rgba($black, .175) !default;
@@ -104,8 +104,15 @@ $badge-color: $primary  !default;
 $badge-padding-y: .45em !default;
 $badge-padding-x: .85em !default;
 
-//Dropdowns
+// Dropdowns
 $dropdown-link-hover-bg: $gray-100  !default;
 
+
+// Inputs.
+$input-font-weight: 600 !default;
+
+
+// Select
+$form-select-focus-box-shadow: none !default;
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

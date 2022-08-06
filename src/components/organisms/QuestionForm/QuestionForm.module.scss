@@ -44,8 +44,10 @@
 
 
 .textareaCodeExample{
-	height: 80%;
+	min-height: 100px;
 }
+
+
 
 .answersList {
 	grid-area: answersList;

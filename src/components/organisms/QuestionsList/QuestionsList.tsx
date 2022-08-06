@@ -1,15 +1,15 @@
 import styles from './QuestionsList.module.scss';
 import React from 'react';
-import { Question } from 'interfaces/questions.interface';
+import { Category, Question } from 'interfaces/questions.interface';
 import { QuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
 
-import { HiPlus } from 'react-icons/hi';
+import { BsPlusLg } from 'react-icons/bs';
 import { Modal } from 'react-bootstrap';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
-	category: 'category',
+	category: Category.JavaScript,
 	question: 'What will be output to the console?',
 	codeExample: `const example = () => {
     return ExampleCode;
@@ -48,7 +48,7 @@ export const QuestionsList = ({
 				<h2>All questions</h2>
 
 				{withEdit && (
-					<HiPlus
+					<BsPlusLg
 						className={styles.addQuestionButton}
 						onClick={handleAddQuestionButton}
 					/>
