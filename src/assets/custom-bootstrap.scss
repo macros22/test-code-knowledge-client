@@ -68,9 +68,6 @@ $btn-border-radius-lg: 0.3em !default;
 $btn-border-radius-sm: 0.3em !default;
 $btn-font-weight: 600 !default;
 
-// Forms
-$input-border-color: rgba(0, 0, 0, .1) !default;
-$input-group-addon-bg: $gray-200  !default !default;
 
 // Navbar
 $navbar-dark-color: rgba($white, .6) !default;
@@ -86,16 +83,23 @@ $tooltip-font-size: 11px !default;
 $alert-border-width: 0 !default;
 
 // Borders.
-$border-width: 1.52px !default;
+$border-width: 2px !default;
 $border-style: solid !default;
-$border-color: $gray-100  !default;
-$border-color-translucent: rgba($black, .175) !default;
+$border-color: $gray-200  !default;
+$border-color-translucent: $gray-200 !default;
 
 // Hr
 // $hr-opacity: 1 !default;
 
 // Accordeons
 $accordion-border-width: $border-width  !default;
+
+
+// Inputs.
+$input-btn-border-width: $border-width  !default;
+$input-font-weight: 600 !default;
+$input-border-color: $border-color  !default;
+$input-group-addon-bg: $gray-200  !default !default;
 
 
 // Badges
@@ -108,8 +112,7 @@ $badge-padding-x: .85em !default;
 $dropdown-link-hover-bg: $gray-100  !default;
 
 
-// Inputs.
-$input-font-weight: 600 !default;
+
 
 
 // Select
