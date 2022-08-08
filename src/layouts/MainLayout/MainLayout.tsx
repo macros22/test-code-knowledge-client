@@ -3,6 +3,8 @@ import Head from "next/head";
 import styles from "./MainLayout.module.scss";
 import { MainLayoutProps } from "./MainLayout.props";
 import { Header, Footer } from "layouts";
+import { useUser } from "hooks/useUser";
+import { useRouter } from "next/router";
 
 
 const MainLayout: React.FC<MainLayoutProps> = ({
@@ -11,6 +13,20 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   description,
   keywords,
 }) => {
+
+
+  const { loggedIn } = useUser();
+
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (!loggedIn) router.replace('/auth/sign-in');
+
+  }, [loggedIn]);
+
+  if (!loggedIn) return <> Redirecting.... </>;
+
+
   return (
     <>
       <Head>

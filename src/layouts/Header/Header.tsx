@@ -1,13 +1,21 @@
 
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import styles from './Header.module.scss';
 import Link from 'next/link';
 import { categories } from 'constants/categories';
+import { authApi } from 'libs/auth.api';
+import { useUser } from 'hooks/useUser';
+import { BsDoorOpenFill } from "react-icons/bs";
 
 export const Header = () => {
+  const { mutate: mutateUser, user } = useUser();
+  const logoutHandler = async () => {
+    await authApi.logout();
+    mutateUser();
+  }
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
-      <Container fluid>
+      <Container >
         <Navbar.Brand >
           <Link href="/">
             <a className={styles.logo}>{`{ Code Knowledge Test }`}</a>
@@ -41,8 +49,11 @@ export const Header = () => {
               })}
 
             </NavDropdown>
-            <Nav.Link href="#pricing" className={styles.navbarLinks}>Link</Nav.Link>
-            <Nav.Link href="#pricing" className={styles.navbarLinks}>Link</Nav.Link>
+            <Nav.Link href="#" className={styles.navbarLinks}>Link</Nav.Link>
+            <div className={styles.logout}>
+              {/* {user?.email || 'name'} */}
+              <BsDoorOpenFill className='ml-3' onClick={logoutHandler} />
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>

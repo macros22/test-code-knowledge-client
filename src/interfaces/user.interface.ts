@@ -9,3 +9,12 @@ export interface IUser {
     email: string;
     role: Role;
 }
+
+export interface ISignInDto {
+    email: string;
+    password: string;
+}
+
+export interface ISignUpDto extends ISignInDto {
+    name: string;
+}

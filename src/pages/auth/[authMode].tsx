@@ -1,11 +1,10 @@
 
+import React from 'react';
 import { Auth } from 'components/auth/Auth/Auth';
-import { SignIn } from 'components/auth/SignIn/SignIn';
-import { SignUp } from 'components/auth/SignUp/SignUp';
 import { withLayout } from 'layouts/AuthLayout/AuthLayout';
 import { GetServerSideProps } from 'next';
-import React from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { useRouter } from "next/router";
+import { useUser } from 'hooks/useUser';
 
 interface IAuthPageProps extends Record<string, string> {
 	authMode: 'sign-in' | 'sign-up';
@@ -19,6 +18,16 @@ export const getServerSideProps: GetServerSideProps<IAuthPageProps> = async (
 };
 
 const AuthPage = ({ authMode }: IAuthPageProps): JSX.Element => {
+	// const { loggedIn } = useUser();
+
+	// const router = useRouter();
+
+	// React.useEffect(() => {
+	// 	if (loggedIn) router.replace('/');
+
+	// }, [loggedIn]);
+
+	// if (loggedIn) return <> Redirecting.... </>;
 	return (
 		<>
 			<Auth authMode={authMode} />

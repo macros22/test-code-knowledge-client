@@ -2,6 +2,8 @@ import * as React from "react";
 import Head from "next/head";
 import styles from "./AuthLayout.module.scss";
 import { AuthLayoutProps } from "./AuthLayout.props";
+import { useUser } from "hooks/useUser";
+import { useRouter } from "next/router";
 
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({
@@ -10,6 +12,19 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   description,
   keywords,
 }) => {
+
+
+  const { loggedIn } = useUser();
+
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (loggedIn) router.replace('/');
+
+  }, [loggedIn]);
+
+  if (loggedIn) return <> Redirecting.... </>;
+
   return (
     <>
       <Head>

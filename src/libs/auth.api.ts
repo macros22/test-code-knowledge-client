@@ -1,16 +1,13 @@
 import axios from 'axios';
-import { AUTH_ME_URL, LOGOUT_URL, SIGN_IN_URL } from 'constants/urls';
-import { IUser } from 'interfaces/user.interface';
+import { AUTH_ME_URL, LOGOUT_URL, SIGN_IN_URL, SIGN_UP_URL } from 'constants/urls';
+import { ISignInDto, ISignUpDto, IUser } from 'interfaces/user.interface';
 
 export const authApi = {
-	login: async (email: string, password: string) => {
+	signIn: async (dto: ISignInDto) => {
 		try {
 			const res = await axios.post(
 				SIGN_IN_URL,
-				{
-					email,
-					password,
-				},
+				dto,
 				{ withCredentials: true }
 			);
 
@@ -23,10 +20,27 @@ export const authApi = {
 		return '';
 	},
 
+	signUp: async (dto: ISignUpDto) => {
+		try {
+			const res = await axios.post(
+				SIGN_UP_URL,
+				dto,
+				{ withCredentials: true }
+			);
+
+			// user
+			return res.data;
+		} catch (error) {
+			console.log(error);
+		}
+
+		return '';
+	},
+
+
 	getUser: async () => {
 		try {
 			let res = await axios.get(AUTH_ME_URL, { withCredentials: true });
-			// return res.data as IUser;
 			return res.data as IUser;
 		} catch (error) {
 			// console.log(error);

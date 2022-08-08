@@ -11,8 +11,6 @@ export const questionsApi = (userRole: Role) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
 
-
-
                 return res.data as Question[];
             } catch (error) {
                 console.log(error);
