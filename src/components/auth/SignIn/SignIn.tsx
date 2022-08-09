@@ -4,7 +4,7 @@ import { authApi } from 'libs/auth.api';
 import Link from 'next/link';
 import React from 'react';
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap';
-import { BsFillLockFill, BsFillPersonFill } from "react-icons/bs";
+import { BsFillLockFill, BsFillEnvelopeFill } from "react-icons/bs";
 
 
 export const SignIn = () => {
@@ -34,7 +34,7 @@ export const SignIn = () => {
 		<Form onSubmit={handleSubmit}>
 			<InputGroup className="mb-3">
 				<InputGroup.Text id="basic-addon1">
-					<BsFillPersonFill />
+					<BsFillEnvelopeFill />
 				</InputGroup.Text>
 				<FloatingLabel
 					controlId="floatingInput"

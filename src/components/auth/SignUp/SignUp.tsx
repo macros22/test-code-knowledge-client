@@ -2,7 +2,7 @@ import { authApi } from 'libs/auth.api';
 import Link from 'next/link';
 import React from 'react';
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap';
-import { BsFillLockFill, BsFillPersonFill } from "react-icons/bs";
+import { BsFillLockFill, BsFillPersonFill, BsFillEnvelopeFill } from "react-icons/bs";
 
 export const SignUp = () => {
   const [email, setEmail] = React.useState('');
@@ -34,7 +34,7 @@ export const SignUp = () => {
     <Form onSubmit={handleSubmit}>
       <InputGroup className="mb-3">
         <InputGroup.Text >
-          <BsFillPersonFill />
+          <BsFillEnvelopeFill />
         </InputGroup.Text>
         <FloatingLabel
           controlId="floatingInput"
