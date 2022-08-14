@@ -4,7 +4,7 @@ import styles from "./AuthLayout.module.scss";
 import { AuthLayoutProps } from "./AuthLayout.props";
 import { useUser } from "hooks/useUser";
 import { useRouter } from "next/router";
-
+import { Spinner } from 'react-bootstrap';
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({
   children,
@@ -23,7 +23,15 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
 
   }, [loggedIn]);
 
-  if (loggedIn) return <> Redirecting.... </>;
+  if (loggedIn) {
+    return (
+      <Spinner
+        as="span"
+        animation="border"
+        size="sm"
+        role="status"
+        aria-hidden="true" />);
+  }
 
   return (
     <>

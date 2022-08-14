@@ -86,10 +86,12 @@ $alert-border-width: 0 !default;
 $border-width: 2px !default;
 $border-style: solid !default;
 $border-color: $gray-200  !default;
-$border-color-translucent: $gray-200 !default;
+$border-color-translucent: $gray-200  !default;
 
 // Hr
-// $hr-opacity: 1 !default;
+$hr-opacity: 1 !default;
+$hr-color: $border-color  !default;
+$hr-border-width: $border-width  !default;
 
 // Accordeons
 $accordion-border-width: $border-width  !default;

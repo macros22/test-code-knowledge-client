@@ -26,7 +26,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     const [codeExample, setCodeExample] = React.useState<string>(
         questionItem.codeExample
     );
-    const [isCodeExampleChecked, setIsCodeExampleChecked] = React.useState<boolean>(false);
+    const [isCodeExampleChecked, setIsCodeExampleChecked] = React.useState<boolean>(true);
     const [codeExampleError, setCodeExampleError] = React.useState<string>('');
 
     const initialAnswers = questionItem.answers.map((answer) => ({

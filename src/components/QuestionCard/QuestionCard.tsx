@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'clsx';
 import styles from './QuestionCard.module.scss';
 import { QuestionCardProps } from './QuestionCard.props';
-import { Code, Divider } from 'components';
+import { Code } from 'components';
 import { useDeleteQuestionMutation } from 'store/questions.api';
 
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
@@ -39,13 +39,15 @@ export const QuestionCard = ({
 			<div className={styles.questionCard}>
 				<div className={styles.question}>
 					<h4>{question.question}</h4>
-					<Divider className={styles.divider} />
+					{/* <Divider className={styles.divider} /> */}
+					<hr />
 				</div>
 
 				{question.codeExample &&
 					<div className={styles.codeExample}>
 						<Code codeExample={question.codeExample} />
-						<Divider className={styles.divider} />
+						<hr />
+						{/* <Divider className={styles.divider} /> */}
 					</div>
 				}
 
@@ -95,7 +97,8 @@ export const QuestionCard = ({
 						[styles.answerInVisible]: !isAnswerVisible,
 					})}
 				>
-					<Divider className={styles.divider} />
+					{/* <Divider className={styles.divider} /> */}
+					<hr />
 					{correctAnswers.length &&
 						correctAnswers.map((answer) => {
 							return <h5 key={answer.answer}>{answer.answer}</h5>;

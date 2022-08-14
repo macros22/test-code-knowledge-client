@@ -4,14 +4,14 @@ import cn from 'clsx';
 
 import styles from './TestResult.module.scss';
 import { Answer, Question } from 'interfaces/questions.interface';
-
-import { Button, Card, Checkbox, Code, Divider, Tag } from 'components';
+import { Card, Checkbox, Code, Tag } from 'components';
 import { useLocalStorage, useSessionStorage } from 'hooks';
 import {
 	categoryName,
 	checkedAnswersName,
 	currentQuestionIndexName,
 } from 'constants/names.storage';
+import { Button } from 'react-bootstrap';
 
 interface IProps {
 	answers: Answer[];
@@ -136,7 +136,7 @@ export const TestResult = ({
 	}, []);
 
 	const router = useRouter();
-	const [category, _] = useSessionStorage(categoryName, '');
+	const [category] = useSessionStorage(categoryName, '');
 
 	const newTestButtonHandler = () => {
 		if (category) {
@@ -169,7 +169,7 @@ export const TestResult = ({
 									<h3 className={styles.questionTitle}>
 										Question № {index + 1}
 									</h3>
-									<Divider />
+									<hr />
 									<h4 className={styles.questionTitle}>
 										{questions[index].question}
 									</h4>
@@ -185,7 +185,7 @@ export const TestResult = ({
 								</Card>
 							);
 						})}
-					<Button appearance="primary" onClick={newTestButtonHandler}>
+					<Button onClick={newTestButtonHandler}>
 						New test
 					</Button>
 				</div>

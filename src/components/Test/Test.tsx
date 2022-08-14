@@ -2,13 +2,13 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
 import { Answer, Question } from 'interfaces/questions.interface';
-import { Button, Checkbox, Code, Divider } from 'components';
+import { Checkbox, Code } from 'components';
 import { useSessionStorage } from 'hooks';
 import {
 	checkedAnswersName,
 	currentQuestionIndexName,
 } from 'constants/names.storage';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 export const answers = ['[object]', '[null]', '[undefined]', 'Error'];
 
@@ -154,7 +154,7 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 						<h4 className={styles.questionTitle}>
 							{questions[currentQuestion].question}
 						</h4>
-						<Divider className={styles.divider} />
+						<hr />
 						{
 							questions[currentQuestion].codeExample &&
 							<Code codeExample={questions[currentQuestion].codeExample} />
@@ -171,11 +171,11 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 					</div>
 					<div className={styles.buttons}>
 						{currentQuestion < questions.length - 1 ? (
-							<Button appearance={'primary'} onClick={nextButtonHandler}>
+							<Button onClick={nextButtonHandler}>
 								Next
 							</Button>
 						) : (
-							<Button appearance={'primary'} onClick={endTestHandler}>
+							<Button onClick={endTestHandler}>
 								Finish test
 							</Button>
 						)}

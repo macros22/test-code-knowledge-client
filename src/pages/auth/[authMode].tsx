@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Auth } from 'components/auth/Auth/Auth';
+import { Auth } from 'components/Auth/Auth/Auth';
 import { withLayout } from 'layouts/AuthLayout/AuthLayout';
 import { GetServerSideProps } from 'next';
 

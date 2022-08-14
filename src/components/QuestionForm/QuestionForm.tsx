@@ -1,17 +1,11 @@
 import React from 'react';
 import styles from './QuestionForm.module.scss';
-
 import { QuestionFormProps } from './QuestionForm.props';
-
 import { Button, Form, InputGroup } from 'react-bootstrap';
-
-
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
 import { Category } from 'interfaces/questions.interface';
 import { useQuestionForm } from './useQuestionForm.hook';
-
-
-
+import { HrWithContent } from 'components';
 
 export const QuestionForm = ({
 	questionItem,
@@ -137,9 +131,9 @@ export const QuestionForm = ({
 				</Button>
 			</form> */}
 			<Form className={styles.form}>
-				<div className={"hrdivider" + " " + styles.title}>
-					<span>Category</span>
-				</div>
+				<HrWithContent className={styles.title}>
+					Category
+				</HrWithContent>
 
 				<Form.Select className="mb-3" aria-label="Default select example" value={category} onChange={handleSelectCategory}>
 					{Object.values(Category).map(category => {
@@ -151,9 +145,9 @@ export const QuestionForm = ({
 				</Form.Select>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					{/* <Form.Label>Question</Form.Label> */}
-					<div className={"hrdivider" + " " + styles.title}>
-						<span>Question</span>
-					</div>
+					<HrWithContent className={styles.title}>
+						Question
+					</HrWithContent>
 					<Form.Control placeholder="Enter question" value={question}
 						name="Question"
 						onChange={(e) => setQuestion(e.target.value)} />
@@ -162,25 +156,16 @@ export const QuestionForm = ({
 					</Form.Text>
 				</Form.Group>
 				<Form.Group className="mb-2" controlId="formBasicPassword">
-					{/* <Form.Label>Code example</Form.Label> */}
-					{/* <div className="hrdivider">
-						<hr />
-						<span>Code example</span>
-					</div> */}
-					<div className={"hrdivider" + " " + styles.title}>
-						<span><BsFillTerminalFill /> Code example</span>
-
-					</div>
+					<HrWithContent className={styles.title}>
+						<BsFillTerminalFill /> Code example
+					</HrWithContent>
 					<Form.Control disabled={!isCodeExampleChecked} as="textarea" placeholder="Code" value={codeExample} onChange={(e) => setCodeExample(e.target.value)} className={styles.textareaCodeExample} />
 					<Form.Check type="checkbox" label="Show code example?" checked={isCodeExampleChecked} onClick={() => setIsCodeExampleChecked(checked => !checked)} />
 				</Form.Group>
-				{/* <div className="hrdivider">
-					<hr />
-					<span>Answers</span>
-				</div> */}
-				<div className={"hrdivider" + " " + styles.title}>
-					<span>Answers</span>
-				</div>
+
+				<HrWithContent className={styles.title}>
+					Answers
+				</HrWithContent>
 				{answers.map((answer, index) => {
 					return (
 						<InputGroup key={index} className="mb-3">
