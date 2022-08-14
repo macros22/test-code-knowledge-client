@@ -7,7 +7,7 @@
     "codeExample"
     "buttons"
     "answer";
-  grid-template-columns:minmax(250px, 450px);
+  grid-template-columns: minmax(250px, 450px);
   grid-template-rows: auto auto 40px auto;
   padding: 0.5rem;
 
@@ -39,7 +39,7 @@
 
   height: auto;
 
-  &InVisible{
+  &InVisible {
     visibility: hidden;
     height: 0;
   }
@@ -56,12 +56,12 @@
 }
 
 .editButtons {
-  
+
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 1rem;
 }
 

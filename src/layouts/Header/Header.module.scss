@@ -26,25 +26,20 @@
 		&:active {
 			color: white !important;
 		}
-
 	}
 }
 
 .navbarLinks,
 .logout {
-	a {
-		font-weight: 600 !important;
-
-
-	}
-
+	font-weight: 600 !important;
 	color: gray !important;
+
+	margin-right: 0.3rem;
 
 	&:active,
 	&:hover {
 		color: inherit !important;
 	}
-
 }
 
 .burgerMenu {
@@ -62,4 +57,5 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	padding: 0.5rem;
 }

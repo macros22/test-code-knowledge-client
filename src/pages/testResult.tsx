@@ -5,7 +5,7 @@ import { questionsInStorageName } from 'constants/names.storage';
 import { withLayout } from 'layouts';
 
 const TestResultPage = (): JSX.Element => {
-	const [questions, _] = useSessionStorage(questionsInStorageName, []);
+	const [questions] = useSessionStorage(questionsInStorageName, []);
 
 	return (
 		<>{questions && questions.length && <TestResult questions={questions} />}</>

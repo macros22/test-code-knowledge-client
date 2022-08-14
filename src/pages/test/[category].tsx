@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next';
 import { useSessionStorage } from 'hooks';
 import { categoryName, questionsInStorageName } from 'constants/names.storage';
 import { getQueryParametr } from 'helpers/get-param-from-query';
+import { Spinner } from 'react-bootstrap';
 
 interface TestPageProps extends Record<string, unknown> {
 	category: string;
@@ -52,12 +53,20 @@ const TestPage = ({
 		setQuestionsInStorage(questions);
 	}, [questions.length]);
 
-	if (isLoading) return <h1>Loading...</h1>;
+	if (isLoading) {
+		return (
+			<Spinner
+				as="span"
+				animation="border"
+				size="sm"
+				role="status"
+				aria-hidden="true" />);
+	}
 
 	return (
 		<>
 			{questions && questions.length && (
-				<Test questions={questions}/>
+				<Test questions={questions} />
 			)}
 		</>
 	);

@@ -3,9 +3,8 @@ import { useUser } from 'hooks/useUser';
 import { authApi } from 'libs/auth.api';
 import Link from 'next/link';
 import React from 'react';
-import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap';
+import { Button, FloatingLabel, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { BsFillLockFill, BsFillEnvelopeFill } from "react-icons/bs";
-
 
 export const SignIn = () => {
 	const [email, setEmail] = React.useState('');
@@ -13,11 +12,15 @@ export const SignIn = () => {
 
 	const { mutate: mutateUser } = useUser();
 
+	const [isSubmitLoading, setIsSubmitLoading] = React.useState(false);
+
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		if (email && password) {
+			setIsSubmitLoading(true);
 			const accessToken = await authApi.signIn({ email, password });
+			setIsSubmitLoading(false);
 			mutateUser();
 		}
 	};
@@ -56,9 +59,19 @@ export const SignIn = () => {
 					<Form.Control value={password} onChange={handlePassword} type="password" placeholder="Password" />
 				</FloatingLabel>
 			</InputGroup>
-			<Button className=" btn-lg mb-2 w-100" variant="primary" type="submit">
-				Sign in
+			<Button className=" btn-lg mb-2 w-100" variant="primary" type="submit" disabled={isSubmitLoading}>
+				{isSubmitLoading &&
+					<Spinner
+						as="span"
+						animation="border"
+						size="sm"
+						role="status"
+						aria-hidden="true"
+					/>
+				}
+				{` Sign in`}
 			</Button>
+
 			<Form.Group className="mb-3" controlId="formBasicCheckbox">
 				Or you can <Link href="/auth/sign-up"><strong>Sign Up</strong></Link>
 			</Form.Group>

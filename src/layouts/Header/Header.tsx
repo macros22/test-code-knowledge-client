@@ -50,9 +50,10 @@ export const Header = () => {
 
             </NavDropdown>
             <Nav.Link href="#" className={styles.navbarLinks}>Link</Nav.Link>
-            <div className={styles.logout}>
+            <div className={styles.logout} onClick={logoutHandler}>
               {/* {user?.email || 'name'} */}
-              <BsDoorOpenFill className='ml-3' onClick={logoutHandler} />
+              {/* <BsDoorOpenFill className='ml-3' /> */}
+              {` Logout`}
             </div>
           </Nav>
         </Navbar.Collapse>

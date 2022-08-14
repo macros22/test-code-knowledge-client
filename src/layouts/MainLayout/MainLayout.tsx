@@ -5,7 +5,7 @@ import { MainLayoutProps } from "./MainLayout.props";
 import { Header, Footer } from "layouts";
 import { useUser } from "hooks/useUser";
 import { useRouter } from "next/router";
-
+import { Spinner } from 'react-bootstrap';
 
 const MainLayout: React.FC<MainLayoutProps> = ({
   children,
@@ -13,18 +13,24 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   description,
   keywords,
 }) => {
-
-
   const { loggedIn } = useUser();
-
   const router = useRouter();
 
   React.useEffect(() => {
-    if (!loggedIn) router.replace('/auth/sign-in');
-
+    if (!loggedIn) {
+      router.replace('/auth/sign-in')
+    };
   }, [loggedIn]);
 
-  if (!loggedIn) return <> Redirecting.... </>;
+  if (!loggedIn) {
+    return (
+      <Spinner
+        as="span"
+        animation="border"
+        size="sm"
+        role="status"
+        aria-hidden="true" />);
+  }
 
 
   return (
@@ -55,9 +61,8 @@ export const withLayout = <T extends Record<string, unknown>>(
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
     const metaProps: MetaPropsType = {
-      title: `Test knowledge  ${
-        (props?.currentSimulationDimension as string)?.toLowerCase() || ""
-      }`,
+      title: `Test knowledge  ${(props?.currentSimulationDimension as string)?.toLowerCase() || ""
+        }`,
       description:
         (props?.currentSimulationDimension as string)?.toLowerCase() || "",
     };
