@@ -105,4 +105,8 @@ $form-select-focus-box-shadow: none !default;
 $form-check-input-border: $border  !default;
 $form-check-input-checked-border-color: $primary  !default;
 
+.input-group-text {
+    background-color: $white !important;
+}
+
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

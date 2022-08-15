@@ -68,7 +68,7 @@ const AnswersListResult: React.FC<IProps> = ({
 					return (
 						<li className={styles.answer} key={answer.answer}>
 							<Form.Check
-								style={{ fontSize: '24px' }}
+								style={{ fontSize: '28px' }}
 								type={'checkbox'}
 								id={answer.answer}
 								label={answer.answer}

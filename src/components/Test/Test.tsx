@@ -40,14 +40,8 @@ const AnswersList = ({
 				return (
 					<li key={answer.answer}>
 						<>
-							{/* <Checkbox
-								name={answer.answer}
-								value={answer.answer}
-								checked={checkedAnswers[currentQuestion][index]}
-								onChange={() => handleOnChange(index)}
-							/>	 */}
 							<Form.Check
-								style={{ fontSize: '24px' }}
+								style={{ fontSize: '28px' }}
 								type={'checkbox'}
 								id={answer.answer}
 								label={answer.answer}

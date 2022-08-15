@@ -1,3 +1,5 @@
+@import 'assets/variables';
+
 .editMedicalItem {
 	display: grid;
 	// grid-template-areas:
@@ -44,7 +46,8 @@
 
 
 .textareaCodeExample{
-	min-height: 100px;
+	height: 200px !important;
+	margin-bottom: $spacer*0.75;
 }
 
 

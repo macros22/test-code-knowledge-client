@@ -1,14 +1,17 @@
+@import 'colors';
+@import 'variables';
+
 @mixin iconWithBorder {
   height: 100%;
-  width:auto;
-  color: var(--text-secondary-color);
-  border: var(--border);
-  border-radius: var(--border-radius);
-  padding: 0.44rem;
+  width: auto;
+  color: $secondary;
+  border: $border;
+  border-radius: $border-radius;
+  padding: $spacer*0.45;
   vertical-align: bottom;
 
-  &:hover{
-    color: var(--text-color);
+  &:hover {
+    color: $dark;
   }
 
 }
