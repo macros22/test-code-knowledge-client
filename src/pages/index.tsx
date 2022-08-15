@@ -2,7 +2,7 @@ import { Categories } from 'components';
 import { withLayout } from 'layouts';
 import { useGetQuestionsListsSizeQuery } from 'store/questions.api';
 import { Spinner } from 'react-bootstrap';
-const Home = () => {
+const Index = () => {
 	const { data, isLoading } = useGetQuestionsListsSizeQuery('');
 
 	if (isLoading) {
@@ -22,4 +22,4 @@ const Home = () => {
 	);
 };
 
-export default withLayout(Home);
+export default withLayout('main', Index);

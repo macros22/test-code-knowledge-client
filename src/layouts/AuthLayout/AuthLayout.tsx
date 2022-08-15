@@ -6,14 +6,9 @@ import { useUser } from "hooks/useUser";
 import { useRouter } from "next/router";
 import { Spinner } from 'react-bootstrap';
 
-const AuthLayout: React.FC<AuthLayoutProps> = ({
-  children,
-  title,
-  description,
-  keywords,
+export const AuthLayout: React.FC<AuthLayoutProps> = ({
+  children
 }) => {
-
-
   const { loggedIn } = useUser();
 
   const router = useRouter();
@@ -25,23 +20,25 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
 
   if (loggedIn) {
     return (
-      <Spinner
-        as="span"
-        animation="border"
-        size="sm"
-        role="status"
-        aria-hidden="true" />);
+      <div className={styles.wrapper}>
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true" />
+      </div>);
   }
 
   return (
     <>
       <Head>
-        <title>{title || "Test knowledge"}</title>
-        <meta name="description" content={`Test knowledge.` + description} />
+        <title>{"Auth Test knowledge"}</title>
+        <meta name="description" content={`Auth Test knowledge.`} />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"
-          content={keywords || "javascript, test, knowledge"}
+          content={"javascript, test, knowledge"}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -50,25 +47,4 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
       </div>
     </>
   );
-};
-
-export type MetaPropsType = Omit<AuthLayoutProps, "children">;
-
-export const withLayout = <T extends Record<string, unknown>>(
-  Component: React.FC<T>
-) => {
-  return function withLayoutComponent(props: T): JSX.Element {
-    const metaProps: MetaPropsType = {
-      title: `Test knowledge  ${(props?.currentSimulationDimension as string)?.toLowerCase() || ""
-        }`,
-      description:
-        (props?.currentSimulationDimension as string)?.toLowerCase() || "",
-    };
-
-    return (
-      <AuthLayout {...metaProps}>
-        <Component {...props} />
-      </AuthLayout>
-    );
-  };
 };

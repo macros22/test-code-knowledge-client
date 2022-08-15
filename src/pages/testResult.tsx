@@ -12,4 +12,4 @@ const TestResultPage = (): JSX.Element => {
 	);
 };
 
-export default withLayout(TestResultPage);
+export default withLayout('main', TestResultPage);

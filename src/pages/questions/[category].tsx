@@ -52,7 +52,7 @@ const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
 	);
 };
 
-export default withLayout(QuestionsPage);
+export default withLayout('main', QuestionsPage);
 
 
 

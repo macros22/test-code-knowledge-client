@@ -7,11 +7,8 @@ import { useUser } from "hooks/useUser";
 import { useRouter } from "next/router";
 import { Spinner } from 'react-bootstrap';
 
-const MainLayout: React.FC<MainLayoutProps> = ({
+export const MainLayout: React.FC<MainLayoutProps> = ({
   children,
-  title,
-  description,
-  keywords,
 }) => {
   const { loggedIn } = useUser();
   const router = useRouter();
@@ -36,12 +33,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   return (
     <>
       <Head>
-        <title>{title || "Test knowledge"}</title>
-        <meta name="description" content={`Test knowledge.` + description} />
+        <title>{"Test code knowledge"}</title>
+        <meta name="description" content={`Test code knowledge.`} />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"
-          content={keywords || "javascript, test, knowledge"}
+          content={"typescript, node.js, javascript, test, knowledge"}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -54,23 +51,3 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   );
 };
 
-export type MetaPropsType = Omit<MainLayoutProps, "children">;
-
-export const withLayout = <T extends Record<string, unknown>>(
-  Component: React.FC<T>
-) => {
-  return function withLayoutComponent(props: T): JSX.Element {
-    const metaProps: MetaPropsType = {
-      title: `Test knowledge  ${(props?.currentSimulationDimension as string)?.toLowerCase() || ""
-        }`,
-      description:
-        (props?.currentSimulationDimension as string)?.toLowerCase() || "",
-    };
-
-    return (
-      <MainLayout {...metaProps}>
-        <Component {...props} />
-      </MainLayout>
-    );
-  };
-};

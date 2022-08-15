@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Auth } from 'components/Auth/Auth/Auth';
-import { withLayout } from 'layouts/AuthLayout/AuthLayout';
 import { GetServerSideProps } from 'next';
+import { withLayout } from 'layouts';
 
 interface IAuthPageProps extends Record<string, string> {
 	authMode: 'sign-in' | 'sign-up';
@@ -23,4 +23,4 @@ const AuthPage = ({ authMode }: IAuthPageProps): JSX.Element => {
 		</>);
 };
 
-export default withLayout(AuthPage);
+export default withLayout('auth', AuthPage);

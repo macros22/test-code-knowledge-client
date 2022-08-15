@@ -72,4 +72,4 @@ const TestPage = ({
 	);
 };
 
-export default withLayout(TestPage);
+export default withLayout('main', TestPage);
