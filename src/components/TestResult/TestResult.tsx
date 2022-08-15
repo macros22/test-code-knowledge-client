@@ -1,17 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'clsx';
-
 import styles from './TestResult.module.scss';
 import { Answer, Question } from 'interfaces/questions.interface';
-import { Card, Checkbox, Code, Tag } from 'components';
+import { Card, Code, Tag } from 'components';
 import { useLocalStorage, useSessionStorage } from 'hooks';
 import {
 	categoryName,
 	checkedAnswersName,
-	currentQuestionIndexName,
 } from 'constants/names.storage';
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 interface IProps {
 	answers: Answer[];
@@ -69,8 +67,11 @@ const AnswersListResult: React.FC<IProps> = ({
 				{answers.map((answer, index) => {
 					return (
 						<li className={styles.answer} key={answer.answer}>
-							<Checkbox
-								name={answer.answer}
+							<Form.Check
+								style={{ fontSize: '24px' }}
+								type={'checkbox'}
+								id={answer.answer}
+								label={answer.answer}
 								value={answer.answer}
 								checked={checkedAnswers[currentQuestion][index]}
 								disabled

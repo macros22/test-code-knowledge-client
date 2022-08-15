@@ -1,8 +1,11 @@
+@import'assets/variables';
+@import'assets/colors';
+
 .tag {
   display: inline-block;
   box-sizing: border-box;
   text-align: center;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
 }
 
 .sm {
@@ -24,7 +27,7 @@
 }
 
 .ghost {
-  border: 1px solid var(--info-color);
+  border: $border;
 }
 
 .fullWidth {
@@ -32,24 +35,24 @@
 }
 
 .success {
-  color: var(--white-color);
-  background: var(--success-color);
+  color: $white;
+  background: $success;
   font-weight: bold;
 }
 
 .danger {
-  color: var(--white-color);
-  background: var(--danger-color);
+  color: $white;
+  background: $danger;
   font-weight: bold;
 }
 
 .info {
-  background-color: var(--info-color);
-  color: rgb(148 119 52);
+  background-color: $info;
+  color: #807a25;
   font-weight: bold;
 }
 
 .primary {
-  color: var(--white-color);
-  background: var(--primary-color);
+  color: $white;
+  background: $primary;
 }

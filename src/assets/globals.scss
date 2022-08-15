@@ -6,7 +6,7 @@
 html,
 body {
 	padding: 0;
-	color: var(--text-color);
+	color: $dark;
 	margin: 0;
 	height: 100%;
 	overflow-x: hidden;
@@ -81,12 +81,7 @@ body {
 
 
 
-span.input-group-text {
-	background-color: white !important;
-	font-weight: 600;
-}
-
-.form-check-input {
-	border-width: 2px !important;
-	border-color: var(--border-color) !important;
-}
+// span.input-group-text {
+// 	background-color: white !important;
+// 	font-weight: 600;
+// }

@@ -3,50 +3,39 @@
 // Bootswatch
 // https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 
+@import 'colors';
+@import 'screen-sizes';
+@import 'variables';
+
 $theme: "litera" !default;
-
-// Color system
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #ddd !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
-
-$blue: #4582ec !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #e83e8c !default;
-$red: tomato !default;
-$orange: #fd7e14 !default;
-$yellow: #f0ad4e !default;
-$green: #09a180 !default;
-$teal: #20c997 !default;
-$cyan: #17a2b8 !default;
-
-$primary: $green  !default;
-$secondary: $gray-500  !default;
-$success: $green  !default;
-$info: $cyan  !default;
-$warning: $yellow  !default;
-$danger: $red  !default;
-$light: $gray-100  !default;
-$dark: $gray-800  !default;
 
 $min-contrast-ratio: 2.5 !default;
 
 // Body
-$body-color: $gray-800  !default;
+$body-color: $dark  !default;
 
 // Fonts
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: Montserrat, Poppins, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-family-sans-serif: Montserrat,
+    Poppins,
+    sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji" !default;
+$font-family-serif: Georgia,
+    Cambria,
+    "Times New Roman",
+    Times,
+    serif !default;
 // stylelint-enable
 
 $font-size-base: 1.1rem !default;
@@ -63,9 +52,9 @@ $input-btn-padding-x: 1.1rem !default;
 $btn-font-family: $font-family-sans-serif  !default;
 $btn-font-size: 1.075rem !default;
 $btn-font-size-sm: .688rem !default;
-$btn-border-radius: 0.3em !default;
-$btn-border-radius-lg: 0.3em !default;
-$btn-border-radius-sm: 0.3em !default;
+$btn-border-radius: $border-radius  !default;
+$btn-border-radius-lg: $border-radius  !default;
+$btn-border-radius-sm: $border-radius  !default;
 $btn-font-weight: 600 !default;
 
 
@@ -83,10 +72,7 @@ $tooltip-font-size: 11px !default;
 $alert-border-width: 0 !default;
 
 // Borders.
-$border-width: 2px !default;
 $border-style: solid !default;
-$border-color: $gray-200  !default;
-$border-color-translucent: $gray-200  !default;
 
 // Hr
 $hr-opacity: 1 !default;
@@ -103,7 +89,6 @@ $input-font-weight: 600 !default;
 $input-border-color: $border-color  !default;
 $input-group-addon-bg: $gray-200  !default !default;
 
-
 // Badges
 $badge-font-size: .95em !default;
 $badge-color: $primary  !default;
@@ -114,10 +99,10 @@ $badge-padding-x: .85em !default;
 $dropdown-link-hover-bg: $gray-100  !default;
 
 
-
-
-
+// Forms
 // Select
 $form-select-focus-box-shadow: none !default;
+$form-check-input-border: $border  !default;
+$form-check-input-checked-border-color: $primary  !default;
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

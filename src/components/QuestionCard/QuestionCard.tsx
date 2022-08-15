@@ -39,7 +39,6 @@ export const QuestionCard = ({
 			<div className={styles.questionCard}>
 				<div className={styles.question}>
 					<h4>{question.question}</h4>
-					{/* <Divider className={styles.divider} /> */}
 					<hr />
 				</div>
 
@@ -47,7 +46,6 @@ export const QuestionCard = ({
 					<div className={styles.codeExample}>
 						<Code codeExample={question.codeExample} />
 						<hr />
-						{/* <Divider className={styles.divider} /> */}
 					</div>
 				}
 
@@ -97,7 +95,6 @@ export const QuestionCard = ({
 						[styles.answerInVisible]: !isAnswerVisible,
 					})}
 				>
-					{/* <Divider className={styles.divider} /> */}
 					<hr />
 					{correctAnswers.length &&
 						correctAnswers.map((answer) => {

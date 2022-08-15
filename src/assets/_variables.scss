@@ -1,19 +1,6 @@
+@import 'colors';
+$border-width: 2px !default;
+$border: $border-width solid $border-color;
+$border-radius: .375rem !default;
 
-:root {
-    // Border.
-    // --border-radius: 4px;
-    --border-radius: 0.3em;
-    --border-width: 2px;
-    --border: var(--border-width) solid var(--border-color);
-
-//     --wrapper-width: 85%;
-//     --header-height: 60px;
-  
-//     // Z-index.
-//     --z-index-work-area: 10;
-//     --z-index-sidebar: 20;
-//     --z-index-header: 30;
-//     --z-index-header-body: 31;
-//     --z-index-modal-overlay: 40;
-//     --z-index-modal: 41;
-  }
+$spacer: 1rem !default;

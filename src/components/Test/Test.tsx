@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
 import { Answer, Question } from 'interfaces/questions.interface';
-import { Checkbox, Code } from 'components';
+import { Code } from 'components';
 import { useSessionStorage } from 'hooks';
 import {
 	checkedAnswersName,
@@ -54,8 +54,6 @@ const AnswersList = ({
 								value={answer.answer}
 								checked={checkedAnswers[currentQuestion][index]}
 								onChange={() => handleOnChange(index)}
-
-
 							/>
 						</>
 					</li>

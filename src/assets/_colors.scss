@@ -1,21 +1,63 @@
-:root {
-    --primary-color: rgb(9, 161, 128);
-    --primary-dark-color: rgb(7, 134, 107);
-    --secondary-color: #7a7e82;
-    --success-color: rgb(9, 161, 128);
-    --danger-color: rgb(255, 99, 71);
-    --info-color: rgb(248, 227, 132);
-    --warning-color: #f2c231;
-  
-    --gray-color: rgb(182 182 182);
-    --gray-light-color: rgb(214 214 214);
-    --white-color: #fff;
-    --text-color: rgb(40, 44, 52);
-    --text-secondary-color: rgb(121 121 121 / 78%);
-    --border-color: rgb(230, 230, 230);
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #ddd !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+
+$blue: #4582ec !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: tomato !default;
+$orange: #fd7e14 !default;
+$yellow: #f2c231 !default;
+$light-yellow: #f8e384 !default;
+$green: #09a180 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+
+$primary: $green  !default;
+$secondary: #adb5bd !default;
+$success: $green  !default;
+$info: $light-yellow  !default;
+$warning: $yellow  !default;
+$danger: $red  !default;
+$light: $gray-100  !default;
+$dark: #282c34 !default;
+
+
+$border-color: $gray-200  !default;
+$border-color-translucent: $gray-200  !default;
 
 
 
-    --form-control-color: var(--success-color);
-    --form-control-disabled: #959495;
-  }
+
+// :root {
+//   --primary-color: rgb(9, 161, 128);
+//   --primary-dark-color: rgb(7, 134, 107);
+//   --secondary-color: #7a7e82;
+//   --success-color: rgb(9, 161, 128);
+//   --danger-color: rgb(255, 99, 71);
+//   --info-color: #f8e384;
+//   --warning-color: #f2c231;
+
+//   --gray-color: rgb(182 182 182);
+//   --gray-light-color: #d6d6d6;
+//   --white-color: #fff;
+//   --text-color: #282c34;
+//   --text-secondary-color: rgba(121, 121, 121, 0.78);
+//   --border-color: rgb(230, 230, 230);
+
+
+
+//   --form-control-color: var(--success-color);
+//   --form-control-disabled: #959495;
+// }

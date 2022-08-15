@@ -1,8 +1,8 @@
+@import 'assets/colors';
+
 .navbar {
 	box-shadow: 0 3px 10px rgba(83, 204, 34, 0.1);
-	border-bottom: 3px solid var(--primary-color);
-
-
+	border-bottom: 3px solid $primary;
 }
 
 .logo {
@@ -10,12 +10,10 @@
 	text-transform: uppercase;
 	font-size: 17px;
 	font-weight: 700;
-	color: var(--text-color) !important;
-
+	color: $dark  !important;
 
 	&:hover {
-		color: var(--danger-color) !important;
-		;
+		color: $danger  !important;
 	}
 }
 
@@ -24,7 +22,7 @@
 
 		// font-weight: 600 !important;	
 		&:active {
-			color: white !important;
+			color: $white  !important;
 		}
 	}
 }
@@ -32,7 +30,7 @@
 .navbarLinks,
 .logout {
 	font-weight: 600 !important;
-	color: gray !important;
+	color: $gray-600  !important;
 
 	margin-right: 0.3rem;
 

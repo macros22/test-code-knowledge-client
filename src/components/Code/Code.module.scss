@@ -1,18 +1,20 @@
+@import 'assets/variables';
+
 .pre {
   text-align: left;
 
   overflow: auto;
 
-  font-size: 1.1rem;
+  font-size: $spacer*1.1;
   font-weight: 500;
 
   margin: 0;
 
-  min-width: 40vw;
+  // min-width: 40vw;
   // overflow: none;
-  padding: 1.25rem;
-  border-radius: var(--border-radius);
-  line-height: 1.8rem;
+  padding: $spacer*1.25;
+  border-radius: $border-radius;
+  line-height: $spacer*1.8;
   // letter-spacing: 1px;
 
 
@@ -34,7 +36,7 @@
 .noLine {
   display: table-cell;
   text-align: right;
-  padding-right: 1rem;
+  padding-right: $spacer;
   user-select: none;
   opacity: 0.5;
 

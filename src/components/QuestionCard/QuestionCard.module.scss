@@ -1,4 +1,5 @@
 @import'assets/mixins.scss';
+@import'assets/variables';
 
 .questionCard {
   display: grid;
@@ -7,15 +8,15 @@
     "codeExample"
     "buttons"
     "answer";
-  grid-template-columns: minmax(250px, 450px);
+  grid-template-columns: minmax(250px, 470px);
   grid-template-rows: auto auto 40px auto;
-  padding: 0.5rem;
+  padding: $spacer * 0.5;
 
 }
 
 .wrapper {
   position: relative;
-  max-width: 400px;
+  max-width: 460px;
 }
 
 
@@ -48,7 +49,7 @@
 
 .answerStatusText {
   width: 100%;
-  margin-left: 0.5rem;
+  margin-left: $spacer * 0.5;
 }
 
 .iconButton {
@@ -62,15 +63,10 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: $spacer;
 }
 
 .chevronIcon {
   height: 100%;
-  width: 50px !important;
-}
-
-
-.divider {
-  margin: 1.1rem -1.3rem !important;
+  width: $spacer * 2 !important;
 }

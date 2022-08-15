@@ -1,7 +1,10 @@
+@import 'assets/variables';
+@import 'assets/colors';
+
 .card {
-  border-radius: var(--border-radius);
-  border: var(--border);
-  background: var(--white-color);
-  padding: 0.75rem;
+  border-radius: $border-radius;
+  border: $border;
+  background: $white;
+  padding: $spacer * 0.75;
   max-width: 100%;
 }
