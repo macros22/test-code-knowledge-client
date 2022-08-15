@@ -14,11 +14,10 @@
 		font-weight: 600 !important;
 		color: #8b8b8b !important;
 	}
-}
 
-.footer a:hover {
-	color: var(--gray-light-color);
-
+	a:hover {
+		color: #5b5b5b !important;
+	}
 }
 
 @media (max-width: 765px) {

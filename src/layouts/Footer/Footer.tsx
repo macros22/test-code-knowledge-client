@@ -11,7 +11,7 @@ export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
 			<p>Code knowledge test © 2021 - {format(new Date(), 'yyyy')}</p>
 			<a href="https://github.com/kramax42/test-code-knowledge-client" target="_blank">
 				<BsGithub />
-				Github
+				{` Github`}
 			</a>
 		</footer>
 	);

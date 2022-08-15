@@ -148,7 +148,7 @@ export const TestResult = ({
 		<>
 			<div className={styles.wrapper}>
 				<div className={styles.content}>
-					<h3>
+					<h3 className={styles.title}>
 						Correct answers:{' '}
 						{
 							userAnswersStatus.filter((answerStatus) => answerStatus === true)
@@ -167,7 +167,7 @@ export const TestResult = ({
 									key={index + question.question}
 								>
 									<h3 className={styles.questionTitle}>
-										Question № {index + 1}
+										Question {index + 1}
 									</h3>
 									<hr />
 									<h4 className={styles.questionTitle}>

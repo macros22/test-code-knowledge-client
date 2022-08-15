@@ -1,14 +1,14 @@
 .pre {
   text-align: left;
-  
-  overflow: auto;
 
+  overflow: auto;
 
   font-size: 1.1rem;
   font-weight: 500;
 
   margin: 0;
 
+  min-width: 40vw;
   // overflow: none;
   padding: 1.25rem;
   border-radius: var(--border-radius);
