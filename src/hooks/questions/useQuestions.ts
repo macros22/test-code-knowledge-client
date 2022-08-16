@@ -9,7 +9,7 @@ interface useQuestionsProps {
     category?: Category;
 }
 
-export const useQuestions = ({ skip, limit, category = Category.JavaScript }: useQuestionsProps) => {
+export const useQuestions = ({ skip, limit, category = Category.JAVASCRIPT }: useQuestionsProps) => {
 
     const searchParams = (skip == 0 || skip) && limit
         ? `?skip=${skip}&limit=${limit}`
