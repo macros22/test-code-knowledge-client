@@ -1,0 +1,9 @@
+@import'assets/variables';
+
+.answersList {
+	list-style: none;
+	margin-top: $spacer;
+	display: flex;
+	flex-direction: column;
+	gap: $spacer;
+}

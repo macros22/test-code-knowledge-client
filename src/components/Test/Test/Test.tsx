@@ -1,65 +1,16 @@
 import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
-import { Answer, Question } from 'interfaces/questions.interface';
 import { Code } from 'components';
 import { useSessionStorage } from 'hooks';
 import {
 	checkedAnswersName,
 	currentQuestionIndexName,
 } from 'constants/names.storage';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { AnswersList } from '../AnswersList/AnswersList';
+import { TestProps } from './Test.props';
 
-export const answers = ['[object]', '[null]', '[undefined]', 'Error'];
-
-interface AnswersListProps {
-	answers: Answer[];
-	setCheckedAnswers: React.Dispatch<React.SetStateAction<boolean[][]>>;
-	currentQuestion: number;
-	checkedAnswers: boolean[][];
-}
-
-const AnswersList = ({
-	setCheckedAnswers,
-	checkedAnswers,
-	answers,
-	currentQuestion,
-}: AnswersListProps): JSX.Element => {
-	const handleOnChange = (answerIndex: number) => {
-		setCheckedAnswers((checkedAnswers) => {
-			const newCheckedAnswers = JSON.parse(JSON.stringify(checkedAnswers));
-			newCheckedAnswers[currentQuestion][answerIndex] =
-				!newCheckedAnswers[currentQuestion][answerIndex];
-			return newCheckedAnswers;
-		});
-	};
-
-	return (
-		<div className={styles.answersList}>
-			{answers.map((answer, index) => {
-				return (
-					<li key={answer.answer}>
-						<>
-							<Form.Check
-								style={{ fontSize: '28px' }}
-								type={'checkbox'}
-								id={answer.answer}
-								label={answer.answer}
-								value={answer.answer}
-								checked={checkedAnswers[currentQuestion][index]}
-								onChange={() => handleOnChange(index)}
-							/>
-						</>
-					</li>
-				);
-			})}
-		</div>
-	);
-};
-
-interface TestProps {
-	questions: Question[];
-}
 
 export const Test = ({ questions }: TestProps): JSX.Element => {
 	const router = useRouter();

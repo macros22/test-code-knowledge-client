@@ -58,12 +58,3 @@
 	align-items: baseline;
 	cursor: pointer;
 }
-
-
-.answersList {
-	list-style: none;
-	margin-top: $spacer;
-	display: flex;
-	flex-direction: column;
-	gap: $spacer;
-}

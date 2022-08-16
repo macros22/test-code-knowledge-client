@@ -1,9 +1,5 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import {
-    useAddQuestionMutation,
-    useEditQuestionMutation,
-} from 'store/questions.api';
 import { categoryName } from 'constants/names.storage';
 import { useQuestions, useSessionStorage } from 'hooks';
 import { Category, IQuestionDto, Question } from 'interfaces/questions.interface';
