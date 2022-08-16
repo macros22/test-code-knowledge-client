@@ -3,9 +3,8 @@ import styles from './Categories.module.scss';
 import { CategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
 import { categories } from 'constants/categories';
-import { Card, Button, Stack, Badge, Col, Container, Row } from 'react-bootstrap';
-
-// import { Button, Card, Tag } from 'components';
+import { Button, Stack } from 'react-bootstrap';
+import React from 'react';
 
 export const Categories = ({
 	questionsListsSizes,
@@ -26,7 +25,6 @@ export const Categories = ({
 				: defaultQuestionsForTestSize;
 		router.push(`/test/${category}?questionsAmount=${sizeInQuery}`);
 	};
-
 	return (
 		<div className={styles.wrapper}>
 			{categories.map((category) => {

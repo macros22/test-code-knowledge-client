@@ -1,3 +1,5 @@
+import { QuestionCard } from "components";
+
 export interface Answer {
     answer: string;
     isCorrect: boolean;
@@ -11,8 +13,12 @@ export interface Question {
     answers: Answer[];
 }
 
+export interface IQuestionDto extends Omit<Question, 'id' | 'category'> {
+    category: string;
+}
+
 export enum Category {
-    JavaScript = 'JavaScript',
-    TypeScript = 'TypeScript',
-    NodeJs = 'Node.js',
+    JAVASCRIPT = 'javascript',
+    TYPESCRIPT = 'typescript',
+    NODEJS = 'nodejs',
 }

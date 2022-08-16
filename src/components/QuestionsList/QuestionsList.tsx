@@ -9,7 +9,7 @@ import { Modal } from 'react-bootstrap';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
-	category: Category.JavaScript,
+	category: Category.JAVASCRIPT,
 	question: 'What will be output to the console?',
 	codeExample: `const example = () => {
     return ExampleCode;
@@ -45,7 +45,8 @@ export const QuestionsList = ({
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
-				<h2>All questions</h2>
+				{/* TODO! Need in refactoring  */}
+				<h2>{questions[currentQuestionIndex].category}</h2>
 
 				{withEdit && (
 					<BsPlusLg

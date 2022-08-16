@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { QUESTIONS_BASE_URL } from 'constants/urls';
-import { Question } from 'interfaces/questions.interface';
+import { IQuestionDto, Question } from 'interfaces/questions.interface';
 import { Role } from 'interfaces/user.interface';
 
 export const questionsApi = (userRole: Role) => {
@@ -28,7 +28,7 @@ export const questionsApi = (userRole: Role) => {
 
             return null;
         },
-        postWord: async (question: Question) => {
+        postQuestion: async (question: IQuestionDto) => {
             try {
 
                 // if (userRole == Role.ADMIN) {
@@ -47,7 +47,7 @@ export const questionsApi = (userRole: Role) => {
 
             return null;
         },
-        patchWord: async (question: Question, questionId: string) => {
+        patchQuestion: async (question: IQuestionDto, questionId: string) => {
             try {
                 const url = QUESTIONS_BASE_URL;
                 const res = await axios.patch(
@@ -62,7 +62,7 @@ export const questionsApi = (userRole: Role) => {
 
             return null;
         },
-        deleteWord: async (questionId: string) => {
+        deleteQuestion: async (questionId: string) => {
             try {
 
                 const url = QUESTIONS_BASE_URL;

@@ -3,7 +3,7 @@ import { RefObject, useEffect, useRef } from 'react'
 
 
 // Window Event based useEventListener interface
-function useEventListener<K extends keyof WindowEventMap>(
+export function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: undefined,
@@ -11,35 +11,35 @@ function useEventListener<K extends keyof WindowEventMap>(
 ): void
 
 // Element Event based useEventListener interface
-function useEventListener<
+export function useEventListener<
   K extends keyof HTMLElementEventMap,
   T extends HTMLElement = HTMLDivElement,
->(
-  eventName: K,
-  handler: (event: HTMLElementEventMap[K]) => void,
-  element: RefObject<T>,
-  options?: boolean | AddEventListenerOptions,
+  >(
+    eventName: K,
+    handler: (event: HTMLElementEventMap[K]) => void,
+    element: RefObject<T>,
+    options?: boolean | AddEventListenerOptions,
 ): void
 
 // Document Event based useEventListener interface
-function useEventListener<K extends keyof DocumentEventMap>(
+export function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: RefObject<Document>,
   options?: boolean | AddEventListenerOptions,
 ): void
 
-function useEventListener<
+export function useEventListener<
   KW extends keyof WindowEventMap,
   KH extends keyof HTMLElementEventMap,
   T extends HTMLElement | void = void,
->(
-  eventName: KW | KH,
-  handler: (
-    event: WindowEventMap[KW] | HTMLElementEventMap[KH] | Event,
-  ) => void,
-  element?: RefObject<T>,
-  options?: boolean | AddEventListenerOptions,
+  >(
+    eventName: KW | KH,
+    handler: (
+      event: WindowEventMap[KW] | HTMLElementEventMap[KH] | Event,
+    ) => void,
+    element?: RefObject<T>,
+    options?: boolean | AddEventListenerOptions,
 ) {
   // Create a ref that stores handler
   const savedHandler = useRef(handler)
@@ -67,4 +67,3 @@ function useEventListener<
   }, [eventName, element, options])
 }
 
-export default useEventListener

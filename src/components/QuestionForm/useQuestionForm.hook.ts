@@ -1,15 +1,15 @@
-
+import React from 'react';
 import { ValidationError } from 'yup';
 import {
     useAddQuestionMutation,
     useEditQuestionMutation,
 } from 'store/questions.api';
 import { categoryName } from 'constants/names.storage';
-import { useSessionStorage } from 'hooks';
-import { Category, Question } from 'interfaces/questions.interface';
-import React from 'react';
+import { useQuestions, useSessionStorage } from 'hooks';
+import { Category, IQuestionDto, Question } from 'interfaces/questions.interface';
 import { schema } from './question.schema';
 import { QuestionFormProps } from './QuestionForm.props';
+import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
 
 interface UserAnswer {
     answer: string;
@@ -21,7 +21,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     const [questionError, setQuestionError] = React.useState<string>('');
     // const [category, _] = useSessionStorage(categoryName, 'javascript');
 
-    const [category, setCategory] = React.useState<Category>(Category.JavaScript);
+    const [category, setCategory] = React.useState<Category>(questionItem.category);
 
     const [codeExample, setCodeExample] = React.useState<string>(
         questionItem.codeExample
@@ -112,26 +112,28 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
         return isValid;
     };
 
+    const { api } = useQuestionsApi();
+    const { mutateQuestions } = useQuestions({category});
     const handleSubmitForm = async (event: React.FormEvent) => {
         event.preventDefault();
 
         const questionPayload = {
             question,
-            category,
+            category: category.toString().toLowerCase(),
             codeExample,
             answers: answers.map((answer) => ({
                 answer: answer.answer,
                 isCorrect: answer.isChecked,
             })),
-        } as Omit<Question, 'id'>;
+        } as IQuestionDto;
 
         if (await isValidForm()) {
-            console.log(questionPayload);
+            console.log(questionPayload, questionItem.id);
             switch (mode) {
                 case 'add':
                     try {
-                        // await addQuestion(questionPayload);
-
+                        await api.postQuestion(questionPayload)
+                        mutateQuestions();
                         // setIsModalOpen(false);
                     } catch (error) {
                         console.log(error);
@@ -141,8 +143,8 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
 
                 case 'edit':
                     try {
-                        // await editQuestion({ id: questionItem.id, body: questionPayload });
-
+                        await api.patchQuestion(questionPayload, questionItem.id)
+                        mutateQuestions();
                         // setIsModalOpen(false);
                     } catch (error) {
                         console.log(error);

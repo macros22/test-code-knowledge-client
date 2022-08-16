@@ -1,11 +1,12 @@
 import { Categories } from 'components';
+import { useQuestionsCounts } from 'hooks';
 import { withLayout } from 'layouts';
-import { useGetQuestionsListsSizeQuery } from 'store/questions.api';
 import { Spinner } from 'react-bootstrap';
-const Index = () => {
-	const { data, isLoading } = useGetQuestionsListsSizeQuery('');
 
-	if (isLoading) {
+const Index = () => {
+	const { counts, isLoadingCount } = useQuestionsCounts();
+
+	if (isLoadingCount) {
 		return (
 			<Spinner
 				as="span"
@@ -17,7 +18,7 @@ const Index = () => {
 
 	return (
 		<>
-			<Categories questionsListsSizes={data} />
+			<Categories questionsListsSizes={counts} />
 		</>
 	);
 };

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Test } from 'components';
-import { useGetQuestionsQuery } from 'store/questions.api';
 import { withLayout } from 'layouts';
 import { GetServerSideProps } from 'next';
-import { useSessionStorage } from 'hooks';
+import { useQuestions, useSessionStorage } from 'hooks';
 import { categoryName, questionsInStorageName } from 'constants/names.storage';
 import { getQueryParametr } from 'helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
+import { Category } from 'interfaces/questions.interface';
 
 interface TestPageProps extends Record<string, unknown> {
-	category: string;
+	category: Category;
 	questionsAmount: number;
 }
 
@@ -19,8 +19,23 @@ export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
 	const questionsAmount =
 		Number(getQueryParametr(context, 'questionsAmount')) || 1;
 
-	const category = getQueryParametr(context, 'category') || 'javascript';
-	return { props: { category, questionsAmount } };
+		const categoryStr = getQueryParametr(context, 'category') || 'javascript';
+
+		let category: Category = Category.JAVASCRIPT;
+	
+		switch (categoryStr) {
+			case 'nodejs':
+				category = Category.NODEJS;
+				break;
+			case 'typescript':
+				category = Category.TYPESCRIPT;
+				break;
+			case 'javascript':
+			default:
+				category = Category.JAVASCRIPT;
+		}
+	
+		return { props: { category, questionsAmount } };
 };
 
 
@@ -28,9 +43,15 @@ const TestPage = ({
 	category,
 	questionsAmount,
 }: TestPageProps): JSX.Element => {
-	const { data: questions = [], isLoading } = useGetQuestionsQuery({
-		category,
+	// const { data: questions = [], isLoading } = useGetQuestionsQuery({
+	// 	category,
+	// 	limit: questionsAmount,
+	// });
+
+	const { questions, isLoadingQuestions } = useQuestions({
+		skip: 0,
 		limit: questionsAmount,
+		category
 	});
 
 	const [_, setCategoryInStorage] = useSessionStorage(
@@ -50,10 +71,11 @@ const TestPage = ({
 
 
 	React.useEffect(() => {
+		//@ts-ignore
 		setQuestionsInStorage(questions);
 	}, [questions.length]);
 
-	if (isLoading) {
+	if (isLoadingQuestions) {
 		return (
 			<Spinner
 				as="span"

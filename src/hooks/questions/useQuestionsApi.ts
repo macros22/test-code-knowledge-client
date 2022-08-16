@@ -1,10 +1,6 @@
-// import { wordsApi } from 'libs/words.api';
-// import { useUser } from 'hooks';
-// import { Role} from 'types/types';
-
 import { Role } from "interfaces/user.interface";
 import { questionsApi } from "libs/questions.api";
-import { useUser } from "./useUser";
+import { useUser } from "../useUser";
 
 export const useQuestionsApi = () => {
     

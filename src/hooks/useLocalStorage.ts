@@ -17,7 +17,7 @@ declare global {
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
-function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 	// Get from local storage then
 	// parse stored json or return initialValue
 	const readValue = useCallback((): T => {
@@ -66,7 +66,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 		}
 	});
 
-	
+
 
 	useEffect(() => {
 		setStoredValue(readValue());
@@ -93,7 +93,6 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 	return [storedValue, setValue];
 }
 
-export default useLocalStorage;
 
 // A wrapper for "JSON.parse()"" to support "undefined" value
 function parseJSON<T>(value: string | null): T | undefined {

@@ -1,29 +1,45 @@
 import React from 'react';
 import { withLayout } from 'layouts';
 import { QuestionsList } from 'components';
-import { useGetQuestionsQuery } from 'store/questions.api';
 import { GetServerSideProps } from 'next';
 import { getQueryParametr } from 'helpers/get-param-from-query';
-import { useSessionStorage } from 'hooks';
+import { useQuestions, useSessionStorage } from 'hooks';
 import { categoryName } from 'constants/names.storage';
 import { Spinner } from 'react-bootstrap';
+import { Category } from 'interfaces/questions.interface';
 
 interface QuestionsPageProps extends Record<string, unknown> {
-	category: string;
+	category: Category;
 }
 
 export const getServerSideProps: GetServerSideProps<
 	QuestionsPageProps
 > = async (context) => {
-	const category = getQueryParametr(context, 'category') || 'javascript';
+	const categoryStr = getQueryParametr(context, 'category') || 'javascript';
+
+	let category: Category = Category.JAVASCRIPT;
+
+	switch (categoryStr) {
+		case 'nodejs':
+			category = Category.NODEJS;
+			break;
+		case 'typescript':
+			category = Category.TYPESCRIPT;
+			break;
+		case 'javascript':
+		default:
+			category = Category.JAVASCRIPT;
+	}
 
 	return { props: { category } };
 };
 
 const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
-	const { data: questions = [], isLoading } = useGetQuestionsQuery({
-		category,
-		limit: 1,
+
+	const { questions, isLoadingQuestions } = useQuestions({
+		// skip: 1,
+		// limit: 1,
+		category
 	});
 
 	const [_, setCategoryInStorage] = useSessionStorage(
@@ -35,7 +51,7 @@ const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
 		setCategoryInStorage(category);
 	}, [category])
 
-	if (isLoading) {
+	if (isLoadingQuestions) {
 		return (
 			<Spinner
 				as="span"
