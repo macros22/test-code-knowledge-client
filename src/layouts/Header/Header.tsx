@@ -6,13 +6,23 @@ import { categories } from 'constants/categories';
 import { authApi } from 'libs/auth.api';
 import { useUser } from 'hooks/useUser';
 import { BsDoorOpenFill } from "react-icons/bs";
+import router, { useRouter } from 'next/router';
 
 export const Header = () => {
-  const { mutate: mutateUser, isLoggedIn } = useUser();
+
+
+  const { mutateUser, isLoggedIn } = useUser();
+
   const logoutHandler = async () => {
     await authApi.logout();
-    mutateUser();
+    mutateUser({ isGuest: true });
   }
+
+  const router = useRouter();
+  const signInHandler = async () => {
+    router.push('auth/sign-n')
+  }
+
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
       <Container >
@@ -55,12 +65,12 @@ export const Header = () => {
                 {/* {user?.email || 'name'} */}
                 {/* <BsDoorOpenFill className='ml-3' /> */}
                 {` Logout`}
-              </div>:
-              <div className={styles.logout} onClick={logoutHandler}>
-              {/* {user?.email || 'name'} */}
-              {/* <BsDoorOpenFill className='ml-3' /> */}
-              {` SignIn`}
-            </div>
+              </div> :
+              <div className={styles.logout} onClick={signInHandler}>
+                {/* {user?.email || 'name'} */}
+                {/* <BsDoorOpenFill className='ml-3' /> */}
+                {` SignIn`}
+              </div>
             }
 
           </Nav>

@@ -1,4 +1,6 @@
 
+import { isGuestName } from 'constants/names.storage';
+import { useSessionStorage } from 'hooks';
 import { useUser } from 'hooks/useUser';
 import { authApi } from 'libs/auth.api';
 import Link from 'next/link';
@@ -10,7 +12,7 @@ export const SignIn = () => {
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
-	const { mutate: mutateUser } = useUser();
+	const { mutateUser } = useUser();
 
 	const [isSubmitLoading, setIsSubmitLoading] = React.useState(false);
 
@@ -21,7 +23,7 @@ export const SignIn = () => {
 			setIsSubmitLoading(true);
 			const accessToken = await authApi.signIn({ email, password });
 			setIsSubmitLoading(false);
-			mutateUser();
+			mutateUser({ isGuest: false });
 		}
 	};
 
