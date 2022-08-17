@@ -1,9 +1,10 @@
 @import'assets/variables';
 
 .answersList {
+	// font-weight: 500 !important;
 	list-style: none;
 	margin-top: $spacer;
 	display: flex;
 	flex-direction: column;
-	gap: $spacer;
+	gap: $spacer*0.6;
 }

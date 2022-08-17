@@ -24,7 +24,7 @@ export const AnswersList = ({
                     <li key={answer.answer}>
                         <>
                             <Form.Check
-                                style={{ fontSize: '28px' }}
+                                style={{ fontSize: '24px' }}
                                 type={'checkbox'}
                                 id={answer.answer}
                                 label={answer.answer}

@@ -39,12 +39,20 @@ $font-family-serif: Georgia,
 // stylelint-enable
 
 $font-size-base: 1.1rem !default;
-$headings-font-weight: 600 !default;
+
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+
+$font-weight-base: $font-weight-semibold  !default;
+$headings-font-weight: $font-weight-semibold  !default;
 
 // Tables
 $table-border-color: rgba(0, 0, 0, .1) !default;
 $table-bg-scale: 0 !default;
-
 
 // Buttons
 $input-btn-padding-y: .5rem !default;
@@ -56,7 +64,6 @@ $btn-border-radius: $border-radius  !default;
 $btn-border-radius-lg: $border-radius  !default;
 $btn-border-radius-sm: $border-radius  !default;
 $btn-font-weight: 600 !default;
-
 
 // Navbar
 $navbar-dark-color: rgba($white, .6) !default;
@@ -106,7 +113,7 @@ $form-check-input-border: $border  !default;
 $form-check-input-checked-border-color: $primary  !default;
 
 .input-group-text {
-    background-color: $white !important;
+    background-color: $white  !important;
 }
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
