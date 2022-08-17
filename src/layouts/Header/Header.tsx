@@ -8,7 +8,7 @@ import { useUser } from 'hooks/useUser';
 import { BsDoorOpenFill } from "react-icons/bs";
 
 export const Header = () => {
-  const { mutate: mutateUser, user } = useUser();
+  const { mutate: mutateUser, isLoggedIn } = useUser();
   const logoutHandler = async () => {
     await authApi.logout();
     mutateUser();
@@ -50,11 +50,19 @@ export const Header = () => {
 
             </NavDropdown>
             <Nav.Link href="#" className={styles.navbarLinks}>Link</Nav.Link>
-            <div className={styles.logout} onClick={logoutHandler}>
+            {isLoggedIn ?
+              <div className={styles.logout} onClick={logoutHandler}>
+                {/* {user?.email || 'name'} */}
+                {/* <BsDoorOpenFill className='ml-3' /> */}
+                {` Logout`}
+              </div>:
+              <div className={styles.logout} onClick={logoutHandler}>
               {/* {user?.email || 'name'} */}
               {/* <BsDoorOpenFill className='ml-3' /> */}
-              {` Logout`}
+              {` SignIn`}
             </div>
+            }
+
           </Nav>
         </Navbar.Collapse>
       </Container>

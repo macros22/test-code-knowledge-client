@@ -10,24 +10,24 @@ import { Spinner } from 'react-bootstrap';
 export const MainLayout: React.FC<MainLayoutProps> = ({
   children,
 }) => {
-  const { loggedIn } = useUser();
+  const { isLoggedIn } = useUser();
   const router = useRouter();
 
   React.useEffect(() => {
-    if (!loggedIn) {
-      router.replace('/auth/sign-in')
+    if (!isLoggedIn) {
+      // router.replace('/auth/sign-in')
     };
-  }, [loggedIn]);
+  }, [isLoggedIn]);
 
-  if (!loggedIn) {
-    return (
-      <Spinner
-        as="span"
-        animation="border"
-        size="sm"
-        role="status"
-        aria-hidden="true" />);
-  }
+  // if (!loggedIn) {
+  //   return (
+  //     <Spinner
+  //       as="span"
+  //       animation="border"
+  //       size="sm"
+  //       role="status"
+  //       aria-hidden="true" />);
+  // }
 
 
   return (

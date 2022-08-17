@@ -6,6 +6,7 @@ import { Card, QuestionCard, QuestionForm } from 'components';
 
 import { BsPlusLg } from 'react-icons/bs';
 import { Modal } from 'react-bootstrap';
+import { useUser } from 'hooks/useUser';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
@@ -23,13 +24,14 @@ const exampleQuestion: Question = {
 };
 
 export const QuestionsList = ({
-	withEdit = false,
 	questions,
 }: QuestionsListProps): JSX.Element => {
 	const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
 
 	const [isAddQuestionMode, setIsAddQuestionMode] = React.useState(false);
 	const [isEditQuestionMode, setIsEditQuestionMode] = React.useState(false);
+
+	const { isLoggedIn } = useUser();
 
 	const handleAddQuestionButton = () => {
 		setIsAddQuestionMode(true);
@@ -48,7 +50,7 @@ export const QuestionsList = ({
 				{/* TODO! Need in refactoring  */}
 				<h2>{questions[currentQuestionIndex].category}</h2>
 
-				{withEdit && (
+				{isLoggedIn && (
 					<BsPlusLg
 						className={styles.addQuestionButton}
 						onClick={handleAddQuestionButton}
@@ -65,7 +67,7 @@ export const QuestionsList = ({
 									return (
 										<Card className={styles.questionCard} key={question.id}>
 											<QuestionCard
-												withEdit={withEdit}
+												withEdit={isLoggedIn}
 												handleEditButton={makeHandleEditButton(index)}
 												question={question}
 												key={question.id}
@@ -83,7 +85,7 @@ export const QuestionsList = ({
 									return (
 										<Card className={styles.questionCard} key={question.id}>
 											<QuestionCard
-												withEdit={withEdit}
+												withEdit={isLoggedIn}
 												handleEditButton={makeHandleEditButton(index)}
 												question={question}
 												key={question.id}
@@ -101,7 +103,7 @@ export const QuestionsList = ({
 						<Card className={styles.questionCard}>Empty medication list</Card>
 					))}
 			</div>
-			{withEdit && isAddQuestionMode && (
+			{isLoggedIn && isAddQuestionMode && (
 				// <Modal setIsModalOpen={setIsAddQuestionMode}>
 				<Modal size='lg' show={isAddQuestionMode} onHide={() => setIsAddQuestionMode(false)}>
 					<Modal.Body>
@@ -114,7 +116,7 @@ export const QuestionsList = ({
 				</Modal>
 			)}
 
-			{withEdit && questions && isEditQuestionMode && (
+			{isLoggedIn && questions && isEditQuestionMode && (
 				// <Modal setIsModalOpen={setIsEditQuestionMode}>
 				<Modal size='lg' show={isEditQuestionMode} onHide={() => setIsEditQuestionMode(false)}>
 					<Modal.Body>
