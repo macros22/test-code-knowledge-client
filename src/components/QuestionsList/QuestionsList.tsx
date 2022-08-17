@@ -86,6 +86,7 @@ export const QuestionsList = ({
 								if (index % 2 === 0) {
 									return (
 										<Card className={styles.questionCard} key={question.id}>
+											{index}
 											<QuestionCard
 												withEdit={isLoggedIn}
 												handleEditButton={makeHandleEditButton(index)}
@@ -104,6 +105,7 @@ export const QuestionsList = ({
 								if (index % 2 !== 0) {
 									return (
 										<Card className={styles.questionCard} key={question.id}>
+											{index}
 											<QuestionCard
 												withEdit={isLoggedIn}
 												handleEditButton={makeHandleEditButton(index)}

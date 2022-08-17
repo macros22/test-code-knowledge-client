@@ -85,7 +85,7 @@ export const SignUp = () => {
         {` Sign up`}
       </Button>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        Or you can <Link href="/auth/sign-in"><strong>Sign In</strong></Link>
+        Or you can <Link href="/auth/sign-in">Sign In</Link>
       </Form.Group>
 
     </Form>
