@@ -63,7 +63,7 @@ const QuestionsPage = ({ category }: QuestionsPageProps): JSX.Element => {
 
 	return (
 		<>
-			<QuestionsList questions={questions} />
+			<QuestionsList questions={questions} category={category}/>
 		</>
 	);
 };

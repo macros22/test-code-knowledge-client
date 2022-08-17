@@ -20,7 +20,7 @@ export const Header = () => {
 
   const router = useRouter();
   const signInHandler = async () => {
-    router.push('auth/sign-n')
+    router.push('/auth/sign-n')
   }
 
   return (
@@ -28,7 +28,7 @@ export const Header = () => {
       <Container >
         <Navbar.Brand >
           <Link href="/">
-            <a className={styles.logo}>{`{ Code Knowledge Test }`}</a>
+            <a className={styles.logo}>{`{ Codeteko }`}</a>
           </Link></Navbar.Brand>
         <Navbar.Toggle className={styles.burgerMenu} />
         <Navbar.Collapse className="justify-content-end">

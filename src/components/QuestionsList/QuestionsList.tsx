@@ -5,8 +5,9 @@ import { QuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
 
 import { BsPlusLg } from 'react-icons/bs';
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { useUser } from 'hooks/useUser';
+import { useRouter } from 'next/router';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
@@ -23,8 +24,10 @@ const exampleQuestion: Question = {
 	],
 };
 
+
 export const QuestionsList = ({
 	questions,
+	category: currentCategory
 }: QuestionsListProps): JSX.Element => {
 	const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
 
@@ -42,13 +45,30 @@ export const QuestionsList = ({
 			setCurrentQuestionIndex(index);
 			setIsEditQuestionMode(true);
 		};
-	};
+	}
+
+	const router = useRouter();
+	const categoryButtonHandler = (category: Category) => {
+		router.push('/questions/' + category);
+	}
 
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
-				{/* TODO! Need in refactoring  */}
-				<h2>{questions[currentQuestionIndex].category}</h2>
+				<div className={styles.categoryButtons}>
+					{Object.values(Category).map(category => {
+						return (
+							<Button
+								variant={category == currentCategory ? 'primary' : 'secondary'}
+								className={category == currentCategory ? '' : styles.inActiveButton}
+								key={category}
+								onClick={() => categoryButtonHandler(category)}
+							>
+								{category}
+							</Button>
+						);
+					})}
+				</div>
 
 				{isLoggedIn && (
 					<BsPlusLg

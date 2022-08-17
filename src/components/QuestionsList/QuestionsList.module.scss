@@ -1,18 +1,36 @@
 @import 'assets/mixins.scss';
+@import 'assets/colors';
+@import'assets/variables';
+@import'assets/screen-sizes';
 
 .title {
 	display: flex;
 	height: 70px;
-	padding: 0.65rem 0;
+	padding: $spacer * 0.65 0;
 	vertical-align: baseline;
+	margin-bottom: $spacer * 0.5;
 }
 
-.title>h1 {
-	margin: 0;
+
+.categoryButtons {
+	width: fit-content;
+	display: flex;
+	flex-direction: row;
+	gap: $spacer * 1.4;
+	font-size: 18px;
+}
+
+.inActiveButton {
+	color: $gray-600;
+
+	&:hover {
+		// background-color: initial;
+		color: $gray-700;
+	}
 }
 
 .addQuestionButton {
-	padding: 0.65rem !important;
+	padding: $spacer * 0.65 !important;
 	margin-left: auto;
 	@include iconWithBorder;
 }
@@ -20,7 +38,9 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	gap: 1.5rem;
+	align-items: center;
+	justify-content: center;
+	gap: $spacer * 1.5;
 }
 
 .wrapper {
@@ -35,15 +55,12 @@
 .column {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: $spacer * 1.5;
 	width: 100%;
 }
 
-@media (max-width: 1048px) {
+@media (max-width: map-get($grid-breakpoints, 'xl')) {
 	.container {
 		flex-direction: column;
 	}
 }
-
-
-
