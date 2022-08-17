@@ -9,16 +9,16 @@ import { Spinner } from 'react-bootstrap';
 export const AuthLayout: React.FC<AuthLayoutProps> = ({
   children
 }) => {
-  const { loggedIn } = useUser();
+  const { isLoggedIn } = useUser();
 
   const router = useRouter();
 
   React.useEffect(() => {
-    if (loggedIn) router.replace('/');
+    if (isLoggedIn) router.replace('/');
 
-  }, [loggedIn]);
+  }, [isLoggedIn]);
 
-  if (loggedIn) {
+  if (isLoggedIn) {
     return (
       <div className={styles.wrapper}>
         <Spinner
