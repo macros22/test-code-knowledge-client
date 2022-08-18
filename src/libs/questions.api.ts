@@ -3,7 +3,7 @@ import { QUESTIONS_BASE_URL } from 'constants/urls';
 import { IQuestionDto, Question } from 'interfaces/questions.interface';
 import { Role } from 'interfaces/user.interface';
 
-export const questionsApi = (userRole: Role) => {
+export const questionsApi = (userRole?: Role) => {
 
 
     return {
