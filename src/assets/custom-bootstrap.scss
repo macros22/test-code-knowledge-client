@@ -96,6 +96,10 @@ $input-font-weight: 600 !default;
 $input-border-color: $border-color  !default;
 $input-group-addon-bg: $gray-200  !default !default;
 
+.form-floating>label {
+    color: $gray-400  !important;
+}
+
 // Badges
 $badge-font-size: .95em !default;
 $badge-color: $primary  !default;
@@ -115,5 +119,6 @@ $form-check-input-checked-border-color: $primary  !default;
 .input-group-text {
     background-color: $white  !important;
 }
+
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

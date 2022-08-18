@@ -28,7 +28,11 @@ export const Header = () => {
       <Container >
         <Navbar.Brand >
           <Link href="/">
-            <a className={styles.logo}>{`{ Codeteko }`}</a>
+            <a className={styles.logo}>
+              <span className={styles.bracket}>{`{`}</span>
+              {` Codeteko `}
+              <span className={styles.bracket}>{`}`}</span>
+            </a>
           </Link></Navbar.Brand>
         <Navbar.Toggle className={styles.burgerMenu} />
         <Navbar.Collapse className="justify-content-end">
