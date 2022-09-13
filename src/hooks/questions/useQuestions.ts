@@ -18,7 +18,7 @@ export const useQuestions = ({ skip, limit, category = Category.JAVASCRIPT }: us
     });
 
     const { api } = useQuestionsApi();
-    const { data: questions, mutate: mutateQuestions, error } = useSWR(questionsUrl, api.getWords);
+    const { data: questions, mutate: mutateQuestions, error } = useSWR(questionsUrl, api.getQuestions);
     const isLoadingQuestions: boolean = !questions && !error;
 
     return {

@@ -32,7 +32,6 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 
 	React.useEffect(() => {
 		// Fill checked answers array.
-
 		const checkedAnswersInitial = new Array(questions.length);
 		for (let i = 0; i < questions.length; ++i) {
 			const answersAmount = questions[i].answers.length;

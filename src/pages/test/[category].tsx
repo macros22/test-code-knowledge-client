@@ -6,7 +6,9 @@ import { useQuestions, useSessionStorage } from 'hooks';
 import { categoryName, questionsInStorageName } from 'constants/names.storage';
 import { getQueryParametr } from 'helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
-import { Category } from 'interfaces/questions.interface';
+import { Category, Question } from 'interfaces/questions.interface';
+import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
+import { getRandomQuestionsUrl } from 'helpers/get-questions-url';
 
 interface TestPageProps extends Record<string, unknown> {
 	category: Category;
@@ -19,23 +21,23 @@ export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
 	const questionsAmount =
 		Number(getQueryParametr(context, 'questionsAmount')) || 1;
 
-		const categoryStr = getQueryParametr(context, 'category') || 'javascript';
+	const categoryStr = getQueryParametr(context, 'category') || 'javascript';
 
-		let category: Category = Category.JAVASCRIPT;
-	
-		switch (categoryStr) {
-			case 'nodejs':
-				category = Category.NODEJS;
-				break;
-			case 'typescript':
-				category = Category.TYPESCRIPT;
-				break;
-			case 'javascript':
-			default:
-				category = Category.JAVASCRIPT;
-		}
-	
-		return { props: { category, questionsAmount } };
+	let category: Category = Category.JAVASCRIPT;
+
+	switch (categoryStr) {
+		case 'nodejs':
+			category = Category.NODEJS;
+			break;
+		case 'typescript':
+			category = Category.TYPESCRIPT;
+			break;
+		case 'javascript':
+		default:
+			category = Category.JAVASCRIPT;
+	}
+
+	return { props: { category, questionsAmount } };
 };
 
 
@@ -43,16 +45,16 @@ const TestPage = ({
 	category,
 	questionsAmount,
 }: TestPageProps): JSX.Element => {
-	// const { data: questions = [], isLoading } = useGetQuestionsQuery({
-	// 	category,
-	// 	limit: questionsAmount,
-	// });
 
-	const { questions, isLoadingQuestions } = useQuestions({
-		skip: 0,
-		limit: questionsAmount,
-		category
-	});
+	const { api } = useQuestionsApi();
+	const [questions, setQuestions] = React.useState<Question[] | null>(null);
+	const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+	// const { questions, isLoadingQuestions } = useQuestions({
+	// 	skip: 0,
+	// 	limit: questionsAmount,
+	// 	category
+	// });
 
 	const [_, setCategoryInStorage] = useSessionStorage(
 		categoryName,
@@ -69,13 +71,28 @@ const TestPage = ({
 		[]
 	);
 
-
 	React.useEffect(() => {
-		//@ts-ignore
-		setQuestionsInStorage(questions);
-	}, [questions.length]);
+		const questionsUrl = getRandomQuestionsUrl({
+			category,
+			limit: questionsAmount > 1 ? questionsAmount : 5,
+		});
 
-	if (isLoadingQuestions) {
+		// setIsLoading(true);
+		api.getQuestions(questionsUrl).then(data => {
+			setQuestions(data);
+			if (data) {
+				//@ts-ignore
+				setQuestionsInStorage(data);
+			}
+		});
+	}, []);
+
+	// React.useEffect(() => {
+	// 	//@ts-ignore
+	// 	setQuestionsInStorage(questions);
+	// }, [questions.length]);
+
+	if (isLoading) {
 		return (
 			<Spinner
 				as="span"

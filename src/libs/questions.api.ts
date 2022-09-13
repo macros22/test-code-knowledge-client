@@ -7,7 +7,7 @@ export const questionsApi = (userRole?: Role) => {
 
 
     return {
-        getWords: async (url: string) => {
+        getQuestions: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
 
