@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps<
 		limit,
 	});
 
-	const questions = await questionsApi().getWords(questionsUrl);
+	const questions = await questionsApi().getQuestions(questionsUrl);
 	// console.log(context);
 	console.log(questions)
 	return {
