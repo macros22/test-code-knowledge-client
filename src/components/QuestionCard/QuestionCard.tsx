@@ -34,7 +34,7 @@ export const QuestionCard = ({
 		<div className={styles.wrapper}>
 			<div className={styles.questionCard}>
 				<div className={styles.question}>
-					<h4>{question.question}</h4>
+					<h5>{question.question}</h5>
 					<hr />
 				</div>
 
