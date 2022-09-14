@@ -7,7 +7,7 @@ export interface Answer {
 
 export interface Question {
     id: string;
-    category: Category;
+    category: string;
     question: string;
     codeExample: string;
     answers: Answer[];
@@ -17,8 +17,3 @@ export interface IQuestionDto extends Omit<Question, 'id' | 'category'> {
     category: string;
 }
 
-export enum Category {
-    JAVASCRIPT = 'javascript',
-    TYPESCRIPT = 'typescript',
-    NODEJS = 'nodejs',
-}

@@ -2,7 +2,7 @@ import React from 'react';
 import { ValidationError } from 'yup';
 import { categoryName } from 'constants/names.storage';
 import { useQuestions, useSessionStorage } from 'hooks';
-import { Category, IQuestionDto, Question } from 'interfaces/questions.interface';
+import { IQuestionDto, Question } from 'interfaces/questions.interface';
 import { schema } from './question.schema';
 import { QuestionFormProps } from './QuestionForm.props';
 import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
@@ -17,7 +17,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     const [questionError, setQuestionError] = React.useState<string>('');
     // const [category, _] = useSessionStorage(categoryName, 'javascript');
 
-    const [category, setCategory] = React.useState<Category>(questionItem.category);
+    const [category, setCategory] = React.useState<string>(questionItem.category);
 
     const [codeExample, setCodeExample] = React.useState<string>(
         questionItem.codeExample
@@ -35,7 +35,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     );
 
     const handleSelectCategory = (e) => {
-        setCategory(e.target.value as Category);
+        setCategory(e.target.value as string);
     }
 
 
@@ -109,7 +109,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     };
 
     const { api } = useQuestionsApi();
-    const { mutateQuestions } = useQuestions({category});
+    const { mutateQuestions } = useQuestions({ category });
     const handleSubmitForm = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -124,7 +124,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
         } as IQuestionDto;
 
         if (await isValidForm()) {
-            console.log(questionPayload, questionItem.id);
+            // console.log(questionPayload, questionItem.id);
             switch (mode) {
                 case 'add':
                     try {

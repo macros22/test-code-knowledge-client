@@ -1,6 +1,6 @@
 import styles from './QuestionsList.module.scss';
 import React from 'react';
-import { Category, Question } from 'interfaces/questions.interface';
+import { Question } from 'interfaces/questions.interface';
 import { QuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
 
@@ -12,7 +12,7 @@ import { categories } from 'constants/categories';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
-	category: Category.JAVASCRIPT,
+	category: 'javascript',
 	question: 'What will be output to the console?',
 	codeExample: `const example = () => {
     return ExampleCode;

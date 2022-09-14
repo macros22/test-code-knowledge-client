@@ -1,8 +1,7 @@
 import { QUESTIONS_BASE_URL, RANDOM_QUESTIONS_BASE_URL } from "constants/urls";
-import { Category } from "interfaces/questions.interface";
 
 interface IQuestionsProps {
-    category: Category;
+    category: string;
     skip: number | undefined;
     limit: number | undefined;
 }
@@ -18,7 +17,7 @@ export const getQuestionsUrl = ({ category, skip, limit }: IQuestionsProps) => {
 
 
 interface IRandomQuestionsProps {
-    category: Category;
+    category: string;
     limit: number;
 }
 

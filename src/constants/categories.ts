@@ -6,19 +6,15 @@ import NodeJsLogo from 'assets/pictures/node-js-logo.png';
 
 export const categories = [
 	{
-		name: 'JavaScript',
+		name: 'javascript',
 		src: JavaScriptLogo,
 	},
 	{
-		name: 'TypeScript',
+		name: 'typescript',
 		src: TypeScriptLogo,
 	},
 	{
-		name: 'NodeJs',
-		src: NodeJsLogo,
-	},
-	{
-		name: 'Css',
+		name: 'nodejs',
 		src: NodeJsLogo,
 	},
 ];
