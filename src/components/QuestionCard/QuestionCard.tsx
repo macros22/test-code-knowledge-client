@@ -5,11 +5,13 @@ import { QuestionCardProps } from './QuestionCard.props';
 import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { Answer } from 'interfaces/questions.interface';
+import { Badge } from 'react-bootstrap';
 
 export const QuestionCard = ({
 	question,
 	handleEditButton,
 	withEdit = false,
+	index,
 }: QuestionCardProps): JSX.Element => {
 	const [isAnswerVisible, setIsAnswerVisible] = React.useState(false);
 
@@ -34,6 +36,8 @@ export const QuestionCard = ({
 		<div className={styles.wrapper}>
 			<div className={styles.questionCard}>
 				<div className={styles.question}>
+					<h5>{'Question '}<Badge style={{ color: 'white', padding: '0.3rem 0.6rem' }} bg="danger"> {index}</Badge></h5>
+					<hr />
 					<h5>{question.question}</h5>
 					<hr />
 				</div>

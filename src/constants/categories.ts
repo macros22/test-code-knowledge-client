@@ -17,4 +17,8 @@ export const categories = [
 		name: 'NodeJs',
 		src: NodeJsLogo,
 	},
+	{
+		name: 'Css',
+		src: NodeJsLogo,
+	},
 ];

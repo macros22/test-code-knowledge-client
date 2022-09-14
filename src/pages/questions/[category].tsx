@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps<
 
 	const questions = await questionsApi().getQuestions(questionsUrl);
 	// console.log(context);
-	console.log(questions)
+	// console.log(questions)
 	return {
 		props: {
 			category,

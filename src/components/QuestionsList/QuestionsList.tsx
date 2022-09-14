@@ -8,6 +8,7 @@ import { BsPlusLg } from 'react-icons/bs';
 import { Button, Modal } from 'react-bootstrap';
 import { useUser } from 'hooks/useUser';
 import { useRouter } from 'next/router';
+import { categories } from 'constants/categories';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
@@ -48,7 +49,7 @@ export const QuestionsList = ({
 	}
 
 	const router = useRouter();
-	const categoryButtonHandler = (category: Category) => {
+	const categoryButtonHandler = (category: string) => {
 		router.push('/questions/' + category);
 	}
 
@@ -56,7 +57,7 @@ export const QuestionsList = ({
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
 				<div className={styles.categoryButtons}>
-					{Object.values(Category).map(category => {
+					{/* {Object.values(Category).map(category => {
 						return (
 							<Button
 								variant={category == currentCategory ? 'primary' : 'secondary'}
@@ -65,6 +66,18 @@ export const QuestionsList = ({
 								onClick={() => categoryButtonHandler(category)}
 							>
 								{category}
+							</Button>
+						);
+					})} */}
+					{categories.map(category => {
+						return (
+							<Button
+								variant={category.name == currentCategory.toString() ? 'primary' : 'secondary'}
+								className={category.name == currentCategory.toString() ? '' : styles.inActiveButton}
+								key={category.name}
+								onClick={() => categoryButtonHandler(category.name)}
+							>
+								{category.name}
 							</Button>
 						);
 					})}
@@ -80,43 +93,27 @@ export const QuestionsList = ({
 			<div className={styles.container}>
 				{questions && questions.length && (
 					<>
-						{/* Left Column */}
 						<div className={styles.column}>
 							{questions.map((question, index) => {
-								if (index % 2 === 0) {
-									return (
-										<Card className={styles.questionCard} key={question.id}>
-											{index}
-											<QuestionCard
-												withEdit={isLoggedIn}
-												handleEditButton={makeHandleEditButton(index)}
-												question={question}
-												key={question.id}
-											/>
-										</Card>
-									);
-								}
+								return (
+									<Card
+										className={styles.questionCard}
+										key={question.id}
+									>
+										<QuestionCard
+											withEdit={isLoggedIn}
+											handleEditButton={makeHandleEditButton(index)}
+											question={question}
+											key={question.id}
+											index={index+1}
+										/>
+									</Card>
+								);
+
 							})}
 						</div>
 
-						{/* Right Column */}
-						<div className={styles.column}>
-							{questions.map((question, index) => {
-								if (index % 2 !== 0) {
-									return (
-										<Card className={styles.questionCard} key={question.id}>
-											{index}
-											<QuestionCard
-												withEdit={isLoggedIn}
-												handleEditButton={makeHandleEditButton(index)}
-												question={question}
-												key={question.id}
-											/>
-										</Card>
-									);
-								}
-							})}
-						</div>
+
 					</>
 				)}
 

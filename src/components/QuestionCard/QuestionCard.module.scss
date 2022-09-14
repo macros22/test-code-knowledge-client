@@ -8,7 +8,7 @@
     "codeExample"
     "buttons"
     "answer";
-  grid-template-columns: minmax(250px, 470px);
+  grid-template-columns: minmax(250px, 570px);
   grid-template-rows: auto auto 40px auto;
   padding: $spacer * 0.5;
 
@@ -16,7 +16,7 @@
 
 .wrapper {
   position: relative;
-  max-width: 460px;
+  max-width: 600px;
 }
 
 
