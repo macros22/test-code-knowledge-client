@@ -165,7 +165,7 @@ export const TestResult = ({
 										{questions[index].question}
 									</h4>
 									{questions[index].codeExample &&
-										<Code codeExample={questions[index].codeExample} />
+										<Code codeExample={questions[index].codeExample} language='typescript'/>
 									}
 
 									<AnswersListResult

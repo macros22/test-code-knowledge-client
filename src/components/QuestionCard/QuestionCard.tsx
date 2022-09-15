@@ -44,7 +44,7 @@ export const QuestionCard = ({
 
 				{question.codeExample &&
 					<div className={styles.codeExample}>
-						<Code codeExample={question.codeExample} />
+						<Code codeExample={question.codeExample} language='typescript'/>
 						<hr />
 					</div>
 				}
