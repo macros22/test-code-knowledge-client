@@ -23,8 +23,6 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
 	const category = getQueryParametr(context, 'category') || 'javascript';
 
-
-
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));
 

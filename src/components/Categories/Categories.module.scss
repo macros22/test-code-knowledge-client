@@ -1,5 +1,6 @@
 @import 'assets/screen-sizes';
 @import 'assets/variables';
+@import 'assets/colors';
 
 .wrapper {
 	display: flex;
@@ -13,14 +14,20 @@
 
 .card {
 	border-radius: $border-radius;
-	width: 280px;
+	// width: minmax(0px, 400px);
+	width: 45%;
 
 	&Title {
-		margin-bottom: $spacer * 0.3;
+		text-align: center;
+		border-top-left-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+		background-color: $secondary;
+		color: $dark;
+		padding: $spacer $spacer * 2;
+
 	}
 
 	&Container {
-		margin-top: -$spacer*0.5;
 		padding: $spacer;
 		border-bottom: $border;
 		border-left: $border;

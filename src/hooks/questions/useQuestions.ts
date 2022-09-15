@@ -1,15 +1,14 @@
 import { getQuestionsUrl } from "helpers/get-questions-url";
-import { Category } from "interfaces/questions.interface";
 import useSWR from "swr";
 import { useQuestionsApi } from "./useQuestionsApi";
 
 interface useQuestionsProps {
     skip?: number;
     limit?: number;
-    category?: Category;
+    category?: string;
 }
 
-export const useQuestions = ({ skip, limit, category = Category.JAVASCRIPT }: useQuestionsProps) => {
+export const useQuestions = ({ skip, limit, category = 'javascript' }: useQuestionsProps) => {
 
     const questionsUrl = getQuestionsUrl({
         category,

@@ -2,21 +2,23 @@ import Image from 'next/image';
 import styles from './Categories.module.scss';
 import { CategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
-import { categories } from 'constants/categories';
 import { Button, Stack } from 'react-bootstrap';
 import React from 'react';
+import { useQuestionsInfo } from 'hooks';
 
 export const Categories = ({
-	questionsListsSizes,
+	questionsInfo,
 }: CategoriesProps): JSX.Element => {
 	const router = useRouter();
+
+	// const { questionsInfo } = useQuestionsInfo();
 
 	const showQuestionsButtonHandler = (category: string) => () => {
 		router.push(`/questions/${category}`);
 	};
 
 	const passTestButtonHandler = (category: string) => () => {
-		const categoryQuestionsAmount = questionsListsSizes[category];
+		const categoryQuestionsAmount = questionsInfo[category];
 		const defaultQuestionsForTestSize = 5;
 
 		const sizeInQuery =
@@ -27,28 +29,28 @@ export const Categories = ({
 	};
 	return (
 		<div className={styles.wrapper}>
-			{categories.map((category) => {
+			{Object.keys(questionsInfo).map((category) => {
 				return (
 					<>
 						<div className={styles.card}>
-							<h4 className={styles.cardTitle}>{category.name}</h4>
-							<Image
+							<h4 className={styles.cardTitle}>{category}</h4>
+							{/* <Image
 								className={styles.img}
 								src={category.src}
 								alt={category.name}
 								width={280}
 								height={280}
-							/>
+							/> */}
 							<div className={styles.cardContainer}>
 								<Stack gap={3}>
 									<Button variant="danger" onClick={showQuestionsButtonHandler(
-										category.name.toLowerCase()
+										category
 									)}>
-										Questions: {questionsListsSizes[category.name.toLowerCase()]}
+										Questions: {questionsInfo[category]}
 									</Button>
 
 									<Button
-										onClick={passTestButtonHandler(category.name.toLowerCase())}
+										onClick={passTestButtonHandler(category)}
 									>
 										Pass the test
 									</Button>

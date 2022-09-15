@@ -1,12 +1,12 @@
 import { Categories } from 'components';
-import { useQuestionsCounts } from 'hooks';
+import { useQuestionsInfo } from 'hooks';
 import { withLayout } from 'layouts';
 import { Spinner } from 'react-bootstrap';
 
 const Index = () => {
-	const { counts, isLoadingCount } = useQuestionsCounts();
+	const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
 
-	if (isLoadingCount) {
+	if (isLoadingQuestionsInfo) {
 		return (
 			<Spinner
 				as="span"
@@ -18,7 +18,7 @@ const Index = () => {
 
 	return (
 		<>
-			<Categories questionsListsSizes={counts} />
+			<Categories questionsInfo={questionsInfo} />
 		</>
 	);
 };

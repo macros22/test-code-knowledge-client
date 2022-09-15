@@ -18,7 +18,7 @@ export const questionsApi = (userRole?: Role) => {
 
             return null;
         },
-        getQuestionsCount: async (url: string) => {
+        getQuestionsInfo: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
                 return res.data as Record<string, number>;

@@ -5,4 +5,4 @@ export * from './useSessionStorage';
 export * from './useEventCallback';
 export * from './useOnClickOutside';
 export * from './questions/useQuestions';
-export * from './questions/useQuestionsCounts';
+export * from './questions/useQuestionsInfo';

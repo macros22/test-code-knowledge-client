@@ -3,7 +3,7 @@ import styles from './QuestionForm.module.scss';
 import { QuestionFormProps } from './QuestionForm.props';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
-import { Category } from 'interfaces/questions.interface';
+import { useQuestionsInfo } from 'hooks';
 import { useQuestionForm } from './useQuestionForm.hook';
 import { HrWithContent } from 'components';
 
@@ -41,6 +41,7 @@ export const QuestionForm = ({
 		mode,
 	});
 
+	const { questionsInfo } = useQuestionsInfo();
 
 	return (
 		<>
@@ -136,7 +137,7 @@ export const QuestionForm = ({
 				</HrWithContent>
 
 				<Form.Select className="mb-3" aria-label="Default select example" value={category} onChange={handleSelectCategory}>
-					{Object.values(Category).map(category => {
+					{Object.keys(questionsInfo).map(category => {
 						return (
 							<option value={category} key={category}>{category}</option>
 						);

@@ -1,14 +1,13 @@
-import styles from './QuestionsList.module.scss';
 import React from 'react';
+import styles from './QuestionsList.module.scss';
 import { Question } from 'interfaces/questions.interface';
 import { QuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
-
 import { BsPlusLg } from 'react-icons/bs';
 import { Button, Modal } from 'react-bootstrap';
 import { useUser } from 'hooks/useUser';
 import { useRouter } from 'next/router';
-import { categories } from 'constants/categories';
+import { useQuestionsInfo } from 'hooks';
 
 const exampleQuestion: Question = {
 	id: '9sdasdasdadasd999',
@@ -36,6 +35,8 @@ export const QuestionsList = ({
 	const [isEditQuestionMode, setIsEditQuestionMode] = React.useState(false);
 
 	const { isLoggedIn } = useUser();
+
+	const { questionsInfo } = useQuestionsInfo();
 
 	const handleAddQuestionButton = () => {
 		setIsAddQuestionMode(true);
@@ -69,15 +70,15 @@ export const QuestionsList = ({
 							</Button>
 						);
 					})} */}
-					{categories.map(category => {
+					{Object.keys(questionsInfo).map(category => {
 						return (
 							<Button
-								variant={category.name == currentCategory.toString() ? 'primary' : 'secondary'}
-								className={category.name == currentCategory.toString() ? '' : styles.inActiveButton}
-								key={category.name}
-								onClick={() => categoryButtonHandler(category.name)}
+								variant={category == currentCategory.toString() ? 'primary' : 'secondary'}
+								className={category == currentCategory.toString() ? '' : styles.inActiveButton}
+								key={category}
+								onClick={() => categoryButtonHandler(category)}
 							>
-								{category.name}
+								{category}
 							</Button>
 						);
 					})}

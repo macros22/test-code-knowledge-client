@@ -2,11 +2,11 @@
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import styles from './Header.module.scss';
 import Link from 'next/link';
-import { categories } from 'constants/categories';
 import { authApi } from 'libs/auth.api';
 import { useUser } from 'hooks/useUser';
 import { BsDoorOpenFill } from "react-icons/bs";
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { useQuestionsInfo } from 'hooks';
 
 export const Header = () => {
 
@@ -22,6 +22,7 @@ export const Header = () => {
   const signInHandler = async () => {
     router.push('/auth/sign-n')
   }
+  const { questionsInfo } = useQuestionsInfo();
 
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
@@ -39,11 +40,11 @@ export const Header = () => {
           <Nav >
 
             <NavDropdown title="Questions" className={styles.navbarLinks} >
-              {categories.map((category) => {
+              {Object.keys(questionsInfo).map((category) => {
                 return (
-                  <NavDropdown.Item key={category.name} className={styles.navbarDropdownItem}>
-                    <Link href={`/questions/${category.name.toLowerCase()}`}>
-                      <a>{category.name}</a>
+                  <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
+                    <Link href={`/questions/${category}`}>
+                      <a>{category}</a>
                     </Link>
                   </NavDropdown.Item>
                 );
@@ -52,11 +53,11 @@ export const Header = () => {
             </NavDropdown>
 
             <NavDropdown title="Test" className={styles.navbarLinks}>
-              {categories.map((category) => {
+              {Object.keys(questionsInfo).map((category) => {
                 return (
-                  <NavDropdown.Item key={category.name} className={styles.navbarDropdownItem}>
-                    <Link href={`/test/${category.name.toLowerCase()}`}>
-                      <a>{category.name}</a>
+                  <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
+                    <Link href={`/test/${category}`}>
+                      <a>{category}</a>
                     </Link>
                   </NavDropdown.Item>
                 );

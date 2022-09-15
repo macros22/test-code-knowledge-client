@@ -6,12 +6,12 @@ import { useQuestions, useSessionStorage } from 'hooks';
 import { categoryName, questionsInStorageName } from 'constants/names.storage';
 import { getQueryParametr } from 'helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
-import { Category, Question } from 'interfaces/questions.interface';
+import { Question } from 'interfaces/questions.interface';
 import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
 import { getRandomQuestionsUrl } from 'helpers/get-questions-url';
 
 interface TestPageProps extends Record<string, unknown> {
-	category: Category;
+	category: string;
 	questionsAmount: number;
 }
 
@@ -21,21 +21,7 @@ export const getServerSideProps: GetServerSideProps<TestPageProps> = async (
 	const questionsAmount =
 		Number(getQueryParametr(context, 'questionsAmount')) || 1;
 
-	const categoryStr = getQueryParametr(context, 'category') || 'javascript';
-
-	let category: Category = Category.JAVASCRIPT;
-
-	switch (categoryStr) {
-		case 'nodejs':
-			category = Category.NODEJS;
-			break;
-		case 'typescript':
-			category = Category.TYPESCRIPT;
-			break;
-		case 'javascript':
-		default:
-			category = Category.JAVASCRIPT;
-	}
+		const category = getQueryParametr(context, 'category') || 'javascript';
 
 	return { props: { category, questionsAmount } };
 };
