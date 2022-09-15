@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './QuestionsList.module.scss';
-import { Question } from 'interfaces/questions.interface';
 import { QuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
 import { BsPlusLg } from 'react-icons/bs';
@@ -8,22 +7,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { useUser } from 'hooks/useUser';
 import { useRouter } from 'next/router';
 import { useQuestionsInfo } from 'hooks';
-
-const exampleQuestion: Question = {
-	id: '9sdasdasdadasd999',
-	category: 'javascript',
-	question: 'What will be output to the console?',
-	codeExample: `const example = () => {
-    return ExampleCode;
-}`,
-	answers: [
-		{ answer: 'first', isCorrect: true },
-		{ answer: 'second', isCorrect: false },
-		{ answer: 'third', isCorrect: false },
-		{ answer: 'fourth', isCorrect: false },
-	],
-};
-
+import { questionExample } from 'components/QuestionForm/questionExample';
 
 export const QuestionsList = ({
 	questions,
@@ -94,7 +78,7 @@ export const QuestionsList = ({
 											handleEditButton={makeHandleEditButton(index)}
 											question={question}
 											key={question.id}
-											index={index+1}
+											index={index + 1}
 										/>
 									</Card>
 								);
@@ -116,7 +100,7 @@ export const QuestionsList = ({
 				<Modal size='lg' show={isAddQuestionMode} onHide={() => setIsAddQuestionMode(false)}>
 					<Modal.Body>
 						<QuestionForm
-							questionItem={exampleQuestion}
+							questionItem={questionExample}
 							mode="add"
 							setIsModalOpen={setIsAddQuestionMode}
 						/>
