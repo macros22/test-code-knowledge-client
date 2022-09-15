@@ -58,7 +58,7 @@ export const QuestionsList = ({
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
 				<div className={styles.categoryButtons}>
-					{/* {Object.values(Category).map(category => {
+					{Object.keys(questionsInfo).map(category => {
 						return (
 							<Button
 								variant={category == currentCategory ? 'primary' : 'secondary'}
@@ -66,19 +66,7 @@ export const QuestionsList = ({
 								key={category}
 								onClick={() => categoryButtonHandler(category)}
 							>
-								{category}
-							</Button>
-						);
-					})} */}
-					{Object.keys(questionsInfo).map(category => {
-						return (
-							<Button
-								variant={category == currentCategory.toString() ? 'primary' : 'secondary'}
-								className={category == currentCategory.toString() ? '' : styles.inActiveButton}
-								key={category}
-								onClick={() => categoryButtonHandler(category)}
-							>
-								{category}
+								{`${category}: ${questionsInfo[category]}`}
 							</Button>
 						);
 					})}
