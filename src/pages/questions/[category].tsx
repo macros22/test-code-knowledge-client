@@ -6,20 +6,20 @@ import { getQueryParametr } from 'helpers/get-param-from-query';
 import { useQuestions, useSessionStorage } from 'hooks';
 import { categoryName } from 'constants/names.storage';
 import { Spinner } from 'react-bootstrap';
-import { Question } from 'interfaces/questions.interface';
+import { IQuestion } from 'interfaces/questions.interface';
 import { questionsApi } from 'libs/questions.api';
 import { getQuestionsUrl } from 'helpers/get-questions-url';
 import { SWRConfig } from 'swr';
 
-interface QuestionsPageProps extends Record<string, unknown> {
+interface IQuestionsPageProps extends Record<string, unknown> {
 	category: string;
 	skip: number;
 	limit: number;
-	fallback: Record<string, Question[] | null>;
+	fallback: Record<string, IQuestion[] | null>;
 }
 
 export const getServerSideProps: GetServerSideProps<
-	QuestionsPageProps
+IQuestionsPageProps
 > = async (context) => {
 	const category = getQueryParametr(context, 'category') || 'javascript';
 
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps<
 
 };
 
-const QuestionsPage = ({ category, skip, limit, fallback }: QuestionsPageProps): JSX.Element => {
+const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps): JSX.Element => {
 
 	const { questions, isLoadingQuestions } = useQuestions({
 		skip,

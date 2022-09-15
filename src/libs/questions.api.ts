@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { QUESTIONS_BASE_URL } from 'constants/urls';
-import { IQuestionDto, Question } from 'interfaces/questions.interface';
+import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
 import { Role } from 'interfaces/user.interface';
 
 export const questionsApi = (userRole?: Role) => {
@@ -11,7 +11,7 @@ export const questionsApi = (userRole?: Role) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
 
-                return res.data as Question[];
+                return res.data as IQuestion[];
             } catch (error) {
                 console.log(error);
             }
@@ -38,7 +38,7 @@ export const questionsApi = (userRole?: Role) => {
                     question,
                     { withCredentials: true }
                 );
-                return res.data as Question[];
+                return res.data as IQuestion[];
                 // }
 
             } catch (error) {
@@ -55,7 +55,7 @@ export const questionsApi = (userRole?: Role) => {
                     question,
                     { withCredentials: true }
                 );
-                return res.data as Question;
+                return res.data as IQuestion;
             } catch (error) {
                 console.log(error);
             }
@@ -71,7 +71,7 @@ export const questionsApi = (userRole?: Role) => {
                     url + `/${questionId}`,
                     { withCredentials: true }
                 );
-                return res.data as Question;
+                return res.data as IQuestion;
             } catch (error) {
                 console.log(error);
             }

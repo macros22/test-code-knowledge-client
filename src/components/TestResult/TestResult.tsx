@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'clsx';
 import styles from './TestResult.module.scss';
-import { Answer, Question } from 'interfaces/questions.interface';
 import { Card, Code, Tag } from 'components';
 import { useLocalStorage, useSessionStorage } from 'hooks';
 import {
@@ -10,21 +9,15 @@ import {
 	checkedAnswersName,
 } from 'constants/names.storage';
 import { Form, Button } from 'react-bootstrap';
+import { IAnswersListResultProps, ITestResultProps } from './TestResult.props';
 
-interface IProps {
-	answers: Answer[];
-	currentQuestion: number;
-	checkedAnswers: boolean[][];
-}
 
-const AnswersListResult: React.FC<IProps> = ({
+const AnswersListResult: React.FC<IAnswersListResultProps> = ({
 	answers,
 	currentQuestion,
 	checkedAnswers,
 }) => {
 	const answersList = answers;
-
-	// const dispatch = useAppDispatch();
 
 	const getAnswerLabel = (index: number, isMarked: boolean) => {
 		// 'correct' - answer marked and it`s correct.
@@ -87,14 +80,11 @@ const AnswersListResult: React.FC<IProps> = ({
 	);
 };
 
-interface TestResultProps {
 
-	questions: Question[];
-}
 
 export const TestResult = ({
 	questions,
-}: TestResultProps): JSX.Element => {
+}: ITestResultProps): JSX.Element => {
 
 	// Before checking all user answers are true.
 	const [userAnswersStatus, setUserAnswersStatus] = React.useState<boolean[]>(

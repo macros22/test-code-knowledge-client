@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './QuestionsList.module.scss';
-import { QuestionsListProps } from './QuestionsList.props';
+import { IQuestionsListProps } from './QuestionsList.props';
 import { Card, QuestionCard, QuestionForm } from 'components';
 import { BsPlusLg } from 'react-icons/bs';
 import { Button, Modal } from 'react-bootstrap';
@@ -12,7 +12,7 @@ import { questionExample } from 'components/QuestionForm/questionExample';
 export const QuestionsList = ({
 	questions,
 	category: currentCategory
-}: QuestionsListProps): JSX.Element => {
+}: IQuestionsListProps): JSX.Element => {
 	const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
 
 	const [isAddQuestionMode, setIsAddQuestionMode] = React.useState(false);

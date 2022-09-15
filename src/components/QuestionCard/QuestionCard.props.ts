@@ -1,8 +1,8 @@
-import { Question } from 'interfaces/questions.interface';
+import { IQuestion } from 'interfaces/questions.interface';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface QuestionCardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    question: Question;
+export interface IQuestionCardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    question: IQuestion;
     handleEditButton: () => void;
     withEdit?: boolean;
     index: number;

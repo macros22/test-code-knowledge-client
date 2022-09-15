@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { Question } from 'interfaces/questions.interface';
 
 export const schema = yup.object().shape({
     question: yup.string().required('Write question.'),

@@ -1,10 +1,10 @@
 import React from 'react';
 import cn from 'clsx';
 import styles from './QuestionCard.module.scss';
-import { QuestionCardProps } from './QuestionCard.props';
+import { IQuestionCardProps } from './QuestionCard.props';
 import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { Answer } from 'interfaces/questions.interface';
+import { IAnswer } from 'interfaces/questions.interface';
 import { Badge } from 'react-bootstrap';
 
 export const QuestionCard = ({
@@ -12,7 +12,7 @@ export const QuestionCard = ({
 	handleEditButton,
 	withEdit = false,
 	index,
-}: QuestionCardProps): JSX.Element => {
+}: IQuestionCardProps): JSX.Element => {
 	const [isAnswerVisible, setIsAnswerVisible] = React.useState(false);
 
 	const toggleAnswerVisibility = () => {
@@ -24,7 +24,7 @@ export const QuestionCard = ({
 		// await deleteQuestion(question.id);
 	};
 
-	const [correctAnswers, setCorrectAnswers] = React.useState<Answer[]>([]);
+	const [correctAnswers, setCorrectAnswers] = React.useState<IAnswer[]>([]);
 
 	React.useEffect(() => {
 		setCorrectAnswers(

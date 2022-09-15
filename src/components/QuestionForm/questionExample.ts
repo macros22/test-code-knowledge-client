@@ -1,6 +1,6 @@
-import { Question } from "interfaces/questions.interface";
+import { IQuestion } from "interfaces/questions.interface";
 
-export const questionExample: Question = {
+export const questionExample: IQuestion = {
     id: '12345',
     category: 'javascript',
     question: 'What will be output to the console?',

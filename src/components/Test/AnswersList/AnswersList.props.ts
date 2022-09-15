@@ -1,7 +1,7 @@
-import { Answer } from "interfaces/questions.interface";
+import { IAnswer } from "interfaces/questions.interface";
 
 export interface AnswersListProps {
-    answers: Answer[];
+    answers: IAnswer[];
     setCheckedAnswers: React.Dispatch<React.SetStateAction<boolean[][]>>;
     currentQuestion: number;
     checkedAnswers: boolean[][];

@@ -2,17 +2,17 @@ import React from 'react';
 import { ValidationError } from 'yup';
 import { categoryName } from 'constants/names.storage';
 import { useQuestions, useSessionStorage } from 'hooks';
-import { IQuestionDto, Question } from 'interfaces/questions.interface';
+import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
 import { schema } from './question.schema';
-import { QuestionFormProps } from './QuestionForm.props';
+import { IQuestionFormProps } from './QuestionForm.props';
 import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
 
-interface UserAnswer {
+interface IUserAnswer {
     answer: string;
     isChecked: boolean;
 }
 
-export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 'mode' | 'questionItem'>) => {
+export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps, 'mode' | 'questionItem'>) => {
     const [question, setQuestion] = React.useState<string>(questionItem.question);
     const [questionError, setQuestionError] = React.useState<string>('');
     // const [category, _] = useSessionStorage(categoryName, 'javascript');
@@ -29,7 +29,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
         answer: answer.answer,
         isChecked: answer.isCorrect,
     }));
-    const [answers, setAnswers] = React.useState<UserAnswer[]>(initialAnswers);
+    const [answers, setAnswers] = React.useState<IUserAnswer[]>(initialAnswers);
     const [answersErrors, setAnswersErrors] = React.useState<string[]>(
         new Array(questionItem.answers.length).fill('')
     );
@@ -40,14 +40,15 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
 
 
     const handleAddAnswerButton = () => {
-        const newAnswer: UserAnswer = {
+        const newAnswer: IUserAnswer = {
             answer: '',
             isChecked: false,
         }
 
         setAnswers(answers => {
             // Deep copy.
-            const newAnswers: UserAnswer[] = JSON.parse(
+            // TODO! replace JSON...
+            const newAnswers: IUserAnswer[] = JSON.parse(
                 JSON.stringify(answers)
             );
             newAnswers.push(newAnswer);
@@ -59,7 +60,8 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
     const handleDeleteAnswerButton = (index: number) => {
         setAnswers(answers => {
             // Deep copy.
-            const newAnswers: UserAnswer[] = JSON.parse(
+            // TODO! replace JSON...
+            const newAnswers: IUserAnswer[] = JSON.parse(
                 JSON.stringify(answers)
             );
             return newAnswers.filter((_, i) => i !== index);
@@ -152,10 +154,6 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<QuestionFormProps, 
 
     const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        // setName(item.name);
-        // setDescription(item.description);
-        // setCount(item.count);
-        // setDestinationCount(item.destinationCount);
     };
 
     return {

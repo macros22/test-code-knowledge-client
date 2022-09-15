@@ -1,19 +1,15 @@
-import { QuestionCard } from "components";
-
-export interface Answer {
+export interface IAnswer {
     answer: string;
     isCorrect: boolean;
 }
 
-export interface Question {
+export interface IQuestion {
     id: string;
     category: string;
     question: string;
     codeExample: string;
-    answers: Answer[];
+    answers: IAnswer[];
 }
 
-export interface IQuestionDto extends Omit<Question, 'id' | 'category'> {
-    category: string;
-}
+export interface IQuestionDto extends Omit<IQuestion, 'id'> { }
 

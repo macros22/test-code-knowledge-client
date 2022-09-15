@@ -1,7 +1,7 @@
-import { Question } from 'interfaces/questions.interface';
+import { IQuestion } from 'interfaces/questions.interface';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface QuestionsListProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    questions: Question[];
+export interface IQuestionsListProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    questions: IQuestion[];
     category: string;
 }

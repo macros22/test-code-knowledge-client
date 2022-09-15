@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import styles from './Categories.module.scss';
-import { CategoriesProps } from './Categories.props';
+import { ICategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
 import { Button, Stack } from 'react-bootstrap';
 import React from 'react';
@@ -8,7 +7,7 @@ import { useQuestionsInfo } from 'hooks';
 
 export const Categories = ({
 	questionsInfo,
-}: CategoriesProps): JSX.Element => {
+}: ICategoriesProps): JSX.Element => {
 	const router = useRouter();
 
 	// const { questionsInfo } = useQuestionsInfo();
@@ -34,13 +33,6 @@ export const Categories = ({
 					<>
 						<div className={styles.card}>
 							<h4 className={styles.cardTitle}>{category}</h4>
-							{/* <Image
-								className={styles.img}
-								src={category.src}
-								alt={category.name}
-								width={280}
-								height={280}
-							/> */}
 							<div className={styles.cardContainer}>
 								<Stack gap={3}>
 									<Button variant="danger" onClick={showQuestionsButtonHandler(

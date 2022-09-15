@@ -1,5 +1,5 @@
-import { Question } from "interfaces/questions.interface";
+import { IQuestion } from "interfaces/questions.interface";
 
 export interface TestProps {
-    questions: Question[];
+    questions: IQuestion[];
 }
