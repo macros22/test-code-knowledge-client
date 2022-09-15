@@ -99,7 +99,7 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 						<hr />
 						{
 							questions[currentQuestion].codeExample &&
-							<Code codeExample={questions[currentQuestion].codeExample} />
+							<Code codeExample={questions[currentQuestion].codeExample} language='typescript'/>
 						}
 
 						{checkedAnswers.length && (
