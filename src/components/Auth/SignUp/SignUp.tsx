@@ -20,7 +20,8 @@ export const SignUp = () => {
 
     if (email && name && password) {
       setIsSubmitLoading(true);
-
+      setErrorMsg('');
+      
       const { user, errorMessage } = await authApi.signUp({ email, name, password });
       if (errorMessage) {
         setErrorMsg(errorMessage);
@@ -97,11 +98,13 @@ export const SignUp = () => {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           Or you can <Link href="/auth/sign-in">Sign In</Link>
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Alert variant={'danger'}>
-            {errorMsg}
-          </Alert>
-        </Form.Group>
+        {errorMsg &&
+          <Form.Group className="mb-3">
+            <Alert variant={'danger'}>
+              {errorMsg}
+            </Alert>
+          </Form.Group>
+        }
       </Form>
     </>
   );
