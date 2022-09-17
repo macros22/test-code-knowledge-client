@@ -1,7 +1,7 @@
 import styles from './Categories.module.scss';
 import { ICategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
-import { Button, Stack } from 'react-bootstrap';
+import { Button, Row, Stack } from 'react-bootstrap';
 import React from 'react';
 import { useQuestionsInfo } from 'hooks';
 
@@ -32,22 +32,27 @@ export const Categories = ({
 				return (
 					<>
 						<div className={styles.card}>
-							<h4 className={styles.cardTitle}>{category}</h4>
-							<div className={styles.cardContainer}>
-								<Stack gap={3}>
-									<Button variant="danger" onClick={showQuestionsButtonHandler(
+							<h4>{category}</h4>
+							<hr />
+							<Stack gap={3}>
+
+								<Button
+									size="lg"
+									variant="danger"
+									onClick={showQuestionsButtonHandler(
 										category
 									)}>
-										Questions: {questionsInfo[category]}
-									</Button>
+									Questions: {questionsInfo[category]}
+								</Button>
 
-									<Button
-										onClick={passTestButtonHandler(category)}
-									>
-										Pass the test
-									</Button>
-								</Stack>
-							</div>
+								<Button
+									size="lg"
+									onClick={passTestButtonHandler(category)}
+								>
+									Test
+								</Button>
+
+							</Stack>
 						</div>
 					</>
 				);
