@@ -1,6 +1,8 @@
 import { isGuestName } from "constants/names.storage";
 import { useSessionStorage } from "hooks";
+import { Role } from "interfaces/user.interface";
 import { authApi } from "libs/auth.api";
+import React from "react";
 import useSWR from "swr";
 
 export const useUser = () => {
@@ -11,6 +13,12 @@ export const useUser = () => {
 
   const isLoading = !user && !error;
   const isLoggedIn = Boolean(!error && user);
+  const isAdmin = user?.role == Role.Admin;
+
+
+  React.useEffect(() => {
+    console.log("user", user, isLoading)
+  }, [user])
 
   const mutateUser = ({ isGuest }: { isGuest: boolean }) => {
     setIsGuest(isGuest);
@@ -21,6 +29,7 @@ export const useUser = () => {
     isLoading,
     isLoggedIn,
     user,
+    isAdmin,
     mutateUser,
   };
 }

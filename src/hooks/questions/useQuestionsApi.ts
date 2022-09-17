@@ -5,7 +5,7 @@ import { useUser } from "../useUser";
 export const useQuestionsApi = () => {
     
     const { user } = useUser();
-    const userRole = user?.role ? user.role : Role.USER;
+    const userRole = user?.role ? user.role : Role.User;
 
     return {
         api: questionsApi(userRole)

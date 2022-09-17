@@ -18,7 +18,7 @@ export const QuestionsList = ({
 	const [isAddQuestionMode, setIsAddQuestionMode] = React.useState(false);
 	const [isEditQuestionMode, setIsEditQuestionMode] = React.useState(false);
 
-	const { isLoggedIn } = useUser();
+	const { isLoggedIn, isAdmin } = useUser();
 
 	const { questionsInfo } = useQuestionsInfo();
 
@@ -56,7 +56,7 @@ export const QuestionsList = ({
 					})}
 				</div>
 
-				{isLoggedIn && (
+				{isLoggedIn && isAdmin && (
 					<BsPlusLg
 						className={styles.addQuestionButton}
 						onClick={handleAddQuestionButton}
@@ -74,7 +74,7 @@ export const QuestionsList = ({
 										key={question.id}
 									>
 										<QuestionCard
-											withEdit={isLoggedIn}
+											withEdit={isLoggedIn && isAdmin}
 											handleEditButton={makeHandleEditButton(index)}
 											question={question}
 											key={question.id}
