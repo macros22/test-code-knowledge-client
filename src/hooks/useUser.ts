@@ -2,7 +2,6 @@ import { isGuestName } from "constants/names.storage";
 import { useSessionStorage } from "hooks";
 import { Role } from "interfaces/user.interface";
 import { authApi } from "libs/auth.api";
-import React from "react";
 import useSWR from "swr";
 
 export const useUser = () => {

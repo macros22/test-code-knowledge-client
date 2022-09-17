@@ -64,20 +64,14 @@ export const Header = () => {
               })}
 
             </NavDropdown>
-            <Nav.Link href="#" className={styles.navbarLinks}>Link</Nav.Link>
-            {isLoggedIn ?
-              <div className={styles.logout} onClick={logoutHandler}>
-                {/* {user?.email || 'name'} */}
-                {/* <BsDoorOpenFill className='ml-3' /> */}
-                {` Logout`}
-              </div> :
-              <div className={styles.logout} onClick={signInHandler}>
-                {/* {user?.email || 'name'} */}
-                {/* <BsDoorOpenFill className='ml-3' /> */}
-                {` SignIn`}
-              </div>
-            }
 
+            {isLoggedIn
+              ? <>
+                <Nav.Link onClick={() => router.replace('/profile')} className={styles.navbarLinks}>Profile</Nav.Link>
+                <Nav.Link className={styles.navbarLinks} onClick={logoutHandler}>Logout</Nav.Link>
+              </>
+              : <Nav.Link className={styles.navbarLinks} onClick={signInHandler}>SignIn</Nav.Link>
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>
