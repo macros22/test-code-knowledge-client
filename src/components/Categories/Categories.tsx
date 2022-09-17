@@ -33,14 +33,13 @@ export const Categories = ({
 					<>
 						<div className={styles.card}>
 
-							<h3 className={styles.cardTitle}>
+							<h4 className={styles.cardTitle}>
 								<span className={styles.cardBracket}>{'{ '}</span>
 								{category}
 								<span className={styles.cardBracket}>{' }'}</span>
-							</h3>
+							</h4>
 							<hr />
 							<Stack gap={3}>
-
 								<Button
 									size="lg"
 									variant="danger"

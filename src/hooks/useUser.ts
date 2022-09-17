@@ -16,10 +16,6 @@ export const useUser = () => {
   const isAdmin = user?.role == Role.Admin;
 
 
-  React.useEffect(() => {
-    console.log("user", user, isLoading)
-  }, [user])
-
   const mutateUser = ({ isGuest }: { isGuest: boolean }) => {
     setIsGuest(isGuest);
     mutate();

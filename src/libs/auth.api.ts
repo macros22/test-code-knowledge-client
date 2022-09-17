@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { AUTH_ME_URL, LOGOUT_URL, SIGN_IN_URL, SIGN_UP_URL } from 'constants/urls';
 import { ISignInDto, ISignUpDto, IUser } from 'interfaces/user.interface';
 
@@ -27,14 +27,17 @@ export const authApi = {
 				dto,
 				{ withCredentials: true }
 			);
-
-			// user
-			return res.data;
+			return { user: res.data };
 		} catch (error) {
-			console.log(error);
+			if (axios.isAxiosError(error)) {
+				return { errorMessage: error.response?.data.message };
+			}
 		}
 
-		return '';
+		return {
+			user: undefined,
+			errorMessage: undefined
+		}
 	},
 
 
