@@ -15,17 +15,12 @@
 .card {
 	border-radius: $border-radius;
 	border: $border;
-	width: 65%;
+	width: 52%;
 	padding: $spacer;
 
-	// &Container {
-	// 	padding: $spacer;
-	// 	border-bottom: $border;
-	// 	border-left: $border;
-	// 	border-right: $border;
-	// 	border-bottom-left-radius: $border-radius;
-	// 	border-bottom-right-radius: $border-radius;
-	// }
+	&Title {
+		text-align: center;
+	}
 }
 
 
@@ -33,6 +28,7 @@
 	.wrapper {
 		justify-content: center;
 	}
+
 	.card {
 		width: 100%;
 	}

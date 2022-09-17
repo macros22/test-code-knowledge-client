@@ -32,7 +32,7 @@ export const Categories = ({
 				return (
 					<>
 						<div className={styles.card}>
-							<h4>{category}</h4>
+							<h4 className={styles.cardTitle}>{category}</h4>
 							<hr />
 							<Stack gap={3}>
 
