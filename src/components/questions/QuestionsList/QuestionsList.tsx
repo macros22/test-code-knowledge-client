@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './QuestionsList.module.scss';
 import { IQuestionsListProps } from './QuestionsList.props';
-import { Card, QuestionCard, QuestionForm } from 'components';
 import { BsPlusLg } from 'react-icons/bs';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Card, Modal } from 'react-bootstrap';
 import { useUser } from 'hooks/useUser';
 import { useRouter } from 'next/router';
 import { useQuestionsInfo } from 'hooks';
-import { questionExample } from 'components/QuestionForm/questionExample';
+import { QuestionCard } from '../QuestionCard/QuestionCard';
+import { questionExample } from '../QuestionForm/questionExample';
+import { QuestionForm } from '../QuestionForm/QuestionForm';
 
 export const QuestionsList = ({
 	questions,

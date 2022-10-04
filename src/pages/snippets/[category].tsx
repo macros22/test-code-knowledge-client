@@ -1,45 +1,46 @@
 import React from 'react';
 import { withLayout } from 'layouts';
-import { QuestionsList } from 'components';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryParametr } from 'helpers/get-param-from-query';
-import { useQuestions, useSessionStorage } from 'hooks';
-import { questionsCategoryName } from 'constants/names.storage';
+import { useSessionStorage } from 'hooks';
+import { snippetsCategoryName } from 'constants/names.storage';
 import { Spinner } from 'react-bootstrap';
-import { IQuestion } from 'interfaces/questions.interface';
-import { questionsApi } from 'libs/questions.api';
-import { getQuestionsUrl } from 'helpers/get-questions-url';
 import { SWRConfig } from 'swr';
+import { ISnippet } from 'interfaces/snippets.interface';
+import { getSnippetsUrl } from 'helpers/get-snippets-url';
+import { snippetsApi } from 'libs/snippets.api';
+import { useSnippets } from 'hooks/snippets/useSnippets';
+import { List } from 'components/List/List';
 
-interface IQuestionsPageProps extends Record<string, unknown> {
+interface ISnippetsPageProps extends Record<string, unknown> {
 	category: string;
 	skip: number;
 	limit: number;
-	fallback: Record<string, IQuestion[] | null>;
+	fallback: Record<string, ISnippet[] | null>;
 }
 
 export const getServerSideProps: GetServerSideProps<
-	IQuestionsPageProps
+	ISnippetsPageProps
 > = async (context) => {
 	const category = getQueryParametr(context, 'category') || 'JavaScript';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));
 
-	const questionsUrl = getQuestionsUrl({
+	const snippetsUrl = getSnippetsUrl({
 		category,
 		skip,
 		limit,
 	});
 
-	const questions = await questionsApi().getQuestions(questionsUrl);
+	const snippets = await snippetsApi().getSnippets(snippetsUrl);
 	return {
 		props: {
 			category,
 			skip,
 			limit,
 			fallback: {
-				[questionsUrl]: questions
+				[snippetsUrl]: snippets
 			}
 		},
 
@@ -47,16 +48,16 @@ export const getServerSideProps: GetServerSideProps<
 
 };
 
-const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps): JSX.Element => {
+const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): JSX.Element => {
 
-	const { questions, isLoadingQuestions } = useQuestions({
+	const { snippets, isLoadingSnippets } = useSnippets({
 		skip,
 		limit,
 		category
 	});
 
 	const [_, setCategoryInStorage] = useSessionStorage(
-		questionsCategoryName,
+		snippetsCategoryName,
 		category
 	);
 
@@ -64,7 +65,7 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 		setCategoryInStorage(category);
 	}, [category])
 
-	if (isLoadingQuestions) {
+	if (isLoadingSnippets) {
 		return (
 			<Spinner
 				as="span"
@@ -76,12 +77,12 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			<QuestionsList questions={questions} category={category} />
+			<List itemsName='snippets' items={snippets} category={category} />
 		</SWRConfig>
 	);
 };
 
-export default withLayout('main', QuestionsPage);
+export default withLayout('main', SnippetsPage);
 
 
 

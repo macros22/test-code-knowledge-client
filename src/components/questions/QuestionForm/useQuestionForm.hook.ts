@@ -114,10 +114,9 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
     const { mutateQuestions } = useQuestions({ category });
     const handleSubmitForm = async (event: React.FormEvent) => {
         event.preventDefault();
-
         const questionPayload = {
             question,
-            category: category.toString().toLowerCase(),
+            category: category.toString(),
             codeExample,
             answers: answers.map((answer) => ({
                 answer: answer.answer,
@@ -126,7 +125,6 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         } as IQuestionDto;
 
         if (await isValidForm()) {
-            // console.log(questionPayload, questionItem.id);
             switch (mode) {
                 case 'add':
                     try {
@@ -136,9 +134,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
                     } catch (error) {
                         console.log(error);
                     }
-
                     break;
-
                 case 'edit':
                     try {
                         await api.patchQuestion(questionPayload, questionItem.id)

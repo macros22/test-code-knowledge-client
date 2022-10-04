@@ -2,14 +2,15 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'clsx';
 import styles from './TestResult.module.scss';
-import { Card, Code, Tag } from 'components';
-import { useLocalStorage, useSessionStorage } from 'hooks';
+import { useSessionStorage } from 'hooks';
 import {
-	categoryName,
+	questionsCategoryName,
 	checkedAnswersName,
 } from 'constants/names.storage';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { IAnswersListResultProps, ITestResultProps } from './TestResult.props';
+import { Code } from 'components/Code/Code';
+import { Tag } from 'components/ui/Tag/Tag';
 
 
 const AnswersListResult: React.FC<IAnswersListResultProps> = ({
@@ -127,7 +128,7 @@ export const TestResult = ({
 	}, []);
 
 	const router = useRouter();
-	const [category] = useSessionStorage(categoryName, '');
+	const [category] = useSessionStorage(questionsCategoryName, '');
 
 	const newTestButtonHandler = () => {
 		if (category) {
@@ -165,7 +166,7 @@ export const TestResult = ({
 										{questions[index].question}
 									</h4>
 									{questions[index].codeExample &&
-										<Code codeExample={questions[index].codeExample} language='typescript'/>
+										<Code codeExample={questions[index].codeExample} language='typescript' />
 									}
 
 									<AnswersListResult

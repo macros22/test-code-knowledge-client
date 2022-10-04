@@ -1,0 +1,67 @@
+@import 'assets/mixins.scss';
+@import 'assets/colors';
+@import'assets/variables';
+@import'assets/screen-sizes';
+
+.title {
+	display: flex;
+	height: min-content;
+	padding: $spacer * 0.5 0;
+	vertical-align: baseline;
+	margin-bottom: $spacer * 0.5;
+}
+
+
+.categoryButtons {
+	width: fit-content;
+	flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	gap: $spacer * 1.4;
+	font-size: 18px;
+}
+
+.inActiveButton {
+	color: $gray-600;
+
+	&:hover {
+		background-color: $secondary;
+		color: $gray-700;
+	}
+}
+
+.addQuestionButton {
+	padding: $spacer * 0.65 !important;
+	margin-left: auto;
+	@include iconWithBorder;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	// align-items: center;
+	// justify-content: center;
+	gap: $spacer * 1.5;
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.questionCard {
+	width: max-content;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: $spacer * 1.5;
+	width: 100%;
+}
+
+@media (max-width: map-get($grid-breakpoints, 'xl')) {
+	.container {
+		flex-direction: column;
+	}
+}

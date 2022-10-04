@@ -15,7 +15,6 @@
 .categoryButtons {
 	width: fit-content;
 	flex-wrap: wrap;
-	justify-content: center;
 	display: flex;
 	flex-direction: row;
 	gap: $spacer * 1.4;
@@ -31,7 +30,7 @@
 	}
 }
 
-.addQuestionButton {
+.addNewItemButton {
 	padding: $spacer * 0.65 !important;
 	margin-left: auto;
 	@include iconWithBorder;
@@ -40,6 +39,8 @@
 .container {
 	display: flex;
 	flex-direction: row;
+	// align-items: center;
+	justify-content: center;
 	gap: $spacer * 1.5;
 }
 
@@ -48,14 +49,13 @@
 	overflow: hidden;
 }
 
-.questionCard {
+.itemCard {
 	width: max-content;
 }
 
 .column {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: $spacer * 1.5;
 	width: 100%;
 }

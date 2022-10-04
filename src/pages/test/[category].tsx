@@ -3,7 +3,7 @@ import { Test } from 'components';
 import { withLayout } from 'layouts';
 import { GetServerSideProps } from 'next';
 import { useQuestions, useSessionStorage } from 'hooks';
-import { categoryName, questionsInStorageName } from 'constants/names.storage';
+import { questionsCategoryName, questionsInStorageName } from 'constants/names.storage';
 import { getQueryParametr } from 'helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
 import { IQuestion } from 'interfaces/questions.interface';
@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<ITestPageProps> = async (
 	const questionsAmount =
 		Number(getQueryParametr(context, 'questionsAmount')) || 1;
 
-		const category = getQueryParametr(context, 'category') || 'javascript';
+	const category = getQueryParametr(context, 'category') || 'javascript';
 
 	return { props: { category, questionsAmount } };
 };
@@ -37,7 +37,7 @@ const TestPage = ({
 	const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
 	const [_, setCategoryInStorage] = useSessionStorage(
-		categoryName,
+		questionsCategoryName,
 		category
 	);
 
