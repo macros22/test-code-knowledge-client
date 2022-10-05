@@ -1,7 +1,7 @@
 @import'assets/mixins.scss';
 @import'assets/variables';
 
-.descriptionCard {
+.snippetCard {
   display: grid;
   grid-template-areas:
     "description"
@@ -9,7 +9,7 @@
     "buttons";
   grid-template-columns: minmax(250px, 570px);
   grid-template-rows: auto auto 40px;
-  padding: $spacer * 0.5;
+  padding: $spacer;
 }
 
 .wrapper {

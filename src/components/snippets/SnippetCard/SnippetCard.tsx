@@ -19,19 +19,17 @@ export const SnippetCard = ({
 	return (<>
 		<div className={styles.wrapper}>
 			<div className={styles.snippetCard}>
-				<div className={styles.snippet}>
+				<div className={styles.description}>
 					<h5>{'Snippet '}<Badge style={{ color: 'white', padding: '0.3rem 0.6rem' }} bg="danger"> {index}</Badge></h5>
 					<hr />
 					<h5>{snippet.description}</h5>
 					<hr />
 				</div>
 
-				{snippet.snippet &&
-					<div className={styles.snippet}>
-						<Code codeExample={snippet.snippet} language='typescript' />
-						<hr />
-					</div>
-				}
+				<div className={styles.snippet}>
+					<Code codeExample={snippet.snippet} language='typescript' />
+					<hr />
+				</div>
 
 				<div className={styles.buttons}>
 
