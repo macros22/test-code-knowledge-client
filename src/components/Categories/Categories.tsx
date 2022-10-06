@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Button, Row, Spinner, Stack } from 'react-bootstrap';
 import React from 'react';
 import { useQuestionsInfo } from 'hooks';
+import { useSnippetsInfo } from 'hooks/snippets/useSnippetssInfo';
 
 export const Categories = ({
 	// questionsInfo,
@@ -11,9 +12,14 @@ export const Categories = ({
 	const router = useRouter();
 
 	const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
+	const { snippetsInfo, isLoadingSnippetsInfo } = useSnippetsInfo();
 
 	const showQuestionsButtonHandler = (category: string) => () => {
 		router.replace(`/questions/${questionsInfo[category].categoryURLName}`);
+	};
+
+	const showSnippetsButtonHandler = (category: string) => () => {
+		router.replace(`/questions/${snippetsInfo[category].categoryURLName}`);
 	};
 
 	const passTestButtonHandler = (category: string) => () => {
@@ -45,15 +51,16 @@ export const Categories = ({
 						<div className={styles.card}>
 
 							<h4 className={styles.cardTitle}>
-								<span className={styles.cardBracket}>{'{ '}</span>
+								<span className={styles.cardBracket}>{'{{{ '}</span>
 								{category}
-								<span className={styles.cardBracket}>{' }'}</span>
+								<span className={styles.cardBracket}>{' }}}'}</span>
 							</h4>
 							<hr />
-							<Stack gap={3}>
+							{/* <Row gap={3}> */}
+							<div className={styles.cardButtons}>
 								<Button
-									size="lg"
-									variant="danger"
+									// size="lg"
+									// variant="danger"
 									onClick={showQuestionsButtonHandler(
 										category
 									)}>
@@ -61,13 +68,22 @@ export const Categories = ({
 								</Button>
 
 								<Button
-									size="lg"
+									// size="lg"
+									variant="danger"
+									onClick={showSnippetsButtonHandler(
+										category
+									)}>
+									Snippets: {snippetsInfo[category].amount}
+								</Button>
+
+								<Button
+									// size="lg"
 									onClick={passTestButtonHandler(category)}
 								>
 									Test
 								</Button>
-
-							</Stack>
+							</div>
+							{/* </Row> */}
 						</div>
 					</>
 				);

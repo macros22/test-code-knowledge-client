@@ -15,7 +15,7 @@
 .card {
 	border-radius: $border-radius;
 	border: $border;
-	width: 52%;
+	width: 40%;
 	padding: $spacer;
 
 	&Title {
@@ -24,6 +24,14 @@
 
 	&Bracket {
 		color: $secondary;
+	}
+
+	&Buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: $spacer;
+		flex-wrap: wrap;
 	}
 }
 
