@@ -1,6 +1,6 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import { categoryName } from 'constants/names.storage';
+import { questionsCategoryName } from 'constants/names.storage';
 import { useQuestions, useSessionStorage } from 'hooks';
 import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
 import { schema } from './question.schema';
@@ -15,7 +15,7 @@ interface IUserAnswer {
 export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps, 'mode' | 'questionItem'>) => {
     const [question, setQuestion] = React.useState<string>(questionItem.question);
     const [questionError, setQuestionError] = React.useState<string>('');
-    // const [category, _] = useSessionStorage(categoryName, 'javascript');
+    // const [category, _] = useSessionStorage(questionsCategoryName, 'javascript');
 
     const [category, setCategory] = React.useState<string>(questionItem.category);
 
