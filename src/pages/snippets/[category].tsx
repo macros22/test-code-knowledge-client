@@ -11,6 +11,7 @@ import { getSnippetsUrl } from 'helpers/get-snippets-url';
 import { snippetsApi } from 'libs/snippets.api';
 import { useSnippets } from 'hooks/snippets/useSnippets';
 import { List } from 'components/List/List';
+import { SNIPPETS_BASE_URL } from 'constants/urls';
 
 interface ISnippetsPageProps extends Record<string, unknown> {
 	category: string;
@@ -22,18 +23,24 @@ interface ISnippetsPageProps extends Record<string, unknown> {
 export const getServerSideProps: GetServerSideProps<
 	ISnippetsPageProps
 > = async (context) => {
-	const category = getQueryParametr(context, 'category') || 'JavaScript';
+	const categoryURLName = getQueryParametr(context, 'category') || 'javascript';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));
 
 	const snippetsUrl = getSnippetsUrl({
-		category,
+		categoryURLName,
 		skip,
 		limit,
 	});
 
 	const snippets = await snippetsApi().getSnippets(snippetsUrl);
+	const snippetsInfo = await snippetsApi().getSnippetsInfo(SNIPPETS_BASE_URL);
+	let category = '';
+	if (snippetsInfo) {
+		category = Object.keys(snippetsInfo).find(key => snippetsInfo[key].categoryURLName == categoryURLName) || '';
+	}
+
 	return {
 		props: {
 			category,

@@ -46,7 +46,7 @@ export const Header = () => {
               {Object.keys(snippetsInfo).map((category) => {
                 return (
                   <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
-                    <Link href={`/snippets/${category}`}>
+                    <Link href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
                       <a>{category}</a>
                     </Link>
                   </NavDropdown.Item>

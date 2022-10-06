@@ -1,7 +1,7 @@
-import { getQuestionsUrl } from "helpers/get-questions-url";
-import { getSnippetsUrl } from "helpers/get-snippets-url";
 import useSWR from "swr";
+import { getSnippetsUrl } from "helpers/get-snippets-url";
 import { useSnippetsApi } from "./useSnippetsApi";
+import { useSnippetsInfo } from "./useSnippetssInfo";
 
 interface IUseSnippetsProps {
     skip?: number;
@@ -9,10 +9,12 @@ interface IUseSnippetsProps {
     category?: string;
 }
 
-export const useSnippets = ({ skip, limit, category = 'JavaScript' }: IUseSnippetsProps) => {
+export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
+
+    const { snippetsInfo } = useSnippetsInfo();
 
     const snippetsUrl = getSnippetsUrl({
-        category,
+        categoryURLName: category ? snippetsInfo[category]?.categoryURLName : '',
         skip,
         limit,
     });
