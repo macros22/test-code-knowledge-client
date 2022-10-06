@@ -4,8 +4,6 @@ import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
 import { Role } from 'interfaces/user.interface';
 
 export const questionsApi = (userRole?: Role) => {
-
-
     return {
         getQuestions: async (url: string) => {
             try {
@@ -13,7 +11,7 @@ export const questionsApi = (userRole?: Role) => {
 
                 return res.data as IQuestion[];
             } catch (error) {
-                console.log(error);
+                console.log('getQuestions error: ', error);
             }
 
             return null;
@@ -23,7 +21,7 @@ export const questionsApi = (userRole?: Role) => {
                 const res = await axios.get(url, { withCredentials: true });
                 return res.data as Record<string, { amount: number, categoryURLName: string }>;
             } catch (error) {
-                console.log(error);
+                console.log('getQuestionsInfo error:', error);
             }
 
             return null;

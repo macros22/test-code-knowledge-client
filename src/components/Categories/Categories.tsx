@@ -19,7 +19,7 @@ export const Categories = ({
 	};
 
 	const showSnippetsButtonHandler = (category: string) => () => {
-		router.replace(`/questions/${snippetsInfo[category].categoryURLName}`);
+		router.replace(`/snippets/${snippetsInfo[category].categoryURLName}`);
 	};
 
 	const passTestButtonHandler = (category: string) => () => {
@@ -30,10 +30,10 @@ export const Categories = ({
 			categoryQuestionsAmount < defaultQuestionsForTestSize
 				? categoryQuestionsAmount
 				: defaultQuestionsForTestSize;
-		router.push(`/test/${questionsInfo[category].categoryURLName}?questionsAmount=${sizeInQuery}`);
+		router.replace(`/test/${questionsInfo[category].categoryURLName}?questionsAmount=${sizeInQuery}`);
 	};
 
-	if (isLoadingQuestionsInfo) {
+	if (isLoadingQuestionsInfo || isLoadingSnippetsInfo) {
 		return (
 			<Spinner
 				as="span"

@@ -23,7 +23,7 @@ interface ISnippetsPageProps extends Record<string, unknown> {
 export const getServerSideProps: GetServerSideProps<
 	ISnippetsPageProps
 > = async (context) => {
-	const categoryURLName = getQueryParametr(context, 'category') || 'javascript';
+	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));
@@ -63,7 +63,7 @@ const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): 
 		category
 	});
 
-	const [_, setCategoryInStorage] = useSessionStorage(
+	const [, setCategoryInStorage] = useSessionStorage(
 		snippetsCategoryName,
 		category
 	);

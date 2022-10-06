@@ -1,18 +1,18 @@
 @import 'assets/variables';
 
-.editMedicalItem {
+.editItem {
 	display: grid;
 	// grid-template-areas:
-	// 	"question question"
-	// 	"codeExample codeExample"
+	// 	"description description"
+	// 	"snippet snippet"
 	// 	"answersList answersList"
 	// 	"savedButton resetdButton";
 	// grid-template-columns: 400px 210px;
 	// grid-template-rows: 80px 200px 150px 40px;
 
 	grid-template-areas:
-		"question question question"
-		"codeExample codeExample answersList"
+		"description description description"
+		"snippet snippet answersList"
 		"saveButton resetButton addAnswerButton";
 	grid-template-columns: 300px 100px 280px;
 	grid-template-rows: auto 310px 50px;
@@ -35,17 +35,16 @@
 	font-size: 14px;
 }
 
-.question {
-	grid-area: question;
+.description {
+	grid-area: description;
 }
 
-.codeExample {
-	grid-area: codeExample;
+.snippet {
+	grid-area: snippet;
 	
 }
 
-
-.textareaCodeExample{
+.textareaSnippet{
 	height: 200px !important;
 	margin-bottom: $spacer*0.75;
 }

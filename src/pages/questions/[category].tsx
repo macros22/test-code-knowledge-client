@@ -22,7 +22,7 @@ interface IQuestionsPageProps extends Record<string, unknown> {
 export const getServerSideProps: GetServerSideProps<
 	IQuestionsPageProps
 > = async (context) => {
-	const categoryURLName = getQueryParametr(context, 'category') || 'javascript';
+	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ValidationError } from 'yup';
 import { questionsCategoryName } from 'constants/names.storage';
-import { useQuestions, useSessionStorage } from 'hooks';
+import { useQuestions, useQuestionsInfo, useSessionStorage } from 'hooks';
 import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
@@ -116,12 +116,13 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         event.preventDefault();
         const questionPayload = {
             question,
-            category: category.toString(),
+            category,
             codeExample,
             answers: answers.map((answer) => ({
                 answer: answer.answer,
                 isCorrect: answer.isChecked,
             })),
+            tags:[]
         } as IQuestionDto;
 
         if (await isValidForm()) {

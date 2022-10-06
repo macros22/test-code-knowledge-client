@@ -10,6 +10,8 @@ import { useItemsInfo } from './useItemsInfo.hook';
 import { QuestionCard } from 'components/questions/QuestionCard/QuestionCard';
 import { questionExample } from 'components/questions/QuestionForm/questionExample';
 import { QuestionForm } from 'components/questions/QuestionForm/QuestionForm';
+import { SnippetForm } from 'components/snippets/SnippetForm/SnippetForm';
+import { snippetExample } from 'components/snippets/SnippetForm/snippetExample';
 
 export const List = ({
 	itemsName,
@@ -119,12 +121,11 @@ export const List = ({
 								setIsModalOpen={setIsAddNewItemMode}
 							/>
 							:
-							<p>sdfsdf</p>
-							// <QuestionForm
-							// 	questionItem={questionExample}
-							// 	mode="add"
-							// 	setIsModalOpen={setIsAddNewItemMode}
-							// />
+							<SnippetForm
+								snippetItem={snippetExample}
+								mode="add"
+								setIsModalOpen={setIsAddNewItemMode}
+							/>
 						}
 					</Modal.Body>
 				</Modal>
