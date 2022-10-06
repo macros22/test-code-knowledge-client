@@ -20,8 +20,12 @@ export const Header = () => {
   const signInHandler = async () => {
     router.replace('/auth/sign-n')
   }
-  const { questionsInfo } = useQuestionsInfo();
+  const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
   const { snippetsInfo } = useSnippetsInfo();
+
+  if(isLoadingQuestionsInfo) {
+    return <span>Loading..</span>
+  }
 
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
@@ -54,7 +58,7 @@ export const Header = () => {
               {Object.keys(questionsInfo).map((category) => {
                 return (
                   <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
-                    <Link href={`/questions/${category}`}>
+                    <Link href={`/questions/${questionsInfo[category].categoryURLName}`}>
                       <a>{category}</a>
                     </Link>
                   </NavDropdown.Item>
@@ -66,7 +70,7 @@ export const Header = () => {
               {Object.keys(questionsInfo).map((category) => {
                 return (
                   <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
-                    <Link href={`/test/${category}`}>
+                    <Link href={`/test/${questionsInfo[category].categoryURLName}`}>
                       <a>{category}</a>
                     </Link>
                   </NavDropdown.Item>
