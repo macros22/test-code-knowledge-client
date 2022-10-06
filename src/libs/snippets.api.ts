@@ -20,8 +20,7 @@ export const snippetsApi = (userRole?: Role) => {
         getSnippetsInfo: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
-                // TOOD: fix ti snippets
-                return res.data as Record<string, { questionsAmount: number, categoryURLName: string }>;
+                return res.data as Record<string, { amount: number, categoryURLName: string }>;
             } catch (error) {
                 console.log(error);
             }

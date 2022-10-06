@@ -42,7 +42,7 @@ export const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           <Nav>
 
-            {/* <NavDropdown title="Snippets" className={styles.navbarLinks} >
+            <NavDropdown title="Snippets" className={styles.navbarLinks} >
               {Object.keys(snippetsInfo).map((category) => {
                 return (
                   <NavDropdown.Item key={category} className={styles.navbarDropdownItem}>
@@ -52,7 +52,7 @@ export const Header = () => {
                   </NavDropdown.Item>
                 );
               })}
-            </NavDropdown> */}
+            </NavDropdown>
 
             <NavDropdown title="Questions" className={styles.navbarLinks} >
               {Object.keys(questionsInfo).map((category) => {

@@ -23,7 +23,6 @@ export const List = ({
 
 	const { isLoggedIn, isAdmin } = useUser();
 
-	// const { questionsInfo } = useQuestionsInfo();
 	const { itemsInfo } = useItemsInfo(itemsName);
 
 	const handleAddNewItemButton = () => {
@@ -55,7 +54,7 @@ export const List = ({
 								key={category}
 								onClick={() => categoryButtonHandler(category)}
 							>
-								{`${category}: ${itemsInfo[category].questionsAmount}`}
+								{`${category}: ${itemsInfo[category].amount}`}
 							</Button>
 						);
 					})}

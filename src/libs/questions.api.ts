@@ -21,7 +21,7 @@ export const questionsApi = (userRole?: Role) => {
         getQuestionsInfo: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
-                return res.data as Record<string, { questionsAmount: number, categoryURLName: string }>;
+                return res.data as Record<string, { amount: number, categoryURLName: string }>;
             } catch (error) {
                 console.log(error);
             }
