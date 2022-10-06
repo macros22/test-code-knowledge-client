@@ -17,7 +17,7 @@ export const Categories = ({
 	};
 
 	const passTestButtonHandler = (category: string) => () => {
-		const categoryQuestionsAmount = questionsInfo[category].questionsAmount;
+		const categoryQuestionsAmount = questionsInfo[category].amount;
 		const defaultQuestionsForTestSize = 5;
 
 		const sizeInQuery =
@@ -57,7 +57,7 @@ export const Categories = ({
 									onClick={showQuestionsButtonHandler(
 										category
 									)}>
-									Questions: {questionsInfo[category].questionsAmount}
+									Questions: {questionsInfo[category].amount}
 								</Button>
 
 								<Button
