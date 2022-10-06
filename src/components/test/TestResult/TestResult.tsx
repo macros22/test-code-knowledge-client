@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'clsx';
 import styles from './TestResult.module.scss';
-import { useSessionStorage } from 'hooks';
+import { useQuestionsInfo, useSessionStorage } from 'hooks';
 import {
 	questionsCategoryName,
 	checkedAnswersName,
@@ -130,9 +130,11 @@ export const TestResult = ({
 	const router = useRouter();
 	const [category] = useSessionStorage(questionsCategoryName, '');
 
+	const {questionsInfo} = useQuestionsInfo();
+
 	const newTestButtonHandler = () => {
 		if (category) {
-			router.push(`/test/${category}?questionsAmount=${questions.length}`);
+			router.push(`/test/${questionsInfo[category].categoryURLName}?questionsAmount=${questions.length}`);
 		}
 	};
 

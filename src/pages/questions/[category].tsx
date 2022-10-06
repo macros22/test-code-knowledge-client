@@ -1,15 +1,16 @@
 import React from 'react';
 import { withLayout } from 'layouts';
-import { QuestionsList } from 'components';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryParametr } from 'helpers/get-param-from-query';
-import { useQuestions, useSessionStorage } from 'hooks';
+import { useQuestions, useQuestionsInfo, useSessionStorage } from 'hooks';
 import { questionsCategoryName } from 'constants/names.storage';
 import { Spinner } from 'react-bootstrap';
 import { IQuestion } from 'interfaces/questions.interface';
 import { questionsApi } from 'libs/questions.api';
 import { getQuestionsUrl } from 'helpers/get-questions-url';
 import { SWRConfig } from 'swr';
+import { List } from 'components/List/List';
+import { QUESTIONS_BASE_URL } from 'constants/urls';
 
 interface IQuestionsPageProps extends Record<string, unknown> {
 	category: string;
@@ -21,18 +22,24 @@ interface IQuestionsPageProps extends Record<string, unknown> {
 export const getServerSideProps: GetServerSideProps<
 	IQuestionsPageProps
 > = async (context) => {
-	const category = getQueryParametr(context, 'category') || 'JavaScript';
+	const categoryURLName = getQueryParametr(context, 'category') || 'javascript';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	const limit = Number(getQueryParametr(context, 'limit'));
 
 	const questionsUrl = getQuestionsUrl({
-		category,
+		categoryURLName,
 		skip,
 		limit,
 	});
 
 	const questions = await questionsApi().getQuestions(questionsUrl);
+	const questionsInfo = await questionsApi().getQuestionsInfo(QUESTIONS_BASE_URL);
+	let category = '';
+	if (questionsInfo) {
+		category = Object.keys(questionsInfo).find(key => questionsInfo[key].categoryURLName == categoryURLName) || '';
+	}
+
 	return {
 		props: {
 			category,
@@ -61,7 +68,9 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 	);
 
 	React.useEffect(() => {
-		setCategoryInStorage(category);
+		if (category) {
+			setCategoryInStorage(category);
+		}
 	}, [category])
 
 	if (isLoadingQuestions) {
@@ -76,7 +85,7 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			<QuestionsList questions={questions} category={category} />
+			<List itemsName='questions' items={questions} category={category} />
 		</SWRConfig>
 	);
 };

@@ -39,7 +39,8 @@ export const List = ({
 
 	const router = useRouter();
 	const categoryButtonHandler = (category: string) => {
-		router.replace(`/${itemsName}/${category}`);
+		console.log(category)
+		router.replace(`/${itemsName}/${itemsInfo[category].categoryURLName}`);
 	}
 
 	return (
@@ -54,7 +55,7 @@ export const List = ({
 								key={category}
 								onClick={() => categoryButtonHandler(category)}
 							>
-								{`${category}: ${itemsInfo[category]}`}
+								{`${category}: ${itemsInfo[category].questionsAmount}`}
 							</Button>
 						);
 					})}

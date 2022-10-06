@@ -1,6 +1,7 @@
 import { getQuestionsUrl } from "helpers/get-questions-url";
 import useSWR from "swr";
 import { useQuestionsApi } from "./useQuestionsApi";
+import { useQuestionsInfo } from "./useQuestionsInfo";
 
 interface IUseQuestionsProps {
     skip?: number;
@@ -8,10 +9,12 @@ interface IUseQuestionsProps {
     category?: string;
 }
 
-export const useQuestions = ({ skip, limit, category = 'JavaScript' }: IUseQuestionsProps) => {
+export const useQuestions = ({ skip, limit, category}: IUseQuestionsProps) => {
+
+    const { questionsInfo } = useQuestionsInfo();
 
     const questionsUrl = getQuestionsUrl({
-        category,
+        categoryURLName: category ? questionsInfo[category]?.categoryURLName : '',
         skip,
         limit,
     });

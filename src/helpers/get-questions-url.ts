@@ -1,25 +1,25 @@
 import { QUESTIONS_BASE_URL, RANDOM_QUESTIONS_BASE_URL } from "constants/urls";
 
 interface IQuestionsProps {
-    category: string;
+    categoryURLName: string;
     skip: number | undefined;
     limit: number | undefined;
 }
 
-export const getQuestionsUrl = ({ category, skip, limit }: IQuestionsProps) => {
+export const getQuestionsUrl = ({ categoryURLName, skip, limit }: IQuestionsProps) => {
     const searchParams = (skip == 0 || skip) && limit
         ? `?skip=${skip}&limit=${limit}`
         : '';
-    return QUESTIONS_BASE_URL + '/' + category + searchParams;
+    return QUESTIONS_BASE_URL + '/' + categoryURLName + searchParams;
 }
 
 
 interface IRandomQuestionsProps {
-    category: string;
+    categoryURLName: string;
     limit: number;
 }
 
-export const getRandomQuestionsUrl = ({ category, limit }: IRandomQuestionsProps) => {
+export const getRandomQuestionsUrl = ({ categoryURLName, limit }: IRandomQuestionsProps) => {
     const searchParams = `?limit=${limit}`;
-    return RANDOM_QUESTIONS_BASE_URL + '/' + category + searchParams;
+    return RANDOM_QUESTIONS_BASE_URL + '/' + categoryURLName + searchParams;
 }
