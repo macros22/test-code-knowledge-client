@@ -6,11 +6,6 @@ import { ISnippetFormProps } from './SnippetForm.props';
 import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
 import { useSnippets } from 'libs/hooks/snippets/useSnippets';
 
-// interface IUserAnswer {
-//     answer: string;
-//     isChecked: boolean;
-// }
-
 export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'mode' | 'snippetItem'>) => {
     const [snippet, setSnippet] = React.useState<string>(snippetItem.snippet);
     const [snippetError, setSnippetError] = React.useState<string>('');
@@ -124,7 +119,6 @@ export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'm
                         console.log(snippetPayload);
                         await api.postSnippet(snippetPayload)
                         mutateSnippets();
-                        // setIsModalOpen(false);
                     } catch (error) {
                         console.log(error);
                     }
@@ -133,7 +127,6 @@ export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'm
                     try {
                         await api.patchSnippet(snippetPayload, snippetItem.id)
                         mutateSnippets();
-                        // setIsModalOpen(false);
                     } catch (error) {
                         console.log(error);
                     }
@@ -143,7 +136,9 @@ export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'm
     };
 
     const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
+        setSnippet(snippetItem.snippet);
+        setDescription(snippetItem.description);
+        setCategory(snippetItem.category);
     };
 
     return {

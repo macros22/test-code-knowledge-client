@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SnippetForm.module.scss';
 import { ISnippetFormProps } from './SnippetForm.props';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
 import { useSnippetForm } from './useSnippetForm.hook';
 import { HrWithContent } from 'components';
@@ -40,6 +40,10 @@ export const SnippetForm = ({
 		mode,
 	});
 
+	const handleCloseModalButton = () => {
+		setIsModalOpen(false);
+	}
+
 	const { snippetsInfo } = useSnippetsInfo();
 
 	return (
@@ -75,16 +79,23 @@ export const SnippetForm = ({
 				<Form.Control as="textarea" placeholder="Snippet" value={snippet} onChange={(e) => setSnippet(e.target.value)} className={styles.textareaSnippet} />
 			</Form.Group>
 
-
-			<Button variant="primary" type="submit" onClick={handleSubmitForm}>
-				Save
-			</Button>
-			<Button variant="danger" >
-				Reset
-			</Button>
-			<Button variant="info" className="m-3" >
-				Close
-			</Button>
+			<Row xs='auto'>
+				<Col>
+					<Button variant="primary" type="submit" onClick={handleSubmitForm}>
+						Save
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="danger" onClick={handleResetButton}>
+						Reset
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="secondary" onClick={handleCloseModalButton}>
+						Close
+					</Button>
+				</Col>
+			</Row>
 		</Form>
 	);
 };

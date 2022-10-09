@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './QuestionForm.module.scss';
 import { IQuestionFormProps } from './QuestionForm.props';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useQuestionForm } from './useQuestionForm.hook';
@@ -39,6 +39,10 @@ export const QuestionForm = ({
 		questionItem,
 		mode,
 	});
+
+	const handleCloseModalButton = () => {
+		setIsModalOpen(false);
+	}
 
 	const { questionsInfo } = useQuestionsInfo();
 
@@ -114,19 +118,29 @@ export const QuestionForm = ({
 				);
 			})}
 
-			<Button variant="primary" type="submit" onClick={handleSubmitForm}>
-				Save
-			</Button>
-			<Button variant="info" className="m-3" onClick={handleAddAnswerButton}>
-				<BsPlusLg />
-				{`  Add answer`}
-			</Button>
-			<Button variant="danger" >
-				Reset
-			</Button>
-			<Button variant="info" className="m-3" >
-				Close
-			</Button>
+			<Row xs='auto'>
+				<Col>
+					<Button variant="primary" type="submit" onClick={handleSubmitForm}>
+						Save
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="primary" onClick={handleAddAnswerButton}>
+						<BsPlusLg />
+						{`  Add answer`}
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="danger" onClick={handleResetButton}>
+						Reset
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="info" onClick={handleCloseModalButton}>
+						Close
+					</Button>
+				</Col>
+			</Row>
 		</Form>
 	);
 };

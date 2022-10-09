@@ -150,7 +150,10 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
     };
 
     const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
+        setQuestion(questionItem.question);
+        setCodeExample(questionItem.codeExample);
+        setCategory(questionItem.category);
+        setAnswers(initialAnswers);
     };
 
     return {
