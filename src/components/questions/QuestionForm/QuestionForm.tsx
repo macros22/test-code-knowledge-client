@@ -6,6 +6,7 @@ import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-i
 import { useQuestionsInfo } from 'libs/hooks';
 import { useQuestionForm } from './useQuestionForm.hook';
 import { HrWithContent } from 'components';
+import { deepCopy } from 'libs/helpers/deep-copy';
 
 export const QuestionForm = ({
 	questionItem,
@@ -61,7 +62,6 @@ export const QuestionForm = ({
 
 			</Form.Select>
 			<Form.Group className="mb-3" controlId="formBasicEmail">
-				{/* <Form.Label>Question</Form.Label> */}
 				<HrWithContent className={styles.title}>
 					Question
 				</HrWithContent>
@@ -91,20 +91,14 @@ export const QuestionForm = ({
 						<Form.Control aria-label="Text input with checkbox" value={answers[index].answer} onChange={(e) => {
 							e.preventDefault();
 							setAnswers((answers) => {
-								// Deep copy.
-								const updatedAnswers = JSON.parse(
-									JSON.stringify(answers)
-								);
+								const updatedAnswers = deepCopy(answers);
 								updatedAnswers[index].answer = e.target.value;
 								return updatedAnswers;
 							});
 						}} />
 						<InputGroup.Checkbox aria-label="Checkbox for following text input" checked={answers[index].isChecked} onChange={() =>
 							setAnswers((answers) => {
-								// Deep copy.
-								const updatedAnswers = JSON.parse(
-									JSON.stringify(answers)
-								);
+								const updatedAnswers = deepCopy(answers);
 								updatedAnswers[index].isChecked =
 									!updatedAnswers[index].isChecked;
 								return updatedAnswers;

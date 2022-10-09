@@ -2,16 +2,11 @@ import React from 'react';
 import { ValidationError } from 'yup';
 import { questionsCategoryName } from 'libs/constants/names.storage';
 import { useQuestions,  } from 'libs/hooks';
-import { IQuestionDto, IQuestion } from 'libs/interfaces/questions.interface';
+import { IQuestionDto, IQuestion, IUserAnswer } from 'libs/interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
 import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 import { deepCopy } from 'libs/helpers/deep-copy';
-
-interface IUserAnswer {
-    answer: string;
-    isChecked: boolean;
-}
 
 export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps, 'mode' | 'questionItem'>) => {
     const [question, setQuestion] = React.useState<string>(questionItem.question);

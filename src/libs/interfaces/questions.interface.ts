@@ -1,3 +1,8 @@
+export interface IUserAnswer {
+    answer: string;
+    isChecked: boolean;
+}
+
 export interface IAnswer {
     answer: string;
     isCorrect: boolean;
