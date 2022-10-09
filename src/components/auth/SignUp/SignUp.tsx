@@ -1,4 +1,4 @@
-import { authApi } from 'libs/auth.api';
+import { authApi } from 'libs/api/auth.api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
