@@ -11,6 +11,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { IAnswersListResultProps, ITestResultProps } from './TestResult.props';
 import { Code } from 'components/ui/Code/Code';
 import { Tag } from 'components/ui/Tag/Tag';
+import { isArraysEqual } from 'libs/helpers/is-arrays-equal';
 
 
 const AnswersListResult: React.FC<IAnswersListResultProps> = ({
@@ -56,28 +57,26 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
 	};
 
 	return (
-		<>
-			<div className={styles.answersList}>
-				{answers.map((answer, index) => {
-					return (
-						<li className={styles.answer} key={answer.answer}>
-							<Form.Check
-								style={{ fontSize: '28px' }}
-								type={'checkbox'}
-								id={answer.answer}
-								label={answer.answer}
-								value={answer.answer}
-								checked={checkedAnswers[currentQuestion][index]}
-								disabled
-							/>
-							<div className={styles.tag}>
-								{getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
-							</div>
-						</li>
-					);
-				})}
-			</div>
-		</>
+		<div className={styles.answersList}>
+			{answers.map((answer, index) => {
+				return (
+					<li className={styles.answer} key={answer.answer}>
+						<Form.Check
+							className={styles.formCheck}
+							type={'checkbox'}
+							id={answer.answer}
+							label={answer.answer}
+							value={answer.answer}
+							checked={checkedAnswers[currentQuestion][index]}
+							disabled
+						/>
+						<div className={styles.tag}>
+							{getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
+						</div>
+					</li>
+				);
+			})}
+		</div>
 	);
 };
 
@@ -94,26 +93,24 @@ export const TestResult = ({
 	const changeUserAnswerStatus = (questionIndex: number) => {
 		setUserAnswersStatus((userAnswersStatus) => {
 			const newUserAnswersStatus = [...userAnswersStatus];
+
 			newUserAnswersStatus[questionIndex] =
 				!newUserAnswersStatus[questionIndex];
+
 			return newUserAnswersStatus;
 		});
 	};
 
 	const [checkedAnswers, setCheckedAnswers] = useSessionStorage<boolean[][]>(
-		checkedAnswersName,
-		[]
+		checkedAnswersName, []
 	);
 
 	React.useEffect(() => {
 		for (let i = 0; i < questions.length; ++i) {
-			const questionAnswersStatus = questions[i].answers.map(
-				(answer) => answer.isCorrect
-			);
-			if (
-				JSON.stringify(questionAnswersStatus) !==
-				JSON.stringify(checkedAnswers[i])
-			) {
+			const questionAnswersStatus
+				= questions[i].answers.map(answer => answer.isCorrect);
+
+			if (!isArraysEqual(questionAnswersStatus, checkedAnswers[i])) {
 				changeUserAnswerStatus(i);
 			}
 		}
@@ -139,51 +136,49 @@ export const TestResult = ({
 	};
 
 	return (
-		<>
-			<div className={styles.wrapper}>
-				<div className={styles.content}>
-					<h3 className={styles.title}>
-						Correct answers:{' '}
-						{
-							userAnswersStatus.filter((answerStatus) => answerStatus === true)
-								.length
-						}{' '}
-						from {userAnswersStatus.length}
-					</h3>
-					{checkedAnswers.length &&
-						questions.map((question, index) => {
-							return (
-								<Card
-									className={cn(styles.card, {
-										[styles.successCard]: userAnswersStatus[index],
-										[styles.errorCard]: !userAnswersStatus[index],
-									})}
-									key={index + question.question}
-								>
-									<h3 className={styles.questionTitle}>
-										Question {index + 1}
-									</h3>
-									<hr />
-									<h4 className={styles.questionTitle}>
-										{questions[index].question}
-									</h4>
-									{questions[index].codeExample &&
-										<Code codeExample={questions[index].codeExample} language='typescript' />
-									}
+		<div className={styles.wrapper}>
+			<div className={styles.content}>
+				<h3 className={styles.title}>
+					{`Correct answers:
+						${userAnswersStatus.filter((answerStatus) => answerStatus === true).length}
+		 				from ${userAnswersStatus.length}`
+					}
+				</h3>
+				{checkedAnswers.length &&
+					questions.map((question, index) => {
+						return (
+							<Card
+								className={cn(styles.card, {
+									[styles.successCard]: userAnswersStatus[index],
+									[styles.errorCard]: !userAnswersStatus[index],
+								})}
+								key={index + question.question}
+							>
+								<h5 className={styles.questionTitle}>
+									Question {index + 1}
+								</h5>
+								<hr />
+								<h5 className={styles.questionTitle}>
+									{questions[index].question}
+								</h5>
+								<hr />
+								{
+									questions[index].codeExample &&
+									<Code codeExample={questions[index].codeExample} language='typescript' />
+								}
 
-									<AnswersListResult
-										answers={questions[index].answers}
-										currentQuestion={index}
-										checkedAnswers={checkedAnswers}
-									/>
-								</Card>
-							);
-						})}
-					<Button onClick={newTestButtonHandler}>
-						New test
-					</Button>
-				</div>
+								<AnswersListResult
+									answers={questions[index].answers}
+									currentQuestion={index}
+									checkedAnswers={checkedAnswers}
+								/>
+							</Card>
+						);
+					})}
+				<Button onClick={newTestButtonHandler}>
+					New test
+				</Button>
 			</div>
-		</>
+		</div>
 	);
 };

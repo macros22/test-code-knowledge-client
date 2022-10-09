@@ -23,7 +23,6 @@ export const AnswersList = ({
             {answers.map((answer, index) => {
                 return (
                     <li key={answer.answer}>
-                        <>
                             <Form.Check
                                 className={styles.formCheck}
                                 type={'checkbox'}
@@ -33,7 +32,6 @@ export const AnswersList = ({
                                 checked={checkedAnswers[currentQuestion][index]}
                                 onChange={() => handleOnChange(index)}
                             />
-                        </>
                     </li>
                 );
             })}

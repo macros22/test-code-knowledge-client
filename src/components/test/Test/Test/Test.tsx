@@ -16,12 +16,10 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
-		currentQuestionIndexName,
-		0
+		currentQuestionIndexName, 0
 	);
 	const [checkedAnswers, setCheckedAnswers] = useSessionStorage<boolean[][]>(
-		checkedAnswersName,
-		[]
+		checkedAnswersName, []
 	);
 
 	const initialQuestionsStatus = new Array(questions.length).fill(false);
@@ -111,15 +109,16 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 						)}
 					</div>
 					<div className={styles.buttons}>
-						{currentQuestion < questions.length - 1 ? (
+						{currentQuestion < questions.length - 1
+							?
 							<Button onClick={nextButtonHandler}>
 								Next
 							</Button>
-						) : (
+							:
 							<Button onClick={endTestHandler}>
 								Finish test
 							</Button>
-						)}
+						}
 					</div>
 				</div>
 			)}

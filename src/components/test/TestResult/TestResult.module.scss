@@ -14,15 +14,15 @@
 }
 
 .successCard {
-  border-color: $success  !important;
+  border-color: $success !important;
 }
 
 .errorCard {
-  border-color: $danger  !important;
+  border-color: $danger !important;
 }
 
 .partialCorrectCard {
-  border-color: $info  !important;
+  border-color: $info !important;
 }
 
 .buttons {
@@ -32,7 +32,7 @@
 }
 
 .questionTitle {
-  margin-bottom: $spacer;
+  // margin-bottom: $spacer;
 }
 
 .content {
@@ -53,6 +53,10 @@
   border-radius: $border-radius;
   align-items: baseline;
   cursor: pointer;
+}
+
+.formCheck {
+  font-size: 28px;
 }
 
 .answersList {
