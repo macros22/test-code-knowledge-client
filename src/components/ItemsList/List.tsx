@@ -8,10 +8,10 @@ import { useRouter } from 'next/router';
 import { SnippetCard } from 'components/snippets/SnippetCard/SnippetCard';
 import { useItemsInfo } from './useItemsInfo.hook';
 import { QuestionCard } from 'components/questions/QuestionCard/QuestionCard';
-import { questionExample } from 'components/questions/QuestionForm/questionExample';
+import { getQuestionExample } from 'components/questions/QuestionForm/questionExample';
 import { QuestionForm } from 'components/questions/QuestionForm/QuestionForm';
 import { SnippetForm } from 'components/snippets/SnippetForm/SnippetForm';
-import { snippetExample } from 'components/snippets/SnippetForm/snippetExample';
+import { getSnippetExample } from 'components/snippets/SnippetForm/snippetExample';
 import { IQuestion } from 'libs/interfaces/questions.interface';
 import { ISnippet } from 'libs/interfaces/snippets.interface';
 
@@ -71,59 +71,52 @@ export const List = ({
 				)}
 			</div>
 			<div className={styles.container}>
-				{items && items.length && (
-					<>
-						<div className={styles.column}>
-							{items.map((item, index) => {
-								return (
-									<Card
-										className={styles.itemCard}
-										key={item.id}
-									>
-										{itemsName == 'questions'
-											?
-											<QuestionCard
-												withEdit={isLoggedIn && isAdmin}
-												handleEditButton={makeHandleEditItemButton(index)}
-												question={item}
-												key={item.id}
-												index={index + 1}
-											/>
-											: <SnippetCard
-												withEdit={isLoggedIn && isAdmin}
-												handleEditButton={makeHandleEditItemButton(index)}
-												snippet={item}
-												key={item.id}
-												index={index + 1}
-											/>
-										}
-									</Card>
-								);
-
-							})}
-						</div>
-
-
-					</>
-				)}
-
-				{!items || (!items.length && (
-					<Card className={styles.itemCard}>Empty list</Card>
-				))}
+				<div className={styles.column}>
+					{items && items.length
+						?
+						items.map((item, index) => {
+							return (
+								<Card
+									
+									key={item.id}
+								>
+									{itemsName == 'questions'
+										?
+										<QuestionCard
+											withEdit={isLoggedIn && isAdmin}
+											handleEditButton={makeHandleEditItemButton(index)}
+											question={item}
+											key={item.id}
+											index={index + 1}
+										/>
+										: <SnippetCard
+											withEdit={isLoggedIn && isAdmin}
+											handleEditButton={makeHandleEditItemButton(index)}
+											snippet={item}
+											key={item.id}
+											index={index + 1}
+										/>
+									}
+								</Card>
+							);
+						})
+						: <Card className={styles.noItemsCard}>{`No ${itemsName} yet`}</Card>}
+				</div>
 			</div>
+
 			{isLoggedIn && isAddNewItemMode && (
 				<Modal size='lg' show={isAddNewItemMode} onHide={() => setIsAddNewItemMode(false)}>
 					<Modal.Body>
 						{itemsName == 'questions'
 							?
 							<QuestionForm
-								questionItem={questionExample}
+								questionItem={getQuestionExample(currentCategory)}
 								mode="add"
 								setIsModalOpen={setIsAddNewItemMode}
 							/>
 							:
 							<SnippetForm
-								snippetItem={snippetExample}
+								snippetItem={getSnippetExample(currentCategory)}
 								mode="add"
 								setIsModalOpen={setIsAddNewItemMode}
 							/>

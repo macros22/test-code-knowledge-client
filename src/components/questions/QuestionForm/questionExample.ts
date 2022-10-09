@@ -1,8 +1,8 @@
 import { IQuestion } from "libs/interfaces/questions.interface";
 
-export const questionExample: IQuestion = {
+export const getQuestionExample = (category: string): IQuestion => ({
     id: '12345',
-    category: 'JavaScript',
+    category,
     question: 'What will be output to the console?',
     codeExample: `const example = () => {
     return ExampleCode;
@@ -13,4 +13,4 @@ export const questionExample: IQuestion = {
         { answer: 'third', isCorrect: false },
         { answer: 'fourth', isCorrect: false },
     ],
-};
+})

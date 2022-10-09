@@ -1,8 +1,8 @@
 import { ISnippet } from "libs/interfaces/snippets.interface";
 
-export const snippetExample: ISnippet = {
+export const getSnippetExample = (category: string): ISnippet => ({
     id: '12345',
-    category: 'JavaScript',
+    category,
     description: 'description',
     snippet: `const example = () => {
     return ExampleCode;
@@ -11,4 +11,4 @@ export const snippetExample: ISnippet = {
     infoLinks: [
         { link: 'url', description: 'description' }
     ]
-};
+})

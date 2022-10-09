@@ -40,7 +40,6 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	// justify-content: center;
 	gap: $spacer * 1.5;
 }
 
@@ -49,8 +48,8 @@
 	overflow: hidden;
 }
 
-.itemCard {
-	// width: max-content;
+.noItemsCard {
+	padding: $spacer * 0.75;
 }
 
 .column {
