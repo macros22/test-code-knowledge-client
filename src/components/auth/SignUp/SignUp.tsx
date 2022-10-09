@@ -1,7 +1,7 @@
-import { authApi } from 'libs/api/auth.api';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { authApi } from 'libs/api/auth.api';
 import { Alert, Button, FloatingLabel, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { BsFillLockFill, BsFillPersonFill, BsFillEnvelopeFill } from "react-icons/bs";
 

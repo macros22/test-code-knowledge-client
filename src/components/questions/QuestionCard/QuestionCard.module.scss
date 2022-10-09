@@ -4,12 +4,13 @@
 .questionCard {
   display: grid;
   grid-template-areas:
+    "questionNumber"
     "question"
     "codeExample"
     "buttons"
     "answer";
   grid-template-columns: minmax(250px, 570px);
-  grid-template-rows: auto auto 40px auto;
+  grid-template-rows: auto auto auto 40px auto;
   padding: $spacer * 1;
 }
 
@@ -18,9 +19,26 @@
   max-width: 600px;
 }
 
+.questionNumber {
+  grid-area: questionNumber;
+  height: min-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &Title {
+    width: 100%;
+  }
+
+  &Badge {
+    color: $white;
+    padding: 0.3rem 0.6rem;
+  }
+}
 
 .question {
   grid-area: question;
+
 }
 
 .codeExample {
@@ -53,6 +71,8 @@
 
 .iconButton {
   @include iconWithBorder;
+  // width: 20px;
+  // height: 20px;
 }
 
 .editButtons {
@@ -67,5 +87,5 @@
 
 .chevronIcon {
   height: 100%;
-  width: $spacer * 3  !important;
+  width: $spacer * 3 !important;
 }

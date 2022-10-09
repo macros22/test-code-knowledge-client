@@ -35,15 +35,35 @@ export const QuestionCard = ({
 	return (<>
 		<div className={styles.wrapper}>
 			<div className={styles.questionCard}>
+				<div className={styles.questionNumber}>
+					<h5 className={styles.questionNumberTitle}>
+						{'Question '}
+						<Badge className={styles.questionNumberBadge} bg="danger">
+							{index}
+						</Badge>
+					</h5>
+					{withEdit && (
+						<div className={styles.editButtons}>
+							<BsPencilFill
+								className={styles.iconButton}
+								onClick={handleEditButton}
+							/>
+							<BsFillTrashFill
+								className={styles.iconButton}
+								onClick={handleDeleteButton}
+							/>
+						</div>
+					)}
+
+				</div>
 				<div className={styles.question}>
-					<h5>{'Question '}<Badge style={{ color: 'white', padding: '0.3rem 0.6rem' }} bg="danger"> {index}</Badge></h5>
 					<hr />
 					<h5>{question.question}</h5>
-					<hr />
 				</div>
 
 				{question.codeExample &&
 					<div className={styles.codeExample}>
+						<hr />
 						<Code codeExample={question.codeExample} language='typescript' />
 						<hr />
 					</div>
@@ -74,19 +94,6 @@ export const QuestionCard = ({
 							</h5>
 						</>
 					}
-
-					{withEdit && (
-						<div className={styles.editButtons}>
-							<BsPencilFill
-								className={styles.iconButton}
-								onClick={handleEditButton}
-							/>
-							<BsFillTrashFill
-								className={styles.iconButton}
-								onClick={handleDeleteButton}
-							/>
-						</div>
-					)}
 				</div>
 
 				<div
