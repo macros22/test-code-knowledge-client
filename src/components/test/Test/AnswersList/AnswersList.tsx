@@ -1,6 +1,7 @@
 import { AnswersListProps } from "./AnswersList.props";
 import { Form } from 'react-bootstrap';
 import styles from './AnswersList.module.scss';
+import { deepCopy } from "libs/helpers/deep-copy";
 
 export const AnswersList = ({
     setCheckedAnswers,
@@ -10,7 +11,7 @@ export const AnswersList = ({
 }: AnswersListProps): JSX.Element => {
     const handleOnChange = (answerIndex: number) => {
         setCheckedAnswers((checkedAnswers) => {
-            const newCheckedAnswers = JSON.parse(JSON.stringify(checkedAnswers));
+            const newCheckedAnswers = deepCopy(checkedAnswers);
             newCheckedAnswers[currentQuestion][answerIndex] =
                 !newCheckedAnswers[currentQuestion][answerIndex];
             return newCheckedAnswers;
@@ -24,7 +25,7 @@ export const AnswersList = ({
                     <li key={answer.answer}>
                         <>
                             <Form.Check
-                                style={{ fontSize: '24px' }}
+                                className={styles.formCheck}
                                 type={'checkbox'}
                                 id={answer.answer}
                                 label={answer.answer}

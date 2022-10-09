@@ -6,6 +6,7 @@ import { IQuestionDto, IQuestion } from 'libs/interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
 import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
+import { deepCopy } from 'libs/helpers/deep-copy';
 
 interface IUserAnswer {
     answer: string;
@@ -29,6 +30,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         answer: answer.answer,
         isChecked: answer.isCorrect,
     }));
+
     const [answers, setAnswers] = React.useState<IUserAnswer[]>(initialAnswers);
     const [answersErrors, setAnswersErrors] = React.useState<string[]>(
         new Array(questionItem.answers.length).fill('')
@@ -38,7 +40,6 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         setCategory(e.target.value as string);
     }
 
-
     const handleAddAnswerButton = () => {
         const newAnswer: IUserAnswer = {
             answer: '',
@@ -46,24 +47,15 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         }
 
         setAnswers(answers => {
-            // Deep copy.
-            // TODO! replace JSON...
-            const newAnswers: IUserAnswer[] = JSON.parse(
-                JSON.stringify(answers)
-            );
+            const newAnswers: IUserAnswer[] = deepCopy(answers);
             newAnswers.push(newAnswer);
-
             return newAnswers;
         })
     }
 
     const handleDeleteAnswerButton = (index: number) => {
         setAnswers(answers => {
-            // Deep copy.
-            // TODO! replace JSON...
-            const newAnswers: IUserAnswer[] = JSON.parse(
-                JSON.stringify(answers)
-            );
+            const newAnswers: IUserAnswer[] = deepCopy(answers);
             return newAnswers.filter((_, i) => i !== index);
         })
     }

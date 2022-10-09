@@ -67,7 +67,6 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 
 	const endTestHandler = () => {
 		if (checkedAnswers[currentQuestion].indexOf(true) !== -1) {
-			// router.push(`/testResult/${category}`);
 			router.push(`/testResult`);
 		}
 	};

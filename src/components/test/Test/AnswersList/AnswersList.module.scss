@@ -1,10 +1,13 @@
 @import'assets/variables';
 
 .answersList {
-	// font-weight: 500 !important;
 	list-style: none;
 	margin-top: $spacer;
 	display: flex;
 	flex-direction: column;
-	gap: $spacer*0.6;
+	gap: $spacer * 0.6;
+}
+
+.formCheck {
+	font-size: 24px;
 }
