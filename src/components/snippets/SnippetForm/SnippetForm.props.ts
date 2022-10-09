@@ -1,4 +1,4 @@
-import { ISnippet } from 'interfaces/snippets.interface';
+import { ISnippet } from 'libs/interfaces/snippets.interface';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
 export interface ISnippetFormProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

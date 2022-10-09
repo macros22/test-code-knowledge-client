@@ -1,4 +1,4 @@
-import { IQuestion } from 'interfaces/questions.interface';
+import { IQuestion } from 'libs/interfaces/questions.interface';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
 export interface IQuestionCardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

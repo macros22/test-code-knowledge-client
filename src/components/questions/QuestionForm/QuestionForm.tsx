@@ -3,7 +3,7 @@ import styles from './QuestionForm.module.scss';
 import { IQuestionFormProps } from './QuestionForm.props';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
-import { useQuestionsInfo } from 'hooks';
+import { useQuestionsInfo } from 'libs/hooks';
 import { useQuestionForm } from './useQuestionForm.hook';
 import { HrWithContent } from 'components';
 

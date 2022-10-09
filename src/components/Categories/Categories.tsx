@@ -1,26 +1,17 @@
+import React from 'react';
+import Link from 'next/link';
 import styles from './Categories.module.scss';
 import { ICategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
-import { Button, Row, Spinner, Stack } from 'react-bootstrap';
-import React from 'react';
-import { useQuestionsInfo } from 'hooks';
-import { useSnippetsInfo } from 'hooks/snippets/useSnippetssInfo';
+import { Button, Spinner } from 'react-bootstrap';
+import { useQuestionsInfo } from 'libs/hooks';
+import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
 
-export const Categories = ({
-	// questionsInfo,
-}: ICategoriesProps): JSX.Element => {
+export const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	const router = useRouter();
 
 	const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
 	const { snippetsInfo, isLoadingSnippetsInfo } = useSnippetsInfo();
-
-	const showQuestionsButtonHandler = (category: string) => () => {
-		router.replace(`/questions/${questionsInfo[category].categoryURLName}`);
-	};
-
-	const showSnippetsButtonHandler = (category: string) => () => {
-		router.replace(`/snippets/${snippetsInfo[category].categoryURLName}`);
-	};
 
 	const passTestButtonHandler = (category: string) => () => {
 		const categoryQuestionsAmount = questionsInfo[category].amount;
@@ -49,41 +40,37 @@ export const Categories = ({
 				return (
 					<>
 						<div className={styles.card}>
-
-							<h4 className={styles.cardTitle}>
-								<span className={styles.cardBracket}>{'{{{ '}</span>
+							<h3 className={styles.cardTitle}>
+								<span className={styles.cardBracket}>{'{ '}</span>
 								{category}
-								<span className={styles.cardBracket}>{' }}}'}</span>
-							</h4>
+								<span className={styles.cardBracket}>{' }'}</span>
+							</h3>
+
 							<hr />
-							{/* <Row gap={3}> */}
+
 							<div className={styles.cardButtons}>
-								<Button
-									// size="lg"
-									// variant="danger"
-									onClick={showQuestionsButtonHandler(
-										category
-									)}>
-									Questions: {questionsInfo[category].amount}
-								</Button>
+								<Link
+									href={`/questions/${questionsInfo[category].categoryURLName}`}>
+									<a className={styles.cardLink}>
+										Questions: {questionsInfo[category].amount}
+									</a>
+								</Link>
 
-								<Button
-									// size="lg"
-									variant="danger"
-									onClick={showSnippetsButtonHandler(
-										category
-									)}>
-									Snippets: {snippetsInfo[category].amount}
-								</Button>
+								<Link
+									href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
+									<a className={styles.cardLink}>
+										Snippets: {snippetsInfo[category].amount}
+									</a>
+								</Link>
 
-								<Button
-									// size="lg"
+								{/* <Button
+
+									variant='secondary'
 									onClick={passTestButtonHandler(category)}
 								>
 									Test
-								</Button>
+								</Button> */}
 							</div>
-							{/* </Row> */}
 						</div>
 					</>
 				);

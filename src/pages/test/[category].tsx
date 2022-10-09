@@ -2,15 +2,15 @@ import React from 'react';
 import { Test } from 'components';
 import { withLayout } from 'layouts';
 import { GetServerSideProps } from 'next';
-import { useQuestions, useQuestionsInfo, useSessionStorage } from 'hooks';
-import { questionsCategoryName, questionsInStorageName } from 'constants/names.storage';
-import { getQueryParametr } from 'helpers/get-param-from-query';
+import { useQuestionsInfo, useSessionStorage } from 'libs/hooks';
+import { questionsCategoryName, questionsInStorageName } from 'libs/constants/names.storage';
+import { getQueryParametr } from 'libs/helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
-import { IQuestion } from 'interfaces/questions.interface';
-import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
-import { getRandomQuestionsUrl } from 'helpers/get-questions-url';
-import { questionsApi } from 'libs/questions.api';
-import { QUESTIONS_BASE_URL } from 'constants/urls';
+import { IQuestion } from 'libs/interfaces/questions.interface';
+import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
+import { getRandomQuestionsUrl } from 'libs/helpers/get-questions-url';
+import { questionsApi } from 'libs/api/questions.api';
+import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
 interface ITestPageProps extends Record<string, unknown> {
 	category: string;
 	questionsAmount: number;
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<ITestPageProps> = async (
 	const questionsAmount =
 		Number(getQueryParametr(context, 'questionsAmount')) || 1;
 
-	const categoryURLName = getQueryParametr(context, 'category') || 'javascript';
+	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 
 	const questionsInfo = await questionsApi().getQuestionsInfo(QUESTIONS_BASE_URL);
@@ -79,11 +79,6 @@ const TestPage = ({
 		}
 	}, []);
 
-	// React.useEffect(() => {
-	// 	//@ts-ignore
-	// 	setQuestionsInStorage(questions);
-	// }, [questions.length]);
-
 	if (isLoading) {
 		return (
 			<Spinner
@@ -96,9 +91,9 @@ const TestPage = ({
 
 	return (
 		<>
-			{questions && questions.length && (
-				<Test questions={questions} />
-			)}
+			{
+				questions && questions.length && <Test questions={questions} />
+			}
 		</>
 	);
 };

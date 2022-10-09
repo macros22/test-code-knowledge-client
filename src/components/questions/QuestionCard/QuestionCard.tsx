@@ -4,7 +4,7 @@ import styles from './QuestionCard.module.scss';
 import { IQuestionCardProps } from './QuestionCard.props';
 import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { IAnswer } from 'interfaces/questions.interface';
+import { IAnswer } from 'libs/interfaces/questions.interface';
 import { Badge } from 'react-bootstrap';
 
 export const QuestionCard = ({
@@ -44,7 +44,7 @@ export const QuestionCard = ({
 
 				{question.codeExample &&
 					<div className={styles.codeExample}>
-						<Code codeExample={question.codeExample} language='typescript'/>
+						<Code codeExample={question.codeExample} language='typescript' />
 						<hr />
 					</div>
 				}

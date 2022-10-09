@@ -1,24 +1,17 @@
 import React from 'react';
 import { withLayout } from 'layouts';
 import { GetServerSideProps, GetStaticProps } from 'next';
-import { getQueryParametr } from 'helpers/get-param-from-query';
-import { useSessionStorage } from 'hooks';
-import { snippetsCategoryName } from 'constants/names.storage';
+import { getQueryParametr } from 'libs/helpers/get-param-from-query';
+import { useSessionStorage } from 'libs/hooks';
+import { snippetsCategoryName } from 'libs/constants/names.storage';
 import { Spinner } from 'react-bootstrap';
 import { SWRConfig } from 'swr';
-import { ISnippet } from 'interfaces/snippets.interface';
-import { getSnippetsUrl } from 'helpers/get-snippets-url';
-import { snippetsApi } from 'libs/snippets.api';
-import { useSnippets } from 'hooks/snippets/useSnippets';
-import { List } from 'components/List/List';
-import { SNIPPETS_BASE_URL } from 'constants/urls';
-
-interface ISnippetsPageProps extends Record<string, unknown> {
-	category: string;
-	skip: number;
-	limit: number;
-	fallback: Record<string, ISnippet[] | null>;
-}
+import { ISnippet, ISnippetsPageProps } from 'libs/interfaces/snippets.interface';
+import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
+import { snippetsApi } from 'libs/api/snippets.api';
+import { useSnippets } from 'libs/hooks/snippets/useSnippets';
+import { List } from 'components/ItemsList/List';
+import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
 
 export const getServerSideProps: GetServerSideProps<
 	ISnippetsPageProps

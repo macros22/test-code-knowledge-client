@@ -1,23 +1,17 @@
 import React from 'react';
 import { withLayout } from 'layouts';
 import { GetServerSideProps, GetStaticProps } from 'next';
-import { getQueryParametr } from 'helpers/get-param-from-query';
-import { useQuestions, useQuestionsInfo, useSessionStorage } from 'hooks';
-import { questionsCategoryName } from 'constants/names.storage';
+import { getQueryParametr } from 'libs/helpers/get-param-from-query';
+import { useQuestions, useQuestionsInfo, useSessionStorage } from 'libs/hooks';
+import { questionsCategoryName } from 'libs/constants/names.storage';
 import { Spinner } from 'react-bootstrap';
-import { IQuestion } from 'interfaces/questions.interface';
-import { questionsApi } from 'libs/questions.api';
-import { getQuestionsUrl } from 'helpers/get-questions-url';
+import { IQuestion, IQuestionsPageProps } from 'libs/interfaces/questions.interface';
+import { questionsApi } from 'libs/api/questions.api';
+import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { SWRConfig } from 'swr';
-import { List } from 'components/List/List';
-import { QUESTIONS_BASE_URL } from 'constants/urls';
+import { List } from 'components/ItemsList/List';
+import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
 
-interface IQuestionsPageProps extends Record<string, unknown> {
-	category: string;
-	skip: number;
-	limit: number;
-	fallback: Record<string, IQuestion[] | null>;
-}
 
 export const getServerSideProps: GetServerSideProps<
 	IQuestionsPageProps

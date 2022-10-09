@@ -1,6 +1,6 @@
 export * from "./ui/Card/Card";
 export * from "./ui/Tag/Tag";
-export * from "./Code/Code";
+export * from "./ui/Code/Code";
 export * from "./test/TestResult/TestResult";
 export * from "./questions/QuestionCard/QuestionCard";
 export * from "./questions/QuestionForm/QuestionForm";

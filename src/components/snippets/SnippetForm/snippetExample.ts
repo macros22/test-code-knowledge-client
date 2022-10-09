@@ -1,4 +1,4 @@
-import { ISnippet } from "interfaces/snippets.interface";
+import { ISnippet } from "libs/interfaces/snippets.interface";
 
 export const snippetExample: ISnippet = {
     id: '12345',

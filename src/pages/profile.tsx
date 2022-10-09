@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from 'hooks/useUser';
+import { useUser } from 'libs/hooks/useUser';
 import { withLayout } from 'layouts';
 import { useRouter } from 'next/router';
 

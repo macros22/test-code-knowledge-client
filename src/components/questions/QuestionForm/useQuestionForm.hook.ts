@@ -1,11 +1,11 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import { questionsCategoryName } from 'constants/names.storage';
-import { useQuestions, useQuestionsInfo, useSessionStorage } from 'hooks';
-import { IQuestionDto, IQuestion } from 'interfaces/questions.interface';
+import { questionsCategoryName } from 'libs/constants/names.storage';
+import { useQuestions,  } from 'libs/hooks';
+import { IQuestionDto, IQuestion } from 'libs/interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
-import { useQuestionsApi } from 'hooks/questions/useQuestionsApi';
+import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 
 interface IUserAnswer {
     answer: string;
@@ -122,7 +122,7 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
                 answer: answer.answer,
                 isCorrect: answer.isChecked,
             })),
-            tags:[]
+            tags: []
         } as IQuestionDto;
 
         if (await isValidForm()) {

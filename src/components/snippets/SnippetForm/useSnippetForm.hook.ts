@@ -1,10 +1,10 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import { ISnippetDto, ISnippet } from 'interfaces/snippets.interface';
+import { ISnippetDto, ISnippet } from 'libs/interfaces/snippets.interface';
 import { snippetSchema } from './snippet.schema';
 import { ISnippetFormProps } from './SnippetForm.props';
-import { useSnippetsApi } from 'hooks/snippets/useSnippetsApi';
-import { useSnippets } from 'hooks/snippets/useSnippets';
+import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
+import { useSnippets } from 'libs/hooks/snippets/useSnippets';
 
 // interface IUserAnswer {
 //     answer: string;
@@ -117,7 +117,7 @@ export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'm
         } as ISnippetDto;
 
         // if (await isValidForm()) {
-            if (true) {
+        if (true) {
             switch (mode) {
                 case 'add':
                     try {

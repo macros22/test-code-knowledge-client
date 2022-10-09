@@ -2,11 +2,11 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
 import { Code } from 'components';
-import { useSessionStorage } from 'hooks';
+import { useSessionStorage } from 'libs/hooks';
 import {
 	checkedAnswersName,
 	currentQuestionIndexName,
-} from 'constants/names.storage';
+} from 'libs/constants/names.storage';
 import { Button } from 'react-bootstrap';
 import { AnswersList } from '../AnswersList/AnswersList';
 import { TestProps } from './Test.props';
@@ -99,7 +99,7 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 						<hr />
 						{
 							questions[currentQuestion].codeExample &&
-							<Code codeExample={questions[currentQuestion].codeExample} language='typescript'/>
+							<Code codeExample={questions[currentQuestion].codeExample} language='typescript' />
 						}
 
 						{checkedAnswers.length && (

@@ -1,12 +1,10 @@
 
 import React from 'react';
-import { Auth } from 'components/Auth/Auth/Auth';
+import { Auth } from 'components/auth/Auth/Auth';
 import { GetServerSideProps } from 'next';
 import { withLayout } from 'layouts';
+import { IAuthPageProps } from 'libs/interfaces/user.interface';
 
-interface IAuthPageProps extends Record<string, string> {
-	authMode: 'sign-in' | 'sign-up';
-}
 
 export const getServerSideProps: GetServerSideProps<IAuthPageProps> = async (
 	context
@@ -18,9 +16,8 @@ export const getServerSideProps: GetServerSideProps<IAuthPageProps> = async (
 const AuthPage = ({ authMode }: IAuthPageProps): JSX.Element => {
 
 	return (
-		<>
-			<Auth authMode={authMode} />
-		</>);
+		<Auth authMode={authMode} />
+	)
 };
 
 export default withLayout('auth', AuthPage);

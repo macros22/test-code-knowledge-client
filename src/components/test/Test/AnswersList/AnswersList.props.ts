@@ -1,4 +1,4 @@
-import { IAnswer } from "interfaces/questions.interface";
+import { IAnswer } from "libs/interfaces/questions.interface";
 
 export interface AnswersListProps {
     answers: IAnswer[];

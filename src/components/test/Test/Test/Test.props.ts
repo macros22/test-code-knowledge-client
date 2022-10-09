@@ -1,4 +1,4 @@
-import { IQuestion } from "interfaces/questions.interface";
+import { IQuestion } from "libs/interfaces/questions.interface";
 
 export interface TestProps {
     questions: IQuestion[];
