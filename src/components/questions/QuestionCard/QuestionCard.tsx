@@ -6,6 +6,7 @@ import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { IAnswer } from 'libs/interfaces/questions.interface';
 import { Badge } from 'react-bootstrap';
+import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 
 export const QuestionCard = ({
 	question,
@@ -20,8 +21,9 @@ export const QuestionCard = ({
 	};
 
 
+	const { api } = useQuestionsApi();
 	const handleDeleteButton = async () => {
-		// await deleteQuestion(question.id);
+		await api.deleteQuestion(question.id);
 	};
 
 	const [correctAnswers, setCorrectAnswers] = React.useState<IAnswer[]>([]);

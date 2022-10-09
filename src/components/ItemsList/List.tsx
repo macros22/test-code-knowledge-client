@@ -42,7 +42,6 @@ export const List = ({
 
 	const router = useRouter();
 	const categoryButtonHandler = (category: string) => {
-		console.log(category)
 		router.replace(`/${itemsName}/${itemsInfo[category].categoryURLName}`);
 	}
 
