@@ -13,26 +13,19 @@ export const SnippetCard = ({
 }: ISnippetCardProps): JSX.Element => {
 
 	const handleDeleteButton = async () => {
-		// await deleteQuestion(question.id);
+		// await deletesnippet(question.id);
 	};
 
 	return (<>
 		<div className={styles.wrapper}>
 			<div className={styles.snippetCard}>
-				<div className={styles.description}>
-					<h5>{'Snippet '}<Badge style={{ color: 'white', padding: '0.3rem 0.6rem' }} bg="danger"> {index}</Badge></h5>
-					<hr />
-					<h5>{snippet.description}</h5>
-					<hr />
-				</div>
-
-				<div className={styles.snippet}>
-					<Code codeExample={snippet.snippet} language='typescript' />
-					<hr />
-				</div>
-
-				<div className={styles.buttons}>
-
+				<div className={styles.snippetNumber}>
+					<h5 className={styles.snippetNumberTitle}>
+						{'Snippet '}
+						<Badge className={styles.snippetNumberBadge} bg="danger">
+							{index}
+						</Badge>
+					</h5>
 					{withEdit && (
 						<div className={styles.editButtons}>
 							<BsPencilFill
@@ -45,7 +38,18 @@ export const SnippetCard = ({
 							/>
 						</div>
 					)}
+
 				</div>
+				<div className={styles.description}>
+					<hr />
+					<h5>{snippet.description}</h5>
+				</div>
+
+				<div className={styles.snippet}>
+					<hr />
+					<Code codeExample={snippet.snippet} language='typescript' />
+				</div>
+
 			</div>
 		</div>
 	</>
