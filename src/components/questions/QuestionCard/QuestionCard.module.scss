@@ -9,14 +9,14 @@
     "codeExample"
     "buttons"
     "answer";
-  grid-template-columns: minmax(250px, 570px);
+  grid-template-columns: minmax(250px, 700px);
   grid-template-rows: auto auto auto 40px auto;
-  padding: $spacer * 1;
+  padding: $spacer;
 }
 
 .wrapper {
   position: relative;
-  max-width: 600px;
+  max-width: 720px;
 }
 
 .questionNumber {
@@ -32,7 +32,7 @@
 
   &Badge {
     color: $white;
-    padding: 0.3rem 0.6rem;
+    padding: $spacer * 0.3 $spacer * 0.6;
   }
 }
 

@@ -1,3 +1,5 @@
+import { IInfoLink } from "./common.interface";
+
 export interface IUserAnswer {
     answer: string;
     isChecked: boolean;
@@ -14,6 +16,8 @@ export interface IQuestion {
     question: string;
     codeExample: string;
     answers: IAnswer[];
+    tags: string[];
+    infoLinks: IInfoLink[];
 }
 
 export interface IQuestionDto extends Omit<IQuestion, 'id'> { }

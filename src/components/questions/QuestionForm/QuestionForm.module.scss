@@ -2,14 +2,6 @@
 
 .editMedicalItem {
 	display: grid;
-	// grid-template-areas:
-	// 	"question question"
-	// 	"codeExample codeExample"
-	// 	"answersList answersList"
-	// 	"savedButton resetdButton";
-	// grid-template-columns: 400px 210px;
-	// grid-template-rows: 80px 200px 150px 40px;
-
 	grid-template-areas:
 		"question question question"
 		"codeExample codeExample answersList"
@@ -28,7 +20,7 @@
 
 .subTitle {
 	margin: 0;
-	margin-bottom: 0.5rem;
+	margin-bottom: $spacer * 0.5;
 
 	color: var(--text-secondary-color);
 
@@ -41,29 +33,27 @@
 
 .codeExample {
 	grid-area: codeExample;
-	
+
 }
 
 
-.textareaCodeExample{
+.textareaCodeExample {
 	height: 200px !important;
-	margin-bottom: $spacer*0.75;
+	margin-bottom: $spacer * 0.75;
 }
-
-
 
 .answersList {
 	grid-area: answersList;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: $spacer;
 }
 
-.answer{
+.answer {
 	display: flex;
 	margin: 0;
-	gap: 1rem;
+	gap: $spacer;
 	align-items: flex-end;
 }
 
@@ -74,7 +64,7 @@
 .button {
 	width: 60px;
 
-	margin-right: 1rem;
+	margin-right: $spacer;
 	padding: 14px;
 
 	font-size: 28px;
@@ -93,6 +83,6 @@
 	grid-area: resetButton;
 }
 
-.form{
+.form {
 	font-weight: 600;
 }

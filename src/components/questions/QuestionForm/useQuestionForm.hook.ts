@@ -1,26 +1,34 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import { questionsCategoryName } from 'libs/constants/names.storage';
-import { useQuestions,  } from 'libs/hooks';
+import { useQuestions, } from 'libs/hooks';
 import { IQuestionDto, IQuestion, IUserAnswer } from 'libs/interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
 import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 import { deepCopy } from 'libs/helpers/deep-copy';
+import { IInfoLink } from 'libs/interfaces/common.interface';
 
 export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps, 'mode' | 'questionItem'>) => {
-    const [question, setQuestion] = React.useState<string>(questionItem.question);
-    const [questionError, setQuestionError] = React.useState<string>('');
-    // const [category, _] = useSessionStorage(questionsCategoryName, 'javascript');
 
+    // Category.
     const [category, setCategory] = React.useState<string>(questionItem.category);
 
+    const handleSelectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCategory(event.target.value as string);
+    }
+
+    // Question.
+    const [question, setQuestion] = React.useState<string>(questionItem.question);
+    const [questionError, setQuestionError] = React.useState<string>('');
+
+    // Code example.
     const [codeExample, setCodeExample] = React.useState<string>(
         questionItem.codeExample
     );
     const [isCodeExampleChecked, setIsCodeExampleChecked] = React.useState<boolean>(true);
     const [codeExampleError, setCodeExampleError] = React.useState<string>('');
 
+    // Answers.
     const initialAnswers = questionItem.answers.map((answer) => ({
         answer: answer.answer,
         isChecked: answer.isCorrect,
@@ -30,10 +38,6 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
     const [answersErrors, setAnswersErrors] = React.useState<string[]>(
         new Array(questionItem.answers.length).fill('')
     );
-
-    const handleSelectCategory = (e) => {
-        setCategory(e.target.value as string);
-    }
 
     const handleAddAnswerButton = () => {
         const newAnswer: IUserAnswer = {
@@ -55,10 +59,35 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         })
     }
 
+    // Tags.
+    const [tags, setTags] = React.useState<string[]>(questionItem.tags);
+    const [tagsErrors, setTagsErrors] = React.useState<string[]>(
+        new Array(questionItem.tags.length).fill('')
+    );
+
+    const handleDeleteTagButton = (index: number) => {
+        setTags(tags => {
+            return tags.filter((_, i) => i !== index);
+        })
+    }
+
+    const handleAddTagButton = () => {
+        setTags(tags => [...tags, '']);
+    }
+
+    // InfoLinks.
+    const [infoLinks, setInfoLinks] = React.useState<IInfoLink[]>(questionItem.infoLinks);
+    const [infoLinksErrors, setInfoLinksErrors] = React.useState<string[]>(
+        new Array(questionItem.infoLinks.length).fill('')
+    );
+
+    // Reset errors before form validation.
     const resetErrors = () => {
         setQuestionError('');
         setCodeExampleError('');
-        setAnswersErrors(new Array(questionItem.answers.length).fill(''));
+        setAnswersErrors(new Array(answers.length).fill(''));
+        setTagsErrors(new Array(tags.length).fill(''));
+        setInfoLinksErrors(new Array(infoLinks.length).fill(''));
     };
 
     const isValidForm = async () => {
@@ -70,6 +99,8 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
                 question,
                 codeExample,
                 answers,
+                tags,
+                infoLinks
             });
         } catch (error) {
             if (error instanceof ValidationError) {
@@ -90,15 +121,27 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
                             return updatedArray;
                         });
                     }
+                } else if (error.path?.startsWith('tags')) {
+                    // ! TO DO: Refactore this block.
+                    const errorIndex = Number(error.path.match(/\d/g)?.join(''));
+
+                    if (errorIndex >= 0) {
+                        setTagsErrors((array) => {
+                            const updatedArray = [...array];
+                            updatedArray[errorIndex] = (error as ValidationError).errors[0];
+                            console.log(updatedArray);
+                            return updatedArray;
+                        });
+                    }
                 }
             }
         }
-
         return isValid;
     };
 
     const { api } = useQuestionsApi();
     const { mutateQuestions } = useQuestions({ category });
+
     const handleSubmitForm = async (event: React.FormEvent) => {
         event.preventDefault();
         const questionPayload = {
@@ -109,7 +152,8 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
                 answer: answer.answer,
                 isCorrect: answer.isChecked,
             })),
-            tags: []
+            tags,
+            infoLinks,
         } as IQuestionDto;
 
         if (await isValidForm()) {
@@ -136,10 +180,12 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         }
     };
 
-    const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleResetButton = () => {
         setQuestion(questionItem.question);
         setCodeExample(questionItem.codeExample);
         setCategory(questionItem.category);
+        setTags(questionItem.tags);
+        setInfoLinks(questionItem.infoLinks);
         setAnswers(initialAnswers);
     };
 
@@ -166,5 +212,10 @@ export const useQuestionForm = ({ questionItem, mode }: Pick<IQuestionFormProps,
         resetErrors,
         handleSubmitForm,
         handleResetButton,
+        tags,
+        setTags,
+        handleAddTagButton,
+        handleDeleteTagButton,
+        infoLinks,
     }
 };

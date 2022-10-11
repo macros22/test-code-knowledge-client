@@ -36,6 +36,11 @@ export const QuestionForm = ({
 		resetErrors,
 		handleSubmitForm,
 		handleResetButton,
+		tags,
+		setTags,
+		handleAddTagButton,
+		handleDeleteTagButton,
+		infoLinks,
 	} = useQuestionForm({
 		questionItem,
 		mode,
@@ -83,7 +88,7 @@ export const QuestionForm = ({
 			<HrWithContent className={styles.title}>
 				Answers
 			</HrWithContent>
-			{answers.map((answer, index) => {
+			{answers.map((_, index) => {
 				return (
 					<InputGroup key={index} className="mb-3">
 						<InputGroup.Text>{index + 1}</InputGroup.Text>
@@ -112,6 +117,31 @@ export const QuestionForm = ({
 				);
 			})}
 
+			{/* <HrWithContent className={styles.title}>
+				Tags
+			</HrWithContent>
+			{tags.map((tag, index) => {
+				return (
+					<InputGroup key={index} className="mb-3">
+						<InputGroup.Text>{index + 1}</InputGroup.Text>
+
+						 <Form.Control aria-label="Text input with checkbox" value={tags[index]} onChange={(e) => {
+							e.preventDefault();
+							setTags((tags) => {
+								const updatedTags = [...tags];
+								updatedTags[index] = e.target.value;
+								return updatedTags;
+							});
+						}} />
+
+						<Button variant="danger" onClick={handleDeleteTagButton.bind(null, index)}>
+							<BsTrash2Fill />{` Delete`}
+						</Button>
+					</InputGroup>
+
+				);
+			})} */}
+
 			<Row xs='auto'>
 				<Col>
 					<Button variant="primary" type="submit" onClick={handleSubmitForm}>
@@ -122,6 +152,12 @@ export const QuestionForm = ({
 					<Button variant="primary" onClick={handleAddAnswerButton}>
 						<BsPlusLg />
 						{`  Add answer`}
+					</Button>
+				</Col>
+				<Col>
+					<Button variant="primary" onClick={handleAddTagButton}>
+						<BsPlusLg />
+						{`  Add tag`}
 					</Button>
 				</Col>
 				<Col>

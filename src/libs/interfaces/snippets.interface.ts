@@ -1,7 +1,5 @@
-export interface IInfoLink {
-    link: string;
-    description: string;
-}
+import { IInfoLink } from "./common.interface";
+
 export interface ISnippet {
     id: string;
     category: string;

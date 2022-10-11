@@ -7,20 +7,25 @@ import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
 import { useSnippets } from 'libs/hooks/snippets/useSnippets';
 
 export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'mode' | 'snippetItem'>) => {
+
+    // Category.
+    const [category, setCategory] = React.useState<string>(snippetItem.category);
+
+    const handleSelectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCategory(event.target.value as string);
+    }
+
+    // Snippet.
     const [snippet, setSnippet] = React.useState<string>(snippetItem.snippet);
     const [snippetError, setSnippetError] = React.useState<string>('');
 
-    const [category, setCategory] = React.useState<string>(snippetItem.category);
-
+    // Description.
     const [description, setDescription] = React.useState<string>(
         snippetItem.description
     );
-    // const [isDescriptionChecked, setIsDescriptionChecked] = React.useState<boolean>(true);
     const [descriptionError, setDescriptionError] = React.useState<string>('');
 
-    const handleSelectCategory = (e) => {
-        setCategory(e.target.value as string);
-    }
+
 
 
     // const handleAddAnswerButton = () => {
@@ -97,6 +102,7 @@ export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'm
 
     const { api } = useSnippetsApi();
     const { mutateSnippets } = useSnippets({ category });
+
     const handleSubmitForm = async (event: React.FormEvent) => {
         event.preventDefault();
         const snippetPayload = {

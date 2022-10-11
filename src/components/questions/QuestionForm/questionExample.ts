@@ -13,4 +13,6 @@ export const getQuestionExample = (category: string): IQuestion => ({
         { answer: 'third', isCorrect: false },
         { answer: 'fourth', isCorrect: false },
     ],
+    tags: ["tag1"],
+    infoLinks: [],
 })

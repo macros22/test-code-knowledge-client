@@ -10,4 +10,11 @@ export const schema = yup.object().shape({
             isChecked: yup.boolean(),
         })
     ),
+    tags: yup.array().of(yup.string().required()),
+    infoLinks: yup.array().of(
+        yup.object().shape({
+            link: yup.string().url(),
+            description: yup.string(),
+        })
+    ),
 });
