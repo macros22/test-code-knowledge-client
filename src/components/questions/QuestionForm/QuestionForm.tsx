@@ -8,7 +8,7 @@ import { useQuestionForm } from './useQuestionForm.hook';
 import { HrWithContent } from 'components';
 import { deepCopy } from 'libs/helpers/deep-copy';
 
-export const QuestionForm = ({
+const QuestionForm = ({
 	questionItem,
 	mode,
 	setIsModalOpen,
@@ -174,3 +174,4 @@ export const QuestionForm = ({
 		</Form>
 	);
 };
+export default QuestionForm;

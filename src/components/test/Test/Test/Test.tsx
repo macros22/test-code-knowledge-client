@@ -12,7 +12,7 @@ import { AnswersList } from '../AnswersList/AnswersList';
 import { TestProps } from './Test.props';
 
 
-export const Test = ({ questions }: TestProps): JSX.Element => {
+const Test = ({ questions }: TestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -125,3 +125,4 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 		</>
 	);
 };
+export default Test;

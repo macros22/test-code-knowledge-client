@@ -9,8 +9,8 @@ import { IQuestion, IQuestionsPageProps } from 'libs/interfaces/questions.interf
 import { questionsApi } from 'libs/api/questions.api';
 import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { SWRConfig } from 'swr';
-import { List } from 'components/ItemsList/List';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
+import { List } from '../../components/ItemsList/List';
 
 
 export const getServerSideProps: GetServerSideProps<
@@ -19,7 +19,8 @@ export const getServerSideProps: GetServerSideProps<
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
-	const limit = Number(getQueryParametr(context, 'limit'));
+	// const limit = Number(getQueryParametr(context, 'limit'));
+	const limit = 1;
 
 	const questionsUrl = getQuestionsUrl({
 		categoryURLName,
@@ -79,11 +80,12 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			<List itemsName='questions' items={questions} category={category} />
+			 <List itemsName='questions' items={questions} category={category} /> 
 		</SWRConfig>
 	);
 };
 
+// export default QuestionsPage;
 export default withLayout('main', QuestionsPage);
 
 

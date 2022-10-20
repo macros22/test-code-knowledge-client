@@ -1,5 +1,4 @@
 import React from 'react';
-import { withLayout } from 'layouts';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryParametr } from 'libs/helpers/get-param-from-query';
 import { useSessionStorage } from 'libs/hooks';
@@ -12,6 +11,7 @@ import { snippetsApi } from 'libs/api/snippets.api';
 import { useSnippets } from 'libs/hooks/snippets/useSnippets';
 import { List } from 'components/ItemsList/List';
 import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
+import { withLayout } from 'layouts/with-layout';
 
 export const getServerSideProps: GetServerSideProps<
 	ISnippetsPageProps
@@ -19,7 +19,8 @@ export const getServerSideProps: GetServerSideProps<
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip'));
-	const limit = Number(getQueryParametr(context, 'limit'));
+	// const limit = Number(getQueryParametr(context, 'limit'));
+	const limit = 1;
 
 	const snippetsUrl = getSnippetsUrl({
 		categoryURLName,

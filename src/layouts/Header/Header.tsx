@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
 
-export const Header = () => {
+const Header = () => {
 
   const { mutateUser, isLoggedIn } = useUser();
 
@@ -22,10 +22,6 @@ export const Header = () => {
   }
   const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
   const { snippetsInfo } = useSnippetsInfo();
-
-  if(isLoadingQuestionsInfo) {
-    return <span>Loading..</span>
-  }
 
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
@@ -92,3 +88,4 @@ export const Header = () => {
     </Navbar >
   );
 }
+export default Header;

@@ -5,15 +5,18 @@ import { BsPlusLg } from 'react-icons/bs';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { useUser } from 'libs/hooks/useUser';
 import { useRouter } from 'next/router';
-import { SnippetCard } from 'components/snippets/SnippetCard/SnippetCard';
 import { useItemsInfo } from './useItemsInfo.hook';
-import { QuestionCard } from 'components/questions/QuestionCard/QuestionCard';
 import { getQuestionExample } from 'components/questions/QuestionForm/questionExample';
-import { QuestionForm } from 'components/questions/QuestionForm/QuestionForm';
-import { SnippetForm } from 'components/snippets/SnippetForm/SnippetForm';
+
 import { getSnippetExample } from 'components/snippets/SnippetForm/snippetExample';
 import { IQuestion } from 'libs/interfaces/questions.interface';
 import { ISnippet } from 'libs/interfaces/snippets.interface';
+
+import dynamic from "next/dynamic";
+const QuestionCard = dynamic(() => import('../questions/QuestionCard/QuestionCard'));
+const QuestionForm = dynamic(() => import('../questions/QuestionForm/QuestionForm'));
+const SnippetCard = dynamic(() => import('../snippets/SnippetCard/SnippetCard'));
+const SnippetForm = dynamic(() => import('../snippets/SnippetForm/SnippetForm'));
 
 export const List = ({
 	itemsName,
@@ -70,14 +73,15 @@ export const List = ({
 					/>
 				)}
 			</div>
+
 			<div className={styles.container}>
 				<div className={styles.column}>
 					{items && items.length
 						?
 						items.map((item, index) => {
+
 							return (
 								<Card
-									
 									key={item.id}
 								>
 									{itemsName == 'questions'
@@ -89,7 +93,8 @@ export const List = ({
 											key={item.id}
 											index={index + 1}
 										/>
-										: <SnippetCard
+										:
+										<SnippetCard
 											withEdit={isLoggedIn && isAdmin}
 											handleEditButton={makeHandleEditItemButton(index)}
 											snippet={item}

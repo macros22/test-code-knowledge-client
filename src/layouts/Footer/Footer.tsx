@@ -5,7 +5,7 @@ import styles from './Footer.module.scss';
 import { BsGithub } from 'react-icons/bs';
 
 
-export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
+const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
 	return (
 		<footer className={cn(className, styles.footer, "bg-light border-top py-4 mt-auto")} {...props}>
 			<p>Code knowledge test © 2021 - {format(new Date(), 'yyyy')}</p>
@@ -16,3 +16,4 @@ export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
 		</footer>
 	);
 };
+export default Footer;

@@ -3,10 +3,12 @@ import styles from './SnippetCard.module.scss';
 import { ISnippetCardProps } from './SnippetCard.props';
 import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import dynamic from "next/dynamic";
+
 import { Badge } from 'react-bootstrap';
 import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
 
-export const SnippetCard = ({
+const SnippetCard = ({
 	snippet,
 	handleEditButton,
 	withEdit = false,
@@ -22,7 +24,7 @@ export const SnippetCard = ({
 		<>
 			<div className={styles.wrapper}>
 				<div className={styles.snippetCard}>
-					<div className={styles.snippetNumber}>
+					{/* <div className={styles.snippetNumber}>
 						<h5 className={styles.snippetNumberTitle}>
 							{'Snippet '}
 							<Badge className={styles.snippetNumberBadge} bg="danger">
@@ -42,8 +44,8 @@ export const SnippetCard = ({
 							</div>
 						)}
 
-					</div>
-					<div className={styles.description}>
+					</div> */}
+					{/* <div className={styles.description}>
 						<hr />
 						<h5>{snippet.description}</h5>
 					</div>
@@ -51,9 +53,10 @@ export const SnippetCard = ({
 					<div className={styles.snippet}>
 						<hr />
 						<Code codeExample={snippet.snippet} language='typescript' />
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>
 	);
 };
+export default SnippetCard;

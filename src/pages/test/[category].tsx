@@ -1,5 +1,5 @@
 import React from 'react';
-import { Test } from 'components';
+// import { Test } from 'components';
 import { withLayout } from 'layouts';
 import { GetServerSideProps } from 'next';
 import { useQuestionsInfo, useSessionStorage } from 'libs/hooks';
@@ -11,6 +11,9 @@ import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 import { getRandomQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { questionsApi } from 'libs/api/questions.api';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
+
+import dynamic from "next/dynamic";
+const Test = dynamic(() => import('../../components/test/Test/Test/Test'));
 interface ITestPageProps extends Record<string, unknown> {
 	category: string;
 	questionsAmount: number;

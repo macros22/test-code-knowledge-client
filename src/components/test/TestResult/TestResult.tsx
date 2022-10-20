@@ -82,7 +82,7 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
 
 
 
-export const TestResult = ({
+const TestResult = ({
 	questions,
 }: ITestResultProps): JSX.Element => {
 
@@ -182,3 +182,4 @@ export const TestResult = ({
 		</div>
 	);
 };
+export default TestResult;

@@ -7,7 +7,7 @@ import { Button, Spinner } from 'react-bootstrap';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
 
-export const Categories = ({ }: ICategoriesProps): JSX.Element => {
+const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	const router = useRouter();
 
 	const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
@@ -24,6 +24,7 @@ export const Categories = ({ }: ICategoriesProps): JSX.Element => {
 		router.replace(`/test/${questionsInfo[category].categoryURLName}?questionsAmount=${sizeInQuery}`);
 	};
 
+	// if (isLoadingQuestionsInfo) {
 	if (isLoadingQuestionsInfo || isLoadingSnippetsInfo) {
 		return (
 			<Spinner
@@ -35,6 +36,7 @@ export const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	}
 
 	return (
+		
 		<div className={styles.wrapper}>
 			{Object.keys(questionsInfo).map((category) => {
 				return (
@@ -78,3 +80,5 @@ export const Categories = ({ }: ICategoriesProps): JSX.Element => {
 		</div>
 	);
 };
+
+export default Categories;
