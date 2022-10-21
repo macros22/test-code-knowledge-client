@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 				showOnShallow={true}
 			/>
 		</SSRProvider>
-
 	);
 }
 

@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<
 
 	const skip = Number(getQueryParametr(context, 'skip'));
 	// const limit = Number(getQueryParametr(context, 'limit'));
-	const limit = 1;
+	const limit = 3;
 
 	const snippetsUrl = getSnippetsUrl({
 		categoryURLName,
