@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
+import { IItemsInfo } from 'libs/interfaces/common.interface';
 import { ISnippetDto, ISnippet } from 'libs/interfaces/snippets.interface';
 import { Role } from 'libs/interfaces/user.interface';
 
@@ -20,7 +21,7 @@ export const snippetsApi = (userRole?: Role) => {
         getSnippetsInfo: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
-                return res.data as Record<string, { amount: number, categoryURLName: string }>;
+                return res.data as IItemsInfo;
             } catch (error) {
                 console.log(error);
             }

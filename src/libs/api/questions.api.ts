@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
+import { IItemsInfo } from 'libs/interfaces/common.interface';
 import { IQuestionDto, IQuestion } from 'libs/interfaces/questions.interface';
 import { Role } from 'libs/interfaces/user.interface';
 
@@ -19,7 +20,7 @@ export const questionsApi = (userRole?: Role) => {
         getQuestionsInfo: async (url: string) => {
             try {
                 const res = await axios.get(url, { withCredentials: true });
-                return res.data as Record<string, { amount: number, categoryURLName: string }>;
+                return res.data as IItemsInfo;
             } catch (error) {
                 console.log('getQuestionsInfo error:', error);
             }
