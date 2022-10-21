@@ -5,7 +5,7 @@ import { authApi } from 'libs/api/auth.api';
 import { Alert, Button, FloatingLabel, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { BsFillLockFill, BsFillPersonFill, BsFillEnvelopeFill } from "react-icons/bs";
 
-export const SignUp = () => {
+const SignUp = () => {
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -109,3 +109,5 @@ export const SignUp = () => {
     </>
   );
 };
+
+export default SignUp;

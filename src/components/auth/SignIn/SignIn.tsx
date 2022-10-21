@@ -8,7 +8,7 @@ import React from 'react';
 import { Button, FloatingLabel, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { BsFillLockFill, BsFillEnvelopeFill } from "react-icons/bs";
 
-export const SignIn = () => {
+const SignIn = () => {
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
@@ -81,3 +81,5 @@ export const SignIn = () => {
 		</Form>
 	);
 };
+
+export default SignIn;

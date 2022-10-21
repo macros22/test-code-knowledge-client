@@ -1,8 +1,10 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
-import { SignIn } from "../SignIn/SignIn";
-import { SignUp } from "../SignUp/SignUp";
 import { IAuthProps } from "./Auth.props";
+import dynamic from "next/dynamic";
+const SignIn = dynamic(() => import('../SignIn/SignIn'));
+const SignUp = dynamic(() => import('../SignUp/SignUp'));
+
 
 export const Auth = ({ authMode }: IAuthProps): JSX.Element => {
     return (
