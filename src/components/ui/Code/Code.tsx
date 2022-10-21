@@ -5,7 +5,7 @@ import theme from "prism-react-renderer/themes/oceanicNext";
 import styles from "./Code.module.scss";
 import { ICodeProps } from "./Code.props";
 
-export const Code: React.FC<ICodeProps> = ({ codeExample }) => (
+const Code: React.FC<ICodeProps> = ({ codeExample }) => (
   <Highlight {...defaultProps} theme={theme} code={codeExample} language="jsx">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre className={cn(className, styles.pre)} style={style}>
@@ -24,3 +24,4 @@ export const Code: React.FC<ICodeProps> = ({ codeExample }) => (
   </Highlight>
 );
 
+export default Code;

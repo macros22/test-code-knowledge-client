@@ -1,7 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
-import { Code } from 'components';
+import dynamic from "next/dynamic";
+// import { Code } from 'components';
+const Code = dynamic(() => import('../../../ui/Code/Code'));
 import { useSessionStorage } from 'libs/hooks';
 import {
 	checkedAnswersName,

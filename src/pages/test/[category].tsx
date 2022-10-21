@@ -13,6 +13,7 @@ import { questionsApi } from 'libs/api/questions.api';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
 
 import dynamic from "next/dynamic";
+
 const Test = dynamic(() => import('../../components/test/Test/Test/Test'));
 interface ITestPageProps extends Record<string, unknown> {
 	category: string;
@@ -65,7 +66,7 @@ const TestPage = ({
 	const { questionsInfo } = useQuestionsInfo();
 
 	React.useEffect(() => {
-		if (questionsInfo && category) {
+		if (questionsInfo && category && questionsInfo[category]) {
 			const questionsUrl = getRandomQuestionsUrl({
 				categoryURLName: questionsInfo[category].categoryURLName,
 				limit: questionsAmount > 1 ? questionsAmount : 5,
@@ -82,7 +83,7 @@ const TestPage = ({
 		}
 	}, []);
 
-	if (isLoading) {
+	if (isLoading || !category) {
 		return (
 			<Spinner
 				as="span"
@@ -95,7 +96,8 @@ const TestPage = ({
 	return (
 		<>
 			{
-				questions && questions.length && <Test questions={questions} />
+				questions && questions.length && category
+				&& <Test questions={questions} />
 			}
 		</>
 	);

@@ -2,11 +2,11 @@ import type { AppProps } from 'next/app';
 import NextNProgress from "nextjs-progressbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/globals.scss';
-
+import { SSRProvider } from 'react-bootstrap';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<SSRProvider>
 			<Component {...pageProps} />
 			<NextNProgress
 				color="#09a180"
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				height={2}
 				showOnShallow={true}
 			/>
-		</>
+		</SSRProvider>
 
 	);
 }
