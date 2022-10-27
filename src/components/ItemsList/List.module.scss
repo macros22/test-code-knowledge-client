@@ -44,8 +44,9 @@
 }
 
 .wrapper {
-	width: 100%;
+	width: 80%;
 	overflow: hidden;
+	margin : 0 auto;
 }
 
 .noItemsCard {
@@ -63,5 +64,9 @@
 @media (max-width: map-get($grid-breakpoints, 'xl')) {
 	.container {
 		flex-direction: column;
+	}
+
+	.wrapper {
+		width: 100%;
 	}
 }
