@@ -3,7 +3,7 @@ import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryParametr } from 'libs/helpers/get-param-from-query';
 import { useSessionStorage } from 'libs/hooks';
 import { snippetsCategoryName } from 'libs/constants/names.storage';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { SWRConfig } from 'swr';
 import { ISnippet, ISnippetsPageProps } from 'libs/interfaces/snippets.interface';
 import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
@@ -18,9 +18,8 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
-	const skip = Number(getQueryParametr(context, 'skip'));
-	// const limit = Number(getQueryParametr(context, 'limit'));
-	const limit = 3;
+	const skip = Number(getQueryParametr(context, 'skip')) || 0;
+	const limit = Number(getQueryParametr(context, 'limit')) || 1;
 
 	const snippetsUrl = getSnippetsUrl({
 		categoryURLName,
@@ -51,7 +50,7 @@ export const getServerSideProps: GetServerSideProps<
 
 const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): JSX.Element => {
 
-	const { snippets, isLoadingSnippets } = useSnippets({
+	const { snippets, isLoadingSnippets, setSize } = useSnippets({
 		skip,
 		limit,
 		category
@@ -79,6 +78,7 @@ const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): 
 	return (
 		<SWRConfig value={{ fallback }}>
 			<List itemsName='snippets' items={snippets} category={category} />
+			<Button onClick={() => setSize((s) => s + 1)}>Load more</Button>
 		</SWRConfig>
 	);
 };

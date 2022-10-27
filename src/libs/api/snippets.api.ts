@@ -9,9 +9,9 @@ export const snippetsApi = (userRole?: Role) => {
     return {
         getSnippets: async (url: string) => {
             try {
-                const res = await axios.get(url, { withCredentials: true });
+                const res = await axios.get<ISnippet[]>(url, { withCredentials: true });
 
-                return res.data as ISnippet[];
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
@@ -20,8 +20,8 @@ export const snippetsApi = (userRole?: Role) => {
         },
         getSnippetsInfo: async (url: string) => {
             try {
-                const res = await axios.get(url, { withCredentials: true });
-                return res.data as IItemsInfo;
+                const res = await axios.get<IItemsInfo>(url, { withCredentials: true });
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
@@ -33,12 +33,12 @@ export const snippetsApi = (userRole?: Role) => {
 
                 // if (userRole == Role.ADMIN) {
                 const url = SNIPPETS_BASE_URL;
-                const res = await axios.post(
+                const res = await axios.post<ISnippet[]>(
                     url,
                     snippet,
                     { withCredentials: true }
                 );
-                return res.data as ISnippet[];
+                return res.data;
                 // }
 
             } catch (error) {
@@ -50,12 +50,12 @@ export const snippetsApi = (userRole?: Role) => {
         patchSnippet: async (snippet: ISnippetDto, snippetId: string) => {
             try {
                 const url = SNIPPETS_BASE_URL;
-                const res = await axios.patch(
+                const res = await axios.patch<ISnippet>(
                     url + `/${snippetId}`,
                     snippet,
                     { withCredentials: true }
                 );
-                return res.data as ISnippet;
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
@@ -65,11 +65,11 @@ export const snippetsApi = (userRole?: Role) => {
         deleteSnippet: async (snippetId: string) => {
             try {
                 const url = SNIPPETS_BASE_URL;
-                const res = await axios.delete(
+                const res = await axios.delete<ISnippet>(
                     url + `/${snippetId}`,
                     { withCredentials: true }
                 );
-                return res.data as ISnippet;
+                return res.data;
             } catch (error) {
                 console.log(error);
             }

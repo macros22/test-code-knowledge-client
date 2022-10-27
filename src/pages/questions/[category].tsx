@@ -4,23 +4,23 @@ import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryParametr } from 'libs/helpers/get-param-from-query';
 import { useQuestions, useQuestionsInfo, useSessionStorage } from 'libs/hooks';
 import { questionsCategoryName } from 'libs/constants/names.storage';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { IQuestion, IQuestionsPageProps } from 'libs/interfaces/questions.interface';
 import { questionsApi } from 'libs/api/questions.api';
 import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { SWRConfig } from 'swr';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
 import { List } from '../../components/ItemsList/List';
-
+import { useRouter } from 'next/router';
 
 export const getServerSideProps: GetServerSideProps<
 	IQuestionsPageProps
 > = async (context) => {
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
-	const skip = Number(getQueryParametr(context, 'skip'));
-	// const limit = Number(getQueryParametr(context, 'limit'));
-	const limit = 1;
+	const skip = Number(getQueryParametr(context, 'skip')) || 0;
+	const limit = Number(getQueryParametr(context, 'limit')) || 1;
+	// const limit = 1;
 
 	const questionsUrl = getQuestionsUrl({
 		categoryURLName,
@@ -51,11 +51,17 @@ export const getServerSideProps: GetServerSideProps<
 
 const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps): JSX.Element => {
 
-	const { questions, isLoadingQuestions } = useQuestions({
+	const { questions, isLoadingQuestions, setSize } = useQuestions({
 		skip,
 		limit,
 		category
 	});
+
+	// const router = useRouter();
+
+	// React.useEffect(() => {
+	// 	// router.push(``, undefined, { shallow: true });
+	// }, [skip, limit])
 
 	const [_, setCategoryInStorage] = useSessionStorage(
 		questionsCategoryName,
@@ -80,7 +86,8 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			 <List itemsName='questions' items={questions} category={category} /> 
+			<List itemsName='questions' items={questions} category={category} />
+			<Button onClick={() => setSize((s) => s + 1)}>Load more</Button>
 		</SWRConfig>
 	);
 };

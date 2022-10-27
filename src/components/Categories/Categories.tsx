@@ -52,14 +52,14 @@ const Categories = ({ }: ICategoriesProps): JSX.Element => {
 
 							<div className={styles.cardButtons}>
 								<Link
-									href={`/questions/${questionsInfo[category].categoryURLName}`}>
+									href={`/questions/${questionsInfo[category].categoryURLName}?skip=0&limit=1`}>
 									<a className={styles.cardLink}>
 										Questions: {questionsInfo[category].amount}
 									</a>
 								</Link>
 
 								<Link
-									href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
+									href={`/snippets/${snippetsInfo[category].categoryURLName}?skip=0&limit=1`}>
 									<a className={styles.cardLink}>
 										Snippets: {snippetsInfo[category].amount}
 									</a>

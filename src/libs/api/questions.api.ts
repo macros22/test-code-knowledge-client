@@ -8,9 +8,9 @@ export const questionsApi = (userRole?: Role) => {
     return {
         getQuestions: async (url: string) => {
             try {
-                const res = await axios.get(url, { withCredentials: true });
+                const res = await axios.get<IQuestion[]>(url, { withCredentials: true });
 
-                return res.data as IQuestion[];
+                return res.data;
             } catch (error) {
                 console.log('getQuestions error: ', error);
             }
@@ -19,8 +19,8 @@ export const questionsApi = (userRole?: Role) => {
         },
         getQuestionsInfo: async (url: string) => {
             try {
-                const res = await axios.get(url, { withCredentials: true });
-                return res.data as IItemsInfo;
+                const res = await axios.get<IItemsInfo>(url, { withCredentials: true });
+                return res.data;
             } catch (error) {
                 console.log('getQuestionsInfo error:', error);
             }
@@ -32,12 +32,12 @@ export const questionsApi = (userRole?: Role) => {
 
                 // if (userRole == Role.ADMIN) {
                 const url = QUESTIONS_BASE_URL;
-                const res = await axios.post(
+                const res = await axios.post<IQuestion[]>(
                     url,
                     question,
                     { withCredentials: true }
                 );
-                return res.data as IQuestion[];
+                return res.data;
                 // }
 
             } catch (error) {
@@ -49,12 +49,12 @@ export const questionsApi = (userRole?: Role) => {
         patchQuestion: async (question: IQuestionDto, questionId: string) => {
             try {
                 const url = QUESTIONS_BASE_URL;
-                const res = await axios.patch(
+                const res = await axios.patch<IQuestion>(
                     url + `/${questionId}`,
                     question,
                     { withCredentials: true }
                 );
-                return res.data as IQuestion;
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
@@ -66,11 +66,11 @@ export const questionsApi = (userRole?: Role) => {
 
                 const url = QUESTIONS_BASE_URL;
 
-                const res = await axios.delete(
+                const res = await axios.delete<IQuestion>(
                     url + `/${questionId}`,
                     { withCredentials: true }
                 );
-                return res.data as IQuestion;
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
