@@ -3,8 +3,7 @@ import { ValidationError } from 'yup';
 import { ISnippetDto, ISnippet } from 'libs/interfaces/snippets.interface';
 import { snippetSchema } from './snippet.schema';
 import { ISnippetFormProps } from './SnippetForm.props';
-import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
-import { useSnippets } from 'libs/hooks/snippets/useSnippets';
+import { useSnippetsApi, useSnippets } from 'libs/hooks';
 
 export const useSnippetForm = ({ snippetItem, mode }: Pick<ISnippetFormProps, 'mode' | 'snippetItem'>) => {
 

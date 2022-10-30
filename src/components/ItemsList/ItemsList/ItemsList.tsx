@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './List.module.scss';
-import { IListProps } from './List.props';
+import styles from './ItemsList.module.scss';
+import { IItemsListProps } from './ItemsList.props';
 import { BsPlusLg } from 'react-icons/bs';
 import { Button, Card, Modal } from 'react-bootstrap';
 import { useUser } from 'libs/hooks/useUser';
 import { useRouter } from 'next/router';
-import { useItemsInfo } from './useItemsInfo.hook';
+import { useItemsInfo } from 'libs/hooks/items/useItemsInfo.hook';
 import { getQuestionExample } from 'components/questions/QuestionForm/questionExample';
 
 import { getSnippetExample } from 'components/snippets/SnippetForm/snippetExample';
@@ -13,16 +13,16 @@ import { IQuestion } from 'libs/interfaces/questions.interface';
 import { ISnippet } from 'libs/interfaces/snippets.interface';
 
 import dynamic from "next/dynamic";
-const QuestionCard = dynamic(() => import('../questions/QuestionCard/QuestionCard'));
-const QuestionForm = dynamic(() => import('../questions/QuestionForm/QuestionForm'));
-const SnippetCard = dynamic(() => import('../snippets/SnippetCard/SnippetCard'));
-const SnippetForm = dynamic(() => import('../snippets/SnippetForm/SnippetForm'));
+const QuestionCard = dynamic(() => import('../../questions/QuestionCard/QuestionCard'));
+const QuestionForm = dynamic(() => import('../../questions/QuestionForm/QuestionForm'));
+const SnippetCard = dynamic(() => import('../../snippets/SnippetCard/SnippetCard'));
+const SnippetForm = dynamic(() => import('../../snippets/SnippetForm/SnippetForm'));
 
-export const List = ({
+export const ItemsList = ({
 	itemsName,
 	items,
 	category: currentCategory
-}: IListProps): JSX.Element => {
+}: IItemsListProps): JSX.Element => {
 	const [currentItemIndex, setCurrentItemIndex] = React.useState(0);
 
 	const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false);

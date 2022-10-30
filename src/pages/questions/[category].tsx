@@ -10,8 +10,9 @@ import { questionsApi } from 'libs/api/questions.api';
 import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { SWRConfig } from 'swr';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
-import { List } from '../../components/ItemsList/List';
-import { useRouter } from 'next/router';
+import { ItemsList } from '../../components/ItemsList/ItemsList/ItemsList';
+import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsButton';
+import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
 
 export const getServerSideProps: GetServerSideProps<
 	IQuestionsPageProps
@@ -19,8 +20,7 @@ export const getServerSideProps: GetServerSideProps<
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip')) || 0;
-	const limit = Number(getQueryParametr(context, 'limit')) || 1;
-	// const limit = 1;
+	const limit = Number(getQueryParametr(context, 'limit')) || ITEMS_PER_PAGE;
 
 	const questionsUrl = getQuestionsUrl({
 		categoryURLName,
@@ -51,17 +51,14 @@ export const getServerSideProps: GetServerSideProps<
 
 const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps): JSX.Element => {
 
-	const { questions, isLoadingQuestions, setSize } = useQuestions({
+	const {
+		questions,
+		isLoadingQuestions,
+	} = useQuestions({
 		skip,
 		limit,
 		category
 	});
-
-	// const router = useRouter();
-
-	// React.useEffect(() => {
-	// 	// router.push(``, undefined, { shallow: true });
-	// }, [skip, limit])
 
 	const [_, setCategoryInStorage] = useSessionStorage(
 		questionsCategoryName,
@@ -86,13 +83,12 @@ const QuestionsPage = ({ category, skip, limit, fallback }: IQuestionsPageProps)
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			<List itemsName='questions' items={questions} category={category} />
-			<Button onClick={() => setSize((s) => s + 1)}>Load more</Button>
+			<ItemsList itemsName='questions' items={questions} category={category} />
+			<LoadItemsButton skip={skip} limit={limit} category={category} />
 		</SWRConfig>
 	);
 };
 
-// export default QuestionsPage;
 export default withLayout('main', QuestionsPage);
 
 

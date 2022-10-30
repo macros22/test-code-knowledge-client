@@ -5,7 +5,7 @@ import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { BsPlusLg, BsTrash2Fill, BsFillTerminalFill, BsChevronUp } from 'react-icons/bs';
 import { useSnippetForm } from './useSnippetForm.hook';
 import { HrWithContent } from 'components';
-import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
+import { useSnippetsInfo } from 'libs/hooks';
 
 const SnippetForm = ({
 	snippetItem,

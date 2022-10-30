@@ -5,7 +5,7 @@ import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
 import { Badge } from 'react-bootstrap';
-import { useSnippetsApi } from 'libs/hooks/snippets/useSnippetsApi';
+import { useSnippetsApi } from 'libs/hooks/items/snippets/useSnippetsApi';
 
 const SnippetCard = ({
 	snippet,

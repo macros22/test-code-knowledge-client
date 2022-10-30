@@ -1,15 +1,12 @@
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import styles from './Header.module.scss';
 import { authApi } from 'libs/api/auth.api';
-import { useUser } from 'libs/hooks/useUser';
 import { useRouter } from 'next/router';
-import { useQuestionsInfo } from 'libs/hooks';
-import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
+import { useSnippetsInfo, useQuestionsInfo, useUser } from 'libs/hooks';
 import { TestOptions } from './TestOptions';
 import { QuestionsOptions } from './QuestionsOptions';
 import { SnippetsOptions } from './SnippetsOptions';
 import { Logo } from './Logo';
-
 
 const Header = () => {
 

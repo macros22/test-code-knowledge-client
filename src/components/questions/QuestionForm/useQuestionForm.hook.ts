@@ -1,10 +1,9 @@
 import React from 'react';
 import { ValidationError } from 'yup';
-import { useQuestions, } from 'libs/hooks';
+import { useQuestions, useQuestionsApi } from 'libs/hooks';
 import { IQuestionDto, IQuestion, IUserAnswer } from 'libs/interfaces/questions.interface';
 import { schema } from './question.schema';
 import { IQuestionFormProps } from './QuestionForm.props';
-import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
 import { deepCopy } from 'libs/helpers/deep-copy';
 import { IInfoLink } from 'libs/interfaces/common.interface';
 

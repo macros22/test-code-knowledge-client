@@ -7,7 +7,7 @@ import { questionsCategoryName, questionsInStorageName } from 'libs/constants/na
 import { getQueryParametr } from 'libs/helpers/get-param-from-query';
 import { Spinner } from 'react-bootstrap';
 import { IQuestion } from 'libs/interfaces/questions.interface';
-import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
+import { useQuestionsApi } from 'libs/hooks/items/questions/useQuestionsApi';
 import { getRandomQuestionsUrl } from 'libs/helpers/get-questions-url';
 import { questionsApi } from 'libs/api/questions.api';
 import { QUESTIONS_BASE_URL } from 'libs/constants/urls';

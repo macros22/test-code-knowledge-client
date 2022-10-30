@@ -3,6 +3,7 @@ import { getSnippetsUrl } from "libs/helpers/get-snippets-url";
 import { useSnippetsApi } from "./useSnippetsApi";
 import { useSnippetsInfo } from "./useSnippetssInfo";
 import { ISnippet } from 'libs/interfaces/snippets.interface';
+import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
 
 interface IUseSnippetsProps {
     skip?: number;
@@ -14,21 +15,19 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
 
     const { snippetsInfo } = useSnippetsInfo();
 
-
-
-    const getKey = (skip, previousPageData) => {
+    // SWR default function name for pagination.
+    const getKey = (pageIndex, previousPageData) => {
         if (previousPageData && !previousPageData.length) return null // reached the end
         const snippetsUrl = getSnippetsUrl({
             categoryURLName: category ? snippetsInfo[category]?.categoryURLName : '',
-            skip,
+            skip: pageIndex * (limit || ITEMS_PER_PAGE),
             limit,
         });
         return snippetsUrl;
     }
 
-
     const { api } = useSnippetsApi();
-    const { data, mutate: mutateSnippets, error, size, setSize } = useSWRInfinite(getKey, api.getSnippets);
+    const { data, error, size, setSize, isValidating, mutate: mutateSnippets } = useSWRInfinite(getKey, api.getSnippets);
 
     let snippets: ISnippet[] = [];
 
@@ -44,14 +43,33 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
         })
     }
 
-    const isLoadingSnippets: boolean = !data && !error;
+    const isLoadingInitialSnippets: boolean = !data && !error;
+    const isLoadingMore =
+        isLoadingInitialSnippets ||
+        (size > 0 && data && typeof data[size - 1] === "undefined");
 
+    const isEmpty = data?.[0]?.length === 0;
+
+    let isReachingEnd = isEmpty;
+
+    if (data) {
+        const len = data.length;
+        const items = data[len - 1];
+        if (Array.isArray(items)) {
+            isReachingEnd = isEmpty || (items.length < ITEMS_PER_PAGE);
+        }
+    }
+
+    const isRefreshing = isValidating && data && data.length === size;
 
     return {
-        isLoadingSnippets,
+        isLoadingSnippets: isLoadingInitialSnippets,
+        isReachingEnd,
         snippets,
+        setSize,
+        size,
+        isLoadingMore,
         mutateSnippets,
-        setSize
     };
 }
 

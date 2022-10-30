@@ -1,6 +1,6 @@
 import { Role } from "libs/interfaces/user.interface";
 import { questionsApi } from "libs/api/questions.api";
-import { useUser } from "../useUser";
+import { useUser } from "../../useUser";
 
 export const useQuestionsApi = () => {
 

@@ -1,9 +1,10 @@
 // const { questionsInfo } = useQuestionsInfo();
 
 import { useQuestionsInfo } from "libs/hooks";
-import { useSnippetsInfo } from "libs/hooks/snippets/useSnippetssInfo";
+import { ItemsName } from "libs/interfaces/common.interface";
+import { useSnippetsInfo } from "./snippets/useSnippetssInfo";
 
-export const useItemsInfo = (itemsName: 'snippets' | 'questions') => {
+export const useItemsInfo = (itemsName: ItemsName) => {
     const { questionsInfo } = useQuestionsInfo();
     const { snippetsInfo } = useSnippetsInfo();
 

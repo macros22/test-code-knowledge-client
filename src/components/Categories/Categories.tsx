@@ -5,7 +5,7 @@ import { ICategoriesProps } from './Categories.props';
 import { useRouter } from 'next/router';
 import { Button, Spinner } from 'react-bootstrap';
 import { useQuestionsInfo } from 'libs/hooks';
-import { useSnippetsInfo } from 'libs/hooks/snippets/useSnippetssInfo';
+import { useSnippetsInfo } from 'libs/hooks/items/snippets/useSnippetssInfo';
 
 const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	const router = useRouter();
@@ -36,7 +36,7 @@ const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	}
 
 	return (
-		
+
 		<div className={styles.wrapper}>
 			{Object.keys(questionsInfo).map((category) => {
 				return (
@@ -52,14 +52,14 @@ const Categories = ({ }: ICategoriesProps): JSX.Element => {
 
 							<div className={styles.cardButtons}>
 								<Link
-									href={`/questions/${questionsInfo[category].categoryURLName}?skip=0&limit=1`}>
+									href={`/questions/${questionsInfo[category].categoryURLName}`}>
 									<a className={styles.cardLink}>
 										Questions: {questionsInfo[category].amount}
 									</a>
 								</Link>
-
+								{/* //?skip=0&limit=5 */}
 								<Link
-									href={`/snippets/${snippetsInfo[category].categoryURLName}?skip=0&limit=1`}>
+									href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
 									<a className={styles.cardLink}>
 										Snippets: {snippetsInfo[category].amount}
 									</a>

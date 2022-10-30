@@ -8,10 +8,12 @@ import { SWRConfig } from 'swr';
 import { ISnippet, ISnippetsPageProps } from 'libs/interfaces/snippets.interface';
 import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
 import { snippetsApi } from 'libs/api/snippets.api';
-import { useSnippets } from 'libs/hooks/snippets/useSnippets';
-import { List } from 'components/ItemsList/List';
+import { useSnippets } from 'libs/hooks/items/snippets/useSnippets';
+import { ItemsList } from '../../components/ItemsList/ItemsList/ItemsList';
 import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
 import { withLayout } from 'layouts/with-layout';
+import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
+import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsButton';
 
 export const getServerSideProps: GetServerSideProps<
 	ISnippetsPageProps
@@ -19,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<
 	const categoryURLName = getQueryParametr(context, 'category') || '';
 
 	const skip = Number(getQueryParametr(context, 'skip')) || 0;
-	const limit = Number(getQueryParametr(context, 'limit')) || 1;
+	const limit = Number(getQueryParametr(context, 'limit')) || ITEMS_PER_PAGE;
 
 	const snippetsUrl = getSnippetsUrl({
 		categoryURLName,
@@ -50,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<
 
 const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): JSX.Element => {
 
-	const { snippets, isLoadingSnippets, setSize } = useSnippets({
+	const { snippets, isLoadingSnippets } = useSnippets({
 		skip,
 		limit,
 		category
@@ -77,8 +79,8 @@ const SnippetsPage = ({ category, skip, limit, fallback }: ISnippetsPageProps): 
 
 	return (
 		<SWRConfig value={{ fallback }}>
-			<List itemsName='snippets' items={snippets} category={category} />
-			<Button onClick={() => setSize((s) => s + 1)}>Load more</Button>
+			<ItemsList itemsName='snippets' items={snippets} category={category} />
+			<LoadItemsButton skip={skip} limit={limit} category={category} />
 		</SWRConfig>
 	);
 };

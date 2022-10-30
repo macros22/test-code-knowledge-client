@@ -6,7 +6,7 @@ import { Code } from 'components';
 import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { IAnswer } from 'libs/interfaces/questions.interface';
 import { Badge } from 'react-bootstrap';
-import { useQuestionsApi } from 'libs/hooks/questions/useQuestionsApi';
+import { useQuestionsApi } from 'libs/hooks/items/questions/useQuestionsApi';
 
 const QuestionCard = ({
 	question,

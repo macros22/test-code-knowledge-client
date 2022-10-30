@@ -1,6 +1,6 @@
 import { Role } from "libs/interfaces/user.interface";
 import { snippetsApi } from "libs/api/snippets.api";
-import { useUser } from "../useUser";
+import { useUser } from "libs/hooks";
 
 export const useSnippetsApi = () => {
 
