@@ -4,7 +4,10 @@ import { questionsInStorageName } from 'libs/constants/names.storage';
 import { withLayout } from 'layouts';
 
 import dynamic from "next/dynamic";
-const TestResult = dynamic(() => import('../components/test/TestResult/TestResult'));
+import { ITestResultProps } from 'components/test/TestResult/TestResult.props';
+const TestResult = dynamic<ITestResultProps>(() =>
+	import('components/test/TestResult/TestResult').then((module) => module.TestResult)
+)
 
 const TestResultPage = (): JSX.Element => {
 	const [questions] = useSessionStorage(questionsInStorageName, []);

@@ -13,10 +13,23 @@ import { IQuestion } from 'libs/interfaces/questions.interface';
 import { ISnippet } from 'libs/interfaces/snippets.interface';
 
 import dynamic from "next/dynamic";
-const QuestionCard = dynamic(() => import('../../questions/QuestionCard/QuestionCard'));
-const QuestionForm = dynamic(() => import('../../questions/QuestionForm/QuestionForm'));
-const SnippetCard = dynamic(() => import('../../snippets/SnippetCard/SnippetCard'));
-const SnippetForm = dynamic(() => import('../../snippets/SnippetForm/SnippetForm'));
+import { IQuestionCardProps } from 'components/questions/QuestionCard/QuestionCard.props';
+import { IQuestionFormProps } from 'components/questions/QuestionForm/QuestionForm.props';
+import { ISnippetCardProps } from 'components/snippets/SnippetCard/SnippetCard.props';
+import { ISnippetFormProps } from 'components/snippets/SnippetForm/SnippetForm.props';
+
+const QuestionCard = dynamic<IQuestionCardProps>(() =>
+	import('components/questions/QuestionCard/QuestionCard').then((module) => module.QuestionCard)
+)
+const QuestionForm = dynamic<IQuestionFormProps>(() =>
+	import('components/questions/QuestionForm/QuestionForm').then((module) => module.QuestionForm)
+)
+const SnippetCard = dynamic<ISnippetCardProps>(() =>
+	import('components/snippets/SnippetCard/SnippetCard').then((module) => module.SnippetCard)
+)
+const SnippetForm = dynamic<ISnippetFormProps>(() =>
+	import('components/snippets/SnippetForm/SnippetForm').then((module) => module.SnippetForm)
+)
 
 export const ItemsList = ({
 	itemsName,
@@ -80,6 +93,7 @@ export const ItemsList = ({
 						?
 						items.map((item, index) => {
 
+							//@ts-ignore
 							return (
 								<Card
 									key={item.id}

@@ -7,7 +7,7 @@ import { BsPencilFill, BsFillTrashFill, BsChevronDown, BsChevronUp } from 'react
 import { Badge } from 'react-bootstrap';
 import { useSnippetsApi } from 'libs/hooks/items/snippets/useSnippetsApi';
 
-const SnippetCard = ({
+export const SnippetCard = ({
 	snippet,
 	handleEditButton,
 	withEdit = false,
@@ -58,4 +58,3 @@ const SnippetCard = ({
 		</>
 	);
 };
-export default SnippetCard;

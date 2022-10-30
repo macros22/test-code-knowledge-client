@@ -7,7 +7,7 @@ import { useSnippetForm } from './useSnippetForm.hook';
 import { HrWithContent } from 'components';
 import { useSnippetsInfo } from 'libs/hooks';
 
-const SnippetForm = ({
+export const SnippetForm = ({
 	snippetItem,
 	mode,
 	setIsModalOpen,
@@ -99,4 +99,3 @@ const SnippetForm = ({
 		</Form>
 	);
 };
-export default SnippetForm;

@@ -9,7 +9,7 @@ import {
 } from 'libs/constants/names.storage';
 import { Form, Button, Card } from 'react-bootstrap';
 import { IAnswersListResultProps, ITestResultProps } from './TestResult.props';
-import Code from 'components/ui/Code/Code';
+import { Code } from 'components';
 import { Tag } from 'components/ui/Tag/Tag';
 import { isArraysEqual } from 'libs/helpers/is-arrays-equal';
 
@@ -82,7 +82,7 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
 
 
 
-const TestResult = ({
+export const TestResult = ({
 	questions,
 }: ITestResultProps): JSX.Element => {
 
@@ -182,4 +182,3 @@ const TestResult = ({
 		</div>
 	);
 };
-export default TestResult;

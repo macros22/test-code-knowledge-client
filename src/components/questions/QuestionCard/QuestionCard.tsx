@@ -8,7 +8,7 @@ import { IAnswer } from 'libs/interfaces/questions.interface';
 import { Badge } from 'react-bootstrap';
 import { useQuestionsApi } from 'libs/hooks/items/questions/useQuestionsApi';
 
-const QuestionCard = ({
+export const QuestionCard = ({
 	question,
 	handleEditButton,
 	withEdit = false,
@@ -115,4 +115,4 @@ const QuestionCard = ({
 	</>
 	);
 };
-export default QuestionCard
+// export default QuestionCard

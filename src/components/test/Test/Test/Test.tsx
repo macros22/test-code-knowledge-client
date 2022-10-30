@@ -2,8 +2,9 @@ import React from 'react';
 import { useRouter } from 'next/dist/client/router';
 import styles from './Test.module.scss';
 import dynamic from "next/dynamic";
-// import { Code } from 'components';
-const Code = dynamic(() => import('../../../ui/Code/Code'));
+
+const Code = dynamic<ICodeProps>(() =>
+	import('components/ui/Code/Code').then((module) => module.Code));
 import { useSessionStorage } from 'libs/hooks';
 import {
 	checkedAnswersName,
@@ -11,10 +12,11 @@ import {
 } from 'libs/constants/names.storage';
 import { Button } from 'react-bootstrap';
 import { AnswersList } from '../AnswersList/AnswersList';
-import { TestProps } from './Test.props';
+import { ITestProps } from './Test.props';
+import { ICodeProps } from 'components/ui/Code/Code.props';
 
 
-const Test = ({ questions }: TestProps): JSX.Element => {
+export const Test = ({ questions }: ITestProps): JSX.Element => {
 	const router = useRouter();
 
 	const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -127,4 +129,3 @@ const Test = ({ questions }: TestProps): JSX.Element => {
 		</>
 	);
 };
-export default Test;

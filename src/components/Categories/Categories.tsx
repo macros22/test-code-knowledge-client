@@ -7,7 +7,7 @@ import { Button, Spinner } from 'react-bootstrap';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useSnippetsInfo } from 'libs/hooks/items/snippets/useSnippetssInfo';
 
-const Categories = ({ }: ICategoriesProps): JSX.Element => {
+export const Categories = ({ }: ICategoriesProps): JSX.Element => {
 	const router = useRouter();
 
 	const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
@@ -80,5 +80,3 @@ const Categories = ({ }: ICategoriesProps): JSX.Element => {
 		</div>
 	);
 };
-
-export default Categories;

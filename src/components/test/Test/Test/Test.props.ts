@@ -1,5 +1,5 @@
 import { IQuestion } from "libs/interfaces/questions.interface";
 
-export interface TestProps {
+export interface ITestProps {
     questions: IQuestion[];
 }
