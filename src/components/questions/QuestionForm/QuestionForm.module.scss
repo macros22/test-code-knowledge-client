@@ -1,88 +1,80 @@
 @import 'assets/variables';
 
 .editMedicalItem {
-	display: grid;
-	grid-template-areas:
-		"question question question"
-		"codeExample codeExample answersList"
-		"saveButton resetButton addAnswerButton";
-	grid-template-columns: 300px 100px 280px;
-	grid-template-rows: auto 310px 50px;
-
-	gap: 1rem;
-
+  display: grid;
+  grid-template-areas:
+    'question question question'
+    'codeExample codeExample answersList'
+    'saveButton resetButton addAnswerButton';
+  grid-template-columns: 300px 100px 280px;
+  grid-template-rows: auto 310px 50px;
+  gap: 1rem;
 }
 
 .title {
-	margin-bottom: 0.45rem;
-	font-size: 18px;
+  margin-bottom: 0.45rem;
+  font-size: 18px;
 }
 
 .subTitle {
-	margin: 0;
-	margin-bottom: $spacer * 0.5;
-
-	color: var(--text-secondary-color);
-
-	font-size: 14px;
+  margin: 0;
+  margin-bottom: $spacer * 0.5;
+  color: var(--text-secondary-color);
+  font-size: 14px;
 }
 
 .question {
-	grid-area: question;
+  grid-area: question;
 }
 
 .codeExample {
-	grid-area: codeExample;
-
+  grid-area: codeExample;
 }
 
-
 .textareaCodeExample {
-	height: 200px !important;
-	margin-bottom: $spacer * 0.75;
+  height: 200px !important;
+  margin-bottom: $spacer * 0.75;
 }
 
 .answersList {
-	grid-area: answersList;
-	overflow: auto;
-	display: flex;
-	flex-direction: column;
-	gap: $spacer;
+  grid-area: answersList;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $spacer;
 }
 
 .answer {
-	display: flex;
-	margin: 0;
-	gap: $spacer;
-	align-items: flex-end;
+  display: flex;
+  margin: 0;
+  gap: $spacer;
+  align-items: flex-end;
 }
 
 .buttons {
-	grid-area: buttons;
+  grid-area: buttons;
 }
 
 .button {
-	width: 60px;
-
-	margin-right: $spacer;
-	padding: 14px;
-
-	font-size: 28px;
-	line-height: 32px;
+  width: 60px;
+  margin-right: $spacer;
+  padding: 14px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
 .addAnswerButton {
-	grid-area: addAnswerButton;
+  grid-area: addAnswerButton;
 }
 
 .saveButton {
-	grid-area: saveButton;
+  grid-area: saveButton;
 }
 
 .resetButton {
-	grid-area: resetButton;
+  grid-area: resetButton;
 }
 
 .form {
-	font-weight: 600;
+  font-weight: 600;
 }

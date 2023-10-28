@@ -10,7 +10,6 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black: #000 !default;
 
-
 $blue: #4582ec !default;
 $indigo: #6610f2 !default;
 $purple: #6f42c1 !default;
@@ -23,22 +22,17 @@ $green: #09a180 !default;
 $teal: #20c997 !default;
 $cyan: #17a2b8 !default;
 
-
-$primary: $green  !default;
-$secondary: $gray-200  !default;
-$success: $green  !default;
-$info: $light-yellow  !default;
-$warning: $yellow  !default;
-$danger: $red  !default;
-$light: $gray-100  !default;
+$primary: $green !default;
+$secondary: $gray-200 !default;
+$success: $green !default;
+$info: $light-yellow !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
 $dark: #282c34 !default;
 
-
-$border-color: $gray-200  !default;
-$border-color-translucent: $gray-200  !default;
-
-
-
+$border-color: $gray-200 !default;
+$border-color-translucent: $gray-200 !default;
 
 // :root {
 //   --primary-color: rgb(9, 161, 128);
@@ -55,8 +49,6 @@ $border-color-translucent: $gray-200  !default;
 //   --text-color: #282c34;
 //   --text-secondary-color: rgba(121, 121, 121, 0.78);
 //   --border-color: rgb(230, 230, 230);
-
-
 
 //   --form-control-color: var(--success-color);
 //   --form-control-disabled: #959495;

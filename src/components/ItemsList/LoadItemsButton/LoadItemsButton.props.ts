@@ -1,5 +1,5 @@
 export interface ILoadItemsButtonProps {
-    skip: number;
-    limit: number;
-    category: string;
+  skip: number;
+  limit: number;
+  category: string;
 }

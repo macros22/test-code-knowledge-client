@@ -7,15 +7,13 @@
   overflow: hidden;
   white-space: nowrap;
 
-
-  &>span {
-
+  & > span {
     position: relative;
     display: inline-block;
 
-    &:before,
-    &:after {
-      content: "";
+    &::before,
+    &::after {
+      content: '';
       position: absolute;
       top: 50%;
       width: 9999px;
@@ -24,13 +22,12 @@
     }
   }
 
-
-  &>span:before {
+  & > span::before {
     right: 100%;
     margin-right: $spacer;
   }
 
-  &>span:after {
+  & > span::after {
     left: 100%;
     margin-left: $spacer;
   }

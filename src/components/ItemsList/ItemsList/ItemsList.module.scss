@@ -4,69 +4,69 @@
 @import 'assets/screen-sizes';
 
 .title {
-	display: flex;
-	height: min-content;
-	padding: $spacer * 0.5 0;
-	vertical-align: baseline;
-	margin-bottom: $spacer * 0.5;
+  display: flex;
+  height: min-content;
+  padding: $spacer * 0.5 0;
+  vertical-align: baseline;
+  margin-bottom: $spacer * 0.5;
 }
 
-
 .categoryButtons {
-	width: fit-content;
-	flex-wrap: wrap;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: $spacer * 1.2;
-	font-size: 18px;
+  width: fit-content;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: $spacer * 1.2;
+  font-size: 18px;
 }
 
 .inActiveButton {
-	color: $gray-600;
+  color: $gray-600;
 
-	&:hover {
-		background-color: $secondary;
-		color: $gray-700;
-	}
+  &:hover {
+    background-color: $secondary;
+    color: $gray-700;
+  }
 }
 
 .addNewItemButton {
-	padding: $spacer * 0.65 !important;
-	margin-left: auto;
-	@include iconWithBorder;
+  padding: $spacer * 0.65 !important;
+  margin-left: auto;
+
+  @include iconWithBorder;
 }
 
 .container {
-	display: flex;
-	flex-direction: row;
-	gap: $spacer * 1.5;
+  display: flex;
+  flex-direction: row;
+  gap: $spacer * 1.5;
 }
 
 .wrapper {
-	width: 80%;
-	overflow: hidden;
-	margin : 0 auto;
+  width: 80%;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
 .noItemsCard {
-	padding: $spacer * 0.75;
+  padding: $spacer * 0.75;
 }
 
 .column {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: $spacer * 1.5;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacer * 1.5;
+  width: 100%;
 }
 
 @media (max-width: map-get($grid-breakpoints, 'xl')) {
-	.container {
-		flex-direction: column;
-	}
+  .container {
+    flex-direction: column;
+  }
 
-	.wrapper {
-		width: 100%;
-	}
+  .wrapper {
+    width: 100%;
+  }
 }

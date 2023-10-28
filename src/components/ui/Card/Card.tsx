@@ -1,7 +1,7 @@
-import { ICardProps } from "./Card.props";
-import styles from "./Card.module.scss";
-import cn from "clsx";
-import { ForwardedRef, forwardRef } from "react";
+import { ICardProps } from './Card.props';
+import styles from './Card.module.scss';
+import cn from 'clsx';
+import { ForwardedRef, forwardRef } from 'react';
 
 export const Card = forwardRef(
   (

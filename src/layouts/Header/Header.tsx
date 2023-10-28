@@ -9,33 +9,32 @@ import { SnippetsOptions } from './SnippetsOptions';
 import { Logo } from './Logo';
 
 const Header = () => {
-
   const { mutateUser, isLoggedIn } = useUser();
 
   const logoutHandler = async () => {
     await authApi.logout();
     mutateUser({ isGuest: true });
-  }
+  };
 
   const router = useRouter();
   const signInHandler = async () => {
-    router.replace('/auth/sign-n')
-  }
+    router.replace('/auth/sign-n');
+  };
   const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
   const { snippetsInfo } = useSnippetsInfo();
 
   return (
     <Navbar bg="white" expand="lg" className={styles.navbar}>
-      <Container >
+      <Container>
         <Logo />
         <Navbar.Toggle className={styles.burgerMenu} />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <NavDropdown title="Snippets" className={styles.navbarLinks} >
+            <NavDropdown title="Snippets" className={styles.navbarLinks}>
               <SnippetsOptions snippetsInfo={snippetsInfo} />
             </NavDropdown>
 
-            <NavDropdown title="Questions" className={styles.navbarLinks} >
+            <NavDropdown title="Questions" className={styles.navbarLinks}>
               <QuestionsOptions questionsInfo={questionsInfo} />
             </NavDropdown>
 
@@ -43,20 +42,30 @@ const Header = () => {
               <TestOptions questionsInfo={questionsInfo} />
             </NavDropdown>
 
-            {isLoggedIn
-              ?
+            {isLoggedIn ? (
               <>
-                <Nav.Link onClick={() => router.replace('/profile')} className={styles.navbarLinks}>Profile</Nav.Link>
-                <Nav.Link className={styles.navbarLinks} onClick={logoutHandler}>Logout</Nav.Link>
+                <Nav.Link
+                  onClick={() => router.replace('/profile')}
+                  className={styles.navbarLinks}
+                >
+                  Profile
+                </Nav.Link>
+                <Nav.Link
+                  className={styles.navbarLinks}
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </Nav.Link>
               </>
-              :
-              <Nav.Link className={styles.navbarLinks} onClick={signInHandler}>SignIn</Nav.Link>
-            }
-
+            ) : (
+              <Nav.Link className={styles.navbarLinks} onClick={signInHandler}>
+                SignIn
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar >
+    </Navbar>
   );
-}
+};
 export default Header;

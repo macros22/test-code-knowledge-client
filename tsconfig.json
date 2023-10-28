@@ -2,11 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "noImplicitAny": false,
     "skipLibCheck": true,
@@ -26,9 +22,10 @@
     "next-env-custom.d.ts",
     "images.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/pages/auth.tsx", "src/pages/_app.tsx", "src/pages/index.tsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/pages/auth.tsx",
+    "src/pages/_app.tsx",
+    "src/pages/index.tsx"
+  ],
+  "exclude": ["node_modules"]
 }

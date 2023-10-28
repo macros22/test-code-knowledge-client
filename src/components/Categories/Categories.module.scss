@@ -3,56 +3,55 @@
 @import 'assets/colors';
 
 .wrapper {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: $spacer * 1.25;
-	overflow: hidden;
-	justify-content: center;
-	margin-top: $spacer;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $spacer * 1.25;
+  overflow: hidden;
+  justify-content: center;
+  margin-top: $spacer;
 }
 
 .card {
-	border-radius: $border-radius;
-	border: $border;
-	width: max-content;
-	width: 25%;
-	padding: $spacer;
+  border-radius: $border-radius;
+  border: $border;
+  width: max-content;
+  width: 25%;
+  padding: $spacer;
 
-	&Title {
-		text-align: center;
-	}
+  &Title {
+    text-align: center;
+  }
 
-	&Bracket {
-		color: $danger;
-	}
+  &Bracket {
+    color: $danger;
+  }
 
-	&Buttons {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		gap: $spacer;
-		flex-wrap: wrap;
-	}
+  &Buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: $spacer;
+    flex-wrap: wrap;
+  }
 
-	&Link {
-		border-bottom: $border-width solid $secondary;
-		padding: $spacer * 0.5;
+  &Link {
+    border-bottom: $border-width solid $secondary;
+    padding: $spacer * 0.5;
 
-		&:hover {
-			border-bottom: $border-width solid $danger;
-		}
-	}
+    &:hover {
+      border-bottom: $border-width solid $danger;
+    }
+  }
 }
 
-
 @media (max-width: map-get($grid-breakpoints, 'md')) {
-	.wrapper {
-		justify-content: center;
-	}
+  .wrapper {
+    justify-content: center;
+  }
 
-	.card {
-		width: max-content;
-	}
+  .card {
+    width: max-content;
+  }
 }

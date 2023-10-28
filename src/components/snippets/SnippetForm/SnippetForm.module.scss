@@ -1,97 +1,93 @@
 @import 'assets/variables';
 
 .editItem {
-	display: grid;
-	// grid-template-areas:
-	// 	"description description"
-	// 	"snippet snippet"
-	// 	"answersList answersList"
-	// 	"savedButton resetdButton";
-	// grid-template-columns: 400px 210px;
-	// grid-template-rows: 80px 200px 150px 40px;
+  display: grid;
+  // grid-template-areas:
+  // 	"description description"
+  // 	"snippet snippet"
+  // 	"answersList answersList"
+  // 	"savedButton resetdButton";
+  // grid-template-columns: 400px 210px;
+  // grid-template-rows: 80px 200px 150px 40px;
 
-	grid-template-areas:
-		"description description description"
-		"snippet snippet answersList"
-		"saveButton resetButton addAnswerButton";
-	grid-template-columns: 300px 100px 280px;
-	grid-template-rows: auto 310px 50px;
+  grid-template-areas:
+    'description description description'
+    'snippet snippet answersList'
+    'saveButton resetButton addAnswerButton';
+  grid-template-columns: 300px 100px 280px;
+  grid-template-rows: auto 310px 50px;
 
-	gap: 1rem;
-
+  gap: 1rem;
 }
 
 .title {
-	margin-bottom: 0.45rem;
-	font-size: 18px;
+  margin-bottom: 0.45rem;
+  font-size: 18px;
 }
 
 .subTitle {
-	margin: 0;
-	margin-bottom: 0.5rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
 
-	color: var(--text-secondary-color);
+  color: var(--text-secondary-color);
 
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .description {
-	grid-area: description;
+  grid-area: description;
 }
 
 .snippet {
-	grid-area: snippet;
-	
+  grid-area: snippet;
 }
 
-.textareaSnippet{
-	height: 200px !important;
-	margin-bottom: $spacer*0.75;
+.textareaSnippet {
+  height: 200px !important;
+  margin-bottom: $spacer * 0.75;
 }
-
-
 
 .answersList {
-	grid-area: answersList;
-	overflow: auto;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+  grid-area: answersList;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.answer{
-	display: flex;
-	margin: 0;
-	gap: 1rem;
-	align-items: flex-end;
+.answer {
+  display: flex;
+  margin: 0;
+  gap: 1rem;
+  align-items: flex-end;
 }
 
 .buttons {
-	grid-area: buttons;
+  grid-area: buttons;
 }
 
 .button {
-	width: 60px;
+  width: 60px;
 
-	margin-right: 1rem;
-	padding: 14px;
+  margin-right: 1rem;
+  padding: 14px;
 
-	font-size: 28px;
-	line-height: 32px;
+  font-size: 28px;
+  line-height: 32px;
 }
 
 .addAnswerButton {
-	grid-area: addAnswerButton;
+  grid-area: addAnswerButton;
 }
 
 .saveButton {
-	grid-area: saveButton;
+  grid-area: saveButton;
 }
 
 .resetButton {
-	grid-area: resetButton;
+  grid-area: resetButton;
 }
 
-.form{
-	font-weight: 600;
+.form {
+  font-weight: 600;
 }

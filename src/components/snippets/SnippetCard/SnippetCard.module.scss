@@ -4,9 +4,9 @@
 .snippetCard {
   display: grid;
   grid-template-areas:
-    "snippetNumber"
-    "description"
-    "snippet";
+    'snippetNumber'
+    'description'
+    'snippet';
   grid-template-columns: minmax(250px, 570px);
   grid-template-rows: auto auto auto;
   padding: $spacer;
@@ -34,7 +34,6 @@
   }
 }
 
-
 .description {
   grid-area: description;
 }
@@ -52,14 +51,12 @@
 
 .answer {
   grid-area: answer;
-
   height: auto;
 
   &InVisible {
     visibility: hidden;
     height: 0;
   }
-
 }
 
 .answerStatusText {

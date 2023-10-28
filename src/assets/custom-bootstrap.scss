@@ -7,35 +7,20 @@
 @import 'screen-sizes';
 @import 'variables';
 
-$theme: "litera" !default;
+$theme: 'litera' !default;
 
 $min-contrast-ratio: 2.5 !default;
 
 // Body
-$body-color: $dark  !default;
+$body-color: $dark !default;
 
 // Fonts
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: Montserrat,
-    Poppins,
-    sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji" !default;
-$font-family-serif: Georgia,
-    Cambria,
-    "Times New Roman",
-    Times,
-    serif !default;
+$font-family-sans-serif: Montserrat, Poppins, sans-serif, -apple-system,
+  BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji' !default;
+$font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif !default;
 // stylelint-enable
 
 $font-size-base: 1.1rem !default;
@@ -47,29 +32,29 @@ $font-weight-semibold: 600 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
 
-$font-weight-base: $font-weight-semibold  !default;
-$headings-font-weight: $font-weight-semibold  !default;
+$font-weight-base: $font-weight-semibold !default;
+$headings-font-weight: $font-weight-semibold !default;
 
 // Tables
-$table-border-color: rgba(0, 0, 0, .1) !default;
+$table-border-color: rgba(0, 0, 0, 0.1) !default;
 $table-bg-scale: 0 !default;
 
 // Buttons
-$input-btn-padding-y: .5rem !default;
+$input-btn-padding-y: 0.5rem !default;
 $input-btn-padding-x: 1.1rem !default;
-$btn-font-family: $font-family-sans-serif  !default;
+$btn-font-family: $font-family-sans-serif !default;
 $btn-font-size: 1.075rem !default;
-$btn-font-size-sm: .688rem !default;
-$btn-border-radius: $border-radius  !default;
-$btn-border-radius-lg: $border-radius  !default;
-$btn-border-radius-sm: $border-radius  !default;
+$btn-font-size-sm: 0.688rem !default;
+$btn-border-radius: $border-radius !default;
+$btn-border-radius-lg: $border-radius !default;
+$btn-border-radius-sm: $border-radius !default;
 $btn-font-weight: 600 !default;
 
 // Navbar
-$navbar-dark-color: rgba($white, .6) !default;
-$navbar-dark-hover-color: $white  !default;
-$navbar-light-hover-color: $body-color  !default;
-$navbar-light-active-color: $body-color  !default;
+$navbar-dark-color: rgba($white, 0.6) !default;
+$navbar-dark-hover-color: $white !default;
+$navbar-light-hover-color: $body-color !default;
+$navbar-light-active-color: $body-color !default;
 $nav-link-font-weight: 600 !important;
 
 // Tooltips
@@ -83,42 +68,39 @@ $border-style: solid !default;
 
 // Hr
 $hr-opacity: 1 !default;
-$hr-color: $border-color  !default;
-$hr-border-width: $border-width  !default;
+$hr-color: $border-color !default;
+$hr-border-width: $border-width !default;
 
 // Accordeons
-$accordion-border-width: $border-width  !default;
-
+$accordion-border-width: $border-width !default;
 
 // Inputs.
-$input-btn-border-width: $border-width  !default;
+$input-btn-border-width: $border-width !default;
 $input-font-weight: 600 !default;
-$input-border-color: $border-color  !default;
-$input-group-addon-bg: $gray-200  !default !default;
+$input-border-color: $border-color !default;
+$input-group-addon-bg: $gray-200 !default !default;
 
-.form-floating>label {
-    color: $gray-400  !important;
+.form-floating > label {
+  color: $gray-400 !important;
 }
 
 // Badges
-$badge-font-size: .95em !default;
-$badge-color: $primary  !default;
-$badge-padding-y: .45em !default;
-$badge-padding-x: .85em !default;
+$badge-font-size: 0.95em !default;
+$badge-color: $primary !default;
+$badge-padding-y: 0.45em !default;
+$badge-padding-x: 0.85em !default;
 
 // Dropdowns
-$dropdown-link-hover-bg: $gray-100  !default;
-
+$dropdown-link-hover-bg: $gray-100 !default;
 
 // Forms
 // Select
 $form-select-focus-box-shadow: none !default;
-$form-check-input-border: $border  !default;
-$form-check-input-checked-border-color: $primary  !default;
+$form-check-input-border: $border !default;
+$form-check-input-checked-border-color: $primary !default;
 
 .input-group-text {
-    background-color: $white  !important;
+  background-color: $white !important;
 }
-
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

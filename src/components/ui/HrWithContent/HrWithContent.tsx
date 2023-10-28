@@ -1,7 +1,7 @@
-import { HrWithContentProps } from "./HrWithContent.props";
-import styles from "./HrWithContent.module.scss";
-import cn from "clsx";
-import { ForwardedRef, forwardRef } from "react";
+import { HrWithContentProps } from './HrWithContent.props';
+import styles from './HrWithContent.module.scss';
+import cn from 'clsx';
+import { ForwardedRef, forwardRef } from 'react';
 
 export const HrWithContent = forwardRef(
   (
@@ -9,10 +9,13 @@ export const HrWithContent = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
     return (
-      <div className={cn(styles.hrWithSpan, className, {})} ref={ref} {...props}>
+      <div
+        className={cn(styles.hrWithSpan, className, {})}
+        ref={ref}
+        {...props}
+      >
         <span> {children}</span>
       </div>
-
     );
   }
 );

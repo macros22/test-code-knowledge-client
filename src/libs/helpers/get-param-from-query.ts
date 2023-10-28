@@ -1,7 +1,10 @@
-import { GetServerSidePropsContext, PreviewData } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { GetServerSidePropsContext, PreviewData } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
-export const getQueryParametr = (context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>, parametrStr: string) => {
+export const getQueryParametr = (
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
+  parametrStr: string
+) => {
   let parametr: string | string[] | null = context.query[parametrStr] || null;
 
   if (Array.isArray(parametr)) {
@@ -9,4 +12,4 @@ export const getQueryParametr = (context: GetServerSidePropsContext<ParsedUrlQue
   } else {
     return parametr;
   }
-}
+};

@@ -4,11 +4,11 @@
 .questionCard {
   display: grid;
   grid-template-areas:
-    "questionNumber"
-    "question"
-    "codeExample"
-    "buttons"
-    "answer";
+    'questionNumber'
+    'question'
+    'codeExample'
+    'buttons'
+    'answer';
   grid-template-columns: minmax(250px, 700px);
   grid-template-rows: auto auto auto 40px auto;
   padding: $spacer;
@@ -38,7 +38,6 @@
 
 .question {
   grid-area: question;
-
 }
 
 .codeExample {
@@ -54,19 +53,22 @@
 
 .answer {
   grid-area: answer;
-
   height: auto;
 
   &InVisible {
     visibility: hidden;
     height: 0;
   }
-
 }
 
 .answerStatusText {
   width: 100%;
   margin-left: $spacer * 0.5;
+}
+
+.answerStatusWrapper {
+  display: flex;
+  cursor: pointer;
 }
 
 .iconButton {
@@ -84,5 +86,5 @@
 
 .chevronIcon {
   height: 100%;
-  width: $spacer * 3 !important;
+  width: $spacer * 2 !important;
 }

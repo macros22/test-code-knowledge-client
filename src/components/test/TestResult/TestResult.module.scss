@@ -9,8 +9,8 @@
 }
 
 .card {
-  margin-bottom: $spacer*1.5;
-  padding: $spacer*1.5;
+  margin-bottom: $spacer * 1.5;
+  padding: $spacer * 1.5;
 }
 
 .successCard {
@@ -48,7 +48,7 @@
   display: flex;
   user-select: none;
   width: 100%;
-  margin: $spacer*0.4 0;
+  margin: $spacer * 0.4 0;
   height: 16px;
   border-radius: $border-radius;
   align-items: baseline;
@@ -61,10 +61,10 @@
 
 .answersList {
   list-style: none;
-  margin-top: $spacer*1.5;
+  margin-top: $spacer * 1.5;
   display: flex;
   flex-direction: column;
-  gap: $spacer*1.25;
+  gap: $spacer * 1.25;
 }
 
 .title {

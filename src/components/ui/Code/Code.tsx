@@ -1,9 +1,9 @@
-import React from "react";
-import cn from "clsx";
-import Highlight, { defaultProps } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/oceanicNext";
-import styles from "./Code.module.scss";
-import { ICodeProps } from "./Code.props";
+import React from 'react';
+import cn from 'clsx';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import theme from 'prism-react-renderer/themes/oceanicNext';
+import styles from './Code.module.scss';
+import { ICodeProps } from './Code.props';
 
 export const Code: React.FC<ICodeProps> = ({ codeExample }) => (
   <Highlight {...defaultProps} theme={theme} code={codeExample} language="jsx">
@@ -14,7 +14,10 @@ export const Code: React.FC<ICodeProps> = ({ codeExample }) => (
             <div className={styles.noLine}>{i + 1}</div>
             <div className={styles.lineContent}>
               {line.map((token, key) => (
-                <span  {...getTokenProps({ token, key })} className={styles.lineContent} />
+                <span
+                  {...getTokenProps({ token, key })}
+                  className={styles.lineContent}
+                />
               ))}
             </div>
           </div>
