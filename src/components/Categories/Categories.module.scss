@@ -1,6 +1,7 @@
 @import 'assets/screen-sizes';
 @import 'assets/variables';
 @import 'assets/colors';
+@import 'assets/_theme.scss';
 
 .wrapper {
   display: flex;
@@ -13,11 +14,16 @@
 }
 
 .card {
+  // background-color: $white;
   border-radius: $border-radius;
   border: $border;
   width: max-content;
   width: 25%;
   padding: $spacer;
+
+  @include themed {
+    background-color: t("subtleBackground");
+  }
 
   &Title {
     text-align: center;

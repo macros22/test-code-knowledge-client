@@ -1,11 +1,8 @@
 import { Categories } from 'components/Categories/Categories';
 import { withLayout } from 'layouts';
 
-const IndexPage = () => {
-  return (
-    <Categories />
-    // <div></div>
-  );
+const HomePage = () => {
+  return <Categories />;
 };
 
-export default withLayout('main', IndexPage);
+export default withLayout('main', HomePage);

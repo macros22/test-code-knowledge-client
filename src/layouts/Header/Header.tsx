@@ -1,15 +1,20 @@
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import styles from './Header.module.scss';
+import { useContext } from 'react';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { BsFillBrightnessHighFill, BsFillMoonStarsFill } from 'react-icons/bs';
+import { ThemeContext } from 'contexts/theme.context';
 import { authApi } from 'libs/api/auth.api';
+import { useQuestionsInfo, useSnippetsInfo, useUser } from 'libs/hooks';
 import { useRouter } from 'next/router';
-import { useSnippetsInfo, useQuestionsInfo, useUser } from 'libs/hooks';
-import { TestOptions } from './TestOptions';
+
+import styles from './Header.module.scss';
+import { Logo } from './Logo';
 import { QuestionsOptions } from './QuestionsOptions';
 import { SnippetsOptions } from './SnippetsOptions';
-import { Logo } from './Logo';
+import { TestOptions } from './TestOptions';
 
-const Header = () => {
+export const Header = () => {
   const { mutateUser, isLoggedIn } = useUser();
+  const { isDark, toggleDark } = useContext(ThemeContext);
 
   const logoutHandler = async () => {
     await authApi.logout();
@@ -46,14 +51,12 @@ const Header = () => {
               <>
                 <Nav.Link
                   onClick={() => router.replace('/profile')}
-                  className={styles.navbarLinks}
-                >
+                  className={styles.navbarLinks}>
                   Profile
                 </Nav.Link>
                 <Nav.Link
                   className={styles.navbarLinks}
-                  onClick={logoutHandler}
-                >
+                  onClick={logoutHandler}>
                   Logout
                 </Nav.Link>
               </>
@@ -62,10 +65,23 @@ const Header = () => {
                 SignIn
               </Nav.Link>
             )}
+            <span
+              tabIndex={0}
+              role="button"
+              aria-label="light"
+              onClick={toggleDark}
+              onKeyDown={toggleDark}>
+              <span>
+                {isDark ? (
+                  <BsFillBrightnessHighFill />
+                ) : (
+                  <BsFillMoonStarsFill />
+                )}
+              </span>
+            </span>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 };
-export default Header;

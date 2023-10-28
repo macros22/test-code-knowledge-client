@@ -1,13 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from './Categories.module.scss';
-import { ICategoriesProps } from './Categories.props';
-import { useRouter } from 'next/router';
-import { Button, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useSnippetsInfo } from 'libs/hooks/items/snippets/useSnippetssInfo';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export const Categories = ({}: ICategoriesProps): JSX.Element => {
+import styles from './Categories.module.scss';
+
+export const Categories = (): JSX.Element => {
   const router = useRouter();
 
   const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
@@ -22,11 +21,10 @@ export const Categories = ({}: ICategoriesProps): JSX.Element => {
         ? categoryQuestionsAmount
         : defaultQuestionsForTestSize;
     router.replace(
-      `/test/${questionsInfo[category].categoryURLName}?questionsAmount=${sizeInQuery}`
+      `/test/${questionsInfo[category].categoryURLName}?questionsAmount=${sizeInQuery}`,
     );
   };
 
-  // if (isLoadingQuestionsInfo) {
   if (isLoadingQuestionsInfo || isLoadingSnippetsInfo) {
     return (
       <Spinner
@@ -55,16 +53,14 @@ export const Categories = ({}: ICategoriesProps): JSX.Element => {
 
               <div className={styles.cardButtons}>
                 <Link
-                  href={`/questions/${questionsInfo[category].categoryURLName}`}
-                >
+                  href={`/questions/${questionsInfo[category].categoryURLName}`}>
                   <a className={styles.cardLink}>
                     Questions: {questionsInfo[category].amount}
                   </a>
                 </Link>
                 {/* //?skip=0&limit=5 */}
                 <Link
-                  href={`/snippets/${snippetsInfo[category].categoryURLName}`}
-                >
+                  href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
                   <a className={styles.cardLink}>
                     Snippets: {snippetsInfo[category].amount}
                   </a>
