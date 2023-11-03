@@ -3,15 +3,22 @@
 
 $themes: (
   "dark": (
-    appBackground: $gray-900,
-    subtleBackground: $gray-800,
+    appBackground: $black,
+    subtleBackground: $gray-900,
+    borderColor: $gray-700,
+    lowContrastText: $gray-200,
+    highContrastText: $gray-100,
+    header: $gray-900,
   ),
   "light": (
-    appBackground: $white,
-    subtleBackground: $gray-100,
+    appBackground: $gray-100,
+    subtleBackground: $white,
+    borderColor: $gray-300,
+    lowContrastText: $gray-800,
+    highContrastText: $gray-900,
+    header: $white,
   ),
 );
-
 
 @mixin themed() {
     @each $theme, $map in $themes {

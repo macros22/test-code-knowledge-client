@@ -1,12 +1,19 @@
 @import 'assets/colors';
+@import 'assets/_theme.scss';
+
 
 .bracket {
   color: $danger;
 }
 
 .navbar {
-  box-shadow: 0 3px 10px rgba(83, 204, 34, 0.1);
+  // box-shadow: 0 3px 10px rgba(83, 204, 34, 0.1);
   border-bottom: 2px solid $primary;
+
+  @include themed {
+    background-color: t("header");
+    border-color: t("borderColor");
+  }
 }
 
 .logo {

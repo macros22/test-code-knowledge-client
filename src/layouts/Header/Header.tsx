@@ -29,7 +29,7 @@ export const Header = () => {
   const { snippetsInfo } = useSnippetsInfo();
 
   return (
-    <Navbar bg="white" expand="lg" className={styles.navbar}>
+    <Navbar expand="lg" className={styles.navbar}>
       <Container>
         <Logo />
         <Navbar.Toggle className={styles.burgerMenu} />

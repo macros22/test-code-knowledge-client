@@ -1,0 +1,7 @@
+@import 'assets/_theme.scss';
+
+.divider {
+    @include themed {
+        border-color: t("borderColor");
+    }
+}

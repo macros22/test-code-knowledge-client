@@ -3,6 +3,7 @@
 @import 'assets/colors';
 @import 'assets/_theme.scss';
 
+
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -16,17 +17,22 @@
 .card {
   // background-color: $white;
   border-radius: $border-radius;
-  border: $border;
+  border: $border;  
   width: max-content;
   width: 25%;
   padding: $spacer;
 
   @include themed {
     background-color: t("subtleBackground");
+    border-color: t("borderColor");
   }
 
   &Title {
     text-align: center;
+
+    @include themed {
+      color: t("highContrastText");
+    }
   }
 
   &Bracket {
@@ -40,11 +46,20 @@
     align-items: center;
     gap: $spacer;
     flex-wrap: wrap;
+
+    @include themed {
+      color: t("highContrastText");
+    }
   }
 
-  &Link {
+  &LinkOld {
     border-bottom: $border-width solid $secondary;
     padding: $spacer * 0.5;
+    
+    @include themed {
+      border-color: t("borderColor");
+      color: t("highContrastText");
+    }
 
     &:hover {
       border-bottom: $border-width solid $danger;

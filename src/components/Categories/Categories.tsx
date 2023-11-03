@@ -1,4 +1,5 @@
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
+import { Divider } from 'components/ui/Divider';
 import { useQuestionsInfo } from 'libs/hooks';
 import { useSnippetsInfo } from 'libs/hooks/items/snippets/useSnippetssInfo';
 import Link from 'next/link';
@@ -49,23 +50,26 @@ export const Categories = (): JSX.Element => {
                 <span className={styles.cardBracket}>{' }'}</span>
               </h3>
 
-              <hr />
+              <Divider />
 
               <div className={styles.cardButtons}>
-                <Link
-                  href={`/questions/${questionsInfo[category].categoryURLName}`}>
-                  <a className={styles.cardLink}>
-                    Questions: {questionsInfo[category].amount}
-                  </a>
-                </Link>
+                <Button variant='danger' size="sm">
+                  <Link
+                    href={`/questions/${questionsInfo[category].categoryURLName}`}>
+                    <a className={styles.cardLink}>
+                      Questions: {questionsInfo[category].amount}
+                    </a>
+                  </Link>
+                </Button>
                 {/* //?skip=0&limit=5 */}
-                <Link
-                  href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
-                  <a className={styles.cardLink}>
-                    Snippets: {snippetsInfo[category].amount}
-                  </a>
-                </Link>
-
+                <Button variant="primary" size="sm">
+                  <Link
+                    href={`/snippets/${snippetsInfo[category].categoryURLName}`}>
+                    <a className={styles.cardLink}>
+                      Snippets: {snippetsInfo[category].amount}
+                    </a>
+                  </Link>
+                </Button>
                 {/* <Button
 
 									variant='secondary'
