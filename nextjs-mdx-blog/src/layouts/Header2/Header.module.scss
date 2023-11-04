@@ -1,0 +1,52 @@
+@import 'assets/colors';
+
+.bracket {
+  color: $danger;
+}
+
+.navbar {
+  box-shadow: 0 3px 10px rgba(83, 204, 34, 0.1);
+  border-bottom: 2px solid $primary;
+}
+
+.logo {
+  letter-spacing: 1.82px;
+  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: 700;
+  color: $dark !important;
+
+  &:hover {
+    color: $danger !important;
+  }
+}
+
+.navbarDropdownItem {
+  a {
+    // font-weight: 600 !important;
+    &:active {
+      color: $white !important;
+    }
+  }
+}
+
+.navbarLinks {
+  font-weight: 600 !important;
+  color: $gray-600 !important;
+
+  &:active,
+  &:hover {
+    color: inherit !important;
+  }
+}
+
+.burgerMenu {
+  border: none !important;
+
+  &:focus,
+  &:active,
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  min-height: 100vh;
+}
+
+.body {
+  overflow-y: auto;
+  outline: none;
+}

@@ -1,11 +1,11 @@
 import { ThemeProvider } from '@/app/providers'
 import { Container } from '@/components/Container'
-import { Navigation } from '@/components/Navigation'
-import ThemeSwitch from '@/components/ThemeSwitch'
 import { WEBSITE_HOST_URL } from '@/lib/constants'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './global.css'
+import { Header } from '@/layouts/header/header'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
 
 const meta = {
   title: 'Hunter Chang - Website',
@@ -52,18 +52,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <header className="py-4">
-            <Container>
-              <div className="flex items-center justify-between py-6">
-                <Navigation />
-                <ThemeSwitch />
-              </div>
-            </Container>
-          </header>
-          <main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          enableColorScheme
+        >
+          <Header />
+          <main className="bg-gray-200 pt-5 dark:bg-background">
             <Container>{children}</Container>
           </main>
+
+          <TailwindIndicator />
+
           <footer className="py-16">
             <Container>
               <p>
@@ -77,5 +78,19 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    //   <html lang="en" suppressHydrationWarning>
+    //   <head />
+    //   <body
+    //     className={"min-h-screen bg-background font-sans antialiased"}
+    //   >
+    //     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    //       <div className="relative flex min-h-screen flex-col mx-auto sm" >
+    //         <Header />
+    //         <div className="flex-1 container mx-auto content-center">{children}</div>
+    //       </div>
+    //       <TailwindIndicator />
+    //     </ThemeProvider>
+    //   </body>
+    // </html>
   )
 }

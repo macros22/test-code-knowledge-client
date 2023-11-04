@@ -1,4 +1,5 @@
 import { PostCard } from '@/components/PostCard'
+import { Categories } from '@/components/categories'
 import { Button } from '@/components/ui/button'
 import { allPosts } from 'contentlayer/generated'
 import { compareDesc } from 'date-fns'
@@ -11,7 +12,8 @@ export default function Home() {
   )
 
   return (
-    <div>
+    <>
+      <Categories />
       <div className="space-y-7">
         <h1>Home Page</h1>
         <p>
@@ -64,6 +66,6 @@ export default function Home() {
           <PostCard key={idx} {...post} />
         ))}
       </div>
-    </div>
+    </>
   )
 }
