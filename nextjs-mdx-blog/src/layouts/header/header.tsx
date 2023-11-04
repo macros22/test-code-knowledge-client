@@ -6,33 +6,30 @@ import { Icons } from '@/components/icons'
 import { MainNav } from '@/components/main-nav'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Container } from '../../components/Container'
-import { ComboboxDemo } from './snippets/snippets2'
-
-
+import { NavSelect } from './nav-select'
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: 'next.js',
+    label: 'Next.js',
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: 'sveltekit',
+    label: 'SvelteKit',
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: 'nuxt.js',
+    label: 'Nuxt.js',
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: 'remix',
+    label: 'Remix',
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: 'astro',
+    label: 'Astro',
   },
 ]
- 
 
 export function Header() {
   return (
@@ -41,7 +38,7 @@ export function Header() {
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
-            <ComboboxDemo items={frameworks}/>
+            <NavSelect items={frameworks} />
             <Link href="/" className="nav-link">
               Home
             </Link>
