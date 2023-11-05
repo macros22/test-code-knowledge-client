@@ -89,7 +89,6 @@ export const Categories = () => {
                 <Button
                   size="lg"
                   className="w-full"
-                  
                   onClick={passTestButtonHandler(category)}
                 >
                   <ShieldCheck className="mr-1" />

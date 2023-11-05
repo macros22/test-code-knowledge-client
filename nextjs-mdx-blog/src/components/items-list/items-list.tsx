@@ -100,7 +100,8 @@ export const ItemsList = ({
               >
                 {category}
 
-                <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-black p-2 text-sm font-semibold text-white dark:bg-primary dark:text-black">
+                {/* <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-black p-2 text-sm font-semibold text-white dark:bg-primary dark:text-black"> */}
+                <span className="ml-2 inline-flex items-center justify-center rounded-full   text-primary">
                   {/* {`${category}: ${itemsInfo[category].amount}`} */}
                   {itemsInfo[category].amount}
                 </span>

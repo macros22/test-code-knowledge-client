@@ -16,6 +16,8 @@ import {
 } from '@/lib/constants/names.storage'
 import { Code } from '@/components/ui/code'
 import { TestProps } from './test.props'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const styles = {}
 
@@ -80,46 +82,47 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
 
   return (
     <>
-      <h1>asdasd</h1>
       {questions.length && (
         <div className={styles.wrapper}>
-          <div className={styles.questionNumbers}>
+          <div className="flex flex-wrap gap-2">
             {questions.map((question, index) => {
-              let spanStyle = ''
+              let variant: 'outline' | 'default' | 'secondary' = 'secondary'
               if (currentQuestion == index) {
-                spanStyle = styles.currentItem
+                variant = 'default'
               } else if (currentQuestion < index) {
-                spanStyle = styles.nextItem
+                variant = 'outline'
               }
 
               return (
-                <span className={spanStyle} key={question.id}>
+                <Badge variant={variant} key={question.id} className="text-md">
                   {index + 1}
-                </span>
+                </Badge>
               )
             })}
           </div>
-          <div className={styles.content}>
-            <h4 className={styles.questionTitle}>
-              {questions[currentQuestion].question}
-            </h4>
-            <hr />
-            {questions[currentQuestion].codeExample && (
-              <Code
-                codeExample={questions[currentQuestion].codeExample}
-                language="typescript"
-              />
-            )}
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle>{questions[currentQuestion].question}</CardTitle>
+            </CardHeader>
+            <hr className="mx-6" />
+            <CardContent className="pt-6">
+              {questions[currentQuestion].codeExample && (
+                <Code
+                  codeExample={questions[currentQuestion].codeExample}
+                  language="typescript"
+                />
+              )}
 
-            {checkedAnswers.length && (
-              <AnswersList
-                checkedAnswers={checkedAnswers}
-                currentQuestion={currentQuestion}
-                setCheckedAnswers={setCheckedAnswers}
-                answers={questions[currentQuestion].answers}
-              />
-            )}
-          </div>
+              {checkedAnswers.length && (
+                <AnswersList
+                  checkedAnswers={checkedAnswers}
+                  currentQuestion={currentQuestion}
+                  setCheckedAnswers={setCheckedAnswers}
+                  answers={questions[currentQuestion].answers}
+                />
+              )}
+            </CardContent>
+          </Card>
           <div className={styles.buttons}>
             {currentQuestion < questions.length - 1 ? (
               <Button onClick={nextButtonHandler}>Next</Button>

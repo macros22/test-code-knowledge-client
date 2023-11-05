@@ -111,10 +111,8 @@ const TestPage = ({
 
   return (
     <>
-      <h1>asdasd</h1>
       {questions && questions.length && category && (
         <>
-          <h1>asdasd</h1>
           <Test questions={questions} />
         </>
       )}
