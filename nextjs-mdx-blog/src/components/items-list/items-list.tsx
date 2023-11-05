@@ -86,7 +86,7 @@ export const ItemsList = ({
   justify-content: center;
   gap: $spacer * 1.2;
   font-size: 18px; */}
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="mx-auto flex w-4/6 flex-wrap justify-center gap-4">
           {Object.keys(itemsInfo).map((category) => {
             return (
               <Badge

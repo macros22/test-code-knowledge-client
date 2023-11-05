@@ -19,7 +19,7 @@ import { useState } from 'react'
 import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
 import { ItemsMode } from '@/lib/interfaces/common.interface'
 
-export function NavSelect({ itemsMode }: { itemsMode: ItemsMode }) {
+export function NavSelect({ itemsMode }: { itemsMode: ItemsMode | 'test' }) {
   const [isOpen, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const router = useRouter()
@@ -32,7 +32,7 @@ export function NavSelect({ itemsMode }: { itemsMode: ItemsMode }) {
           variant="ghost"
           role="combobox"
           aria-expanded={isOpen}
-          className="justify-between"
+          className="justify-between text-sm capitalize text-muted-foreground"
         >
           {/* {value
             ? items.find((framework) => framework.value === value)?.label

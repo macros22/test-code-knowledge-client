@@ -2,9 +2,10 @@ import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import styles from './AuthLayout.module.scss'
 import { AuthLayoutProps } from './AuthLayout.props'
 import { useUser } from '@/lib/hooks'
+
+const styles = {}
 
 export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   const { isLoggedIn } = useUser()

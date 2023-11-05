@@ -11,6 +11,7 @@ export const useQuestionsInfo = () => {
     mutate: mutateCounts,
     error,
   } = useSWR(url, api.getQuestionsInfo)
+
   const isLoadingQuestionsInfo = !questionsInfo && !error
 
   return {

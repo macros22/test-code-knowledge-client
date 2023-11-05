@@ -20,11 +20,11 @@ export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   const { isLoggedIn } = useUser()
   const router = useRouter()
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace('/auth/sign-in')
-    }
-  }, [isLoggedIn])
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     router.replace('/auth/sign-in')
+  //   }
+  // }, [isLoggedIn])
 
   // if (!isLoggedIn) {
   //   return (

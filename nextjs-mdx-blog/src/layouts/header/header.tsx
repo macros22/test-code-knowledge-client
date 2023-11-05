@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { siteConfig } from '@/config/site'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
-import { MainNav } from '@/components/main-nav'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Container } from '../../components/Container'
+import { Container } from '@/components/Container'
 import { NavSelect } from './nav-select'
 import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
+import { Logo } from './logo'
 
 export function Header() {
   const { mutateUser, isLoggedIn } = useUser()
@@ -21,28 +21,37 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <Container className="flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-        <MainNav items={siteConfig.mainNav} />
+        <Logo />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
             <NavSelect itemsMode="snippets" />
             <NavSelect itemsMode="questions" />
-            <Link href="/" className="nav-link">
-              Home
-            </Link>
-            <Link href="/about" className="nav-link">
-              About
-            </Link>
+            <NavSelect itemsMode="test" />
             {isLoggedIn ? (
               <>
                 <Link href="/profile">
-                  <Button variant="ghost">Profile</Button>
+                  <Button
+                    variant="ghost"
+                    className="text-sm capitalize text-muted-foreground"
+                  >
+                    Profile
+                  </Button>
                 </Link>
-                <Button variant="ghost" onClick={logoutHandler}>
+                <Button
+                  variant="ghost"
+                  className="text-sm capitalize text-muted-foreground"
+                  onClick={logoutHandler}
+                >
                   Logout
                 </Button>
               </>
             ) : (
-              <Link href="/auth/sign-in">SignIn</Link>
+              <Link
+                href="/auth/sign-in"
+                className="text-sm capitalize text-muted-foreground"
+              >
+                SignIn
+              </Link>
             )}
             <Link
               href={siteConfig.links.github}
