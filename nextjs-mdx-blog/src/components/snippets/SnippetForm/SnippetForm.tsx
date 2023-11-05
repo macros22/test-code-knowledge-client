@@ -1,22 +1,22 @@
-import React from 'react';
+import React from 'react'
 // import styles from './SnippetForm.module.scss';
-import { ISnippetFormProps } from './SnippetForm.props';
-import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
+import { ISnippetFormProps } from './SnippetForm.props'
+import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import {
   BsPlusLg,
   BsTrash2Fill,
   BsFillTerminalFill,
-  BsChevronUp
-} from 'react-icons/bs';
-import { useSnippetForm } from './useSnippetForm.hook';
-import { useSnippetsInfo } from '@/lib/hooks';
+  BsChevronUp,
+} from 'react-icons/bs'
+import { useSnippetForm } from './useSnippetForm.hook'
+import { useSnippetsInfo } from '@/lib/hooks'
 // import { HrWithContent } from 'components';
 // import { useSnippetsInfo } from 'libs/hooks';
 
 export const SnippetForm = ({
   snippetItem,
   mode,
-  setIsModalOpen
+  setIsModalOpen,
 }: ISnippetFormProps): JSX.Element => {
   const {
     snippet,
@@ -40,17 +40,17 @@ export const SnippetForm = ({
     // handleDeleteAnswerButton,
     resetErrors,
     handleSubmitForm,
-    handleResetButton
+    handleResetButton,
   } = useSnippetForm({
     snippetItem,
-    mode
-  });
+    mode,
+  })
 
   const handleCloseModalButton = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
-  const { snippetsInfo } = useSnippetsInfo();
+  const { snippetsInfo } = useSnippetsInfo()
 
   return (
     <Form>
@@ -63,12 +63,12 @@ export const SnippetForm = ({
         value={category}
         onChange={handleSelectCategory}
       >
-        {Object.keys(snippetsInfo).map(category => {
+        {Object.keys(snippetsInfo).map((category) => {
           return (
             <option value={category} key={category}>
               {category}
             </option>
-          );
+          )
         })}
       </Form.Select>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -78,19 +78,19 @@ export const SnippetForm = ({
           placeholder="Enter Snippet"
           value={description}
           name="description"
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <Form.Text className="text-error">{descriptionError}</Form.Text>
       </Form.Group>
       <Form.Group className="mb-2" controlId="formBasicPassword">
         {/* <HrWithContent className={styles.title}> */}
-          <BsFillTerminalFill /> Snippet
+        <BsFillTerminalFill /> Snippet
         {/* </HrWithContent> */}
         <Form.Control
           as="textarea"
           placeholder="Snippet"
           value={snippet}
-          onChange={e => setSnippet(e.target.value)}
+          onChange={(e) => setSnippet(e.target.value)}
           // className={styles.textareaSnippet}
         />
       </Form.Group>
@@ -113,5 +113,5 @@ export const SnippetForm = ({
         </Col>
       </Row>
     </Form>
-  );
-};
+  )
+}

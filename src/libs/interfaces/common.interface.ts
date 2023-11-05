@@ -12,4 +12,4 @@ export interface IItemsInfo
     }
   > {}
 
-export type ItemsName = 'snippets' | 'questions';
+export type ItemsMode = 'snippets' | 'questions';

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -15,14 +14,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
+import { ItemsMode } from '@/lib/interfaces/common.interface'
 
-export function NavSelect({
-  items,
-}: {
-  items: { value: string; label: string }[]
-}) {
-  const [isOpen, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState('')
+export function NavSelect({ itemsMode }: { itemsMode: ItemsMode }) {
+  const [isOpen, setOpen] = useState(false)
+  const [value, setValue] = useState('')
+  const router = useRouter()
+  const { itemsInfo } = useItemsInfo(itemsMode)
 
   return (
     <Popover open={isOpen} onOpenChange={setOpen}>
@@ -36,7 +37,7 @@ export function NavSelect({
           {/* {value
             ? items.find((framework) => framework.value === value)?.label
             : "Select framework..."} */}
-          snippets
+          {itemsMode}
           {isOpen ? (
             <ChevronUp className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           ) : (
@@ -46,27 +47,32 @@ export function NavSelect({
       </PopoverTrigger>
       <PopoverContent className="w-[160px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandInput placeholder={`Search ${itemsMode}...`} />
+          <CommandEmpty>No {itemsMode} found.</CommandEmpty>
           <CommandGroup>
-            {items.map((framework) => (
-              <CommandItem
-                key={framework.value}
-                value={framework.value}
-                onSelect={(currentValue) => {
-                  setValue(currentValue === value ? '' : currentValue)
-                  setOpen(false)
-                }}
-              >
-                <Check
-                  className={cn(
-                    'mr-2 h-4 w-4',
-                    value === framework.value ? 'opacity-100' : 'opacity-0',
-                  )}
-                />
-                {framework.label}
-              </CommandItem>
-            ))}
+            {Object.keys(itemsInfo).map((category) => {
+              return (
+                <CommandItem
+                  key={category}
+                  value={category}
+                  onSelect={(currentValue) => {
+                    setValue(currentValue === value ? '' : currentValue)
+                    setOpen(false)
+                    router.replace(
+                      `/${itemsMode}/${itemsInfo[category].categoryURLName}`,
+                    )
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      'mr-2 h-4 w-4',
+                      value === category ? 'opacity-100' : 'opacity-0',
+                    )}
+                  />
+                  {category}
+                </CommandItem>
+              )
+            })}
           </CommandGroup>
         </Command>
       </PopoverContent>

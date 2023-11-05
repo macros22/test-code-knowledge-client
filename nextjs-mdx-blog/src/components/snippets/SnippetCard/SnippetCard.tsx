@@ -1,26 +1,26 @@
-import React from 'react';
-import { ISnippetCardProps } from './SnippetCard.props';
+import React from 'react'
+import { ISnippetCardProps } from './SnippetCard.props'
 import {
   BsPencilFill,
   BsFillTrashFill,
   BsChevronDown,
-  BsChevronUp
-} from 'react-icons/bs';
+  BsChevronUp,
+} from 'react-icons/bs'
 
-import { Badge } from 'react-bootstrap';
-import { useSnippetsApi } from '@/lib/hooks';
-import { Code } from '@/components/ui/code';
+import { Badge } from 'react-bootstrap'
+import { useSnippetsApi } from '@/lib/hooks'
+import { Code } from '@/components/ui/code'
 
 export const SnippetCard = ({
   snippet,
   handleEditButton,
   withEdit = false,
-  index
+  index,
 }: ISnippetCardProps): JSX.Element => {
-  const { api } = useSnippetsApi();
+  const { api } = useSnippetsApi()
   const handleDeleteButton = async () => {
-    await api.deleteSnippet(snippet.id);
-  };
+    await api.deleteSnippet(snippet.id)
+  }
 
   return (
     <>
@@ -59,5 +59,5 @@ export const SnippetCard = ({
       </div> */}
       <Code codeExample={snippet.snippet} language="tsx" />
     </>
-  );
-};
+  )
+}

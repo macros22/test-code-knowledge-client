@@ -1,9 +1,10 @@
 import { IQuestion } from '@/lib/interfaces/questions.interface'
+import { ISnippet } from '@/lib/interfaces/snippets.interface'
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
-export interface IQuestionFormProps
+export interface IItemsListProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  questionItem: IQuestion
-  mode: 'add' | 'edit'
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  itemsName: 'snippets' | 'questions'
+  items: IQuestion[] | ISnippet[]
+  category: string
 }

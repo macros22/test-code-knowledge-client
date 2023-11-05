@@ -1,4 +1,4 @@
-import { IQuestion } from "@/lib/interfaces/questions.interface";
+import { IQuestion } from '@/lib/interfaces/questions.interface'
 
 export const getQuestionExample = (category: string): IQuestion => ({
   id: '12345',
@@ -11,8 +11,8 @@ export const getQuestionExample = (category: string): IQuestion => ({
     { answer: 'first', isCorrect: true },
     { answer: 'second', isCorrect: false },
     { answer: 'third', isCorrect: false },
-    { answer: 'fourth', isCorrect: false }
+    { answer: 'fourth', isCorrect: false },
   ],
   tags: ['tag1'],
-  infoLinks: []
-});
+  infoLinks: [],
+})

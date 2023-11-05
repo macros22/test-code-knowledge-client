@@ -1,21 +1,20 @@
-import React from 'react';
-import { IQuestionFormProps } from './QuestionForm.props';
-import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
+import React from 'react'
+import { IQuestionFormProps } from './QuestionForm.props'
+import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import {
   BsPlusLg,
   BsTrash2Fill,
   BsFillTerminalFill,
-  BsChevronUp
-} from 'react-icons/bs';
-import { useQuestionForm } from './useQuestionForm.hook';
-import { useQuestionsInfo } from '@/lib/hooks';
-import { deepCopy } from '@/lib/helpers/deep-copy';
-
+  BsChevronUp,
+} from 'react-icons/bs'
+import { useQuestionForm } from './useQuestionForm.hook'
+import { useQuestionsInfo } from '@/lib/hooks'
+import { deepCopy } from '@/lib/helpers/deep-copy'
 
 export const QuestionForm = ({
   questionItem,
   mode,
-  setIsModalOpen
+  setIsModalOpen,
 }: IQuestionFormProps): JSX.Element => {
   const {
     question,
@@ -44,20 +43,20 @@ export const QuestionForm = ({
     setTags,
     handleAddTagButton,
     handleDeleteTagButton,
-    infoLinks
+    infoLinks,
   } = useQuestionForm({
     questionItem,
-    mode
-  });
+    mode,
+  })
 
   const handleCloseModalButton = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
-  const { questionsInfo } = useQuestionsInfo();
+  const { questionsInfo } = useQuestionsInfo()
 
   return (
-    <Form >
+    <Form>
       {/* //className={styles.form} */}
       {/* <HrWithContent className={styles.title}>Category</HrWithContent> */}
 
@@ -67,12 +66,12 @@ export const QuestionForm = ({
         value={category}
         onChange={handleSelectCategory}
       >
-        {Object.keys(questionsInfo).map(category => {
+        {Object.keys(questionsInfo).map((category) => {
           return (
             <option value={category} key={category}>
               {category}
             </option>
-          );
+          )
         })}
       </Form.Select>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -81,7 +80,7 @@ export const QuestionForm = ({
           placeholder="Enter question"
           value={question}
           name="Question"
-          onChange={e => setQuestion(e.target.value)}
+          onChange={(e) => setQuestion(e.target.value)}
         />
         <Form.Text className="text-error">{questionError}</Form.Text>
       </Form.Group>
@@ -94,14 +93,14 @@ export const QuestionForm = ({
           as="textarea"
           placeholder="Code"
           value={codeExample}
-          onChange={e => setCodeExample(e.target.value)}
+          onChange={(e) => setCodeExample(e.target.value)}
           // className={styles.textareaCodeExample}
         />
         <Form.Check
           type="checkbox"
           label="Show code example?"
           checked={isCodeExampleChecked}
-          onClick={() => setIsCodeExampleChecked(checked => !checked)}
+          onClick={() => setIsCodeExampleChecked((checked) => !checked)}
         />
       </Form.Group>
 
@@ -114,24 +113,24 @@ export const QuestionForm = ({
             <Form.Control
               aria-label="Text input with checkbox"
               value={answers[index].answer}
-              onChange={e => {
-                e.preventDefault();
-                setAnswers(answers => {
-                  const updatedAnswers = deepCopy(answers);
-                  updatedAnswers[index].answer = e.target.value;
-                  return updatedAnswers;
-                });
+              onChange={(e) => {
+                e.preventDefault()
+                setAnswers((answers) => {
+                  const updatedAnswers = deepCopy(answers)
+                  updatedAnswers[index].answer = e.target.value
+                  return updatedAnswers
+                })
               }}
             />
             <InputGroup.Checkbox
               aria-label="Checkbox for following text input"
               checked={answers[index].isChecked}
               onChange={() =>
-                setAnswers(answers => {
-                  const updatedAnswers = deepCopy(answers);
+                setAnswers((answers) => {
+                  const updatedAnswers = deepCopy(answers)
                   updatedAnswers[index].isChecked =
-                    !updatedAnswers[index].isChecked;
-                  return updatedAnswers;
+                    !updatedAnswers[index].isChecked
+                  return updatedAnswers
                 })
               }
             />
@@ -143,7 +142,7 @@ export const QuestionForm = ({
               {` Delete`}
             </Button>
           </InputGroup>
-        );
+        )
       })}
 
       {/* <HrWithContent className={styles.title}>
@@ -201,5 +200,5 @@ export const QuestionForm = ({
         </Col>
       </Row>
     </Form>
-  );
-};
+  )
+}

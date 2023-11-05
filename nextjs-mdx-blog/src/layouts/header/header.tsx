@@ -1,50 +1,49 @@
 import Link from 'next/link'
 
 import { siteConfig } from '@/config/site'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 import { MainNav } from '@/components/main-nav'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Container } from '../../components/Container'
 import { NavSelect } from './nav-select'
-
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-]
+import { useUser } from '@/lib/hooks'
+import { authApi } from '@/lib/api/auth.api'
 
 export function Header() {
+  const { mutateUser, isLoggedIn } = useUser()
+
+  const logoutHandler = async () => {
+    await authApi.logout()
+    mutateUser({ isGuest: true })
+  }
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <Container className="flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
-            <NavSelect items={frameworks} />
+            <NavSelect itemsMode="snippets" />
+            <NavSelect itemsMode="questions" />
             <Link href="/" className="nav-link">
               Home
             </Link>
             <Link href="/about" className="nav-link">
               About
             </Link>
+            {isLoggedIn ? (
+              <>
+                <Link href="/profile">
+                  <Button variant="ghost">Profile</Button>
+                </Link>
+                <Button variant="ghost" onClick={logoutHandler}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link href="/auth/sign-in">SignIn</Link>
+            )}
             <Link
               href={siteConfig.links.github}
               target="_blank"

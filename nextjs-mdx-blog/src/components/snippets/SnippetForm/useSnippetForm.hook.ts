@@ -1,33 +1,32 @@
-import React from 'react';
-import { ValidationError } from 'yup';
-import { snippetSchema } from './snippet.schema';
-import { ISnippetFormProps } from './SnippetForm.props';
-import { useSnippets, useSnippetsApi } from '@/lib/hooks';
-import { ISnippetDto } from '@/lib/interfaces/snippets.interface';
-
+import React from 'react'
+import { ValidationError } from 'yup'
+import { snippetSchema } from './snippet.schema'
+import { ISnippetFormProps } from './SnippetForm.props'
+import { useSnippets, useSnippetsApi } from '@/lib/hooks'
+import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
 
 export const useSnippetForm = ({
   snippetItem,
-  mode
+  mode,
 }: Pick<ISnippetFormProps, 'mode' | 'snippetItem'>) => {
   // Category.
-  const [category, setCategory] = React.useState<string>(snippetItem.category);
+  const [category, setCategory] = React.useState<string>(snippetItem.category)
 
   const handleSelectCategory = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setCategory(event.target.value as string);
-  };
+    setCategory(event.target.value as string)
+  }
 
   // Snippet.
-  const [snippet, setSnippet] = React.useState<string>(snippetItem.snippet);
-  const [snippetError, setSnippetError] = React.useState<string>('');
+  const [snippet, setSnippet] = React.useState<string>(snippetItem.snippet)
+  const [snippetError, setSnippetError] = React.useState<string>('')
 
   // Description.
   const [description, setDescription] = React.useState<string>(
-    snippetItem.description
-  );
-  const [descriptionError, setDescriptionError] = React.useState<string>('');
+    snippetItem.description,
+  )
+  const [descriptionError, setDescriptionError] = React.useState<string>('')
 
   // const handleAddAnswerButton = () => {
   //     const newAnswer: IUserAnswer = {
@@ -59,29 +58,29 @@ export const useSnippetForm = ({
   // }
 
   const resetErrors = () => {
-    setSnippetError('');
-    setDescriptionError('');
+    setSnippetError('')
+    setDescriptionError('')
     // setAnswersErrors(new Array(snippetItem.answers.length).fill(''));
-  };
+  }
 
   const isValidForm = async () => {
-    resetErrors();
-    let isValid = true;
+    resetErrors()
+    let isValid = true
 
     try {
       await snippetSchema.validate({
         snippet,
         description,
-        category
-      });
+        category,
+      })
     } catch (error) {
       if (error instanceof ValidationError) {
-        isValid = false;
-        console.log(error.path);
+        isValid = false
+        console.log(error.path)
         if (error.path == 'snippet') {
-          setSnippetError(error.errors[0]);
+          setSnippetError(error.errors[0])
         } else if (error.path == 'description') {
-          setDescriptionError(error.errors[0]);
+          setDescriptionError(error.errors[0])
         }
         //  else if (error.path?.endsWith('.answer')) {
         //     // ! TO DO: Refactore this block.
@@ -98,55 +97,55 @@ export const useSnippetForm = ({
       }
     }
 
-    return isValid;
-  };
+    return isValid
+  }
 
-  const { api } = useSnippetsApi();
-  const { mutateSnippets } = useSnippets({ category });
+  const { api } = useSnippetsApi()
+  const { mutateSnippets } = useSnippets({ category })
 
   const handleSubmitForm = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     const snippetPayload = {
       snippet,
       category,
       description,
       tags: [],
-      infoLinks: []
+      infoLinks: [],
       // answers: answers.map((answer) => ({
       //     answer: answer.answer,
       //     isCorrect: answer.isChecked,
       // })),
-    } as ISnippetDto;
+    } as ISnippetDto
 
     // if (await isValidForm()) {
     if (true) {
       switch (mode) {
         case 'add':
           try {
-            console.log(snippetPayload);
-            await api.postSnippet(snippetPayload);
-            mutateSnippets();
+            console.log(snippetPayload)
+            await api.postSnippet(snippetPayload)
+            mutateSnippets()
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
-          break;
+          break
         case 'edit':
           try {
-            await api.patchSnippet(snippetPayload, snippetItem.id);
-            mutateSnippets();
+            await api.patchSnippet(snippetPayload, snippetItem.id)
+            mutateSnippets()
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
-          break;
+          break
       }
     }
-  };
+  }
 
   const handleResetButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setSnippet(snippetItem.snippet);
-    setDescription(snippetItem.description);
-    setCategory(snippetItem.category);
-  };
+    setSnippet(snippetItem.snippet)
+    setDescription(snippetItem.description)
+    setCategory(snippetItem.category)
+  }
 
   return {
     snippet,
@@ -170,6 +169,6 @@ export const useSnippetForm = ({
     // handleDeleteAnswerButton,
     resetErrors,
     handleSubmitForm,
-    handleResetButton
-  };
-};
+    handleResetButton,
+  }
+}

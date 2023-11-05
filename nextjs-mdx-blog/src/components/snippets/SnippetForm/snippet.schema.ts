@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as yup from 'yup'
 
 export const snippetSchema = yup.object().shape({
   question: yup.string().required('Write description.'),
@@ -8,7 +8,7 @@ export const snippetSchema = yup.object().shape({
   infoLinks: yup.array().of(
     yup.object().shape({
       link: yup.string(),
-      description: yup.string()
-    })
-  )
-});
+      description: yup.string(),
+    }),
+  ),
+})

@@ -1,105 +1,104 @@
-import React from 'react';
-import { ValidationError } from 'yup';
-import { schema } from './question.schema';
-import { IQuestionFormProps } from './QuestionForm.props';
-import { deepCopy } from '@/lib/helpers/deep-copy';
-import { useQuestionsApi, useQuestions } from '@/lib/hooks';
-import { IInfoLink } from '@/lib/interfaces/common.interface';
-import { IUserAnswer, IQuestionDto } from '@/lib/interfaces/questions.interface';
-
+import React from 'react'
+import { ValidationError } from 'yup'
+import { schema } from './question.schema'
+import { IQuestionFormProps } from './QuestionForm.props'
+import { deepCopy } from '@/lib/helpers/deep-copy'
+import { useQuestionsApi, useQuestions } from '@/lib/hooks'
+import { IInfoLink } from '@/lib/interfaces/common.interface'
+import { IUserAnswer, IQuestionDto } from '@/lib/interfaces/questions.interface'
 
 export const useQuestionForm = ({
   questionItem,
-  mode
+  mode,
 }: Pick<IQuestionFormProps, 'mode' | 'questionItem'>) => {
   // Category.
-  const [category, setCategory] = React.useState<string>(questionItem.category);
+  const [category, setCategory] = React.useState<string>(questionItem.category)
 
   const handleSelectCategory = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setCategory(event.target.value as string);
-  };
+    setCategory(event.target.value as string)
+  }
 
   // Question.
-  const [question, setQuestion] = React.useState<string>(questionItem.question);
-  const [questionError, setQuestionError] = React.useState<string>('');
+  const [question, setQuestion] = React.useState<string>(questionItem.question)
+  const [questionError, setQuestionError] = React.useState<string>('')
 
   // Code example.
   const [codeExample, setCodeExample] = React.useState<string>(
-    questionItem.codeExample
-  );
+    questionItem.codeExample,
+  )
   const [isCodeExampleChecked, setIsCodeExampleChecked] =
-    React.useState<boolean>(true);
-  const [codeExampleError, setCodeExampleError] = React.useState<string>('');
+    React.useState<boolean>(true)
+  const [codeExampleError, setCodeExampleError] = React.useState<string>('')
 
   // Answers.
-  const initialAnswers = questionItem.answers.map(answer => ({
+  const initialAnswers = questionItem.answers.map((answer) => ({
     answer: answer.answer,
-    isChecked: answer.isCorrect
-  }));
+    isChecked: answer.isCorrect,
+  }))
 
-  const [answers, setAnswers] = React.useState<IUserAnswer[]>(initialAnswers);
+  const [answers, setAnswers] = React.useState<IUserAnswer[]>(initialAnswers)
   const [answersErrors, setAnswersErrors] = React.useState<string[]>(
-    new Array(questionItem.answers.length).fill('')
-  );
+    new Array(questionItem.answers.length).fill(''),
+  )
 
   const handleAddAnswerButton = () => {
     const newAnswer: IUserAnswer = {
       answer: '',
-      isChecked: false
-    };
+      isChecked: false,
+    }
 
-    setAnswers(answers => {
-      const newAnswers: IUserAnswer[] = deepCopy(answers);
-      newAnswers.push(newAnswer);
-      return newAnswers;
-    });
-  };
+    setAnswers((answers) => {
+      const newAnswers: IUserAnswer[] = deepCopy(answers)
+      newAnswers.push(newAnswer)
+      return newAnswers
+    })
+  }
 
   const handleDeleteAnswerButton = (index: number) => {
-    setAnswers(answers => {
-      const newAnswers: IUserAnswer[] = deepCopy(answers);
-      return newAnswers.filter((_, i) => i !== index);
-    });
-  };
+    setAnswers((answers) => {
+      const newAnswers: IUserAnswer[] = deepCopy(answers)
+      return newAnswers.filter((_, i) => i !== index)
+    })
+  }
 
   // Tags.
-  const [tags, setTags] = React.useState<string[]>(questionItem.tags);
+  const [tags, setTags] = React.useState<string[]>(questionItem.tags)
   const [tagsErrors, setTagsErrors] = React.useState<string[]>(
-    new Array(questionItem.tags.length).fill('')
-  );
+    new Array(questionItem.tags.length).fill(''),
+  )
 
   const handleDeleteTagButton = (index: number) => {
-    setTags(tags => {
-      return tags.filter((_, i) => i !== index);
-    });
-  };
+    setTags((tags) => {
+      return tags.filter((_, i) => i !== index)
+    })
+  }
 
   const handleAddTagButton = () => {
-    setTags(tags => [...tags, '']);
-  };
+    setTags((tags) => [...tags, ''])
+  }
 
   // InfoLinks.
   const [infoLinks, setInfoLinks] = React.useState<IInfoLink[]>(
-    questionItem.infoLinks
-  );
+    questionItem.infoLinks,
+  )
   const [infoLinksErrors, setInfoLinksErrors] = React.useState<string[]>(
-    new Array(questionItem.infoLinks.length).fill('')
-  );
+    new Array(questionItem.infoLinks.length).fill(''),
+  )
 
   // Reset errors before form validation.
   const resetErrors = () => {
-    setQuestionError('');
-    setCodeExampleError('');
-    setAnswersErrors(new Array(answers.length).fill(''));
-    setTagsErrors(new Array(tags.length).fill(''));
-    setInfoLinksErrors(new Array(infoLinks.length).fill(''));
-  };
+    setQuestionError('')
+    setCodeExampleError('')
+    setAnswersErrors(new Array(answers.length).fill(''))
+    setTagsErrors(new Array(tags.length).fill(''))
+    setInfoLinksErrors(new Array(infoLinks.length).fill(''))
+  }
 
   const isValidForm = async () => {
-    resetErrors();
-    let isValid = true;
+    resetErrors()
+    let isValid = true
 
     try {
       await schema.validate({
@@ -107,94 +106,94 @@ export const useQuestionForm = ({
         codeExample,
         answers,
         tags,
-        infoLinks
-      });
+        infoLinks,
+      })
     } catch (error) {
       if (error instanceof ValidationError) {
-        isValid = false;
-        console.log(error.path);
+        isValid = false
+        console.log(error.path)
         if (error.path == 'question') {
-          setQuestionError(error.errors[0]);
+          setQuestionError(error.errors[0])
         } else if (error.path == 'codeExample') {
-          setCodeExampleError(error.errors[0]);
+          setCodeExampleError(error.errors[0])
         } else if (error.path?.endsWith('.answer')) {
           // ! TO DO: Refactore this block.
-          const errorIndex = Number(error.path.match(/\d/g)?.join(''));
+          const errorIndex = Number(error.path.match(/\d/g)?.join(''))
 
           if (errorIndex >= 0) {
-            setAnswersErrors(array => {
-              const updatedArray = [...array];
-              updatedArray[errorIndex] = (error as ValidationError).errors[0];
-              return updatedArray;
-            });
+            setAnswersErrors((array) => {
+              const updatedArray = [...array]
+              updatedArray[errorIndex] = (error as ValidationError).errors[0]
+              return updatedArray
+            })
           }
         } else if (error.path?.startsWith('tags')) {
           // ! TO DO: Refactore this block.
-          const errorIndex = Number(error.path.match(/\d/g)?.join(''));
+          const errorIndex = Number(error.path.match(/\d/g)?.join(''))
 
           if (errorIndex >= 0) {
-            setTagsErrors(array => {
-              const updatedArray = [...array];
-              updatedArray[errorIndex] = (error as ValidationError).errors[0];
-              console.log(updatedArray);
-              return updatedArray;
-            });
+            setTagsErrors((array) => {
+              const updatedArray = [...array]
+              updatedArray[errorIndex] = (error as ValidationError).errors[0]
+              console.log(updatedArray)
+              return updatedArray
+            })
           }
         }
       }
     }
-    return isValid;
-  };
+    return isValid
+  }
 
-  const { api } = useQuestionsApi();
-  const { mutateQuestions } = useQuestions({ category });
+  const { api } = useQuestionsApi()
+  const { mutateQuestions } = useQuestions({ category })
 
   const handleSubmitForm = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     const questionPayload = {
       question,
       category,
       codeExample,
-      answers: answers.map(answer => ({
+      answers: answers.map((answer) => ({
         answer: answer.answer,
-        isCorrect: answer.isChecked
+        isCorrect: answer.isChecked,
       })),
       tags,
-      infoLinks
-    } as IQuestionDto;
+      infoLinks,
+    } as IQuestionDto
 
     if (await isValidForm()) {
       switch (mode) {
         case 'add':
           try {
-            await api.postQuestion(questionPayload);
-            mutateQuestions();
+            await api.postQuestion(questionPayload)
+            mutateQuestions()
             // setIsModalOpen(false);
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
-          break;
+          break
         case 'edit':
           try {
-            await api.patchQuestion(questionPayload, questionItem.id);
-            mutateQuestions();
+            await api.patchQuestion(questionPayload, questionItem.id)
+            mutateQuestions()
             // setIsModalOpen(false);
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
-          break;
+          break
       }
     }
-  };
+  }
 
   const handleResetButton = () => {
-    setQuestion(questionItem.question);
-    setCodeExample(questionItem.codeExample);
-    setCategory(questionItem.category);
-    setTags(questionItem.tags);
-    setInfoLinks(questionItem.infoLinks);
-    setAnswers(initialAnswers);
-  };
+    setQuestion(questionItem.question)
+    setCodeExample(questionItem.codeExample)
+    setCategory(questionItem.category)
+    setTags(questionItem.tags)
+    setInfoLinks(questionItem.infoLinks)
+    setAnswers(initialAnswers)
+  }
 
   return {
     question,
@@ -223,6 +222,6 @@ export const useQuestionForm = ({
     setTags,
     handleAddTagButton,
     handleDeleteTagButton,
-    infoLinks
-  };
-};
+    infoLinks,
+  }
+}

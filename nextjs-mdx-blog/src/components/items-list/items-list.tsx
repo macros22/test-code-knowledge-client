@@ -1,26 +1,26 @@
-import React from 'react';
+import React from 'react'
 // import styles from './ItemsList.module.scss';
-import { IItemsListProps } from './ItemsList.props';
-import { BsPlusLg } from 'react-icons/bs';
-import { Button, Card, Modal } from 'react-bootstrap';
-import { useRouter } from 'next/router';
+import { IItemsListProps } from './items-list.props'
+import { BsPlusLg } from 'react-icons/bs'
+import { Button, Card, Modal } from 'react-bootstrap'
+import { useRouter } from 'next/router'
 
-import dynamic from 'next/dynamic';
-import { IQuestionCardProps } from '@/components/questions/QuestionCard/QuestionCard.props';
-import { IQuestionFormProps } from '@/components/questions/QuestionForm/QuestionForm.props';
-import { ISnippetCardProps } from '@/components/snippets/SnippetCard/SnippetCard.props';
-import { ISnippetFormProps } from '@/components/snippets/SnippetForm/SnippetForm.props';
-import { getQuestionExample } from '@/components/questions/QuestionForm/questionExample';
-import { getSnippetExample } from '@/components/snippets/SnippetForm/snippetExample';
-import { useUser } from '@/lib/hooks';
-import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook';
-import { IQuestion } from '@/lib/interfaces/questions.interface';
-import { ISnippet } from '@/lib/interfaces/snippets.interface';
-import { QuestionCard } from '@/components/questions/QuestionCard/QuestionCard';
-import { SnippetCard } from '@/components/snippets/SnippetCard/SnippetCard';
-import { QuestionForm } from '@/components/questions/QuestionForm/QuestionForm';
-import { SnippetForm } from '@/components/snippets/SnippetForm/SnippetForm';
-
+import dynamic from 'next/dynamic'
+import { IQuestionCardProps } from '@/components/questions/QuestionCard/QuestionCard.props'
+import { IQuestionFormProps } from '@/components/questions/QuestionForm/QuestionForm.props'
+import { ISnippetCardProps } from '@/components/snippets/SnippetCard/SnippetCard.props'
+import { ISnippetFormProps } from '@/components/snippets/SnippetForm/SnippetForm.props'
+import { getQuestionExample } from '@/components/questions/QuestionForm/questionExample'
+import { getSnippetExample } from '@/components/snippets/SnippetForm/snippetExample'
+import { useUser } from '@/lib/hooks'
+import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
+import { IQuestion } from '@/lib/interfaces/questions.interface'
+import { ISnippet } from '@/lib/interfaces/snippets.interface'
+import { QuestionCard } from '@/components/questions/QuestionCard/QuestionCard'
+import { SnippetCard } from '@/components/snippets/SnippetCard/SnippetCard'
+import { QuestionForm } from '@/components/questions/QuestionForm/QuestionForm'
+import { SnippetForm } from '@/components/snippets/SnippetForm/SnippetForm'
+import { Badge } from '@/components/ui/badge'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(
@@ -46,34 +46,32 @@ import { SnippetForm } from '@/components/snippets/SnippetForm/SnippetForm';
 export const ItemsList = ({
   itemsName,
   items,
-  category: currentCategory
+  category: currentCategory,
 }: IItemsListProps): JSX.Element => {
-  const [currentItemIndex, setCurrentItemIndex] = React.useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = React.useState(0)
 
-  const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false);
-  const [isEditItemMode, setIsEditItemMode] = React.useState(false);
+  const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false)
+  const [isEditItemMode, setIsEditItemMode] = React.useState(false)
 
-  const { isLoggedIn, isAdmin } = useUser();
+  const { isLoggedIn, isAdmin } = useUser()
 
-  const { itemsInfo } = useItemsInfo(itemsName);
+  const { itemsInfo } = useItemsInfo(itemsName)
 
   const handleAddNewItemButton = () => {
-    setIsAddNewItemMode(true);
-  };
+    setIsAddNewItemMode(true)
+  }
 
   const makeHandleEditItemButton = (index: number) => {
     return () => {
-      setCurrentItemIndex(index);
-      setIsEditItemMode(true);
-    };
-  };
+      setCurrentItemIndex(index)
+      setIsEditItemMode(true)
+    }
+  }
 
-  const router = useRouter();
+  const router = useRouter()
   const categoryButtonHandler = (category: string) => {
-    router.replace(`/${itemsName}/${itemsInfo[category].categoryURLName}`);
-  };
-
-  console.log(items);
+    router.replace(`/${itemsName}/${itemsInfo[category].categoryURLName}`)
+  }
 
   return (
     // <div className={styles.wrapper}>
@@ -81,20 +79,33 @@ export const ItemsList = ({
     //     <div className={styles.categoryButtons}>
     <div>
       <div>
-      <div>
-          {Object.keys(itemsInfo).map(category => {
+        {/* width: fit-content;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: $spacer * 1.2;
+  font-size: 18px; */}
+        <div className="flex flex-wrap justify-center gap-4">
+          {Object.keys(itemsInfo).map((category) => {
             return (
-              <Button
-                variant={category == currentCategory ? 'primary' : 'secondary'}
-                className={
-                  category == currentCategory ? '' : '' //styles.inActiveButton
-                }
+              <Badge
+                variant={category == currentCategory ? 'default' : 'outline'}
+                className="hover: cursor-pointer p-2 text-lg"
+                // className={
+                //   category == currentCategory ? '' : '' //styles.inActiveButton
+                // }
                 key={category}
                 onClick={() => categoryButtonHandler(category)}
               >
-                {`${category}: ${itemsInfo[category].amount}`}
-              </Button>
-            );
+                {category}
+
+                <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-black p-2 text-sm font-semibold text-white dark:bg-primary dark:text-black">
+                  {/* {`${category}: ${itemsInfo[category].amount}`} */}
+                  {itemsInfo[category].amount}
+                </span>
+              </Badge>
+            )
           })}
         </div>
 
@@ -108,9 +119,9 @@ export const ItemsList = ({
 
       {/* <div className={styles.container}>
         <div className={styles.column}> */}
-        <div>
       <div>
-          {items && items.length ? (
+        <div className="mx-auto mt-4 flex w-9/12 flex-col gap-5">
+          {items && !!items.length ? (
             items.map((item, index) => {
               //@ts-ignore
               return (
@@ -133,7 +144,7 @@ export const ItemsList = ({
                     />
                   )}
                 </Card>
-              );
+              )
             })
           ) : (
             <Card
@@ -191,5 +202,5 @@ export const ItemsList = ({
         </Modal>
       )}
     </div>
-  );
-};
+  )
+}

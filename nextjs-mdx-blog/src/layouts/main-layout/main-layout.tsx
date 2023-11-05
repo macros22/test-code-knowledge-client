@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { FC, useContext } from 'react'
+import { FC, PropsWithChildren, useContext, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap'
 import cn from 'clsx'
 // const Header = dynamic(() => import('../Header/Header'))
@@ -10,22 +9,22 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { ThemeContext } from '@/contexts/theme.context'
-import { Header } from '@/layouts/header/header'
+import { Header } from '@/layouts/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Link } from 'lucide-react'
 import { Container } from '@/components/Container'
 import { Footer } from '../footer'
-// import Header from "layouts/Header/Header";
+import { useUser } from '@/lib/hooks'
 
-export const MainLayout: FC = ({ children }) => {
-  // const { isLoggedIn } = useUser();
-  // const router = useRouter();
+export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+  const { isLoggedIn } = useUser()
+  const router = useRouter()
 
-  // React.useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     // router.replace('/auth/sign-in')
-  //   };
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace('/auth/sign-in')
+    }
+  }, [isLoggedIn])
 
   // if (!isLoggedIn) {
   //   return (
@@ -49,9 +48,9 @@ export const MainLayout: FC = ({ children }) => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="flex h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-gray-100 dark:bg-background">
         <Header />
-        <main className="mb-auto h-full bg-gray-100 pt-5 dark:bg-background">
+        <main className="mb-auto pt-5 ">
           <Container>{children}</Container>
         </main>
         <Footer />

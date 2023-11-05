@@ -1,39 +1,33 @@
-import { useEffect, useState } from 'react';
-import { Badge } from 'react-bootstrap';
-import {
-  BsChevronDown,
-  BsChevronUp,
-  BsFillTrashFill,
-  BsPencilFill
-} from 'react-icons/bs';
-import cn from 'clsx';
+import { useEffect, useState } from 'react'
 
-import { IQuestionCardProps } from './QuestionCard.props';
-import { useQuestionsApi } from '@/lib/hooks';
-import { IAnswer } from '@/lib/interfaces/questions.interface';
-import { Code } from '@/components/ui/code';
+import cn from 'clsx'
+
+import { IQuestionCardProps } from './QuestionCard.props'
+import { useQuestionsApi } from '@/lib/hooks'
+import { IAnswer } from '@/lib/interfaces/questions.interface'
+import { Code } from '@/components/ui/code'
 
 export const QuestionCard = ({
   question,
   handleEditButton,
   withEdit = false,
-  index
+  index,
 }: IQuestionCardProps): JSX.Element => {
-  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
-  const [correctAnswers, setCorrectAnswers] = useState<IAnswer[]>([]);
+  const [isAnswerVisible, setIsAnswerVisible] = useState(false)
+  const [correctAnswers, setCorrectAnswers] = useState<IAnswer[]>([])
 
   const toggleAnswerVisibility = () => {
-    setIsAnswerVisible(isVisible => !isVisible);
-  };
+    setIsAnswerVisible((isVisible) => !isVisible)
+  }
 
-  const { api } = useQuestionsApi();
+  const { api } = useQuestionsApi()
   const handleDeleteButton = async () => {
-    await api.deleteQuestion(question.id);
-  };
+    await api.deleteQuestion(question.id)
+  }
 
   useEffect(() => {
-    setCorrectAnswers(question.answers.filter(answer => answer.isCorrect));
-  }, []);
+    setCorrectAnswers(question.answers.filter((answer) => answer.isCorrect))
+  }, [])
 
   return (
     <>
@@ -105,6 +99,7 @@ export const QuestionCard = ({
           </div>
         </div>
       </div> */}
+      <Code codeExample={question.codeExample} language="typescript" />
     </>
-  );
-};
+  )
+}
