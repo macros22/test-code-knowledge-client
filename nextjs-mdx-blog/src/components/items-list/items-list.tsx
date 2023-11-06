@@ -20,7 +20,7 @@ import { QuestionCard } from '@/components/questions/QuestionCard/QuestionCard'
 import { SnippetCard } from '@/components/snippets/SnippetCard/SnippetCard'
 import { QuestionForm } from '@/components/questions/QuestionForm/QuestionForm'
 import { SnippetForm } from '@/components/snippets/SnippetForm/SnippetForm'
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge/badge'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(

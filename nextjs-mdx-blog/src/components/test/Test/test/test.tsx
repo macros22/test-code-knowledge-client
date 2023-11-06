@@ -16,7 +16,7 @@ import {
 } from '@/lib/constants/names.storage'
 import { Code } from '@/components/ui/code'
 import { TestProps } from './test.props'
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const styles = {}

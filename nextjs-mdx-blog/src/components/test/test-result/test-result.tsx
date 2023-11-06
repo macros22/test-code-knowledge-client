@@ -10,7 +10,7 @@ import {
 import { isArraysEqual } from '@/lib/helpers/is-arrays-equal'
 import { useSessionStorage, useQuestionsInfo } from '@/lib/hooks'
 
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code } from '@/components/ui/code'
 import { Button } from '@/components/ui/button'
@@ -49,7 +49,7 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
         )
       case 'correct':
         return (
-          <Badge variant="default" className={className}>
+          <Badge variant="success" className={className}>
             Correct
           </Badge>
         )
@@ -77,7 +77,6 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
               />
               {answer}
             </label>
-
             {getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
           </li>
         )
