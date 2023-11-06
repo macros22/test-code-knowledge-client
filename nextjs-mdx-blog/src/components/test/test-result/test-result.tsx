@@ -140,7 +140,7 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.content}>
+      <div className='flex flex-col gap-4'>
         <h3 className={styles.title}>
           {`Correct answers:
 						${userAnswersStatus.filter((answerStatus) => answerStatus === true).length}
@@ -150,16 +150,18 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
           questions.map(({ question }, index) => {
             return (
               <Card
-                // className={cn(styles.card, {
-                //   [styles.successCard]: userAnswersStatus[index],
-                //   [styles.errorCard]: !userAnswersStatus[index],
-                // })}
+                className={cn({
+                  "border-success": userAnswersStatus[index],
+                  "border-destructive": !userAnswersStatus[index],
+                })}
                 key={index + question}
               >
                 <CardHeader>
-                  <CardTitle>Question {index + 1}</CardTitle>
-                  <hr className="mx-6" />
-                  <CardTitle>{questions[index].question}</CardTitle>
+                  
+                  <CardTitle className='flex gap-4 align-baseline'>
+                    {questions[index].question}
+                  <Badge variant='success'>Question {index + 1}</Badge>
+                  </CardTitle>
                 </CardHeader>
                 <hr className="mx-6" />
 
@@ -180,8 +182,9 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
               </Card>
             )
           })}
-        <Button onClick={newTestButtonHandler}>New test</Button>
+        
       </div>
+      <Button onClick={newTestButtonHandler}>New test</Button>
     </div>
   )
 }
