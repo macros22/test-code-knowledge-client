@@ -1,6 +1,7 @@
 import { deepCopy } from '@/lib/helpers/deep-copy'
 import { AnswersListProps } from './answers-list.props'
 import { Form } from 'react-bootstrap'
+import { Checkbox } from '@/components/ui/checkbox'
 // import styles from './AnswersList.module.scss';
 const styles = {}
 
@@ -20,22 +21,26 @@ export const AnswersList = ({
   }
 
   return (
-    <div className={styles.answersList}>
-      {answers.map((answer, index) => {
+    <ul className="mt-4 list-none">
+      {answers.map(({ answer }, index) => {
         return (
-          <li key={answer.answer}>
-            <Form.Check
-              className={styles.formCheck}
-              type={'checkbox'}
-              id={answer.answer}
-              label={answer.answer}
-              value={answer.answer}
-              checked={checkedAnswers[currentQuestion][index]}
-              onChange={() => handleOnChange(index)}
-            />
+          <li key={answer}>
+            <label
+              htmlFor="terms"
+              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              <Checkbox
+                id={answer}
+                value={answer}
+                onCheckedChange={() => handleOnChange(index)}
+                checked={checkedAnswers[currentQuestion][index]}
+                className="mr-2"
+              />
+              {answer}
+            </label>
           </li>
         )
       })}
-    </div>
+    </ul>
   )
 }

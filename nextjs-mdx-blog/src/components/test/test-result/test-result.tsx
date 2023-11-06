@@ -10,11 +10,12 @@ import {
 import { isArraysEqual } from '@/lib/helpers/is-arrays-equal'
 import { useSessionStorage, useQuestionsInfo } from '@/lib/hooks'
 
-import { Badge as Tag } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code } from '@/components/ui/code'
 import { Button } from '@/components/ui/button'
-// import { Tag, Code } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox'
+// import { Badge, Code } from 'lucide-react';
 const styles = {}
 
 const AnswersListResult: React.FC<IAnswersListResultProps> = ({
@@ -37,49 +38,51 @@ const AnswersListResult: React.FC<IAnswersListResultProps> = ({
       !answersList[index].isCorrect ? (result = 'empty') : (result = 'missing')
     }
 
+    const className = 'ml-auto'
+
     switch (result) {
       case 'error':
         return (
-          <Tag className={styles.tag} color="error">
+          <Badge variant="destructive" className={className}>
             Error
-          </Tag>
+          </Badge>
         )
       case 'correct':
         return (
-          <Tag className={styles.tag} color="success">
+          <Badge variant="default" className={className}>
             Correct
-          </Tag>
+          </Badge>
         )
       case 'missing':
         return (
-          <Tag className={styles.tag} color="info">
+          <Badge variant="outline" className={className}>
             Missing correct
-          </Tag>
+          </Badge>
         )
     }
   }
 
   return (
-    <div className={styles.answersList}>
-      {answers.map((answer, index) => {
+    <ul>
+      {answers.map(({ answer }, index) => {
         return (
-          <li className={styles.answer} key={answer.answer}>
-            {/* <Form.Check
-              className={styles.formCheck}
-              type={'checkbox'}
-              id={answer.answer}
-              label={answer.answer}
-              value={answer.answer}
-              checked={checkedAnswers[currentQuestion][index]}
-              disabled
-            /> */}
-            <div className={styles.tag}>
-              {getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
-            </div>
+          <li key={answer} className="flex">
+            <label className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <Checkbox
+                disabled
+                id={answer}
+                value={answer}
+                checked={checkedAnswers[currentQuestion][index]}
+                className="mr-2"
+              />
+              {answer}
+            </label>
+
+            {getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
           </li>
         )
       })}
-    </div>
+    </ul>
   )
 }
 
@@ -145,33 +148,36 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
 		 				from ${userAnswersStatus.length}`}
         </h3>
         {checkedAnswers.length &&
-          questions.map((question, index) => {
+          questions.map(({ question }, index) => {
             return (
               <Card
-                className={cn(styles.card, {
-                  [styles.successCard]: userAnswersStatus[index],
-                  [styles.errorCard]: !userAnswersStatus[index],
-                })}
-                key={index + question.question}
+                // className={cn(styles.card, {
+                //   [styles.successCard]: userAnswersStatus[index],
+                //   [styles.errorCard]: !userAnswersStatus[index],
+                // })}
+                key={index + question}
               >
-                <h5 className={styles.questionTitle}>Question {index + 1}</h5>
-                <hr />
-                <h5 className={styles.questionTitle}>
-                  {questions[index].question}
-                </h5>
-                <hr />
-                {questions[index].codeExample && (
-                  <Code
-                    codeExample={questions[index].codeExample}
-                    language="typescript"
-                  />
-                )}
+                <CardHeader>
+                  <CardTitle>Question {index + 1}</CardTitle>
+                  <hr className="mx-6" />
+                  <CardTitle>{questions[index].question}</CardTitle>
+                </CardHeader>
+                <hr className="mx-6" />
 
-                <AnswersListResult
-                  answers={questions[index].answers}
-                  currentQuestion={index}
-                  checkedAnswers={checkedAnswers}
-                />
+                <CardContent className="pt-6">
+                  {questions[index].codeExample && (
+                    <Code
+                      codeExample={questions[index].codeExample}
+                      language="typescript"
+                    />
+                  )}
+
+                  <AnswersListResult
+                    answers={questions[index].answers}
+                    currentQuestion={index}
+                    checkedAnswers={checkedAnswers}
+                  />
+                </CardContent>
               </Card>
             )
           })}
