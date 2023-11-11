@@ -1,6 +1,6 @@
 import React from 'react'
 // import styles from './SnippetForm.module.scss';
-import { ISnippetFormProps } from './SnippetForm.props'
+import { ISnippetFormProps } from './snippet-form.props'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import {
   BsPlusLg,
@@ -8,7 +8,7 @@ import {
   BsFillTerminalFill,
   BsChevronUp,
 } from 'react-icons/bs'
-import { useSnippetForm } from './useSnippetForm.hook'
+import { useSnippetForm } from './use-snippet-form'
 import { useSnippetsInfo } from '@/lib/hooks'
 // import { HrWithContent } from 'components';
 // import { useSnippetsInfo } from 'libs/hooks';

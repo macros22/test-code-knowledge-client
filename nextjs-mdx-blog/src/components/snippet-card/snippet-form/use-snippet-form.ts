@@ -1,7 +1,7 @@
 import React from 'react'
 import { ValidationError } from 'yup'
-import { snippetSchema } from './snippet.schema'
-import { ISnippetFormProps } from './SnippetForm.props'
+import { snippetSchema } from './snippet-form.schema'
+import { ISnippetFormProps } from './snippet-form.props'
 import { useSnippets, useSnippetsApi } from '@/lib/hooks'
 import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
 

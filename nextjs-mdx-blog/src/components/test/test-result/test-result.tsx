@@ -16,7 +16,6 @@ import { Code } from '@/components/ui/code'
 import { Button } from '@/components/ui/button'
 import { AnswersListResult } from './answers-list-result'
 
-
 export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
   // Before checking all user answers are true.
   const [userAnswersStatus, setUserAnswersStatus] = useState<boolean[]>(
@@ -71,20 +70,18 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
   }
 
   return (
-      <div className="flex flex-col gap-4 justify-center items-center">
-        <h3 className="">
-          {`Correct answers:
+    <div className="flex flex-col items-center justify-center gap-4">
+      <h3 className="">
+        {`Correct answers:
 						${userAnswersStatus.filter((answerStatus) => Boolean(answerStatus)).length}
 		 				from ${userAnswersStatus.length}`}
-        </h3>
-        <div className="flex flex-col gap-4 items-center justify-center">
+      </h3>
+      <div className="flex flex-col items-center justify-center gap-4">
         {checkedAnswers.length &&
           questions.map(({ question }, index) => {
             return (
               <Card
-                className={cn(
-                  'w-[640px]',
-                  {
+                className={cn('w-[640px]', {
                   // "border-success": userAnswersStatus[index],
                   // "border-destructive": !userAnswersStatus[index],
                 })}
@@ -114,8 +111,8 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
               </Card>
             )
           })}
-          </div>
-          <Button onClick={newTestButtonHandler}>New test</Button>
       </div>
+      <Button onClick={newTestButtonHandler}>New test</Button>
+    </div>
   )
 }

@@ -1,0 +1,34 @@
+@import 'assets/variables';
+@import 'assets/colors';
+
+.hrWithSpan {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+  & > span {
+    position: relative;
+    display: inline-block;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 9999px;
+      height: $border-width;
+      background: $border-color;
+    }
+  }
+
+  & > span::before {
+    right: 100%;
+    margin-right: $spacer;
+  }
+
+  & > span::after {
+    left: 100%;
+    margin-left: $spacer;
+  }
+}

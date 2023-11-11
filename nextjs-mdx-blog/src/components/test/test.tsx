@@ -58,14 +58,12 @@ export const Test: FC<TestProps> = ({ questions }) => {
     }
   }, [])
 
-  const isAtLeastOneQuestionChecked = checkedAnswers[currentQuestion]?.indexOf(true) !== -1;
+  const isAtLeastOneQuestionChecked =
+    checkedAnswers[currentQuestion]?.indexOf(true) !== -1
   const isLastQuestion = currentQuestion === questions.length - 1
 
   const nextButtonHandler = () => {
-    if (
-      !isLastQuestion &&
-      isAtLeastOneQuestionChecked
-    ) {
+    if (!isLastQuestion && isAtLeastOneQuestionChecked) {
       const tmp = [...questionsStatus]
       tmp[currentQuestion + 1] = true
       setQuestionsStatus(tmp)
