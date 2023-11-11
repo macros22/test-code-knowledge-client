@@ -17,6 +17,7 @@ const ProfilePage = () => {
     <>
       <h4>email: {user?.email}</h4>
       <h4>name: {user?.name}</h4>
+      <h4>role: {user?.role}</h4>
     </>
   )
 }

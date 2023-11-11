@@ -1,16 +1,14 @@
 import { deepCopy } from '@/lib/helpers/deep-copy'
 import { AnswersListProps } from './answers-list.props'
-import { Form } from 'react-bootstrap'
 import { Checkbox } from '@/components/ui/checkbox'
-// import styles from './AnswersList.module.scss';
-const styles = {}
+import { FC } from 'react'
 
-export const AnswersList = ({
+export const AnswersList: FC<AnswersListProps> = ({
   setCheckedAnswers,
   checkedAnswers,
   answers,
   currentQuestion,
-}: AnswersListProps): JSX.Element => {
+}) => {
   const handleOnChange = (answerIndex: number) => {
     setCheckedAnswers((checkedAnswers) => {
       const newCheckedAnswers = deepCopy(checkedAnswers)

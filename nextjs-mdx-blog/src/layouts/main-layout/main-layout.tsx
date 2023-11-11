@@ -50,7 +50,7 @@ export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
       </Head>
       <div className="flex min-h-screen flex-col bg-gray-100 dark:bg-background">
         <Header />
-        <main className="mb-auto pt-5 ">
+        <main className="mb-auto py-5">
           <Container>{children}</Container>
         </main>
         <Footer />

@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import { Spinner } from 'react-bootstrap'
 
 import dynamic from 'next/dynamic'
-import { Test } from '@/components/test/Test/test'
+import { Test } from '@/components/test'
 import { withLayout } from '@/layouts'
 import { questionsApi } from '@/lib/api/questions.api'
 import {

@@ -56,7 +56,7 @@ export const Categories = () => {
       <div className="mx-auto flex flex-wrap gap-5">
         {Object.keys(questionsInfo).map((category) => {
           return (
-            <Card className="w-[228px]">
+            <Card className="w-[280px]">
               <CardHeader>
                 <CardTitle className="flex justify-center text-3xl before:mr-3 before:text-primary before:content-['{'] after:ml-3 after:text-primary after:content-['}']">
                   {category}
@@ -68,7 +68,7 @@ export const Categories = () => {
                     href={`/questions/${questionsInfo[category].categoryURLName}`}
                   >
                     <ShieldQuestion className="mr-1 text-8xl" /> Questions
-                    <Icons.arrowRight />
+                    {/* <Icons.arrowRight /> */}
                   </Link>
                 </Button>
                 {snippetsInfo[category] && (
@@ -82,7 +82,7 @@ export const Categories = () => {
                       href={`/snippets/${questionsInfo[category].categoryURLName}`}
                     >
                       <SquareCode className="mr-1" /> Snippets
-                      <Icons.arrowRight />
+                      {/* <Icons.arrowRight /> */}
                     </Link>
                   </Button>
                 )}
@@ -93,7 +93,7 @@ export const Categories = () => {
                 >
                   <ShieldCheck className="mr-1" />
                   Test
-                  <Icons.arrowRight />
+                  {/* <Icons.arrowRight /> */}
                 </Button>
               </CardContent>
             </Card>

@@ -1,15 +1,12 @@
-import React from 'react'
-import { ISnippetCardProps } from './SnippetCard.props'
-import {
-  BsPencilFill,
-  BsFillTrashFill,
-  BsChevronDown,
-  BsChevronUp,
-} from 'react-icons/bs'
 
-import { Badge } from 'react-bootstrap'
+import { ISnippetCardProps } from './SnippetCard.props'
+
+
 import { useSnippetsApi } from '@/lib/hooks'
 import { Code } from '@/components/ui/code'
+import { Badge } from '@/components/ui/badge'
+
+const styles = {}
 
 export const SnippetCard = ({
   snippet,
@@ -24,7 +21,7 @@ export const SnippetCard = ({
 
   return (
     <>
-      {/* <div className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <div className={styles.snippetCard}>
           <div className={styles.snippetNumber}>
             <h5 className={styles.snippetNumberTitle}>
@@ -35,14 +32,14 @@ export const SnippetCard = ({
             </h5>
             {withEdit && (
               <div className={styles.editButtons}>
-                <BsPencilFill
+                {/* <BsPencilFill
                   className={styles.iconButton}
                   onClick={handleEditButton}
                 />
                 <BsFillTrashFill
                   className={styles.iconButton}
                   onClick={handleDeleteButton}
-                />
+                /> */}
               </div>
             )}
           </div>
@@ -53,11 +50,10 @@ export const SnippetCard = ({
 
           <div className={styles.snippet}>
             <hr />
-            <Code codeExample={snippet.snippet} language="typescript" />
+            <Code codeExample={snippet.snippet} language="tsx" />
           </div>
         </div>
-      </div> */}
-      <Code codeExample={snippet.snippet} language="tsx" />
+      </div>
     </>
   )
 }

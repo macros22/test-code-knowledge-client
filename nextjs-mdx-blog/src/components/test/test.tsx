@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 // import styles from './Test.module.scss';
 import dynamic from 'next/dynamic'
@@ -7,8 +7,6 @@ import dynamic from 'next/dynamic'
 //   import('components/ui/Code/Code').then(module => module.Code)
 // );
 
-import { Button } from 'react-bootstrap'
-import { AnswersList } from '../answers-list/answers-list'
 import { useSessionStorage } from '@/lib/hooks'
 import {
   checkedAnswersName,
@@ -18,10 +16,10 @@ import { Code } from '@/components/ui/code'
 import { TestProps } from './test.props'
 import { Badge } from '@/components/ui/badge/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { AnswersList } from './answers-list'
 
-const styles = {}
-
-export const Test = ({ questions }: TestProps): JSX.Element => {
+export const Test: FC<TestProps> = ({ questions }) => {
   const router = useRouter()
 
   const [currentQuestion, setCurrentQuestion] = useSessionStorage<number>(
@@ -60,11 +58,13 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
     }
   }, [])
 
-  // Handlers.
+  const isAtLeastOneQuestionChecked = checkedAnswers[currentQuestion]?.indexOf(true) !== -1;
+  const isLastQuestion = currentQuestion === questions.length - 1
+
   const nextButtonHandler = () => {
     if (
-      currentQuestion < questions.length - 1 &&
-      checkedAnswers[currentQuestion].indexOf(true) !== -1
+      !isLastQuestion &&
+      isAtLeastOneQuestionChecked
     ) {
       const tmp = [...questionsStatus]
       tmp[currentQuestion + 1] = true
@@ -75,7 +75,7 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
   }
 
   const endTestHandler = () => {
-    if (checkedAnswers[currentQuestion].indexOf(true) !== -1) {
+    if (isAtLeastOneQuestionChecked) {
       router.push(`/testResult`)
     }
   }
@@ -83,7 +83,7 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
   return (
     <>
       {questions.length && (
-        <div className={styles.wrapper}>
+        <div className="flex flex-col items-center justify-center">
           <div className="flex flex-wrap gap-2">
             {questions.map((question, index) => {
               let variant: 'outline' | 'default' | 'secondary' = 'secondary'
@@ -100,35 +100,35 @@ export const Test = ({ questions }: TestProps): JSX.Element => {
               )
             })}
           </div>
-          <Card className="mt-4">
-            <CardHeader>
-              <CardTitle>{questions[currentQuestion].question}</CardTitle>
-            </CardHeader>
-            <hr className="mx-6" />
-            <CardContent className="pt-6">
-              {questions[currentQuestion].codeExample && (
-                <Code
-                  codeExample={questions[currentQuestion].codeExample}
-                  language="typescript"
-                />
-              )}
-
-              {checkedAnswers.length && (
-                <AnswersList
-                  checkedAnswers={checkedAnswers}
-                  currentQuestion={currentQuestion}
-                  setCheckedAnswers={setCheckedAnswers}
-                  answers={questions[currentQuestion].answers}
-                />
-              )}
-            </CardContent>
-          </Card>
-          <div className={styles.buttons}>
-            {currentQuestion < questions.length - 1 ? (
-              <Button onClick={nextButtonHandler}>Next</Button>
-            ) : (
-              <Button onClick={endTestHandler}>Finish test</Button>
-            )}
+          <div className="flex flex-wrap">
+            <Card className="mt-4 w-[600px]">
+              <CardHeader>
+                <CardTitle>{questions[currentQuestion].question}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {questions[currentQuestion].codeExample && (
+                  <Code
+                    codeExample={questions[currentQuestion].codeExample}
+                    language="typescript"
+                  />
+                )}
+                {checkedAnswers.length && (
+                  <AnswersList
+                    checkedAnswers={checkedAnswers}
+                    currentQuestion={currentQuestion}
+                    setCheckedAnswers={setCheckedAnswers}
+                    answers={questions[currentQuestion].answers}
+                  />
+                )}
+              </CardContent>
+            </Card>
+          </div>
+          <div className="mt-4">
+            <Button
+              onClick={isLastQuestion ? endTestHandler : nextButtonHandler}
+            >
+              {isLastQuestion ? 'Finish test' : 'Next'}
+            </Button>
           </div>
         </div>
       )}

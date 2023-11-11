@@ -1,4 +1,4 @@
-import '../src/app2/global.css';
+import '../src/app2/global.css'
 // import * as NextImage from 'next/image';
 
 // const OriginalNextImage = NextImage.default;
@@ -19,4 +19,4 @@ export const parameters = {
   previewTabs: {
     'storybook/docs/panel': { index: -1 },
   },
-};
+}

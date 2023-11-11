@@ -1,5 +1,4 @@
-
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   //To specify the location from which Storybook should read stories..
@@ -14,8 +13,8 @@ module.exports = {
   staticDirs: ['../public'],
 
   framework: {
-    name: "@storybook/nextjs",
-    options: {}
+    name: '@storybook/nextjs',
+    options: {},
   },
 
   addons: [
@@ -45,18 +44,21 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve?.alias,
       '@': [path.resolve(__dirname, '../src/'), path.resolve(__dirname, '../')],
-    };
+    }
 
     /**
      * Fixes font import with /
      * @see https://github.com/storybookjs/storybook/issues/12844#issuecomment-867544160
      */
-    config.resolve.roots = [path.resolve(__dirname, '../public'), 'node_modules'];
+    config.resolve.roots = [
+      path.resolve(__dirname, '../public'),
+      'node_modules',
+    ]
 
-    return config;
+    return config
   },
 
   docs: {
-    autodocs: true
-  }
-};
+    autodocs: true,
+  },
+}

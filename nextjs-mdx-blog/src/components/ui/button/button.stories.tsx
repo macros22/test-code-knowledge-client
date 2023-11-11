@@ -1,18 +1,16 @@
-import {Button} from './button';
-import { StoryFn } from '@storybook/react';
+import { Button } from './button'
+import { StoryFn } from '@storybook/react'
 
 export default {
-	title: 'Components/Button',
-	component: Button,
-};
+  title: 'Components/Button',
+  component: Button,
+}
 
-const Template: StoryFn<typeof Button> = (args) => (
-	<Button  {...args} />
-);
+const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
 Default.args = {
   variant: 'outlined',
   children: 'Let’s Work',
-};
+}

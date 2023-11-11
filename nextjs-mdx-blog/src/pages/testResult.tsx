@@ -12,9 +12,7 @@ import dynamic from 'next/dynamic'
 const TestResultPage = (): JSX.Element => {
   const [questions] = useSessionStorage(questionsInStorageName, [])
 
-  return (
-    <>{questions && questions.length && <TestResult questions={questions} />}</>
-  )
+  return <>{questions?.length && <TestResult questions={questions} />}</>
 }
 
 export default withLayout('main', TestResultPage)

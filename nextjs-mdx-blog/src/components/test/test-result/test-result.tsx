@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router'
 import cn from 'clsx'
 
-import { IAnswersListResultProps, ITestResultProps } from './test-result.props'
+import { ITestResultProps } from './test-result.props'
 import { useEffect, useState } from 'react'
 import {
   checkedAnswersName,
@@ -14,76 +14,8 @@ import { Badge } from '@/components/ui/badge/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Code } from '@/components/ui/code'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-// import { Badge, Code } from 'lucide-react';
-const styles = {}
+import { AnswersListResult } from './answers-list-result'
 
-const AnswersListResult: React.FC<IAnswersListResultProps> = ({
-  answers,
-  currentQuestion,
-  checkedAnswers,
-}) => {
-  const answersList = answers
-
-  const getAnswerLabel = (index: number, isMarked: boolean) => {
-    // 'correct' - answer marked and it`s correct.
-    // 'error' - answer marked and it`s incorrect.
-    // 'empty' - answer unmarked and it`s correct.
-    // 'missing' - answer unmarked and it`s incorrect.
-    let result: 'correct' | 'error' | 'empty' | 'missing' = 'error'
-
-    if (isMarked) {
-      answersList[index].isCorrect ? (result = 'correct') : (result = 'error')
-    } else {
-      !answersList[index].isCorrect ? (result = 'empty') : (result = 'missing')
-    }
-
-    const className = 'ml-auto'
-
-    switch (result) {
-      case 'error':
-        return (
-          <Badge variant="destructive" className={className}>
-            Error
-          </Badge>
-        )
-      case 'correct':
-        return (
-          <Badge variant="success" className={className}>
-            Correct
-          </Badge>
-        )
-      case 'missing':
-        return (
-          <Badge variant="outline" className={className}>
-            Missing correct
-          </Badge>
-        )
-    }
-  }
-
-  return (
-    <ul>
-      {answers.map(({ answer }, index) => {
-        return (
-          <li key={answer} className="flex">
-            <label className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              <Checkbox
-                disabled
-                id={answer}
-                value={answer}
-                checked={checkedAnswers[currentQuestion][index]}
-                className="mr-2"
-              />
-              {answer}
-            </label>
-            {getAnswerLabel(index, checkedAnswers[currentQuestion][index])}
-          </li>
-        )
-      })}
-    </ul>
-  )
-}
 
 export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
   // Before checking all user answers are true.
@@ -108,7 +40,7 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
   useEffect(() => {
     for (let i = 0; i < questions.length; ++i) {
       const questionAnswersStatus = questions[i].answers.map(
-        (answer) => answer.isCorrect,
+        ({ isCorrect }) => isCorrect,
       )
 
       if (!isArraysEqual(questionAnswersStatus, checkedAnswers[i])) {
@@ -116,7 +48,7 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
       }
     }
 
-    return () => setCheckedAnswers([])
+    // return () => setCheckedAnswers([])
   }, [])
 
   useEffect(() => {
@@ -139,32 +71,32 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className='flex flex-col gap-4'>
-        <h3 className={styles.title}>
+      <div className="flex flex-col gap-4 justify-center items-center">
+        <h3 className="">
           {`Correct answers:
-						${userAnswersStatus.filter((answerStatus) => answerStatus === true).length}
+						${userAnswersStatus.filter((answerStatus) => Boolean(answerStatus)).length}
 		 				from ${userAnswersStatus.length}`}
         </h3>
+        <div className="flex flex-col gap-4 items-center justify-center">
         {checkedAnswers.length &&
           questions.map(({ question }, index) => {
             return (
               <Card
-                className={cn({
-                  "border-success": userAnswersStatus[index],
-                  "border-destructive": !userAnswersStatus[index],
+                className={cn(
+                  'w-[640px]',
+                  {
+                  // "border-success": userAnswersStatus[index],
+                  // "border-destructive": !userAnswersStatus[index],
                 })}
                 key={index + question}
               >
                 <CardHeader>
-                  
-                  <CardTitle className='flex gap-4 align-baseline'>
+                  <CardTitle className="flex gap-4 align-baseline">
                     {questions[index].question}
-                  <Badge variant='success'>Question {index + 1}</Badge>
+                    <Badge variant="success">Question {index + 1}</Badge>
                   </CardTitle>
                 </CardHeader>
                 <hr className="mx-6" />
-
                 <CardContent className="pt-6">
                   {questions[index].codeExample && (
                     <Code
@@ -182,9 +114,8 @@ export const TestResult = ({ questions }: ITestResultProps): JSX.Element => {
               </Card>
             )
           })}
-        
+          </div>
+          <Button onClick={newTestButtonHandler}>New test</Button>
       </div>
-      <Button onClick={newTestButtonHandler}>New test</Button>
-    </div>
   )
 }
