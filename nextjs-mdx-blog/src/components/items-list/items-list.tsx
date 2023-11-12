@@ -2,7 +2,7 @@ import React from 'react'
 // import styles from './ItemsList.module.scss';
 import { IItemsListProps } from './items-list.props'
 import { BsPlusLg } from 'react-icons/bs'
-import { Button, Card, Modal } from 'react-bootstrap'
+import { Card, Modal } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 
 import dynamic from 'next/dynamic'
@@ -21,6 +21,14 @@ import { SnippetCard } from '@/components/snippet-card/snippet-card'
 import { QuestionForm } from '@/components/questions/QuestionForm/QuestionForm'
 import { SnippetForm } from '@/components/snippet-card/snippet-form/snippet-form'
 import { Badge } from '@/components/ui/badge/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../ui/dialog'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(
@@ -50,21 +58,21 @@ export const ItemsList = ({
 }: IItemsListProps): JSX.Element => {
   const [currentItemIndex, setCurrentItemIndex] = React.useState(0)
 
-  const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false)
-  const [isEditItemMode, setIsEditItemMode] = React.useState(false)
+  // const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false)
+  // const [isEditItemMode, setIsEditItemMode] = React.useState(false)
 
   const { isLoggedIn, isAdmin } = useUser()
 
   const { itemsInfo } = useItemsInfo(itemsName)
 
   const handleAddNewItemButton = () => {
-    setIsAddNewItemMode(true)
+    // setIsAddNewItemMode(true)
   }
 
   const makeHandleEditItemButton = (index: number) => {
     return () => {
       setCurrentItemIndex(index)
-      setIsEditItemMode(true)
+      // setIsEditItemMode(true)
     }
   }
 
@@ -128,20 +136,21 @@ export const ItemsList = ({
               return (
                 <Card key={item.id}>
                   {itemsName == 'questions' ? (
-                    <QuestionCard
-                      withEdit={isLoggedIn && isAdmin}
-                      handleEditButton={makeHandleEditItemButton(index)}
-                      question={item}
-                      key={item.id}
-                      index={index + 1}
-                    />
+                    // <QuestionCard
+                    //   withEdit={isLoggedIn && isAdmin}
+                    //   handleEditButton={makeHandleEditItemButton(index)}
+                    //   question={item}
+                    //   key={item.id}
+                    //   index={index + 1}
+                    // />
+                    <></>
                   ) : (
                     <SnippetCard
                       withEdit={isLoggedIn && isAdmin}
                       handleEditButton={makeHandleEditItemButton(index)}
                       snippet={item}
                       key={item.id}
-                      index={index + 1}
+                      index={index}
                     />
                   )}
                 </Card>
@@ -155,7 +164,7 @@ export const ItemsList = ({
         </div>
       </div>
 
-      {isLoggedIn && isAddNewItemMode && (
+      {/* {isLoggedIn && isAddNewItemMode && (
         <Modal
           size="lg"
           show={isAddNewItemMode}
@@ -180,10 +189,10 @@ export const ItemsList = ({
       )}
 
       {isLoggedIn && items && isEditItemMode && (
-        <Modal
-          size="lg"
-          show={isEditItemMode}
-          onHide={() => setIsEditItemMode(false)}
+        <Dialog
+          // size="lg"
+          // show={isEditItemMode}
+          // onHide={() => setIsEditItemMode(false)}
         >
           <Modal.Body>
             {itemsName == 'questions' ? (
@@ -200,8 +209,8 @@ export const ItemsList = ({
               />
             )}
           </Modal.Body>
-        </Modal>
-      )}
+        </Dialog>
+      )} */}
     </div>
   )
 }

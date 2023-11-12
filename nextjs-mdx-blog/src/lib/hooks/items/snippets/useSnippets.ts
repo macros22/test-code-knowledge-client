@@ -33,6 +33,7 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     setSize,
     isValidating,
     mutate: mutateSnippets,
+    isLoading: isLoadingMutateSnippets
   } = useSWRInfinite(getKey, api.getSnippets)
 
   let snippets: ISnippet[] = []
@@ -70,6 +71,7 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
 
   return {
     isLoadingSnippets: isLoadingInitialSnippets,
+    isLoadingMutateSnippets,
     isReachingEnd,
     snippets,
     setSize,

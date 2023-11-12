@@ -1,6 +1,6 @@
 import { ISnippetCardProps } from './snippet-card.props'
 
-import { useSnippetsApi } from '@/lib/hooks'
+import { useSnippetsApi, useSnippetsInfo } from '@/lib/hooks'
 import { Code } from '@/components/ui/code'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,11 +8,20 @@ import { PencilIcon, TrashIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { FC } from 'react'
-import { SeparatorWithContent } from '../ui/separator-with-content/HrWithContent'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../ui/dialog'
+import { SnippetForm } from './snippet-form/snippet-form'
+import { ISnippet } from '@/lib/interfaces/snippets.interface'
 
 export const SnippetCard: FC<ISnippetCardProps> = ({
   snippet,
-  handleEditButton,
+  // handleEditButton,
   index,
   withEdit = false,
 }) => {
@@ -20,30 +29,53 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
   const handleDeleteButton = async () => {
     await api.deleteSnippet(snippet.id)
   }
+  // const { snippetsInfo, isLoadingSnippetsInfo } = useSnippetsInfo()
+
+  // if (isLoadingSnippetsInfo) return <span>loading</span>
 
   return (
     <>
-      <Card className="mt-4 w-10/12 mx-auto">
+      <Card className="mx-auto mt-4 w-10/12">
         <CardHeader>
           <CardTitle className="flex flex-col">
-          <SeparatorWithContent>asdasd</SeparatorWithContent>
             <div className="flex">
-              <Badge>
+              <Badge  className="mr-auto">
                 {'Snippet '}
                 {index}
               </Badge>
+
               {withEdit && (
                 <>
-                  <Button
-                    className="ml-auto"
-                    variant="outline"
-                    size="icon"
-                    onClick={handleEditButton}
+                  <Dialog
+                  // size="lg"
+                  // show={isEditItemMode}
+                  // onHide={() => setIsEditItemMode(false)}
                   >
-                    <PencilIcon className="h-4 w-4" />
-                  </Button>
+                    <DialogTrigger>
+                      {' '}
+                      <Button
+                       
+                        variant="outline"
+                        size="icon"
+                        // onClick={handleEditButton}
+                      >
+                        <PencilIcon className="h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Snippet <Badge className='ml-2 py-1 px-3'>{index + 1}</Badge></DialogTitle>
+                        <DialogDescription>description</DialogDescription>
+                      </DialogHeader>
+                      <SnippetForm
+                        snippetItem={snippet}
+                        mode="edit"
+                        setIsModalOpen={() => {}}
+                      />
+                    </DialogContent>
+                  </Dialog>
                   <Button
-                  className="ml-4"
+                    className="ml-4"
                     variant="outline"
                     size="icon"
                     onClick={handleDeleteButton}
@@ -53,7 +85,7 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
                 </>
               )}
             </div>
-            <Separator className='my-4'/>
+            <Separator className="my-4" />
             <h5>{snippet.description}</h5>
           </CardTitle>
         </CardHeader>

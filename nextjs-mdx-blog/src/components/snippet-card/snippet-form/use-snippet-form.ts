@@ -1,6 +1,6 @@
 import React from 'react'
 import { ValidationError } from 'yup'
-import { snippetSchema } from './snippet-form.schema'
+import { snippetFormSchema } from './snippet-form.schema'
 import { ISnippetFormProps } from './snippet-form.props'
 import { useSnippets, useSnippetsApi } from '@/lib/hooks'
 import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
@@ -68,7 +68,7 @@ export const useSnippetForm = ({
     let isValid = true
 
     try {
-      await snippetSchema.validate({
+      await snippetFormSchema.validate({
         snippet,
         description,
         category,
