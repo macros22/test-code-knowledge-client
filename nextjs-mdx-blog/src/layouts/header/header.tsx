@@ -9,6 +9,8 @@ import { NavSelect } from './nav-select'
 import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
 import { Logo } from './logo'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Separator } from '@/components/ui/separator'
 
 export function Header() {
   const { mutateUser, isLoggedIn } = useUser()
@@ -29,14 +31,6 @@ export function Header() {
             <NavSelect itemsMode="test" />
             {isLoggedIn ? (
               <>
-                <Link href="/profile">
-                  <Button
-                    variant="ghost"
-                    className="text-sm capitalize text-muted-foreground"
-                  >
-                    Profile
-                  </Button>
-                </Link>
                 <Button
                   variant="ghost"
                   className="text-sm capitalize text-muted-foreground"
@@ -53,37 +47,14 @@ export function Header() {
                 SignIn
               </Link>
             )}
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: 'icon',
-                  variant: 'ghost',
-                })}
-              >
-                <Icons.gitHub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </div>
-            </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: 'icon',
-                  variant: 'ghost',
-                })}
-              >
-                <Icons.twitter className="h-4 w-4 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
+
             <ThemeToggle />
+            <Link href="/profile">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Link>
           </nav>
         </div>
       </Container>

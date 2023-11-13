@@ -4,6 +4,7 @@ import { ISnippetFormProps } from './snippet-form.props'
 import { useSnippetForm } from './use-snippet-form'
 import { useSnippets, useSnippetsApi, useSnippetsInfo } from '@/lib/hooks'
 import { Separator } from '@/components/ui/separator'
+import useSWRMutation from 'swr/mutation'
 
 import {
   Select,
@@ -33,6 +34,8 @@ import { SnippetFormSchema, snippetFormSchema } from './snippet-form.schema'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
+import { SNIPPETS_BASE_URL } from '@/lib/constants/urls'
+import { snippetsApi } from '@/lib/api/snippets.api'
 
 export const SnippetForm: FC<ISnippetFormProps> = ({
   snippetItem,
@@ -77,6 +80,13 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
   const { api } = useSnippetsApi()
   const { mutateSnippets, isLoadingMutateSnippets } = useSnippets({ category })
 
+  const url = `${SNIPPETS_BASE_URL}/${snippetItem.id}`
+  const {
+    trigger: patchSnippet,
+    isMutating: isPatchSnippetLoading,
+    ...props
+  } = useSWRMutation(url, snippetsApi().patchSnippet)
+
   const onSubmit = (data: SnippetFormSchema) => {
     const snippetPayload: ISnippetDto = {
       ...data,
@@ -86,7 +96,7 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
       //     answer: answer.answer,
       //     isCorrect: answer.isChecked,
       // })),
-    };
+    }
 
     const mutate = async () => {
       switch (mode) {
@@ -101,23 +111,24 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
           break
         case 'edit':
           try {
-            await api.patchSnippet(snippetPayload, snippetItem.id)
-            mutateSnippets()
+            patchSnippet(snippetPayload)
           } catch (error) {
             console.log(error)
           }
           break
       }
     }
-    mutate();
+    mutate()
   }
 
   return (
     <>
       <Form {...form}>
-    
         {/* className="space-y-2" */}
-        <form onSubmit={form.handleSubmit(onSubmit)} className='gap-6 flex flex-col'>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-6"
+        >
           <FormField
             control={form.control}
             name="category"
@@ -160,21 +171,27 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
               </FormItem>
             )}
           />
-             <FormField
+          <FormField
             control={form.control}
-            name='snippet'
+            name="snippet"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Snippet</FormLabel>
                 <FormControl>
-                  <Textarea className='max-h-40' placeholder={field.name} {...field} />
+                  <Textarea
+                    className="max-h-40"
+                    placeholder={field.name}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex flex-wrap gap-2 mt-8">
-            <Button  type="submit">{isLoadingMutateSnippets ? 'loading' : 'Save'}</Button>
+          <div className="mt-8 flex flex-wrap gap-2">
+            <Button type="submit">
+              {isPatchSnippetLoading ? 'loading' : 'Save'}
+            </Button>
             <Button
               className="ml-auto"
               variant="outline"

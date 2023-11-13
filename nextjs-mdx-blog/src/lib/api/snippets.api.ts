@@ -4,7 +4,16 @@ import { IItemsInfo } from '../interfaces/common.interface'
 import { ISnippet, ISnippetDto } from '../interfaces/snippets.interface'
 import { Role } from '../interfaces/user.interface'
 
-export const snippetsApi = (userRole?: Role) => {
+export const patchSnippet = async (
+  url: string,
+  { snippet, snippetId }: { snippet: ISnippetDto; snippetId: string },
+) => {
+  await axios.patch<ISnippet>(url + `/${snippetId}`, snippet, {
+    withCredentials: true,
+  })
+}
+
+export const snippetsApi = () => {
   return {
     getSnippets: async (url: string) => {
       try {
@@ -42,20 +51,23 @@ export const snippetsApi = (userRole?: Role) => {
 
       return null
     },
-    patchSnippet: async (snippet: ISnippetDto, snippetId: string) => {
-      try {
-        const url = SNIPPETS_BASE_URL
-        const res = await axios.patch<ISnippet>(
-          url + `/${snippetId}`,
-          snippet,
-          { withCredentials: true },
-        )
-        return res.data
-      } catch (error) {
-        console.log(error)
-      }
+    // patchSnippet: async (snippet: ISnippetDto, snippetId: string) => {
+    //   try {
+    //     const url = SNIPPETS_BASE_URL
+    //     const res = await axios.patch<ISnippet>(
+    //       url + `/${snippetId}`,
+    //       snippet,
+    //       { withCredentials: true },
+    //     )
+    //     return res.data
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
 
-      return null
+    //   return null
+    // },
+    patchSnippet: async (url: string, { arg }: { arg: ISnippetDto }) => {
+      await axios.patch<ISnippet>(url, arg, { withCredentials: true })
     },
     deleteSnippet: async (snippetId: string) => {
       try {

@@ -15,6 +15,8 @@ import {
   ShieldQuestion,
   MoveRight,
   ShieldCheck,
+  Scissors,
+  HelpCircle,
 } from 'lucide-react'
 import Link from 'next/link'
 import { Icons } from '../icons'
@@ -67,7 +69,7 @@ export const Categories = () => {
                   <Link
                     href={`/questions/${questionsInfo[category].categoryURLName}`}
                   >
-                    <ShieldQuestion className="mr-1 text-8xl" /> Questions
+                    <HelpCircle className="mr-1 text-8xl" /> Questions
                     {/* <Icons.arrowRight /> */}
                   </Link>
                 </Button>
@@ -81,7 +83,7 @@ export const Categories = () => {
                     <Link
                       href={`/snippets/${questionsInfo[category].categoryURLName}`}
                     >
-                      <SquareCode className="mr-1" /> Snippets
+                      <Scissors className="mr-1" /> Snippets
                       {/* <Icons.arrowRight /> */}
                     </Link>
                   </Button>

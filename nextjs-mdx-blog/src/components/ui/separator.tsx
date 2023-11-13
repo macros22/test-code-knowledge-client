@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 // from shadecn examples:
-{/* <div className="relative">
+{
+  /* <div className="relative">
 <div className="absolute inset-0 flex items-center">
   <span className="w-full border-t" />
 </div>
@@ -13,7 +14,8 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
     Or continue with
   </span>
 </div>
-</div> */}
+</div> */
+}
 
 const Separator = forwardRef<
   ElementRef<typeof SeparatorPrimitive.Root>,

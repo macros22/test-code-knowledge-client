@@ -39,7 +39,7 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
         <CardHeader>
           <CardTitle className="flex flex-col">
             <div className="flex">
-              <Badge  className="mr-auto">
+              <Badge className="mr-auto">
                 {'Snippet '}
                 {index}
               </Badge>
@@ -54,7 +54,6 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
                     <DialogTrigger>
                       {' '}
                       <Button
-                       
                         variant="outline"
                         size="icon"
                         // onClick={handleEditButton}
@@ -64,7 +63,10 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Snippet <Badge className='ml-2 py-1 px-3'>{index + 1}</Badge></DialogTitle>
+                        <DialogTitle>
+                          Snippet{' '}
+                          <Badge className="ml-2 px-3 py-1">{index + 1}</Badge>
+                        </DialogTitle>
                         <DialogDescription>description</DialogDescription>
                       </DialogHeader>
                       <SnippetForm
