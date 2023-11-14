@@ -72,7 +72,6 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
                       <SnippetForm
                         snippetItem={snippet}
                         mode="edit"
-                        setIsModalOpen={() => {}}
                       />
                     </DialogContent>
                   </Dialog>

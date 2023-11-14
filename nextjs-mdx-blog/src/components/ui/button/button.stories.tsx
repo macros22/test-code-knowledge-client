@@ -11,6 +11,8 @@ const Template: StoryFn<typeof Button> = (args) => <Button {...args} />
 export const Default = Template.bind({})
 
 Default.args = {
-  variant: 'outlined',
+  variant: 'default',
   children: 'Let’s Work',
+  loading: false,
+  size: 'default',
 }

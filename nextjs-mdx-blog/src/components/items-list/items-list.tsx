@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, useState } from 'react'
 // import styles from './ItemsList.module.scss';
 import { IItemsListProps } from './items-list.props'
 import { BsPlusLg } from 'react-icons/bs'
@@ -29,6 +29,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog'
+import { Button } from '../ui/button'
+import { PencilIcon } from 'lucide-react'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(
@@ -51,16 +53,13 @@ import {
 //   )
 // );
 
-export const ItemsList = ({
+export const ItemsList: FC<IItemsListProps> = ({
   itemsName,
   items,
   category: currentCategory,
-}: IItemsListProps): JSX.Element => {
-  const [currentItemIndex, setCurrentItemIndex] = React.useState(0)
-
-  // const [isAddNewItemMode, setIsAddNewItemMode] = React.useState(false)
-  // const [isEditItemMode, setIsEditItemMode] = React.useState(false)
-
+}) => {
+  const [currentItemIndex, setCurrentItemIndex] = useState(0)
+  const [isAddNewItemMode, setIsAddNewItemMode] = useState(false)
   const { isLoggedIn, isAdmin } = useUser()
 
   const { itemsInfo } = useItemsInfo(itemsName)
@@ -164,8 +163,10 @@ export const ItemsList = ({
         </div>
       </div>
 
-      {/* {isLoggedIn && isAddNewItemMode && (
-        <Modal
+      {/* {isLoggedIn && isAddNewItemMode && ( */}
+      {isLoggedIn &&  (
+        <> 
+        {/* <Modal
           size="lg"
           show={isAddNewItemMode}
           onHide={() => setIsAddNewItemMode(false)}
@@ -181,12 +182,43 @@ export const ItemsList = ({
               <SnippetForm
                 snippetItem={getSnippetExample(currentCategory)}
                 mode="add"
-                setIsModalOpen={setIsAddNewItemMode}
+                // setIsModalOpen={setIsAddNewItemMode}
               />
             )}
           </Modal.Body>
-        </Modal>
+        </Modal> */}
+        <Dialog
+        // size="lg"
+        // show={isEditItemMode}
+        // onHide={() => setIsEditItemMode(false)}
+        >
+          <DialogTrigger>
+            {' '}
+            <Button
+              variant="outline"
+              size="icon"
+              // onClick={handleEditButton}
+            >
+              <PencilIcon className="h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                Snippet{' '}
+                {/* <Badge className="ml-2 px-3 py-1">{index + 1}</Badge> */}
+              </DialogTitle>
+              <DialogDescription>description</DialogDescription>
+            </DialogHeader>
+            <SnippetForm
+               snippetItem={getSnippetExample(currentCategory)}
+              mode="add"
+            />
+          </DialogContent>
+        </Dialog></>
       )}
+
+      {/* 
 
       {isLoggedIn && items && isEditItemMode && (
         <Dialog

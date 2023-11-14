@@ -2,16 +2,12 @@ import { FC } from 'react'
 import { ISnippetFormProps } from './snippet-form.props'
 
 import { useSnippetForm } from './use-snippet-form'
-import { useSnippets, useSnippetsApi, useSnippetsInfo } from '@/lib/hooks'
-import { Separator } from '@/components/ui/separator'
-import useSWRMutation from 'swr/mutation'
+import { useSnippets, useSnippetsInfo } from '@/lib/hooks'
 
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
@@ -19,51 +15,24 @@ import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
 import { useForm } from 'react-hook-form'
-// import { HrWithContent } from 'components';
-// import { useSnippetsInfo } from 'libs/hooks';
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SnippetFormSchema, snippetFormSchema } from './snippet-form.schema'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
-import { SNIPPETS_BASE_URL } from '@/lib/constants/urls'
-import { snippetsApi } from '@/lib/api/snippets.api'
 
 export const SnippetForm: FC<ISnippetFormProps> = ({
   snippetItem,
   mode,
-  setIsModalOpen,
 }) => {
   const {
-    snippet,
-    setSnippet,
-    snippetError,
-    setSnippetError,
-    category,
-    setCategory,
-    description,
-    setDescription,
-    // isDescriptionChecked,
-    // setIsDescriptionChecked,
-    descriptionError,
-    setDescriptionError,
-    // answers,
-    // setAnswers,
-    // answersErrors,
-    // setAnswersErrors,
-    handleSelectCategory,
-    // handleAddAnswerButton,
-    // handleDeleteAnswerButton,
-    resetErrors,
-    handleSubmitForm,
     handleResetButton,
   } = useSnippetForm({
     snippetItem,
@@ -77,48 +46,29 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
     defaultValues: snippetItem,
   })
 
-  const { api } = useSnippetsApi()
-  const { mutateSnippets, isLoadingMutateSnippets } = useSnippets({ category })
+  const { patchSnippet, isPatchSnippetLoading, postSnippet, isPostSnippetLoading } = useSnippets({
+    id: snippetItem.id,
+  })
 
-  const url = `${SNIPPETS_BASE_URL}/${snippetItem.id}`
-  const {
-    trigger: patchSnippet,
-    isMutating: isPatchSnippetLoading,
-    ...props
-  } = useSWRMutation(url, snippetsApi().patchSnippet)
 
   const onSubmit = (data: SnippetFormSchema) => {
     const snippetPayload: ISnippetDto = {
       ...data,
       tags: [],
       infoLinks: [],
-      // answers: answers.map((answer) => ({
-      //     answer: answer.answer,
-      //     isCorrect: answer.isChecked,
-      // })),
     }
 
-    const mutate = async () => {
+    const mutateSnippet = async () => {
       switch (mode) {
         case 'add':
-          try {
-            console.log(snippetPayload)
-            await api.postSnippet(snippetPayload)
-            mutateSnippets()
-          } catch (error) {
-            console.log(error)
-          }
+          postSnippet(snippetPayload)
           break
         case 'edit':
-          try {
-            patchSnippet(snippetPayload)
-          } catch (error) {
-            console.log(error)
-          }
+          patchSnippet(snippetPayload)
           break
       }
     }
-    mutate()
+    mutateSnippet()
   }
 
   return (
@@ -189,8 +139,8 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
             )}
           />
           <div className="mt-8 flex flex-wrap gap-2">
-            <Button type="submit">
-              {isPatchSnippetLoading ? 'loading' : 'Save'}
+            <Button type="submit" loading={isPatchSnippetLoading || isPostSnippetLoading}>
+              Save
             </Button>
             <Button
               className="ml-auto"
