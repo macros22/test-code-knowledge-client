@@ -2,8 +2,8 @@ import { SNIPPETS_BASE_URL } from '../constants/urls'
 
 interface ISnippetsProps {
   categoryURLName: string
-  skip: number | undefined
-  limit: number | undefined
+  skip?: number
+  limit?: number
 }
 
 export const getSnippetsUrl = ({

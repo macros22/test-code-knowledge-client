@@ -1,25 +1,26 @@
 import React from 'react';
-import { GetServerSideProps, GetStaticProps } from 'next';
-import { getQueryParametr } from 'libs/helpers/get-param-from-query';
-import { useSessionStorage } from 'libs/hooks';
-import { snippetsCategoryName } from 'libs/constants/names.storage';
 import { Button, Spinner } from 'react-bootstrap';
-import { SWRConfig } from 'swr';
+import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsButton';
+import { withLayout } from 'layouts/with-layout';
+import { snippetsApi } from 'libs/api/snippets.api';
+import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
+import { snippetsCategoryName } from 'libs/constants/names.storage';
+import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
+import { getQueryParametr } from 'libs/helpers/get-param-from-query';
+import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
+import { useSessionStorage } from 'libs/hooks';
+import { useSnippets } from 'libs/hooks/items/snippets/useSnippets';
 import {
   ISnippet,
-  ISnippetsPageProps
+  SnippetsPageProps,
 } from 'libs/interfaces/snippets.interface';
-import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
-import { snippetsApi } from 'libs/api/snippets.api';
-import { useSnippets } from 'libs/hooks/items/snippets/useSnippets';
+import { GetServerSideProps, GetStaticProps } from 'next';
+import { SWRConfig } from 'swr';
+
 import { ItemsList } from '../../components/ItemsList/ItemsList/ItemsList';
-import { SNIPPETS_BASE_URL } from 'libs/constants/urls';
-import { withLayout } from 'layouts/with-layout';
-import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
-import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsButton';
 
 export const getServerSideProps: GetServerSideProps<
-  ISnippetsPageProps
+  SnippetsPageProps
 > = async context => {
   const categoryURLName = getQueryParametr(context, 'category') || '';
 
@@ -29,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<
   const snippetsUrl = getSnippetsUrl({
     categoryURLName,
     skip,
-    limit
+    limit,
   });
 
   const snippets = await snippetsApi().getSnippets(snippetsUrl);
@@ -38,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<
   if (snippetsInfo) {
     category =
       Object.keys(snippetsInfo).find(
-        key => snippetsInfo[key].categoryURLName == categoryURLName
+        key => snippetsInfo[key].categoryURLName === categoryURLName,
       ) || '';
   }
 
@@ -48,9 +49,9 @@ export const getServerSideProps: GetServerSideProps<
       skip,
       limit,
       fallback: {
-        [snippetsUrl]: snippets
-      }
-    }
+        [snippetsUrl]: snippets,
+      },
+    },
   };
 };
 
@@ -58,17 +59,18 @@ const SnippetsPage = ({
   category,
   skip,
   limit,
-  fallback
-}: ISnippetsPageProps): JSX.Element => {
+  fallback,
+}: SnippetsPageProps): JSX.Element => {
+  console.log('category', category);
   const { snippets, isLoadingSnippets } = useSnippets({
     skip,
     limit,
-    category
+    category,
   });
 
   const [, setCategoryInStorage] = useSessionStorage(
     snippetsCategoryName,
-    category
+    category,
   );
 
   React.useEffect(() => {

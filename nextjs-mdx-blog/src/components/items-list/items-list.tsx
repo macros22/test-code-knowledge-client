@@ -11,7 +11,7 @@ import { IQuestionFormProps } from '@/components/questions/QuestionForm/Question
 import { ISnippetCardProps } from '@/components/snippet-card/snippet-card.props'
 import { ISnippetFormProps } from '@/components/snippet-card/snippet-form/snippet-form.props'
 import { getQuestionExample } from '@/components/questions/QuestionForm/questionExample'
-import { getSnippetExample } from '@/components/snippet-card/snippet-form/snippetExample'
+import { getSnippetExample } from '@/components/snippet-card/snippet-form/snippet-example'
 import { useUser } from '@/lib/hooks'
 import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
 import { IQuestion } from '@/lib/interfaces/questions.interface'
@@ -30,7 +30,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog'
 import { Button } from '../ui/button'
-import { PencilIcon } from 'lucide-react'
+import { PencilIcon, PlusIcon } from 'lucide-react'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(
@@ -64,10 +64,6 @@ export const ItemsList: FC<IItemsListProps> = ({
 
   const { itemsInfo } = useItemsInfo(itemsName)
 
-  const handleAddNewItemButton = () => {
-    // setIsAddNewItemMode(true)
-  }
-
   const makeHandleEditItemButton = (index: number) => {
     return () => {
       setCurrentItemIndex(index)
@@ -81,24 +77,14 @@ export const ItemsList: FC<IItemsListProps> = ({
   }
 
   return (
-    // <div className={styles.wrapper}>
-    //   <div className={styles.title}>
-    //     <div className={styles.categoryButtons}>
     <div>
       <div>
-        {/* width: fit-content;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: $spacer * 1.2;
-  font-size: 18px; */}
-        <div className="mx-auto flex w-4/6 flex-wrap justify-center gap-4">
+        <div className="fixed right-2 top-20 max-w-[200px] mx-auto flex w-4/6 flex-wrap justify-center gap-4">
           {Object.keys(itemsInfo).map((category) => {
             return (
               <Badge
                 variant={category == currentCategory ? 'default' : 'outline'}
-                className="hover: cursor-pointer p-2 text-lg"
+                className="hover: cursor-pointer py-1 px-2 text-xs"
                 // className={
                 //   category == currentCategory ? '' : '' //styles.inActiveButton
                 // }
@@ -116,20 +102,37 @@ export const ItemsList: FC<IItemsListProps> = ({
             )
           })}
         </div>
-
-        {isLoggedIn && isAdmin && (
-          <BsPlusLg
-            // className={styles.addNewItemButton}
-            onClick={handleAddNewItemButton}
-          />
-        )}
       </div>
-
-      {/* <div className={styles.container}>
-        <div className={styles.column}> */}
+      {isLoggedIn && isAdmin && (
+        <Dialog>
+          <DialogTrigger className='fixed left-2 top-20'>
+            {' Add Snippet'}
+            <Button
+              variant="outline"
+              size="icon"
+              className='ml-2'
+            >
+              <PlusIcon className="h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                Snippet{' '}
+                {/* <Badge className="ml-2 px-3 py-1">{index + 1}</Badge> */}
+              </DialogTitle>
+              <DialogDescription>description</DialogDescription>
+            </DialogHeader>
+            <SnippetForm
+              snippetItem={getSnippetExample(currentCategory)}
+              mode="add"
+            />
+          </DialogContent>
+        </Dialog>
+      )}
       <div>
         <div className="mx-auto mt-4 flex w-9/12 flex-col gap-5">
-          {items && !!items.length ? (
+          {Boolean(items?.length) ? (
             items.map((item, index) => {
               //@ts-ignore
               return (
@@ -164,9 +167,9 @@ export const ItemsList: FC<IItemsListProps> = ({
       </div>
 
       {/* {isLoggedIn && isAddNewItemMode && ( */}
-      {isLoggedIn &&  (
-        <> 
-        {/* <Modal
+      {isLoggedIn && (
+        <>
+          {/* <Modal
           size="lg"
           show={isAddNewItemMode}
           onHide={() => setIsAddNewItemMode(false)}
@@ -187,35 +190,7 @@ export const ItemsList: FC<IItemsListProps> = ({
             )}
           </Modal.Body>
         </Modal> */}
-        <Dialog
-        // size="lg"
-        // show={isEditItemMode}
-        // onHide={() => setIsEditItemMode(false)}
-        >
-          <DialogTrigger>
-            {' '}
-            <Button
-              variant="outline"
-              size="icon"
-              // onClick={handleEditButton}
-            >
-              <PencilIcon className="h-4 w-4" />
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>
-                Snippet{' '}
-                {/* <Badge className="ml-2 px-3 py-1">{index + 1}</Badge> */}
-              </DialogTitle>
-              <DialogDescription>description</DialogDescription>
-            </DialogHeader>
-            <SnippetForm
-               snippetItem={getSnippetExample(currentCategory)}
-              mode="add"
-            />
-          </DialogContent>
-        </Dialog></>
+        </>
       )}
 
       {/* 

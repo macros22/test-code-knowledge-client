@@ -9,10 +9,10 @@ interface ISnippetsProps {
 export const getSnippetsUrl = ({
   categoryURLName,
   skip,
-  limit
+  limit,
 }: ISnippetsProps) => {
   const searchParams =
-    (skip == 0 || skip) && limit ? `?skip=${skip}&limit=${limit}` : '';
+    (skip === 0 || skip) && limit ? `?skip=${skip}&limit=${limit}` : '';
 
-  return SNIPPETS_BASE_URL + '/' + categoryURLName + searchParams;
+  return `${SNIPPETS_BASE_URL}/${categoryURLName}${searchParams}`;
 };

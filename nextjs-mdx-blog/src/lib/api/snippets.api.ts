@@ -7,15 +7,8 @@ import { Role } from '../interfaces/user.interface'
 export const snippetsApi = () => {
   return {
     getSnippets: async (url: string) => {
-      try {
-        const res = await axios.get<ISnippet[]>(url, { withCredentials: true })
-
-        return res.data
-      } catch (error) {
-        console.log(error)
-      }
-
-      return null
+      const res = await axios.get<ISnippet[]>(url, { withCredentials: true })
+      return res.data
     },
     getSnippetsInfo: async (url: string) => {
       try {

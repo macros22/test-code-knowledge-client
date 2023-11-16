@@ -69,10 +69,7 @@ export const SnippetCard: FC<ISnippetCardProps> = ({
                         </DialogTitle>
                         <DialogDescription>description</DialogDescription>
                       </DialogHeader>
-                      <SnippetForm
-                        snippetItem={snippet}
-                        mode="edit"
-                      />
+                      <SnippetForm snippetItem={snippet} mode="edit" />
                     </DialogContent>
                   </Dialog>
                   <Button

@@ -11,7 +11,7 @@ export interface ISnippet {
 
 export interface ISnippetDto extends Omit<ISnippet, 'id'> {}
 
-export interface ISnippetsPageProps extends Record<string, unknown> {
+export interface SnippetsPageProps extends Record<string, unknown> {
   category: string
   skip: number
   limit: number

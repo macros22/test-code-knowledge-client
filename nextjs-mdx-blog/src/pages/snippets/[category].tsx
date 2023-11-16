@@ -1,5 +1,5 @@
-import React from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import React, { useEffect } from 'react'
+import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 
 import { Spinner } from 'react-bootstrap'
 import { SWRConfig } from 'swr'
@@ -11,12 +11,12 @@ import { SNIPPETS_BASE_URL } from '@/lib/constants/urls'
 import { getQueryParametr } from '@/lib/helpers/get-param-from-query'
 import { getSnippetsUrl } from '@/lib/helpers/get-snippets-url'
 import { useSnippets, useSessionStorage } from '@/lib/hooks'
-import { ISnippetsPageProps } from '@/lib/interfaces/snippets.interface'
+import { SnippetsPageProps } from '@/lib/interfaces/snippets.interface'
 import { ItemsList, LoadItemsButton } from '@/components/items-list'
 
-export const getServerSideProps: GetServerSideProps<
-  ISnippetsPageProps
-> = async (context) => {
+export const getServerSideProps: GetServerSideProps<SnippetsPageProps> = async (
+  context,
+) => {
   const categoryURLName = getQueryParametr(context, 'category') || ''
 
   const skip = Number(getQueryParametr(context, 'skip')) || 0
@@ -50,12 +50,12 @@ export const getServerSideProps: GetServerSideProps<
   }
 }
 
-const SnippetsPage = ({
+const SnippetsPage: NextPage<SnippetsPageProps> = ({
   category,
   skip,
   limit,
   fallback,
-}: ISnippetsPageProps): JSX.Element => {
+}) => {
   const { snippets, isLoadingSnippets } = useSnippets({
     skip,
     limit,
@@ -67,7 +67,7 @@ const SnippetsPage = ({
     category,
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCategoryInStorage(category)
   }, [category])
 

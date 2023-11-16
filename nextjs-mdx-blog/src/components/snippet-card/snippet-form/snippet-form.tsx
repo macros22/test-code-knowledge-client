@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import { ISnippetFormProps } from './snippet-form.props'
-
-import { useSnippetForm } from './use-snippet-form'
-import { useSnippets, useSnippetsInfo } from '@/lib/hooks'
+import { SnippetFormProps } from './snippet-form.props'
+import { useSnippetsInfo } from '@/lib/hooks'
 
 import {
   Select,
@@ -27,18 +25,9 @@ import { SnippetFormSchema, snippetFormSchema } from './snippet-form.schema'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ISnippetDto } from '@/lib/interfaces/snippets.interface'
+import { useSnippetsMutation } from '@/lib/hooks/items/snippets/use-snippets-mutation'
 
-export const SnippetForm: FC<ISnippetFormProps> = ({
-  snippetItem,
-  mode,
-}) => {
-  const {
-    handleResetButton,
-  } = useSnippetForm({
-    snippetItem,
-    mode,
-  })
-
+export const SnippetForm: FC<SnippetFormProps> = ({ snippetItem, mode }) => {
   const { snippetsInfo } = useSnippetsInfo()
 
   const form = useForm({
@@ -46,10 +35,15 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
     defaultValues: snippetItem,
   })
 
-  const { patchSnippet, isPatchSnippetLoading, postSnippet, isPostSnippetLoading } = useSnippets({
+  const {
+    patchSnippet,
+    isPatchSnippetLoading,
+    postSnippet,
+    isPostSnippetLoading,
+  } = useSnippetsMutation({
     id: snippetItem.id,
+    categoryURLName: snippetsInfo[snippetItem.category]?.categoryURLName,
   })
-
 
   const onSubmit = (data: SnippetFormSchema) => {
     const snippetPayload: ISnippetDto = {
@@ -71,119 +65,91 @@ export const SnippetForm: FC<ISnippetFormProps> = ({
     mutateSnippet()
   }
 
+  const handleResetButton = (e) => {
+    form.reset(snippetItem)
+  }
+
   return (
-    <>
-      <Form {...form}>
-        {/* className="space-y-2" */}
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-6"
-        >
-          <FormField
-            control={form.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Category</FormLabel>
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.keys(snippetsInfo).map((category) => {
-                        return (
-                          <SelectItem value={category} key={category}>
-                            {category}
-                          </SelectItem>
-                        )
-                      })}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Input placeholder={field.name} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="snippet"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Snippet</FormLabel>
-                <FormControl>
-                  <Textarea
-                    className="max-h-40"
-                    placeholder={field.name}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="mt-8 flex flex-wrap gap-2">
-            <Button type="submit" loading={isPatchSnippetLoading || isPostSnippetLoading}>
-              Save
-            </Button>
-            <Button
-              className="ml-auto"
-              variant="outline"
-              onClick={handleResetButton}
-            >
-              Reset
-            </Button>
-          </div>
-        </form>
-      </Form>
-
-      {/* <Form>
-      <Form className={styles.form}>
-      <HrWithContent className={styles.title}>Category</HrWithContent>
-
-
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Snippet</Form.Label>
-        <HrWithContent className={styles.title}>Description</HrWithContent>
-        <Form.Control
-          placeholder="Enter Snippet"
-          value={description}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-6"
+      >
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Category</FormLabel>
+              <FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(snippetsInfo).map((category) => {
+                      return (
+                        <SelectItem value={category} key={category}>
+                          {category}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="description"
-          onChange={(e) => setDescription(e.target.value)}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Input placeholder={field.name} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <Form.Text className="text-error">{descriptionError}</Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-2" controlId="formBasicPassword">
-        <Separator>
-        <BsFillTerminalFill /> Snippet
-        </Separator>
-        <Form.Control
-          as="textarea"
-          placeholder="Snippet"
-          value={snippet}
-          onChange={(e) => setSnippet(e.target.value)}
-          // className={styles.textareaSnippet}
+        <FormField
+          control={form.control}
+          name="snippet"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Snippet</FormLabel>
+              <FormControl>
+                <Textarea
+                  className="max-h-40"
+                  placeholder={field.name}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </Form.Group>
-
-     
-    </Form> */}
-    </>
+        <div className="mt-8 flex flex-wrap gap-2">
+          <Button
+            type="submit"
+            loading={isPatchSnippetLoading || isPostSnippetLoading}
+          >
+            Save
+          </Button>
+          <Button
+            className="ml-auto"
+            variant="outline"
+            onClick={handleResetButton}
+          >
+            Reset
+          </Button>
+        </div>
+      </form>
+    </Form>
   )
 }

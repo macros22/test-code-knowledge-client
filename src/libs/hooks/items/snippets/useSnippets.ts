@@ -1,9 +1,10 @@
-import useSWRInfinite from 'swr/infinite';
+import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
 import { getSnippetsUrl } from 'libs/helpers/get-snippets-url';
+import { ISnippet } from 'libs/interfaces/snippets.interface';
+import useSWRInfinite from 'swr/infinite';
+
 import { useSnippetsApi } from './useSnippetsApi';
 import { useSnippetsInfo } from './useSnippetssInfo';
-import { ISnippet } from 'libs/interfaces/snippets.interface';
-import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
 
 interface IUseSnippetsProps {
   skip?: number;
@@ -20,7 +21,7 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     const snippetsUrl = getSnippetsUrl({
       categoryURLName: category ? snippetsInfo[category]?.categoryURLName : '',
       skip: pageIndex * (limit || ITEMS_PER_PAGE),
-      limit
+      limit,
     });
     return snippetsUrl;
   };
@@ -32,10 +33,10 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     size,
     setSize,
     isValidating,
-    mutate: mutateSnippets
+    mutate: mutateSnippets,
   } = useSWRInfinite(getKey, api.getSnippets);
 
-  let snippets: ISnippet[] = [];
+  const snippets: ISnippet[] = [];
 
   if (data) {
     data.map(item => {
@@ -75,6 +76,6 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     setSize,
     size,
     isLoadingMore,
-    mutateSnippets
+    mutateSnippets,
   };
 };
