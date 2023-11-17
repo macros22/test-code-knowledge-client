@@ -5,8 +5,8 @@ import {
 
 interface IQuestionsProps {
   categoryURLName: string
-  skip: number | undefined
-  limit: number | undefined
+  skip?: number
+  limit?: number
 }
 
 export const getQuestionsUrl = ({

@@ -27,9 +27,9 @@ export const getServerSideProps: GetServerSideProps<
     limit,
   })
 
-  const questions = await questionsApi().getQuestions(questionsUrl)
+  const questions = await questionsApi.getQuestions(questionsUrl)
   const questionsInfo =
-    await questionsApi().getQuestionsInfo(QUESTIONS_BASE_URL)
+    await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
   let category = ''
   if (questionsInfo) {
     category =

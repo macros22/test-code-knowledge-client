@@ -4,13 +4,13 @@ import { ISnippet, ISnippetDto } from '../interfaces/snippets.interface'
 
 export const snippetsApi = {
   getSnippets: async (url: string) => {
-    const res = await axios.get<ISnippet[]>(url, { withCredentials: true })
-    return res.data
+    const { data } = await axios.get<ISnippet[]>(url, { withCredentials: true })
+    return data
   },
   getSnippetsInfo: async (url: string) => {
     try {
-      const res = await axios.get<IItemsInfo>(url, { withCredentials: true })
-      return res.data
+      const {data} = await axios.get<IItemsInfo>(url, { withCredentials: true })
+      return data
     } catch (error) {
       console.log(error)
     }

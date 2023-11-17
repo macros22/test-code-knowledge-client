@@ -16,9 +16,11 @@ export const useQuestions = ({ skip, limit, category }: IUseQuestionsProps) => {
 
   // SWR default function name for pagination.
   const getKey = (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.length) return null // reached the end
+    if (previousPageData && !previousPageData.length) {
+      return null // reached the end
+  }
     const questionsUrl = getQuestionsUrl({
-      categoryURLName: category ? questionsInfo[category]?.categoryURLName : '',
+      categoryURLName: category && questionsInfo[category]?.categoryURLName ? questionsInfo[category]?.categoryURLName : '',
       skip: pageIndex * (limit || ITEMS_PER_PAGE),
       limit,
     })

@@ -28,6 +28,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '../ui/collapsible'
+import { QuestionForm } from './question-form'
 
 export const QuestionCard: FC<QuestionCardProps> = ({
   question,
@@ -77,7 +78,7 @@ export const QuestionCard: FC<QuestionCardProps> = ({
                         </DialogTitle>
                         <DialogDescription>description</DialogDescription>
                       </DialogHeader>
-                      {/* <SnippetForm snippetItem={snippet} mode="edit" /> */}
+                      <QuestionForm questionItem={question} mode="edit" />
                     </DialogContent>
                   </Dialog>
                   <Button
