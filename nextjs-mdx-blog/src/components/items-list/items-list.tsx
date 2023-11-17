@@ -1,24 +1,23 @@
 import React, { FC, useState } from 'react'
 // import styles from './ItemsList.module.scss';
-import { IItemsListProps } from './items-list.props'
-import { BsPlusLg } from 'react-icons/bs'
-import { Card, Modal } from 'react-bootstrap'
+import { ItemsListProps } from './items-list.props'
+import { Card } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 
 import dynamic from 'next/dynamic'
-import { IQuestionCardProps } from '@/components/questions/QuestionCard/QuestionCard.props'
-import { IQuestionFormProps } from '@/components/questions/QuestionForm/QuestionForm.props'
+import { IQuestionCardProps } from '@/components/question-card/question-card.props'
+import { IQuestionFormProps } from '@/components/question-card/question-form/question-form.props'
 import { ISnippetCardProps } from '@/components/snippet-card/snippet-card.props'
 import { ISnippetFormProps } from '@/components/snippet-card/snippet-form/snippet-form.props'
-import { getQuestionExample } from '@/components/questions/QuestionForm/questionExample'
+import { getQuestionExample } from '@/components/question-card/question-form/question-example'
 import { getSnippetExample } from '@/components/snippet-card/snippet-form/snippet-example'
 import { useUser } from '@/lib/hooks'
 import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
 import { IQuestion } from '@/lib/interfaces/questions.interface'
 import { ISnippet } from '@/lib/interfaces/snippets.interface'
-import { QuestionCard } from '@/components/questions/QuestionCard/QuestionCard'
+import { QuestionCard } from '@/components/question-card/question-card'
 import { SnippetCard } from '@/components/snippet-card/snippet-card'
-import { QuestionForm } from '@/components/questions/QuestionForm/QuestionForm'
+import { QuestionForm } from '@/components/question-card/question-form/question-form'
 import { SnippetForm } from '@/components/snippet-card/snippet-form/snippet-form'
 import { Badge } from '@/components/ui/badge/badge'
 import {
@@ -53,7 +52,7 @@ import { PencilIcon, PlusIcon } from 'lucide-react'
 //   )
 // );
 
-export const ItemsList: FC<IItemsListProps> = ({
+export const ItemsList: FC<ItemsListProps> = ({
   itemsName,
   items,
   category: currentCategory,
@@ -79,12 +78,12 @@ export const ItemsList: FC<IItemsListProps> = ({
   return (
     <div>
       <div>
-        <div className="fixed right-2 top-20 max-w-[200px] mx-auto flex w-4/6 flex-wrap justify-center gap-4">
+        <div className="fixed right-2 top-20 mx-auto flex w-4/6 max-w-[500px] flex-wrap justify-center gap-4">
           {Object.keys(itemsInfo).map((category) => {
             return (
               <Badge
                 variant={category == currentCategory ? 'default' : 'outline'}
-                className="hover: cursor-pointer py-1 px-2 text-xs"
+                className="hover: text-md cursor-pointer px-3 py-2"
                 // className={
                 //   category == currentCategory ? '' : '' //styles.inActiveButton
                 // }
@@ -105,13 +104,9 @@ export const ItemsList: FC<IItemsListProps> = ({
       </div>
       {isLoggedIn && isAdmin && (
         <Dialog>
-          <DialogTrigger className='fixed left-2 top-20'>
+          <DialogTrigger className="fixed left-2 top-20">
             {' Add Snippet'}
-            <Button
-              variant="outline"
-              size="icon"
-              className='ml-2'
-            >
+            <Button variant="outline" size="icon" className="ml-2">
               <PlusIcon className="h-4 w-4" />
             </Button>
           </DialogTrigger>
@@ -138,15 +133,15 @@ export const ItemsList: FC<IItemsListProps> = ({
               return (
                 <Card key={item.id}>
                   {itemsName == 'questions' ? (
-                    // <QuestionCard
-                    //   withEdit={isLoggedIn && isAdmin}
-                    //   handleEditButton={makeHandleEditItemButton(index)}
-                    //   question={item}
-                    //   key={item.id}
-                    //   index={index + 1}
-                    // />
-                    <></>
+                    <QuestionCard
+                      withEdit={isLoggedIn && isAdmin}
+                      handleEditButton={makeHandleEditItemButton(index)}
+                      question={item}
+                      key={item.id}
+                      index={index}
+                    />
                   ) : (
+                    // <></>
                     <SnippetCard
                       withEdit={isLoggedIn && isAdmin}
                       handleEditButton={makeHandleEditItemButton(index)}

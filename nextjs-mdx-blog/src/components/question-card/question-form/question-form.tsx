@@ -1,5 +1,5 @@
-import React from 'react'
-import { IQuestionFormProps } from './QuestionForm.props'
+import React, { FC } from 'react'
+import { QuestionFormProps } from './question-form.props'
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import {
   BsPlusLg,
@@ -11,11 +11,11 @@ import { useQuestionForm } from './useQuestionForm.hook'
 import { useQuestionsInfo } from '@/lib/hooks'
 import { deepCopy } from '@/lib/helpers/deep-copy'
 
-export const QuestionForm = ({
+export const QuestionForm: FC<QuestionFormProps> = ({
   questionItem,
   mode,
   setIsModalOpen,
-}: IQuestionFormProps): JSX.Element => {
+}) => {
   const {
     question,
     setQuestion,

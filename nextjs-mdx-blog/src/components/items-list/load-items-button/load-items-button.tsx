@@ -1,13 +1,14 @@
 import { Button } from '@/components/ui/button'
-import { ILoadItemsButtonProps } from './load-items-button.props'
+import { LoadItemsButtonProps } from './load-items-button.props'
 import { useQuestions } from '@/lib/hooks'
 import { Loader2 } from 'lucide-react'
+import { FC } from 'react'
 
-export const LoadItemsButton = ({
+export const LoadItemsButton: FC<LoadItemsButtonProps> = ({
   skip,
   limit,
   category,
-}: ILoadItemsButtonProps): JSX.Element => {
+}) => {
   const { size, setSize, isReachingEnd, isLoadingMore } = useQuestions({
     skip,
     limit,

@@ -5,6 +5,6 @@ import { useUser } from '../../useUser'
 // Should be removed
 export const useSnippetsApi = () => {
   return {
-    api: snippetsApi(),
+    api: snippetsApi,
   }
 }

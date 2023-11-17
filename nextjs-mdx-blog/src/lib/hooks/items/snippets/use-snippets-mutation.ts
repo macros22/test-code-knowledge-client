@@ -28,6 +28,7 @@ export const useSnippetsMutation = ({
   }
 
   const pathcUrl = `${SNIPPETS_BASE_URL}/${id}`
+  const deleteUrl = `${SNIPPETS_BASE_URL}/${id}`
   const postUrl = `${SNIPPETS_BASE_URL}`
   const { mutate } = useSWRConfig()
 
@@ -35,7 +36,7 @@ export const useSnippetsMutation = ({
     trigger: triggerPatchSnippet,
     isMutating: isPatchSnippetLoading,
     error: patchSnippetError,
-  } = useSWRMutation(pathcUrl, snippetsApi().patchSnippet)
+  } = useSWRMutation(pathcUrl, snippetsApi.patchSnippet)
 
   const patchSnippet = (snippetPayload) => {
     triggerPatchSnippet(snippetPayload)
@@ -46,7 +47,7 @@ export const useSnippetsMutation = ({
     trigger: triggerPostSnippet,
     isMutating: isPostSnippetLoading,
     error: postSnippetError,
-  } = useSWRMutation(postUrl, snippetsApi().postSnippet)
+  } = useSWRMutation(postUrl, snippetsApi.postSnippet)
 
   const postSnippet = (snippetPayload) => {
     triggerPostSnippet(snippetPayload)

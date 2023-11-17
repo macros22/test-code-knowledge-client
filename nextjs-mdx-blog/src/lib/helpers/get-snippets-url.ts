@@ -14,5 +14,5 @@ export const getSnippetsUrl = ({
   const searchParams =
     (skip == 0 || skip) && limit ? `?skip=${skip}&limit=${limit}` : ''
 
-  return SNIPPETS_BASE_URL + '/' + categoryURLName + searchParams
+  return `${SNIPPETS_BASE_URL}/${categoryURLName}${searchParams}`
 }

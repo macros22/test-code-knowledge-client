@@ -1,4 +1,4 @@
-export interface ILoadItemsButtonProps {
+export interface LoadItemsButtonProps {
   skip: number
   limit: number
   category: string

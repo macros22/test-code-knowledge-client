@@ -28,8 +28,8 @@ export const getServerSideProps: GetServerSideProps<SnippetsPageProps> = async (
     limit,
   })
 
-  const snippets = await snippetsApi().getSnippets(snippetsUrl)
-  const snippetsInfo = await snippetsApi().getSnippetsInfo(SNIPPETS_BASE_URL)
+  const snippets = await snippetsApi.getSnippets(snippetsUrl)
+  const snippetsInfo = await snippetsApi.getSnippetsInfo(SNIPPETS_BASE_URL)
   let category = ''
   if (snippetsInfo) {
     category =

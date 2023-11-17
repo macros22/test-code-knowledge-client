@@ -22,7 +22,7 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
       categoryURLName:
         category && snippetsInfo[category]?.categoryURLName
           ? snippetsInfo[category]?.categoryURLName
-          : 'javascript',
+          : '',
       skip: pageIndex * (limit || ITEMS_PER_PAGE),
       limit,
     })

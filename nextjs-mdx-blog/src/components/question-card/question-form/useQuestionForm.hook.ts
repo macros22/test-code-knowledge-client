@@ -1,7 +1,7 @@
 import React from 'react'
 import { ValidationError } from 'yup'
 import { schema } from './question.schema'
-import { IQuestionFormProps } from './QuestionForm.props'
+import { IQuestionFormProps } from './question-form.props'
 import { deepCopy } from '@/lib/helpers/deep-copy'
 import { useQuestionsApi, useQuestions } from '@/lib/hooks'
 import { IInfoLink } from '@/lib/interfaces/common.interface'
