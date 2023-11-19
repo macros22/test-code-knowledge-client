@@ -7,14 +7,14 @@ import { QUESTIONS_BASE_URL } from '@/lib/constants/urls'
 import { getQueryParametr } from '@/lib/helpers/get-param-from-query'
 import { getQuestionsUrl } from '@/lib/helpers/get-questions-url'
 import { useQuestions, useSessionStorage } from '@/lib/hooks'
-import { IQuestionsPageProps } from '@/lib/interfaces/questions.interface'
-import { GetServerSideProps } from 'next'
+import { QuestionsPageProps } from '@/lib/interfaces/questions.interface'
+import { GetServerSideProps, NextPage } from 'next'
 import { useEffect } from 'react'
 
 import { SWRConfig } from 'swr'
 
 export const getServerSideProps: GetServerSideProps<
-  IQuestionsPageProps
+  QuestionsPageProps
 > = async (context) => {
   const categoryURLName = getQueryParametr(context, 'category') || ''
 
@@ -49,12 +49,12 @@ export const getServerSideProps: GetServerSideProps<
   }
 }
 
-const QuestionsPage = ({
+const QuestionsPage: NextPage<QuestionsPageProps> = ({
   category,
   skip,
   limit,
   fallback,
-}: IQuestionsPageProps): JSX.Element => {
+}) => {
   const { questions, isLoadingQuestions } = useQuestions({
     skip,
     limit,

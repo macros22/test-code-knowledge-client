@@ -1,11 +1,11 @@
-import React from 'react'
+import { FC } from 'react'
 import { Container, Card } from 'react-bootstrap'
-import { IAuthProps } from './Auth.props'
 import dynamic from 'next/dynamic'
-const SignIn = dynamic(() => import('../SignIn/SignIn'))
-const SignUp = dynamic(() => import('../SignUp/SignUp'))
+import { AuthCardProps } from './auth-card.props'
+const SignIn = dynamic(() => import('./sign-in/sign-in'))
+const SignUp = dynamic(() => import('./sign-up/sign-up'))
 
-export const Auth = ({ authMode }: IAuthProps): JSX.Element => {
+export const AuthCard:FC<AuthCardProps> = ({ authMode }) => {
   return (
     <Container>
       <div className="mb-3" style={{ textAlign: 'center' }}>

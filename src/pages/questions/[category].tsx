@@ -7,7 +7,7 @@ import { questionsCategoryName } from 'libs/constants/names.storage';
 import { Button, Spinner } from 'react-bootstrap';
 import {
   IQuestion,
-  IQuestionsPageProps
+  QuestionsPageProps
 } from 'libs/interfaces/questions.interface';
 import { questionsApi } from 'libs/api/questions.api';
 import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
@@ -18,7 +18,7 @@ import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsB
 import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
 
 export const getServerSideProps: GetServerSideProps<
-  IQuestionsPageProps
+  QuestionsPageProps
 > = async context => {
   const categoryURLName = getQueryParametr(context, 'category') || '';
 
@@ -60,7 +60,7 @@ const QuestionsPage = ({
   skip,
   limit,
   fallback
-}: IQuestionsPageProps): JSX.Element => {
+}: QuestionsPageProps): JSX.Element => {
   const { questions, isLoadingQuestions } = useQuestions({
     skip,
     limit,

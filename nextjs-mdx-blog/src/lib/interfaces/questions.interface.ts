@@ -22,7 +22,7 @@ export interface IQuestion {
 
 export interface IQuestionDto extends Omit<IQuestion, 'id'> {}
 
-export interface IQuestionsPageProps extends Record<string, unknown> {
+export interface QuestionsPageProps extends Record<string, unknown> {
   category: string
   skip: number
   limit: number

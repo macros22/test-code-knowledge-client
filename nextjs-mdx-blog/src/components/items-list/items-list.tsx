@@ -78,7 +78,7 @@ export const ItemsList: FC<ItemsListProps> = ({
   return (
     <div>
       <div>
-        <div className="fixed right-2 top-20 mx-auto flex w-4/6 max-w-[500px] flex-wrap justify-center gap-4">
+        <div className="2xl:fixed 2xl:right-1 2xl:top-20 mx-auto flex w-4/6 max-w-[400px] flex-wrap justify-center gap-4">
           {Object.keys(itemsInfo).map((category) => {
             return (
               <Badge

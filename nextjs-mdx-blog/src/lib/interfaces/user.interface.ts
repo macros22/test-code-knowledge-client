@@ -18,6 +18,6 @@ export interface ISignUpDto extends ISignInDto {
   name: string
 }
 
-export interface IAuthPageProps extends Record<string, string> {
+export interface AuthPageProps extends Record<string, string> {
   authMode: 'sign-in' | 'sign-up'
 }
