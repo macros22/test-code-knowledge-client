@@ -28,8 +28,7 @@ export const getServerSideProps: GetServerSideProps<
   })
 
   const questions = await questionsApi.getQuestions(questionsUrl)
-  const questionsInfo =
-    await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
+  const questionsInfo = await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
   let category = ''
   if (questionsInfo) {
     category =

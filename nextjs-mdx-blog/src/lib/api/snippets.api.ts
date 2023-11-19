@@ -9,7 +9,9 @@ export const snippetsApi = {
   },
   getSnippetsInfo: async (url: string) => {
     try {
-      const {data} = await axios.get<IItemsInfo>(url, { withCredentials: true })
+      const { data } = await axios.get<IItemsInfo>(url, {
+        withCredentials: true,
+      })
       return data
     } catch (error) {
       console.log(error)

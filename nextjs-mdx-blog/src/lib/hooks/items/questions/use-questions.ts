@@ -18,9 +18,12 @@ export const useQuestions = ({ skip, limit, category }: IUseQuestionsProps) => {
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) {
       return null // reached the end
-  }
+    }
     const questionsUrl = getQuestionsUrl({
-      categoryURLName: category && questionsInfo[category]?.categoryURLName ? questionsInfo[category]?.categoryURLName : '',
+      categoryURLName:
+        category && questionsInfo[category]?.categoryURLName
+          ? questionsInfo[category]?.categoryURLName
+          : '',
       skip: pageIndex * (limit || ITEMS_PER_PAGE),
       limit,
     })

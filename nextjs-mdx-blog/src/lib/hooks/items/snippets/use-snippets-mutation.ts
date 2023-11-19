@@ -1,5 +1,5 @@
-import useSWRInfinite from 'swr/infinite'
-import { useSnippetsApi } from './useSnippetsApi'
+import useSWRInfinite, { unstable_serialize } from 'swr/infinite'
+
 import { useSnippetsInfo } from './useSnippetssInfo'
 import { getSnippetsUrl } from '@/lib/helpers/get-snippets-url'
 import { ITEMS_PER_PAGE } from '@/lib/constants/items-per-page'
@@ -54,9 +54,22 @@ export const useSnippetsMutation = ({
     mutate(getKey, snippetPayload)
   }
 
+  const {
+    trigger: triggerDeleteSnippet,
+    isMutating: isDeleteSnippetLoading,
+    error: deleteSnippetError,
+  } = useSWRMutation(deleteUrl, snippetsApi.deleteSnippet)
+
+  const deleteSnippet = () => {
+    triggerDeleteSnippet()
+    mutate(getKey)
+  }
+
   return {
     patchSnippet,
     postSnippet,
+    deleteSnippet,
+    isDeleteSnippetLoading,
     isPatchSnippetLoading,
     isPostSnippetLoading,
     // isLoadingSnippets,

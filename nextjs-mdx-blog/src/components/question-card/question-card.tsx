@@ -53,78 +53,76 @@ export const QuestionCard: FC<QuestionCardProps> = ({
   }, [])
 
   return (
-      <Card className="mx-auto mt-4 w-10/12">
-        <CardHeader>
-          <CardTitle className="flex flex-col">
-            <div className="flex">
-              <Badge className="mr-auto">
-                {'Question '}
-                {index + 1}
-              </Badge>
+    <Card className="mx-auto mt-4 w-10/12">
+      <CardHeader>
+        <CardTitle className="flex flex-col">
+          <div className="flex">
+            <Badge className="mr-auto">
+              {'Question '}
+              {index + 1}
+            </Badge>
 
-              {withEdit && (
-                <>
-                  <Dialog>
-                    <DialogTrigger>
-                      <Button variant="outline" size="icon">
-                        <PencilIcon className="h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>
-                          Question{' '}
-                          <Badge className="ml-2 px-3 py-1">{index + 1}</Badge>
-                        </DialogTitle>
-                        <DialogDescription>description</DialogDescription>
-                      </DialogHeader>
-                      <QuestionForm questionItem={question} mode="edit" />
-                    </DialogContent>
-                  </Dialog>
-                  <Button
-                    className="ml-4"
-                    variant="outline"
-                    size="icon"
-                    onClick={handleDeleteButton}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
-                </>
-              )}
-            </div>
-            <Separator className="my-4" />
-            <h5>{question.question}</h5>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-        {question.codeExample && <Code codeExample={question.codeExample} language="tsx" />}
-          <Collapsible
-           open={isAnswerVisible}
-          onOpenChange={setIsAnswerVisible}
-          >
-            <CollapsibleTrigger className='flex gap-2 mt-3'>
-              {isAnswerVisible ? (
-                <>
-                  <ChevronUpIcon />
-                  <h5> Hide answer </h5>
-                </>
-              ) : (
-                <>
-                  <ChevronDownIcon />
-                  <h5> Show answer </h5>
-                </>
-              )}
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-            <Separator className='my-3'/>
-              {correctAnswers.length &&
-                correctAnswers.map(({ answer }) => {
-                  return <h5 key={answer}>{answer}</h5>
-                })}
-            </CollapsibleContent>
-          </Collapsible>
-        </CardContent>
-      </Card>
-
+            {withEdit && (
+              <>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button variant="outline" size="icon">
+                      <PencilIcon className="h-4 w-4" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>
+                        Question{' '}
+                        <Badge className="ml-2 px-3 py-1">{index + 1}</Badge>
+                      </DialogTitle>
+                      <DialogDescription>description</DialogDescription>
+                    </DialogHeader>
+                    <QuestionForm questionItem={question} mode="edit" />
+                  </DialogContent>
+                </Dialog>
+                <Button
+                  className="ml-4"
+                  variant="outline"
+                  size="icon"
+                  onClick={handleDeleteButton}
+                >
+                  <TrashIcon className="h-4 w-4" />
+                </Button>
+              </>
+            )}
+          </div>
+          <Separator className="my-4" />
+          <h5>{question.question}</h5>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {question.codeExample && (
+          <Code codeExample={question.codeExample} language="tsx" />
+        )}
+        <Collapsible open={isAnswerVisible} onOpenChange={setIsAnswerVisible}>
+          <CollapsibleTrigger className="mt-3 flex gap-2">
+            {isAnswerVisible ? (
+              <>
+                <ChevronUpIcon />
+                <h5> Hide answer </h5>
+              </>
+            ) : (
+              <>
+                <ChevronDownIcon />
+                <h5> Show answer </h5>
+              </>
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <Separator className="my-3" />
+            {correctAnswers.length &&
+              correctAnswers.map(({ answer }) => {
+                return <h5 key={answer}>{answer}</h5>
+              })}
+          </CollapsibleContent>
+        </Collapsible>
+      </CardContent>
+    </Card>
   )
 }

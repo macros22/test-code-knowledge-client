@@ -1,9 +1,9 @@
 import useSWRInfinite from 'swr/infinite'
-import { useSnippetsApi } from './useSnippetsApi'
 import { useSnippetsInfo } from './useSnippetssInfo'
 import { getSnippetsUrl } from '@/lib/helpers/get-snippets-url'
 import { ITEMS_PER_PAGE } from '@/lib/constants/items-per-page'
 import { ISnippet } from '@/lib/interfaces/snippets.interface'
+import { snippetsApi } from '@/lib/api/snippets.api'
 
 interface IUseSnippetsProps {
   skip?: number
@@ -28,7 +28,6 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     })
   }
 
-  const { api } = useSnippetsApi()
   const {
     data,
     error,
@@ -37,7 +36,7 @@ export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
     isValidating,
     mutate: mutateSnippets,
     isLoading: isLoadingSnippets,
-  } = useSWRInfinite(getKey, api.getSnippets, { revalidateAll: true })
+  } = useSWRInfinite(getKey, snippetsApi.getSnippets, { revalidateAll: true })
 
   let snippets: ISnippet[] = []
 
