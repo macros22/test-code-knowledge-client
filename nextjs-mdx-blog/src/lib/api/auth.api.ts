@@ -8,7 +8,10 @@ import {
 import { ISignInDto, ISignUpDto, IUser } from '../interfaces/user.interface'
 
 export const authApi = {
-  signIn: async (dto: ISignInDto) => {
+  signIn: async (url: string, { arg }: { arg: ISignInDto }) => {
+    await axios.post<ISignInDto>(url, arg, { withCredentials: true })
+  },
+  signIn2: async (dto: ISignInDto) => {
     try {
       const res = await axios.post(SIGN_IN_URL, dto, { withCredentials: true })
 

@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps<AuthPageProps> = async (
   return { props: { authMode } }
 }
 
-const AuthPage:NextPage<AuthPageProps> = ({ authMode }) => {
+const AuthPage: NextPage<AuthPageProps> = ({ authMode }) => {
   return <AuthCard authMode={authMode} />
 }
 

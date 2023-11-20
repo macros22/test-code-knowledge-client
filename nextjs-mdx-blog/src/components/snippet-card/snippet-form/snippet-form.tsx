@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import {
-  Form,
+  FormProvider,
   FormControl,
   FormField,
   FormItem,
@@ -70,7 +70,7 @@ export const SnippetForm: FC<SnippetFormProps> = ({ snippetItem, mode }) => {
   }
 
   return (
-    <Form {...form}>
+    <FormProvider {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
@@ -150,6 +150,6 @@ export const SnippetForm: FC<SnippetFormProps> = ({ snippetItem, mode }) => {
           </Button>
         </div>
       </form>
-    </Form>
+    </FormProvider>
   )
 }

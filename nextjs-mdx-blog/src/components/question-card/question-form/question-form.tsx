@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { QuestionFormProps } from './question-form.props'
-// import { Col, Form, InputGroup, Row } from 'react-bootstrap'
+// import { Col, FormProvider, InputGroup, Row } from 'react-bootstrap'
 import {
   BsPlusLg,
   BsTrash2Fill,
@@ -16,7 +16,7 @@ import { QuestionFormSchema, questionFormSchema } from './question.schema'
 import { useQuestionsMutation } from '@/lib/hooks/items/questions/use-questions-mutation'
 import { IQuestionDto } from '@/lib/interfaces/questions.interface'
 import {
-  Form,
+  FormProvider,
   FormControl,
   FormField,
   FormItem,
@@ -243,7 +243,7 @@ export const QuestionForm: FC<QuestionFormProps> = ({ questionItem, mode }) => {
   }
 
   return (
-    <Form {...form}>
+    <FormProvider {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
@@ -323,6 +323,6 @@ export const QuestionForm: FC<QuestionFormProps> = ({ questionItem, mode }) => {
           </Button>
         </div>
       </form>
-    </Form>
+    </FormProvider>
   )
 }
