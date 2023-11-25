@@ -1,5 +1,4 @@
 import { Check, ChevronDown, ChevronUp } from 'lucide-react'
-
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -23,6 +22,7 @@ export function NavSelect({ itemsMode }: { itemsMode: ItemsMode | 'test' }) {
   const [isOpen, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const router = useRouter()
+  //@ts-ignore
   const { itemsInfo } = useItemsInfo(itemsMode)
 
   return (
@@ -34,9 +34,6 @@ export function NavSelect({ itemsMode }: { itemsMode: ItemsMode | 'test' }) {
           aria-expanded={isOpen}
           className="justify-between text-sm capitalize text-muted-foreground"
         >
-          {/* {value
-            ? items.find((framework) => framework.value === value)?.label
-            : "Select framework..."} */}
           {itemsMode}
           {isOpen ? (
             <ChevronUp className="ml-2 h-4 w-4 shrink-0 opacity-50" />

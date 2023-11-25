@@ -1,23 +1,12 @@
-import React, { FC, useState } from 'react'
-// import styles from './ItemsList.module.scss';
+import { FC, useState } from 'react'
 import { ItemsListProps } from './items-list.props'
-import { Card } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 
-import dynamic from 'next/dynamic'
-import { IQuestionCardProps } from '@/components/question-card/question-card.props'
-import { IQuestionFormProps } from '@/components/question-card/question-form/question-form.props'
-import { ISnippetCardProps } from '@/components/snippet-card/snippet-card.props'
-import { ISnippetFormProps } from '@/components/snippet-card/snippet-form/snippet-form.props'
-import { getQuestionExample } from '@/components/question-card/question-form/question-example'
 import { getSnippetExample } from '@/components/snippet-card/snippet-form/snippet-example'
 import { useUser } from '@/lib/hooks'
 import { useItemsInfo } from '@/lib/hooks/items/useItemsInfo.hook'
-import { IQuestion } from '@/lib/interfaces/questions.interface'
-import { ISnippet } from '@/lib/interfaces/snippets.interface'
 import { QuestionCard } from '@/components/question-card/question-card'
 import { SnippetCard } from '@/components/snippet-card/snippet-card'
-import { QuestionForm } from '@/components/question-card/question-form/question-form'
 import { SnippetForm } from '@/components/snippet-card/snippet-form/snippet-form'
 import { Badge } from '@/components/ui/badge/badge'
 import {
@@ -29,7 +18,8 @@ import {
   DialogTrigger,
 } from '../ui/dialog'
 import { Button } from '../ui/button'
-import { PencilIcon, PlusIcon } from 'lucide-react'
+import { PlusIcon } from 'lucide-react'
+import { Card } from '../ui/card'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(

@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@/app/providers'
 import { Container } from '@/components/Container'
 import { WEBSITE_HOST_URL } from '@/lib/constants'
 import type { Metadata } from 'next'
@@ -6,6 +5,7 @@ import Link from 'next/link'
 import './global.css'
 import { Header } from '@/layouts/header/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { ThemeProvider } from './providers'
 
 const meta = {
   title: 'Hunter Chang - Website',

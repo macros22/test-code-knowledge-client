@@ -19,7 +19,6 @@ import {
   PencilIcon,
   TrashIcon,
 } from 'lucide-react'
-import { SnippetForm } from '../snippet-card/snippet-form/snippet-form'
 import { DialogHeader } from '../ui/dialog'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'

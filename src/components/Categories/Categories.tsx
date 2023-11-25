@@ -58,7 +58,7 @@ export const Categories = () => {
       <div className="mx-auto flex flex-wrap gap-5">
         {Object.keys(questionsInfo).map((category) => {
           return (
-            <Card className="w-[280px]">
+            <Card className="w-[280px]" key={category}>
               <CardHeader>
                 <CardTitle className="flex justify-center text-3xl before:mr-3 before:text-primary before:content-['{'] after:ml-3 after:text-primary after:content-['}']">
                   {category}

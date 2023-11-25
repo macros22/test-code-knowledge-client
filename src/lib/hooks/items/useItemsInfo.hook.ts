@@ -1,5 +1,3 @@
-// const { questionsInfo } = useQuestionsInfo();
-
 import { ItemsMode } from '@/lib/interfaces/common.interface'
 import { useSnippetsInfo } from './snippets/useSnippetssInfo'
 import { useQuestionsInfo } from '..'

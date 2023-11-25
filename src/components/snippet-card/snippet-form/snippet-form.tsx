@@ -137,7 +137,7 @@ export const SnippetForm: FC<SnippetFormProps> = ({ snippetItem, mode }) => {
         <div className="mt-8 flex flex-wrap gap-2">
           <Button
             type="submit"
-            loading={isPatchSnippetLoading || isPostSnippetLoading}
+            // loading={isPatchSnippetLoading || isPostSnippetLoading}
           >
             Save
           </Button>

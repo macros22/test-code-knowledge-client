@@ -1,5 +1,4 @@
-import { ISnippetCardProps } from './snippet-card.props'
-
+import { SnippetCardProps } from './snippet-card.props'
 import { useSnippetsInfo } from '@/lib/hooks'
 import { Code } from '@/components/ui/code'
 import { Badge } from '@/components/ui/badge'
@@ -30,7 +29,7 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 
-export const SnippetCard: FC<ISnippetCardProps> = ({
+export const SnippetCard: FC<SnippetCardProps> = ({
   snippet,
   index,
   withEdit = false,

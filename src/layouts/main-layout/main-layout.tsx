@@ -1,17 +1,9 @@
-import { FC, PropsWithChildren, useContext, useEffect } from 'react'
-import { Spinner } from 'react-bootstrap'
-import cn from 'clsx'
-// const Header = dynamic(() => import('../Header/Header'))
-// const Footer = dynamic(() => import('../Footer/Footer'))
-// import { Footer } from "layouts";
-import dynamic from 'next/dynamic'
+import { FC, PropsWithChildren } from 'react'
+
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
-import { ThemeContext } from '@/contexts/theme.context'
 import { Header } from '@/layouts/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { Link } from 'lucide-react'
 import { Container } from '@/components/Container'
 import { Footer } from '../footer'
 import { useUser } from '@/lib/hooks'
