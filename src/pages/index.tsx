@@ -1,8 +1,8 @@
-import { Categories } from '@/components/cat/cat'
+import { CategoryCards } from '@/components/category-cards/category-cards'
 import { withLayout } from '@/layouts'
 
 const MainPage = () => {
-  return <Categories />
+  return <CategoryCards />
 }
 
 export default withLayout('main', MainPage)

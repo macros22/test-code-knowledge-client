@@ -1,5 +1,5 @@
 // import { PostCard } from '@/components/PostCard'
-// import { Categories } from '@/components/categories'
+// import { CategoryCards } from '@/components/categories'
 // import { Button } from '@/components/ui/button'
 // import { allPosts } from 'contentlayer/generated'
 // import { compareDesc } from 'date-fns'
@@ -13,7 +13,7 @@
 
 //   return (
 //     <>
-//       <Categories />
+//       <CategoryCards />
 //       <div className="space-y-7">
 //         <h1>Home Page</h1>
 //         <p>

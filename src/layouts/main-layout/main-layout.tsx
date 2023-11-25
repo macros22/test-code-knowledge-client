@@ -2,10 +2,10 @@ import { FC, PropsWithChildren } from 'react'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Header } from '@/layouts/header'
+import { Header } from '@/layouts/heade'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Container } from '@/components/Container'
-import { Footer } from '../foote'
+import { Footer } from '../footer'
 import { useUser } from '@/lib/hooks'
 
 export const MainLayout: FC<PropsWithChildren> = ({ children }) => {

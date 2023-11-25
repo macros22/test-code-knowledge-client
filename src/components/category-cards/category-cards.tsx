@@ -21,7 +21,7 @@ import {
 import Link from 'next/link'
 import { Icons } from '../icons'
 
-export const Categories = () => {
+export const CategoryCards = () => {
   const router = useRouter()
 
   const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo()

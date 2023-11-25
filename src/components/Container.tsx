@@ -1,16 +1,17 @@
-import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+import { HTMLAttributes, forwardRef } from 'react'
 
-export function Container({
-  children,
-  className,
-}: {
-  children: ReactNode
-  className?: string
-}) {
-  return (
-    <div className={clsx(className, 'mx-auto max-w-6xl px-6 lg:max-w-5xl')}>
-      {children}
-    </div>
-  )
-}
+export const Container = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      'mx-auto max-w-6xl px-6 lg:max-w-5xl',
+      className,
+    )}
+    {...props}
+  />
+))
+Container.displayName = 'Container'
