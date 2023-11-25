@@ -1,27 +1,27 @@
-import { BsGithub } from 'react-icons/bs';
-import cn from 'clsx';
-import { format } from 'date-fns';
+import cn from 'clsx'
+import { format } from 'date-fns'
+import { FC } from 'react'
+import { Container } from '@/components/Container'
+import { FooterProps } from './footer.props'
 
-import styles from './Footer.module.scss';
-import { FooterProps } from './Footer.props';
-
-export const Footer = ({ className, ...props }: FooterProps): JSX.Element => {
+export const Footer: FC<FooterProps> = ({ className, ...props }) => {
   return (
     <footer
-      className={cn(
-        className,
-        styles.footer,
-        'bg-light border-top py-4 mt-auto',
-      )}
-      {...props}>
-      <p>Code knowledge test © 2021 - {format(new Date(), 'yyyy')}</p>
-      <a
-        href="https://github.com/kramax42/test-code-knowledge-client"
-        target="_blank"
-        rel="noreferrer">
-        <BsGithub />
-        {` Github`}
-      </a>
+      className={cn(className, 'bg-light mt-auto border-t py-4')}
+      {...props}
+    >
+      <Container className="flex">
+        <p>Code knowledge test © 2021 - {format(new Date(), 'yyyy')}</p>
+        <a
+          href="https://github.com/kramax42/test-code-knowledge-client"
+          target="_blank"
+          rel="noreferrer"
+          className="ml-auto flex gap-2"
+        >
+          {/* <BsGithub className="my-auto" /> */}
+          {` Github`}
+        </a>
+      </Container>
     </footer>
-  );
-};
+  )
+}

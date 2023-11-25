@@ -1,16 +1,20 @@
-import { useContext } from 'react';
-import { SSRProvider } from 'react-bootstrap';
-import { ThemeContext, ThemeContextProvider } from 'contexts/theme.context';
-import type { AppProps } from 'next/app';
+import { useContext } from 'react'
+import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'assets/globals.scss';
+import '@/app2/global.css'
+import { ThemeContextProvider } from '@/contexts/theme.context'
+import { ThemeProvider } from 'next-themes'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <SSRProvider>
-      <ThemeContextProvider>
+    <ThemeContextProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        enableColorScheme
+      >
         <Component {...pageProps} />
         <NextNProgress
           color="#09a180"
@@ -19,9 +23,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           height={2}
           showOnShallow
         />
-      </ThemeContextProvider>
-    </SSRProvider>
-  );
-};
+      </ThemeProvider>
+    </ThemeContextProvider>
+  )
+}
 
-export default MyApp;
+export default MyApp

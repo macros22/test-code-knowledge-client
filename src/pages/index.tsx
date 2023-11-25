@@ -1,8 +1,21 @@
-import { Categories } from 'components/Categories/Categories';
-import { withLayout } from 'layouts';
+import { Categories } from '@/components/categories'
+import { withLayout } from '@/layouts'
+import { useUser } from '@/lib/hooks/useUser'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
-const HomePage = () => {
-  return <Categories />;
-};
+const CategoriesPage = () => {
+  //   const { user } = useUser();
+  //   const router = useRouter();
 
-export default withLayout('main', HomePage);
+  //  useEffect(() => {
+  //     if (!user) {
+  //       router.replace('auth/sign-in');
+  //     }
+  //   }, [user]);
+
+  return <Categories />
+}
+
+// export default ProfilePage
+export default withLayout('main', CategoriesPage)
