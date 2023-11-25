@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { Header } from '@/layouts/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Container } from '@/components/Container'
-import { Footer } from '../footer'
+import { Footer } from '../foote'
 import { useUser } from '@/lib/hooks'
 
 export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
