@@ -1,5 +1,0 @@
-{
-  "extends": "stylelint-config-standard",
-  "formatter": "stylelint-checkstyle-formatter",
-  "plugins": ["stylelint-scss"]
-}

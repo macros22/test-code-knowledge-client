@@ -1,87 +1,63 @@
-import { useContext } from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { BsFillBrightnessHighFill, BsFillMoonStarsFill } from 'react-icons/bs';
-import { ThemeContext } from 'contexts/theme.context';
-import { authApi } from 'libs/api/auth.api';
-import { useQuestionsInfo, useSnippetsInfo, useUser } from 'libs/hooks';
-import { useRouter } from 'next/router';
+import Link from 'next/link'
 
-import styles from './Header.module.scss';
-import { Logo } from './Logo';
-import { QuestionsOptions } from './QuestionsOptions';
-import { SnippetsOptions } from './SnippetsOptions';
-import { TestOptions } from './TestOptions';
+import { siteConfig } from '@/config/site'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { Icons } from '@/components/icons'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { Container } from '@/components/Container'
+import { NavSelect } from './nav-select'
+import { useUser } from '@/lib/hooks'
+import { authApi } from '@/lib/api/auth.api'
+import { Logo } from './logo'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Separator } from '@/components/ui/separator'
 
-export const Header = () => {
-  const { mutateUser, isLoggedIn } = useUser();
-  const { isDark, toggleDark } = useContext(ThemeContext);
+export function Header() {
+  const { mutateUser, isLoggedIn } = useUser()
 
   const logoutHandler = async () => {
-    await authApi.logout();
-    mutateUser({ isGuest: true });
-  };
-
-  const router = useRouter();
-  const signInHandler = async () => {
-    router.replace('/auth/sign-n');
-  };
-  const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo();
-  const { snippetsInfo } = useSnippetsInfo();
+    await authApi.logout()
+    mutateUser({ isGuest: true })
+  }
 
   return (
-    <Navbar bg="white" expand="lg" className={styles.navbar}>
-      <Container>
+    <header className="sticky top-0 z-40 w-full border-b bg-background">
+      <Container className="flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <Logo />
-        <Navbar.Toggle className={styles.burgerMenu} />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav>
-            <NavDropdown title="Snippets" className={styles.navbarLinks}>
-              <SnippetsOptions snippetsInfo={snippetsInfo} />
-            </NavDropdown>
-
-            <NavDropdown title="Questions" className={styles.navbarLinks}>
-              <QuestionsOptions questionsInfo={questionsInfo} />
-            </NavDropdown>
-
-            <NavDropdown title="Test" className={styles.navbarLinks}>
-              <TestOptions questionsInfo={questionsInfo} />
-            </NavDropdown>
-
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <nav className="flex items-center space-x-1">
+            <NavSelect itemsMode="snippets" />
+            <NavSelect itemsMode="questions" />
+            <NavSelect itemsMode="test" />
             {isLoggedIn ? (
               <>
-                <Nav.Link
-                  onClick={() => router.replace('/profile')}
-                  className={styles.navbarLinks}>
-                  Profile
-                </Nav.Link>
-                <Nav.Link
-                  className={styles.navbarLinks}
-                  onClick={logoutHandler}>
+                <Button
+                  variant="ghost"
+                  className="text-sm capitalize text-muted-foreground"
+                  onClick={logoutHandler}
+                >
                   Logout
-                </Nav.Link>
+                </Button>
               </>
             ) : (
-              <Nav.Link className={styles.navbarLinks} onClick={signInHandler}>
+              <Link
+                href="/auth/sign-in"
+                className="text-sm capitalize text-muted-foreground"
+              >
                 SignIn
-              </Nav.Link>
+              </Link>
             )}
-            <span
-              tabIndex={0}
-              role="button"
-              aria-label="light"
-              onClick={toggleDark}
-              onKeyDown={toggleDark}>
-              <span>
-                {isDark ? (
-                  <BsFillBrightnessHighFill />
-                ) : (
-                  <BsFillMoonStarsFill />
-                )}
-              </span>
-            </span>
-          </Nav>
-        </Navbar.Collapse>
+
+            <ThemeToggle />
+            <Link href="/profile">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Link>
+          </nav>
+        </div>
       </Container>
-    </Navbar>
-  );
-};
+    </header>
+  )
+}

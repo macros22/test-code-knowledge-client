@@ -1,32 +1,33 @@
-import { FC, useEffect } from 'react';
-import { Spinner } from 'react-bootstrap';
-import { useUser } from 'libs/hooks/useUser';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { FC, useEffect } from 'react'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-import styles from './AuthLayout.module.scss';
-import { AuthLayoutProps } from './AuthLayout.props';
+import { AuthLayoutProps } from './AuthLayout.props'
+import { useUser } from '@/lib/hooks'
+
+const styles = {}
 
 export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
-  const { isLoggedIn } = useUser();
-  const router = useRouter();
+  const { isLoggedIn } = useUser()
+  const router = useRouter()
 
   useEffect(() => {
-    if (isLoggedIn) router.replace('/');
-  }, [isLoggedIn]);
+    if (isLoggedIn) router.replace('/')
+  }, [isLoggedIn])
 
   if (isLoggedIn) {
     return (
-      <div className={styles.wrapper}>
-        <Spinner
+      <div className={'styles.wrapper'}>
+        {/* <Spinner
           as="span"
           animation="border"
           size="sm"
           role="status"
           aria-hidden="true"
-        />
+        /> */}
+        spinner
       </div>
-    );
+    )
   }
 
   return (
@@ -42,5 +43,5 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <main className={styles.body}>{children}</main>
       </div>
     </>
-  );
-};
+  )
+}

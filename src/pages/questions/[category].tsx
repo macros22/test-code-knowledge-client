@@ -1,46 +1,40 @@
-import React from 'react';
-import { withLayout } from 'layouts';
-import { GetServerSideProps, GetStaticProps } from 'next';
-import { getQueryParametr } from 'libs/helpers/get-param-from-query';
-import { useQuestions, useQuestionsInfo, useSessionStorage } from 'libs/hooks';
-import { questionsCategoryName } from 'libs/constants/names.storage';
-import { Button, Spinner } from 'react-bootstrap';
-import {
-  IQuestion,
-  QuestionsPageProps
-} from 'libs/interfaces/questions.interface';
-import { questionsApi } from 'libs/api/questions.api';
-import { getQuestionsUrl } from 'libs/helpers/get-questions-url';
-import { SWRConfig } from 'swr';
-import { QUESTIONS_BASE_URL } from 'libs/constants/urls';
-import { ItemsList } from '../../components/ItemsList/ItemsList/ItemsList';
-import { LoadItemsButton } from 'components/ItemsList/LoadItemsButton/LoadItemsButton';
-import { ITEMS_PER_PAGE } from 'libs/constants/items-per-page';
+import { ItemsList, LoadItemsButton } from '@/components/items-list'
+import { withLayout } from '@/layouts'
+import { questionsApi } from '@/lib/api/questions.api'
+import { ITEMS_PER_PAGE } from '@/lib/constants/items-per-page'
+import { questionsCategoryName } from '@/lib/constants/names.storage'
+import { QUESTIONS_BASE_URL } from '@/lib/constants/urls'
+import { getQueryParametr } from '@/lib/helpers/get-param-from-query'
+import { getQuestionsUrl } from '@/lib/helpers/get-questions-url'
+import { useQuestions, useSessionStorage } from '@/lib/hooks'
+import { QuestionsPageProps } from '@/lib/interfaces/questions.interface'
+import { GetServerSideProps, NextPage } from 'next'
+import { useEffect } from 'react'
+
+import { SWRConfig } from 'swr'
 
 export const getServerSideProps: GetServerSideProps<
   QuestionsPageProps
-> = async context => {
-  const categoryURLName = getQueryParametr(context, 'category') || '';
+> = async (context) => {
+  const categoryURLName = getQueryParametr(context, 'category') || ''
 
-  const skip = Number(getQueryParametr(context, 'skip')) || 0;
-  const limit = Number(getQueryParametr(context, 'limit')) || ITEMS_PER_PAGE;
+  const skip = Number(getQueryParametr(context, 'skip')) || 0
+  const limit = Number(getQueryParametr(context, 'limit')) || ITEMS_PER_PAGE
 
   const questionsUrl = getQuestionsUrl({
     categoryURLName,
     skip,
-    limit
-  });
+    limit,
+  })
 
-  const questions = await questionsApi().getQuestions(questionsUrl);
-  const questionsInfo = await questionsApi().getQuestionsInfo(
-    QUESTIONS_BASE_URL
-  );
-  let category = '';
+  const questions = await questionsApi.getQuestions(questionsUrl)
+  const questionsInfo = await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
+  let category = ''
   if (questionsInfo) {
     category =
       Object.keys(questionsInfo).find(
-        key => questionsInfo[key].categoryURLName == categoryURLName
-      ) || '';
+        (key) => questionsInfo[key].categoryURLName == categoryURLName,
+      ) || ''
   }
 
   return {
@@ -49,45 +43,46 @@ export const getServerSideProps: GetServerSideProps<
       skip,
       limit,
       fallback: {
-        [questionsUrl]: questions
-      }
-    }
-  };
-};
+        [questionsUrl]: questions,
+      },
+    },
+  }
+}
 
-const QuestionsPage = ({
+const QuestionsPage: NextPage<QuestionsPageProps> = ({
   category,
   skip,
   limit,
-  fallback
-}: QuestionsPageProps): JSX.Element => {
+  fallback,
+}) => {
   const { questions, isLoadingQuestions } = useQuestions({
     skip,
     limit,
-    category
-  });
+    category,
+  })
 
   const [_, setCategoryInStorage] = useSessionStorage(
     questionsCategoryName,
-    category
-  );
+    category,
+  )
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (category) {
-      setCategoryInStorage(category);
+      setCategoryInStorage(category)
     }
-  }, [category]);
+  }, [category])
 
   if (isLoadingQuestions) {
     return (
-      <Spinner
-        as="span"
-        animation="border"
-        size="sm"
-        role="status"
-        aria-hidden="true"
-      />
-    );
+      // <Spinner
+      //   as="span"
+      //   animation="border"
+      //   size="sm"
+      //   role="status"
+      //   aria-hidden="true"
+      // />
+      <></>
+    )
   }
 
   return (
@@ -95,7 +90,7 @@ const QuestionsPage = ({
       <ItemsList itemsName="questions" items={questions} category={category} />
       <LoadItemsButton skip={skip} limit={limit} category={category} />
     </SWRConfig>
-  );
-};
+  )
+}
 
-export default withLayout('main', QuestionsPage);
+export default withLayout('main', QuestionsPage)

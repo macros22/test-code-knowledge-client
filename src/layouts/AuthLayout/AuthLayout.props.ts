@@ -1,3 +1,3 @@
 export interface AuthLayoutProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
