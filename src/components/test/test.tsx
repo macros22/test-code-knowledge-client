@@ -1,12 +1,5 @@
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-// import styles from './Test.module.scss';
-import dynamic from 'next/dynamic'
-
-// const Code = dynamic<ICodeProps>(() =>
-//   import('components/ui/Code/Code').then(module => module.Code)
-// );
-
 import { useSessionStorage } from '@/lib/hooks'
 import {
   checkedAnswersName,

@@ -9,7 +9,7 @@ export const LoadItemsButton: FC<LoadItemsButtonProps> = ({
   limit,
   category,
 }) => {
-  const { size, setSize, isReachingEnd, isLoadingMore } = useQuestions({
+  const { setSize, isReachingEnd, isLoadingMore } = useQuestions({
     skip,
     limit,
     category,
@@ -18,7 +18,6 @@ export const LoadItemsButton: FC<LoadItemsButtonProps> = ({
   const content = isLoadingMore ? (
     <>
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-      'Loading...'
     </>
   ) : isReachingEnd ? null : (
     'Load more'
@@ -30,7 +29,7 @@ export const LoadItemsButton: FC<LoadItemsButtonProps> = ({
         <div className="my-4 flex justify-center">
           <Button
             disabled={isLoadingMore || isReachingEnd}
-            onClick={() => setSize(size + 1)}
+            onClick={() => setSize(size => size + 1)}
           >
             {content}
           </Button>

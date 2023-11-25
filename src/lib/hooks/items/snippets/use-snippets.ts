@@ -5,13 +5,13 @@ import { ITEMS_PER_PAGE } from '@/lib/constants/items-per-page'
 import { ISnippet } from '@/lib/interfaces/snippets.interface'
 import { snippetsApi } from '@/lib/api/snippets.api'
 
-interface IUseSnippetsProps {
+interface UseSnippetsProps {
   skip?: number
   limit?: number
   category?: string
 }
 
-export const useSnippets = ({ skip, limit, category }: IUseSnippetsProps) => {
+export const useSnippets = ({ skip, limit, category }: UseSnippetsProps) => {
   const { snippetsInfo } = useSnippetsInfo()
 
   // SWR default function name for pagination.

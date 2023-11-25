@@ -5,26 +5,17 @@ import { useRouter } from 'next/router'
 import { AuthLayoutProps } from './AuthLayout.props'
 import { useUser } from '@/lib/hooks'
 
-const styles = {}
-
 export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   const { isLoggedIn } = useUser()
   const router = useRouter()
 
   useEffect(() => {
     if (isLoggedIn) router.replace('/')
-  }, [isLoggedIn])
+  }, [isLoggedIn, router])
 
   if (isLoggedIn) {
     return (
-      <div className={'styles.wrapper'}>
-        {/* <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        /> */}
+      <div>
         spinner
       </div>
     )
@@ -39,8 +30,8 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <meta name="keywords" content="javascript, test, knowledge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={styles.wrapper}>
-        <main className={styles.body}>{children}</main>
+      <div>
+        <main>{children}</main>
       </div>
     </>
   )

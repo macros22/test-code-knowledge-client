@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   createContext,
   ReactNode,
@@ -25,6 +24,7 @@ export const ThemeContextProvider = ({ children }: { children?: ReactNode }) => 
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
+    //@ts-ignore
     const lsDark = JSON.parse(localStorage.getItem('ThemeContext:isDark'))
     if (lsDark !== undefined && lsDark !== null) {
       setIsDark(lsDark)

@@ -1,8 +1,5 @@
 import Link from 'next/link'
-
-import { siteConfig } from '@/config/site'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Icons } from '@/components/icons'
+import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Container } from '@/components/Container'
 import { NavSelect } from './nav-select'
@@ -10,7 +7,6 @@ import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
 import { Logo } from './logo'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Separator } from '@/components/ui/separator'
 
 export function Header() {
   const { mutateUser, isLoggedIn } = useUser()

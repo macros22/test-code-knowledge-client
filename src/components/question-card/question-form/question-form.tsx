@@ -1,20 +1,10 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { QuestionFormProps } from './question-form.props'
-// import { Col, FormProvider, InputGroup, Row } from 'react-bootstrap'
-import {
-  BsPlusLg,
-  BsTrash2Fill,
-  BsFillTerminalFill,
-  BsChevronUp,
-} from 'react-icons/bs'
-import { useQuestionForm } from './useQuestionForm.hook'
 import { useQuestionsInfo } from '@/lib/hooks'
-import { deepCopy } from '@/lib/helpers/deep-copy'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { QuestionFormSchema, questionFormSchema } from './question.schema'
 import { useQuestionsMutation } from '@/lib/hooks/items/questions/use-questions-mutation'
-import { IQuestionDto } from '@/lib/interfaces/questions.interface'
 import {
   FormProvider,
   FormControl,
@@ -219,11 +209,11 @@ export const QuestionForm: FC<QuestionFormProps> = ({ questionItem, mode }) => {
   })
 
   const onSubmit = (data: QuestionFormSchema) => {
-    const questionPayload: IQuestionDto = {
-      ...data,
-      tags: [],
-      infoLinks: [],
-    }
+    // const questionPayload: IQuestionDto = {
+    //   ...data,
+    //   tags: [],
+    //   infoLinks: [],
+    // }
 
     const mutateSnippet = async () => {
       switch (mode) {
@@ -310,7 +300,7 @@ export const QuestionForm: FC<QuestionFormProps> = ({ questionItem, mode }) => {
         <div className="mt-8 flex flex-wrap gap-2">
           <Button
             type="submit"
-            loading={isPatchQuestionLoading || isPostQuestionLoading}
+            // loading={isPatchQuestionLoading || isPostQuestionLoading}
           >
             Save
           </Button>

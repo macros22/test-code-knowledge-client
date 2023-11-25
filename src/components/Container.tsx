@@ -1,10 +1,11 @@
 import clsx from 'clsx'
+import { ReactNode } from 'react'
 
 export function Container({
   children,
   className,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }) {
   return (

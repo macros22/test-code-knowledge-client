@@ -11,7 +11,7 @@ const ProfilePage = () => {
     if (!user) {
       router.replace('auth/sign-in')
     }
-  }, [user])
+  }, [router, user])
 
   return (
     <>
@@ -22,5 +22,4 @@ const ProfilePage = () => {
   )
 }
 
-// export default ProfilePage
 export default withLayout('main', ProfilePage)
