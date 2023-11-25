@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Header } from '@/layouts/heade'
+import { Header } from '@/layouts/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { Container } from '@/components/Container'
 import { Footer } from '../footer'

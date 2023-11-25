@@ -2,8 +2,9 @@ import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { AuthLayoutProps } from './AuthLayout.props'
+import { AuthLayoutProps } from './auth-layout.props'
 import { useUser } from '@/lib/hooks'
+import { Container } from '@/components/Container'
 
 export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   const { isLoggedIn } = useUser()
@@ -30,9 +31,11 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <meta name="keywords" content="javascript, test, knowledge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div>
-        <main>{children}</main>
-      </div>
+      <main>
+        <Container>
+          {children}
+        </Container>
+      </main>
     </>
   )
 }
