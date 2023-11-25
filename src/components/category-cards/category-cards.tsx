@@ -21,7 +21,7 @@ import {
 import Link from 'next/link'
 import { Icons } from '../icons'
 
-export const Categories = () => {
+export const CategoryCards = () => {
   const router = useRouter()
 
   const { questionsInfo, isLoadingQuestionsInfo } = useQuestionsInfo()
@@ -42,13 +42,6 @@ export const Categories = () => {
 
   if (isLoadingQuestionsInfo || isLoadingSnippetsInfo) {
     return (
-      // <Spinner
-      //   as="span"
-      //   animation="border"
-      //   size="sm"
-      //   role="status"
-      //   aria-hidden="true"
-      // />
       <>spinner</>
     )
   }
@@ -70,7 +63,6 @@ export const Categories = () => {
                     href={`/questions/${questionsInfo[category].categoryURLName}`}
                   >
                     <HelpCircle className="mr-1 text-8xl" /> Questions
-                    {/* <Icons.arrowRight /> */}
                   </Link>
                 </Button>
                 {snippetsInfo[category] && (
@@ -95,7 +87,6 @@ export const Categories = () => {
                 >
                   <ShieldCheck className="mr-1" />
                   Test
-                  {/* <Icons.arrowRight /> */}
                 </Button>
               </CardContent>
             </Card>

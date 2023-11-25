@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { AuthLayout } from './AuthLayout/AuthLayout'
+import { AuthLayout } from './auth-layout/auth-layout'
 import { MainLayout } from './main-layout/main-layout'
 
 export const withLayout = <T extends Record<string, unknown>>(
