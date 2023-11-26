@@ -29,7 +29,7 @@ export const LoadItemsButton: FC<LoadItemsButtonProps> = ({
         <div className="my-4 flex justify-center">
           <Button
             disabled={isLoadingMore || isReachingEnd}
-            onClick={() => setSize(size => size + 1)}
+            onClick={() => setSize((size) => size + 1)}
           >
             {content}
           </Button>

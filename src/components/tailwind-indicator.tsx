@@ -1,6 +1,6 @@
-import { isProd } from "@/lib/config"
+import { isProd } from '@/lib/config'
 
-export function TailwindIndicator() {
+export function TailwindBreakpointsIndicator() {
   if (isProd) return null
 
   return (

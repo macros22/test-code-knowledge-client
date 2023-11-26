@@ -41,9 +41,7 @@ export const CategoryCards = () => {
   }
 
   if (isLoadingQuestionsInfo || isLoadingSnippetsInfo) {
-    return (
-      <>spinner</>
-    )
+    return <>spinner</>
   }
 
   return (

@@ -66,16 +66,15 @@ export const Code: React.FC<ICodeProps> = ({ codeExample }) => (
       >
         {tokens.map((line, i) => (
           <div
-          key={i}
+            key={i}
             {...getLineProps({ line, key: i })}
             style={{ ...getLineProps({ line, key: i }).style, ...styles.line }}
           >
-
             <div style={styles.noLine}>{i + 1}</div>
             <div style={styles.lineContent}>
               {line.map((token, key) => (
                 <span
-                key={key}
+                  key={key}
                   {...getTokenProps({ token, key })}
                   //   className={styles.lineContent}
                   style={{

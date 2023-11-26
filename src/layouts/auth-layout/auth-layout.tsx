@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 
 import { AuthLayoutProps } from './auth-layout.props'
 import { useUser } from '@/lib/hooks'
-import { Container } from '@/components/Container'
+import { TailwindBreakpointsIndicator } from '@/components/tailwind-indicator'
+import { Container } from '@/components/container'
 
 export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   const { isLoggedIn } = useUser()
@@ -15,11 +16,7 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   }, [isLoggedIn, router])
 
   if (isLoggedIn) {
-    return (
-      <div>
-        spinner
-      </div>
-    )
+    return <div>spinner</div>
   }
 
   return (
@@ -32,9 +29,8 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <Container>
-          {children}
-        </Container>
+        <Container className="mt-16 mx-auto !max-w-xl px-6">{children}</Container>
+        <TailwindBreakpointsIndicator />
       </main>
     </>
   )

@@ -1,7 +1,7 @@
 import cn from 'clsx'
 import { format } from 'date-fns'
 import { FC } from 'react'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/container/container'
 import { FooterProps } from './footer.props'
 
 export const Footer: FC<FooterProps> = ({ className, ...props }) => {
