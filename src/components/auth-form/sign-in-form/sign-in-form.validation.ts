@@ -7,4 +7,6 @@ export const signInValidationSchema = yup.object().shape({
   password: yup.string().required(REQUIRED_MESSAGE),
 })
 
-export type SignInValidationSchema = yup.InferType<typeof signInValidationSchema>
+export type SignInValidationSchema = yup.InferType<
+  typeof signInValidationSchema
+>

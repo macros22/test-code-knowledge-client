@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/container/container'
 import { NavSelect } from './nav-select'
 import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
@@ -37,7 +37,7 @@ export function Header() {
               </>
             ) : (
               <Link
-                href="/auth/sign-in"
+                href="/autho/sign-in"
                 className="text-sm capitalize text-muted-foreground"
               >
                 SignIn

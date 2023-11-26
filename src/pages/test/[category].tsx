@@ -38,8 +38,7 @@ export const getServerSideProps: GetServerSideProps<ITestPageProps> = async (
 
   const categoryURLName = getQueryParametr(context, 'category') || ''
 
-  const questionsInfo =
-    await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
+  const questionsInfo = await questionsApi.getQuestionsInfo(QUESTIONS_BASE_URL)
   let category = ''
   if (questionsInfo) {
     category =

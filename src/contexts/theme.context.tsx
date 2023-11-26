@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 
 type ContextType = {
   toggleDark: () => void
@@ -20,7 +14,11 @@ const defaultContext: ContextType = {
 
 export const ThemeContext = createContext(defaultContext)
 
-export const ThemeContextProvider = ({ children }: { children?: ReactNode }) => {
+export const ThemeContextProvider = ({
+  children,
+}: {
+  children?: ReactNode
+}) => {
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {

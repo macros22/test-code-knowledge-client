@@ -3,8 +3,8 @@ import { FC, PropsWithChildren } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Header } from '@/layouts/header'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { Container } from '@/components/Container'
+import { TailwindBreakpointsIndicator } from '@/components/tailwind-indicator'
+import { Container } from '@/components/container/container'
 import { Footer } from '../footer'
 import { useUser } from '@/lib/hooks'
 
@@ -47,7 +47,7 @@ export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
         </main>
         <Footer />
 
-        <TailwindIndicator />
+        <TailwindBreakpointsIndicator />
       </div>
     </>
   )

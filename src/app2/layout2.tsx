@@ -4,7 +4,7 @@
 // import Link from 'next/link'
 // import './global.css'
 // import { Header } from '@/layouts/header/header'
-// import { TailwindIndicator } from '@/components/tailwind-indicator'
+// import { TailwindBreakpointsIndicator } from '@/components/tailwind-indicator'
 // import { ThemeProvider } from './providers'
 
 // const meta = {
@@ -63,7 +63,7 @@
 //             <Container>{children}</Container>
 //           </main>
 
-//           <TailwindIndicator />
+//           <TailwindBreakpointsIndicator />
 
 //           <footer className="py-16">
 //             <Container>
@@ -88,7 +88,7 @@
 //     //         <Header />
 //     //         <div className="flex-1 container mx-auto content-center">{children}</div>
 //     //       </div>
-//     //       <TailwindIndicator />
+//     //       <TailwindBreakpointsIndicator />
 //     //     </ThemeProvider>
 //     //   </body>
 //     // </html>

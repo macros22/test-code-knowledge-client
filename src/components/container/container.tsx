@@ -7,10 +7,7 @@ export const Container = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      'mx-auto max-w-6xl px-6 lg:max-w-5xl',
-      className,
-    )}
+    className={cn('mx-auto max-w-6xl px-6 lg:max-w-5xl', className)}
     {...props}
   />
 ))
