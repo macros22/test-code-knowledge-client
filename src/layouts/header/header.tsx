@@ -7,9 +7,15 @@ import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
 import { Logo } from './logo'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { signOut } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
+import { useSessionContext } from 'supertokens-auth-react/recipe/session'
+
 
 export function Header() {
   const { mutateUser, isLoggedIn } = useUser()
+  const session = useSessionContext()
+
+  console.log("session", session);
 
   const logoutHandler = async () => {
     await authApi.logout()
@@ -43,6 +49,8 @@ export function Header() {
                 SignIn
               </Link>
             )}
+            
+            <Button onClick={() => signOut()}>logout ST</Button>
 
             <ThemeToggle />
             <Link href="/profile">
