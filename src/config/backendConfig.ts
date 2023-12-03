@@ -4,6 +4,12 @@ import { appInfo } from './appInfo'
 import { TypeInput } from "supertokens-node/types";
 
 export const backendConfig = (): TypeInput => {
+  console.log('clients', [{
+    clientId: process.env.GITHUB_CLIENT_ID as string,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+}])
+
+
   return {
     framework: "express",
     supertokens: {
