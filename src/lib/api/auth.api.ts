@@ -27,16 +27,16 @@ export const authApi = {
     }
   },
 
-  userInfo: async (url:string) => {
-    const { data } = await axios.get(url);
-    
-    return data as {emails: string[]; id: string};
+  userInfo: async (url: string) => {
+    const { data } = await axios.get(url)
+
+    return data as { emails: string[]; id: string }
   },
 
   githubUserInfo: async (url: string) => {
-    const { data } = await axios.get(url);
-    
-    return data;
+    const { data } = await axios.get(url)
+
+    return data
   },
 
   logout: async () => {

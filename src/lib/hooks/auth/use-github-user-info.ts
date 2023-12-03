@@ -4,15 +4,14 @@ import { authApi } from '@/lib/api/auth.api'
 import { useUserInfo } from './use-user-info'
 
 export const useGithubUserInfo = () => {
-
-  const {userInfo} = useUserInfo()
+  const { userInfo } = useUserInfo()
 
   console.log('userInfo', userInfo)
 
-  const {
-    data: githubUserInfo,
-    error,
-  } = useSWR(`${GITHUB_USER_INFO}/${userInfo?.id}`, authApi.githubUserInfo)
+  const { data: githubUserInfo, error } = useSWR(
+    `${GITHUB_USER_INFO}/${userInfo?.id}`,
+    authApi.githubUserInfo,
+  )
 
   const isLoadingGithubUserInfo = !githubUserInfo && !error
 
