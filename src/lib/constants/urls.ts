@@ -1,6 +1,6 @@
 import { isDev } from '../config'
 // const prodURL = 'https://test-code-knowledge-server-ienqjjed1-max99xam.vercel.app/api'
-const prodURL = 'https://test-code-knowledge-server.onrender.com/api'
+export const prodURL = 'https://test-code-knowledge-server.onrender.com/api'
 export const BASE_URL = isDev ? 'http://localhost:3010/api' : prodURL
 
 export const QUESTIONS_BASE_URL = BASE_URL + '/questions'
