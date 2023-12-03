@@ -12,9 +12,9 @@ export const AuthForm: FC<AuthFormProps> = ({ authMode }) => {
   return (
     <>
       <div className="mb-3 text-center">
-      <h2>{isSignIn ? 'Sign In' : 'Sign Up'}</h2>
+        <h2>{isSignIn ? 'Sign In' : 'Sign Up'}</h2>
       </div>
-      <Card className='p-2'>
+      <Card className="p-2">
         <CardContent>{isSignIn ? <SignIn /> : <SignUp />}</CardContent>
       </Card>
     </>

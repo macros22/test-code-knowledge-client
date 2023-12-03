@@ -9,8 +9,8 @@ import { Footer } from '../footer'
 import { useUser } from '@/lib/hooks'
 
 export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
-  const { isLoggedIn } = useUser()
-  const router = useRouter()
+  // const { isLoggedIn } = useUser()
+  // const router = useRouter()
 
   // useEffect(() => {
   //   if (!isLoggedIn) {

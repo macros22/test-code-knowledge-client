@@ -96,7 +96,7 @@ export const ItemsList: FC<ItemsListProps> = ({
         </div>
       </div>
       {/* {isLoggedIn && isAdmin && ( */}
-        {isAdmin && (
+      {isAdmin && (
         <Dialog>
           <DialogTrigger className="fixed left-2 top-20">
             {' Add Snippet'}

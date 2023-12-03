@@ -29,7 +29,9 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <Container className="mt-16 mx-auto !max-w-xl px-6">{children}</Container>
+        <Container className="mx-auto mt-16 !max-w-xl px-6">
+          {children}
+        </Container>
         <TailwindBreakpointsIndicator />
       </main>
     </>

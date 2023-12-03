@@ -14,27 +14,26 @@ if (typeof window !== 'undefined') {
   SuperTokensReact.init(frontendConfig())
 }
 
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <SuperTokensWrapper>
-    <ThemeContextProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        enableColorScheme
-      >
-        <Component {...pageProps} />
-        <NextNProgress
-          color="#a15509"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={2}
-          showOnShallow
-        />
-      </ThemeProvider>
-    </ThemeContextProvider>
+      <ThemeContextProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          enableColorScheme
+        >
+          <Component {...pageProps} />
+          <NextNProgress
+            color="#a15509"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={2}
+            showOnShallow
+          />
+        </ThemeProvider>
+      </ThemeContextProvider>
     </SuperTokensWrapper>
   )
 }
