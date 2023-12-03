@@ -2,6 +2,7 @@ import ThirdPartyEmailPasswordNode from 'supertokens-node/recipe/thirdpartyemail
 import SessionNode from 'supertokens-node/recipe/session'
 import { appInfo } from './appInfo'
 import { TypeInput } from "supertokens-node/types";
+import { isDev } from '@/lib/config';
 
 export const backendConfig = (): TypeInput => {
   console.log('clients', [{
@@ -34,8 +35,8 @@ export const backendConfig = (): TypeInput => {
             config: {
                 thirdPartyId: "github",
                 clients: [{
-                    clientId: process.env.GITHUB_CLIENT_ID as string,
-                    clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+                    clientId: isDev ? process.env.GITHUB_CLIENT_ID as string : 'cbcaee8c4f3029bf7962',
+                    clientSecret: isDev ? process.env.GITHUB_CLIENT_SECRET as string: '808f609d8ed08a0e3dcece92fe041dc2570bc37d',
                 }]
             }
         }, {
