@@ -9,13 +9,18 @@ import { Logo } from './logo'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { signOut } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import { useSessionContext } from 'supertokens-auth-react/recipe/session'
+import { useEffect } from 'react'
+import { useUserInfo } from '@/lib/hooks/auth/use-user-info'
+import { useGithubUserInfo } from '@/lib/hooks/auth/use-github-user-info'
 
 
-export function Header() {
+export const Header = () => {
   const { mutateUser, isLoggedIn } = useUser()
-  const session = useSessionContext()
+  const { githubUserInfo } = useGithubUserInfo()
 
-  console.log("session", session);
+  useEffect(() => {
+    console.log("userInfo", githubUserInfo);
+  }, [githubUserInfo])
 
   const logoutHandler = async () => {
     await authApi.logout()
