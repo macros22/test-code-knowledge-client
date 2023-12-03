@@ -45,7 +45,7 @@ export const useQuestions = ({ skip, limit, category }: IUseQuestionsProps) => {
   if (data) {
     data.map((item) => {
       if (item) {
-        item.map((question) => {
+        item?.map((question) => {
           if (question) {
             questions.push(question)
           }

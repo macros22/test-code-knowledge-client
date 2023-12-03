@@ -12,3 +12,6 @@ export const AUTH_ME_URL = BASE_URL + '/auth/me'
 export const LOGOUT_URL = BASE_URL + '/auth/log-out'
 export const SIGN_IN_URL = BASE_URL + '/auth/sign-in'
 export const SIGN_UP_URL = BASE_URL + '/auth/sign-up'
+
+export const USER_INFO_URL = BASE_URL + '/user'
+export const GITHUB_USER_INFO = 'https://api.github.com/user/'

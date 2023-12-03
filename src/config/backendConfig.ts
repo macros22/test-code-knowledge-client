@@ -28,8 +28,8 @@ export const backendConfig = (): TypeInput => {
             config: {
                 thirdPartyId: "github",
                 clients: [{
-                    clientId: "467101b197249757c71f",
-                    clientSecret: "e97051221f4b6426e8fe8d51486396703012f5bd"
+                    clientId: process.env.GITHUB_CLIENT_ID as string,
+                    clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
                 }]
             }
         }, {
@@ -47,7 +47,9 @@ export const backendConfig = (): TypeInput => {
             }
         }],
       }),
-      SessionNode.init(),
+      SessionNode.init({
+        getTokenTransferMethod: () => "header",
+      }),
     ],
     isInServerlessEnv: true,
   }

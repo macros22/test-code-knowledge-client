@@ -16,8 +16,6 @@ if (typeof window !== 'undefined') {
 
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  console.log('isDev', isDev)
-  console.log('isProd', isProd)
   return (
     <SuperTokensWrapper>
     <ThemeContextProvider>

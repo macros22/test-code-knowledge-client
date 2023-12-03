@@ -17,7 +17,9 @@ export const frontendConfig = () => {
           ],
         },
       }),
-      SessionReact.init(),
+      SessionReact.init({
+        tokenTransferMethod: "header" // or "cookie"
+    }),
     ],
     windowHandler: (oI: any) => {
       return {

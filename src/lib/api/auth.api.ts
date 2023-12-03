@@ -4,6 +4,8 @@ import {
   SIGN_UP_URL,
   AUTH_ME_URL,
   LOGOUT_URL,
+  USER_INFO_URL,
+  GITHUB_USER_INFO,
 } from '../constants/urls'
 import { ISignInDto, ISignUpDto, IUser } from '../interfaces/user.interface'
 
@@ -23,6 +25,18 @@ export const authApi = {
       // console.log(error);
       throw error
     }
+  },
+
+  userInfo: async (url:string) => {
+    const { data } = await axios.get(url);
+    
+    return data as {emails: string[]; id: string};
+  },
+
+  githubUserInfo: async (url: string) => {
+    const { data } = await axios.get(url);
+    
+    return data;
   },
 
   logout: async () => {

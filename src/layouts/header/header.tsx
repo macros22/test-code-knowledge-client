@@ -7,9 +7,20 @@ import { useUser } from '@/lib/hooks'
 import { authApi } from '@/lib/api/auth.api'
 import { Logo } from './logo'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { signOut } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
+import { useSessionContext } from 'supertokens-auth-react/recipe/session'
+import { useEffect } from 'react'
+import { useUserInfo } from '@/lib/hooks/auth/use-user-info'
+import { useGithubUserInfo } from '@/lib/hooks/auth/use-github-user-info'
 
-export function Header() {
+
+export const Header = () => {
   const { mutateUser, isLoggedIn } = useUser()
+  const { githubUserInfo } = useGithubUserInfo()
+
+  useEffect(() => {
+    console.log("userInfo", githubUserInfo);
+  }, [githubUserInfo])
 
   const logoutHandler = async () => {
     await authApi.logout()
@@ -43,6 +54,8 @@ export function Header() {
                 SignIn
               </Link>
             )}
+            
+            <Button onClick={() => signOut()}>logout ST</Button>
 
             <ThemeToggle />
             <Link href="/profile">

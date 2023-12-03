@@ -20,6 +20,7 @@ import {
 import { Button } from '../ui/button'
 import { PlusIcon } from 'lucide-react'
 import { Card } from '../ui/card'
+import { useSuperTokensSession } from '@/lib/hooks/use-super-tokens-session'
 
 // const QuestionCard = dynamic<IQuestionCardProps>(() =>
 //   import('components/questions/QuestionCard/QuestionCard').then(
@@ -49,7 +50,9 @@ export const ItemsList: FC<ItemsListProps> = ({
 }) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0)
   const [isAddNewItemMode, setIsAddNewItemMode] = useState(false)
-  const { isLoggedIn, isAdmin } = useUser()
+  const { isLoggedIn } = useUser()
+
+  const { isAdmin } = useSuperTokensSession()
 
   const { itemsInfo } = useItemsInfo(itemsName)
 
@@ -92,7 +95,8 @@ export const ItemsList: FC<ItemsListProps> = ({
           })}
         </div>
       </div>
-      {isLoggedIn && isAdmin && (
+      {/* {isLoggedIn && isAdmin && ( */}
+        {isAdmin && (
         <Dialog>
           <DialogTrigger className="fixed left-2 top-20">
             {' Add Snippet'}
