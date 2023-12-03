@@ -20,6 +20,8 @@ const AdminRoute = (props: React.PropsWithChildren<any>) => {
 }
 
 const MainPage = () => {
+    console.log('process.env.AAA', process.env.AAA)
+
   return <CategoryCards />
 }
 
