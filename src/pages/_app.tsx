@@ -7,6 +7,8 @@ import { ThemeProvider } from 'next-themes'
 import { isDev, isProd } from '@/lib/config'
 import SuperTokensReact, { SuperTokensWrapper } from 'supertokens-auth-react'
 
+import 'keen-slider/keen-slider.min.css';
+
 import { frontendConfig } from '../config/frontendConfig'
 
 if (typeof window !== 'undefined') {

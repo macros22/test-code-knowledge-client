@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 
-import { Spinner } from 'react-bootstrap'
+// import { Spinner } from 'react-bootstrap'
 import { SWRConfig } from 'swr'
 import { withLayout } from '@/layouts'
 import { snippetsApi } from '@/lib/api/snippets.api'
@@ -73,13 +73,14 @@ const SnippetsPage: NextPage<SnippetsPageProps> = ({
 
   if (isLoadingSnippets) {
     return (
-      <Spinner
-        as="span"
-        animation="border"
-        size="sm"
-        role="status"
-        aria-hidden="true"
-      />
+      // <Spinner
+      //   as="span"
+      //   animation="border"
+      //   size="sm"
+      //   role="status"
+      //   aria-hidden="true"
+      // />
+      'spinner'
     )
   }
 

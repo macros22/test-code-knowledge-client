@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 
-import { Spinner } from 'react-bootstrap'
+// import { Spinner } from 'react-bootstrap'
 
 import dynamic from 'next/dynamic'
 import { Test } from '@/components/test'
@@ -98,13 +98,14 @@ const TestPage = ({
 
   if (isLoading || !category) {
     return (
-      <Spinner
-        as="span"
-        animation="border"
-        size="sm"
-        role="status"
-        aria-hidden="true"
-      />
+      // <Spinner
+      //   as="span"
+      //   animation="border"
+      //   size="sm"
+      //   role="status"
+      //   aria-hidden="true"
+      // />
+      <>spinner</>
     )
   }
 
