@@ -10,6 +10,7 @@ import SuperTokensReact, { SuperTokensWrapper } from 'supertokens-auth-react'
 import 'keen-slider/keen-slider.min.css'
 
 import { frontendConfig } from '../config/frontendConfig'
+import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button/scroll-to-top-button'
 
 if (typeof window !== 'undefined') {
   // we only want to call this init function on the frontend, so we check typeof window !== 'undefined'
@@ -31,9 +32,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             color="#a15509"
             startPosition={0.3}
             stopDelayMs={200}
-            height={2}
+            height={3}
             showOnShallow
           />
+          <ScrollToTopButton />
         </ThemeProvider>
       </ThemeContextProvider>
     </SuperTokensWrapper>
