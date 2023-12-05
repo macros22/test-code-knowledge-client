@@ -73,7 +73,11 @@ export const ItemsList: FC<ItemsListProps> = ({
   return (
     <div>
       <div>
-        <CategoryTags itemsInfo={itemsInfo} currentCategory={currentCategory} categoryButtonHandler={categoryButtonHandler} />
+        <CategoryTags
+          itemsInfo={itemsInfo}
+          currentCategory={currentCategory}
+          categoryButtonHandler={categoryButtonHandler}
+        />
       </div>
       {/* {isLoggedIn && isAdmin && ( */}
       {isAdmin && (
