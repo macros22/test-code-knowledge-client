@@ -16,12 +16,12 @@ export const CategoryTags = ({
 
   return (
     // max-w-[400px] flex-wrap
-    <ScrollArea className="mx-auto w-5/6 whitespace-nowrap">
-      <div
+    <ScrollArea className="mx-auto w-full md:w-2/3 whitespace-nowrap">
+      {/* <div
       // ref={sliderRef}
       // className="keen-slider mx-auto w-4/6 justify-center gap-4 2xl:fixed 2xl:right-1 2xl:top-20"
       // className="keen-slider mx-auto max-w-[500px]"
-      >
+      > */}
         {Object.keys(itemsInfo).map((category, idx) => {
           return (
             <Badge
@@ -51,7 +51,7 @@ export const CategoryTags = ({
             </Badge>
           )
         })}
-      </div>
+      {/* </div> */}
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
   )

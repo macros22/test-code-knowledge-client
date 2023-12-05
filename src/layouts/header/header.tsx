@@ -38,15 +38,13 @@ export const Header = () => {
       <NavSelect itemsMode="questions" />
       <NavSelect itemsMode="test" />
       {isAuthenticated ? (
-        <>
-          <Button
-            variant="ghost"
-            className="text-sm capitalize text-muted-foreground"
-            onClick={handleLogOut}
-          >
-            Logout
-          </Button>
-        </>
+        <Button
+          variant="secondary"
+          className="mt-auto text-sm capitalize text-muted-foreground md:mt-0"
+          onClick={handleLogOut}
+        >
+          Logout
+        </Button>
       ) : (
         <Link href="/auth" className="text-sm capitalize text-muted-foreground">
           SignIn
@@ -63,7 +61,6 @@ export const Header = () => {
           <nav className="">
             <div className="hidden md:flex md:items-center md:space-x-1">
               {links}
-
               <ThemeToggle />
               <AvatarMenu />
             </div>
@@ -80,14 +77,21 @@ export const Header = () => {
                   isBurgerOpened ? 'flex flex-col px-5 pt-12' : 'hidden'
                 }`}
               >
-                <Button
+                {/* <Button
                   variant="ghost"
                   onClick={() => setIsBurgerOpened(false)}
                   className="absolute right-4 top-4 justify-between text-sm capitalize text-muted-foreground"
                 >
-                  <Menu />
-                </Button>
+                  <CrossIcon />
+                </Button> */}
                 {links}
+                <Button
+                  variant="outline"
+                  className="mt-3 text-sm capitalize text-muted-foreground"
+                  onClick={() => setIsBurgerOpened(false)}
+                >
+                  Close
+                </Button>
               </div>
             </div>
           </nav>

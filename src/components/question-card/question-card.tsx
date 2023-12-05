@@ -52,7 +52,7 @@ export const QuestionCard: FC<QuestionCardProps> = ({
   }, [])
 
   return (
-    <Card className="mx-auto mt-4 w-10/12">
+    <Card className="mx-auto mt-4 w-full">
       <CardHeader>
         <CardTitle className="flex flex-col">
           <div className="flex">

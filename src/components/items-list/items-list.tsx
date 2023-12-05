@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, Fragment, useState } from 'react'
 import { ItemsListProps } from './items-list.props'
 import { useRouter } from 'next/router'
 
@@ -103,40 +103,39 @@ export const ItemsList: FC<ItemsListProps> = ({
           </DialogContent>
         </Dialog>
       )}
-      <div>
-        <div className="mx-auto mt-4 flex w-9/12 flex-col gap-5">
-          {Boolean(items?.length) ? (
-            items.map((item, index) => {
-              //@ts-ignore
-              return (
-                <Card key={item.id}>
-                  {itemsName == 'questions' ? (
-                    <QuestionCard
-                      withEdit={isLoggedIn && isAdmin}
-                      handleEditButton={makeHandleEditItemButton(index)}
-                      question={item}
-                      key={item.id}
-                      index={index}
-                    />
-                  ) : (
-                    // <></>
-                    <SnippetCard
-                      withEdit={isLoggedIn && isAdmin}
-                      handleEditButton={makeHandleEditItemButton(index)}
-                      snippet={item}
-                      key={item.id}
-                      index={index}
-                    />
-                  )}
-                </Card>
-              )
-            })
-          ) : (
-            <Card
-            //  className={styles.noItemsCard}
-            >{`No ${itemsName} yet`}</Card>
-          )}
-        </div>
+
+      <div className="mx-auto mt-4 flex w-full flex-col  gap-5 lg:w-7/12">
+        {Boolean(items?.length) ? (
+          items.map((item, index) => {
+            //@ts-ignore
+            return (
+              <Fragment key={item.id}>
+                {itemsName == 'questions' ? (
+                  <QuestionCard
+                    withEdit={isLoggedIn && isAdmin}
+                    handleEditButton={makeHandleEditItemButton(index)}
+                    question={item}
+                    key={item.id}
+                    index={index}
+                  />
+                ) : (
+                  // <></>
+                  <SnippetCard
+                    withEdit={isLoggedIn && isAdmin}
+                    handleEditButton={makeHandleEditItemButton(index)}
+                    snippet={item}
+                    key={item.id}
+                    index={index}
+                  />
+                )}
+              </Fragment>
+            )
+          })
+        ) : (
+          <Card
+          //  className={styles.noItemsCard}
+          >{`No ${itemsName} yet`}</Card>
+        )}
       </div>
 
       {/* {isLoggedIn && isAddNewItemMode && ( */}
