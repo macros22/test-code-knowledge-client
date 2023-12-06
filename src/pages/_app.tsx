@@ -12,6 +12,25 @@ import 'keen-slider/keen-slider.min.css'
 import { frontendConfig } from '../config/frontendConfig'
 import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button/scroll-to-top-button'
 
+import { Inter, Lato, Oswald } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
+const lato = Lato({
+  subsets: ['latin'],
+  variable: '--font-lato',
+  weight: '400'
+})
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  weight: '300'
+})
+
 if (typeof window !== 'undefined') {
   // we only want to call this init function on the frontend, so we check typeof window !== 'undefined'
   SuperTokensReact.init(frontendConfig())
@@ -27,7 +46,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           enableSystem
           enableColorScheme
         >
-          <Component {...pageProps} />
+          <main className={`${oswald.className} tracking-wide`}>
+            <Component {...pageProps} />
+          </main>
           <NextNProgress
             color="#a15509"
             startPosition={0.3}

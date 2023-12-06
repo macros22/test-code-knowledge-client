@@ -56,7 +56,7 @@ export const QuestionCard: FC<QuestionCardProps> = ({
       <CardHeader>
         <CardTitle className="flex flex-col">
           <div className="flex">
-            <Badge className="mr-auto">
+            <Badge className="mr-auto text-lg tracking-wide" size='lg'>
               {'Question '}
               {index + 1}
             </Badge>
@@ -92,7 +92,7 @@ export const QuestionCard: FC<QuestionCardProps> = ({
             )}
           </div>
           <Separator className="my-4" />
-          <h5>{question.question}</h5>
+          <span className='text-md tracking-wide'>{question.question}</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -104,12 +104,12 @@ export const QuestionCard: FC<QuestionCardProps> = ({
             {isAnswerVisible ? (
               <>
                 <ChevronUpIcon />
-                <h5> Hide answer </h5>
+                <h5 className='text-md tracking-wide'> Hide answer </h5>
               </>
             ) : (
               <>
                 <ChevronDownIcon />
-                <h5> Show answer </h5>
+                <h5 className='text-md tracking-wide'>  Show answer </h5>
               </>
             )}
           </CollapsibleTrigger>

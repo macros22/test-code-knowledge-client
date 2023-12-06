@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'inter-medium': 'var(--font-inter)', // note: the bit that goes inside the var() function is the same variable name we defined in app.tsx
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

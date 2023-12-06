@@ -46,44 +46,43 @@ export const CategoryCards = () => {
 
   return (
     <>
-      <div className="mx-auto flex flex-wrap gap-5">
+      <div className="mx-auto flex flex-wrap gap-5 justify-center">
         {Object.keys(questionsInfo).map((category) => {
           return (
             <Card className="w-[280px]" key={category}>
               <CardHeader>
-                <CardTitle className="flex justify-center text-3xl before:mr-3 before:text-primary before:content-['{'] after:ml-3 after:text-primary after:content-['}']">
+                <CardTitle className="tracking-wide flex justify-center text-3xl before:mr-3 before:text-primary before:content-['{'] after:ml-3 after:text-primary after:content-['}']">
                   {category}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-wrap justify-center gap-5 pb-5 align-middle">
-                <Button asChild size="lg" className="w-full" variant="outline">
+                <Button asChild size="lg" className="w-full text-lg  before:mr-3 before:text-primary before:text-xl before:content-['-?-'] after:text-xl after:ml-3 after:text-primary after:content-['-?-']" variant="outline">
                   <Link
                     href={`/questions/${questionsInfo[category].categoryURLName}`}
                   >
-                    <HelpCircle className="mr-1 text-8xl" /> Questions
+                    {/* <HelpCircle className="mr-1 text-8xl" />  */}
+                    Questions
                   </Link>
                 </Button>
                 {snippetsInfo[category] && (
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full"
-                    variant="outline"
-                  >
+                  <Button asChild size="lg" className="w-full text-lg  before:mr-3 before:text-primary before:text-xl before:content-['///'] after:text-xl after:ml-3 after:text-primary after:content-['///']" variant="outline">
+                  
+          
                     <Link
                       href={`/snippets/${questionsInfo[category].categoryURLName}`}
                     >
-                      <Scissors className="mr-1" /> Snippets
+                      {/* <Scissors className="mr-1" />  */}
+                      Snippets
                       {/* <Icons.arrowRight /> */}
                     </Link>
                   </Button>
                 )}
                 <Button
                   size="lg"
-                  className="w-full"
+                  className="w-full text-lg  before:mr-3 before:text-white before:text-xl before:content-['|||'] after:text-xl after:ml-3 after:text-white after:content-['|||']"
                   onClick={passTestButtonHandler(category)}
                 >
-                  <ShieldCheck className="mr-1" />
+                  {/* <ShieldCheck className="mr-1" /> */}
                   Test
                 </Button>
               </CardContent>
