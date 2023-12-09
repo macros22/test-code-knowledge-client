@@ -46,14 +46,7 @@ export const AvatarMenu = () => {
           )}
         </Button> */}
       </PopoverTrigger>
-      <PopoverContent className="w-[160px] p-0">
-        <Link
-          href="/profile"
-          className="text-sm capitalize text-muted-foreground"
-        >
-          Profile
-        </Link>
-      </PopoverContent>
+      <PopoverContent className="w-[160px] p-0"></PopoverContent>
     </Popover>
   )
 }

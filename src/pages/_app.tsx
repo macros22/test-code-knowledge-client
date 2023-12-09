@@ -12,7 +12,7 @@ import 'keen-slider/keen-slider.min.css'
 import { frontendConfig } from '../config/frontendConfig'
 import { ScrollToTopButton } from '@/components/ui/scroll-to-top-button/scroll-to-top-button'
 
-import { Inter, Lato, Oswald } from 'next/font/google'
+import { Inter, Lato, Oswald, Poppins } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,13 +22,19 @@ const inter = Inter({
 const lato = Lato({
   subsets: ['latin'],
   variable: '--font-lato',
-  weight: '400'
+  weight: '400',
 })
 
 const oswald = Oswald({
   subsets: ['latin'],
   variable: '--font-oswald',
-  weight: '300'
+  weight: '300',
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-poppins',
 })
 
 if (typeof window !== 'undefined') {
@@ -46,7 +52,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           enableSystem
           enableColorScheme
         >
-          <main className={`${oswald.className} tracking-wide`}>
+          <main className={`${inter.className} tracking-wide`}>
             <Component {...pageProps} />
           </main>
           <NextNProgress

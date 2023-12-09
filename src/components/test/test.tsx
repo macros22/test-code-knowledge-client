@@ -8,7 +8,13 @@ import {
 import { Code } from '@/components/ui/code'
 import { TestProps } from './test.props'
 import { Badge } from '@/components/ui/badge/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { AnswersList } from './answers-list'
 
@@ -78,7 +84,7 @@ export const Test: FC<TestProps> = ({ questions }) => {
           <div className="flex flex-wrap gap-2">
             {questions.map((question, index) => {
               let variant: 'outline' | 'default' | 'secondary' = 'secondary'
-              if (currentQuestion == index) {
+              if (currentQuestion === index) {
                 variant = 'default'
               } else if (currentQuestion < index) {
                 variant = 'outline'
@@ -92,9 +98,11 @@ export const Test: FC<TestProps> = ({ questions }) => {
             })}
           </div>
           <div className="flex flex-wrap">
-            <Card className="mt-4 w-[600px]">
+            <Card className="mt-4 w-full md:w-[600px]">
               <CardHeader>
-                <CardTitle>{questions[currentQuestion].question}</CardTitle>
+                <CardDescription>
+                  {questions[currentQuestion].question}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 {questions[currentQuestion].codeExample && (
@@ -114,8 +122,9 @@ export const Test: FC<TestProps> = ({ questions }) => {
               </CardContent>
             </Card>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 w-full md:w-auto">
             <Button
+              className="w-full"
               onClick={isLastQuestion ? endTestHandler : nextButtonHandler}
             >
               {isLastQuestion ? 'Finish test' : 'Next'}
